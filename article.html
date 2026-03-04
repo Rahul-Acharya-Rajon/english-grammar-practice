@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article Practice Master - Pro HSC Tool</title>
     <style>
         :root {
@@ -18,7 +19,7 @@
             --border: #cbd5e1;
         }
 
-        /* Dark Mode Colors */
+        /* Dark Mode Colors - Fixed Visibility */
         [data-theme="dark"] {
             --bg: #0f172a;
             --card-bg: #1e293b;
@@ -35,22 +36,47 @@
             color: var(--text-main);
             line-height: 1.8;
             transition: all 0.3s ease;
+            margin: 0;
         }
 
         .container {
             max-width: 1100px;
             margin: auto;
             background: var(--card-bg);
-            padding: 40px;
+            padding: 20px;
+            /* Reduced for mobile */
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
+        /* Responsive Setup Grid */
         .setup-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
             margin-bottom: 30px;
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .btn-submit,
+            .btn-export,
+            .btn-reset {
+                width: 100% !important;
+                margin: 5px 0;
+            }
+
+            h2 {
+                font-size: 22px !important;
+            }
         }
 
         h2 {
@@ -71,7 +97,8 @@
 
         textarea {
             width: 100%;
-            height: 400px;
+            height: 300px;
+            /* Adjusted height */
             padding: 15px;
             border: 2px solid var(--border);
             border-radius: 12px;
@@ -119,11 +146,11 @@
 
         .theme-toggle {
             position: fixed;
-            top: 25px;
-            right: 25px;
+            top: 15px;
+            right: 15px;
             background: var(--p);
             color: white;
-            padding: 12px 20px;
+            padding: 10px 15px;
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
@@ -132,26 +159,30 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 14px;
         }
 
         .quiz-card {
             border: 1px solid var(--border);
-            padding: 30px;
+            padding: 20px;
             margin-bottom: 35px;
             border-radius: 15px;
             line-height: 2.8;
             background: var(--card-bg);
             position: relative;
             transition: transform 0.2s;
+            overflow-x: auto;
+            /* Prevent overflow on small screens */
         }
 
         .gap-input {
-            width: 100px;
+            width: 80px;
             border: none;
             border-bottom: 3px solid var(--p);
             text-align: center;
             background: var(--input-bg);
             color: var(--text-main);
+            /* Ensures visibility in Dark Mode */
             font-weight: bold;
             font-size: 17px;
             outline: none;
@@ -159,9 +190,19 @@
             border-radius: 5px 5px 0 0;
         }
 
+        /* Fix for dark mode input readability */
+        [data-theme="dark"] .gap-input {
+            background: #2d3748;
+            color: #ffffff !important;
+        }
+
         .gap-input:focus {
             border-bottom-color: var(--s);
             background: #e2e8f0;
+        }
+
+        [data-theme="dark"] .gap-input:focus {
+            background: #4a5568;
         }
 
         .feedback-area {
@@ -241,20 +282,21 @@
 
 <body>
 
-    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Switch Theme</div>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
 
     <div class="container">
-        <h2>HSC Article Mastery Dashboard</h2>
-        <p>Fill up these blanks with appropriate articles. Where no article needed, keep the box blank</p>
+        <h2>HSC Article Mastery</h2>
+        <p style="text-align: center; color: var(--text-sub);">Fill up these blanks with appropriate articles. For no
+            article, keep blank.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
                 <div>
-                    <label>1. Paste All Questions (Plain Text):</label>
+                    <label>1. Paste Questions:</label>
                     <textarea id="q-input" placeholder="Example: 1. Article (a) ___ parliament house..."></textarea>
                 </div>
                 <div>
-                    <label>2. Paste All Answers (Matches your format):</label>
+                    <label>2. Paste Answers:</label>
                     <textarea id="a-input" placeholder="Example: 1. (a) The; (b) an; (c) a; ..."></textarea>
                 </div>
             </div>
@@ -288,7 +330,6 @@
             }
         }
 
-        // Advanced Normalization for Symbols and Case
         function cleanVal(val) {
             if (!val) return "";
             return val.toLowerCase()
@@ -307,19 +348,14 @@
                 return;
             }
 
-            // Split Questions by "X. Article"
             const qBlocks = qRaw.split(/\d+\.\s+Article/i).filter(b => b.trim().length > 15);
-
-            // Split Answers by "X." at start of lines
             const aBlocks = aRaw.split(/\n\s*\d+\.\s*\n|\n\s*\d+\.\s+/).filter(b => b.trim().length > 0);
 
             examData = qBlocks.map((text, index) => {
-                // FIXED REGEX: Specifically targets the (letter) and any underlines/dashes without touching next words
                 let html = text.trim().replace(/\(([a-j])\)\s*[_—|-]+/g, (match, letter) => {
                     return `<b>(${letter})</b> <input type="text" class="gap-input" data-qid="${index}" data-letter="${letter}" autocomplete="off">`;
                 });
 
-                // Parse individual answers
                 let ansStr = aBlocks[index] || "";
                 let ansMap = {};
                 let matches = [...ansStr.matchAll(/\(([a-j])\)\s*([^;(.\n]+)/g)];
@@ -363,7 +399,6 @@
                     let userAns = cleanVal(input.value);
                     let correctAnsRaw = item.answers[letter] || "x";
 
-                    // Support multiple correct options like "the/a"
                     let options = correctAnsRaw.split(/[\/\s]+/).map(o => cleanVal(o));
 
                     if (options.includes(userAns) || (userAns === 'x' && options.includes('x'))) {
@@ -385,7 +420,7 @@
                                 <div style="margin-top:10px;"><b>Answer Key:</b> ${keyList.join(' ')}</div>`;
             });
 
-            const percentage = Math.round((obtainedMarks / totalMarks) * 100);
+            const percentage = Math.round((obtainedMarks / totalMarks) * 100) || 0;
             document.getElementById('summary-stat').innerHTML =
                 `Final Result: ${obtainedMarks} / ${totalMarks} (${percentage}%)`;
 
