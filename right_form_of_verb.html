@@ -32,6 +32,7 @@
             color: var(--text-main);
             line-height: 1.8;
             transition: 0.3s;
+            margin: 0;
         }
 
         .container {
@@ -41,6 +42,36 @@
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .setup-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            textarea {
+                height: 250px;
+            }
+
+            .gap-input {
+                min-width: 100px;
+                width: 80px;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
         }
 
         .setup-grid {
@@ -147,7 +178,20 @@
             display: none !important;
         }
 
+        /* Optimized Print Settings */
         @media print {
+            @page {
+                margin: 0.5cm;
+            }
+
+            body {
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 0;
+            }
+
             .no-print {
                 display: none !important;
             }
@@ -157,18 +201,35 @@
                 border: none;
                 width: 100%;
                 max-width: 100%;
+                padding: 0;
+                background: transparent !important;
             }
 
             .quiz-card {
                 page-break-inside: avoid;
-                border: 1px solid #eee;
-                margin-bottom: 20px;
+                border: 1px solid var(--border);
+                margin-bottom: 15px;
+                padding: 15px;
+                background: var(--card-bg) !important;
+            }
+
+            .gap-input {
+                border-bottom: 1px solid #000;
+                background: transparent !important;
+                min-width: 80px;
+                font-size: 14px;
             }
 
             .feedback-area {
                 display: block !important;
-                background: #f9f9f9 !important;
-                border: 1px solid #ccc !important;
+                margin-top: 10px;
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            h2,
+            h3 {
+                margin: 5px 0;
             }
         }
     </style>
@@ -214,7 +275,6 @@
             const aIn = document.getElementById('a-input').value.trim();
             if (!qIn || !aIn) return alert("Please fill both boxes!");
 
-            // Split by number at start (1., 2. etc)
             const qBlocks = qIn.split(/\n\s*(?=\d+\.)/).filter(b => b.trim());
             const aBlocks = aIn.split(/\n\s*(?=\d+\.)/).filter(b => b.trim());
 
@@ -222,19 +282,16 @@
                 let ansMap = {};
                 let rawAns = aBlocks[idx] || "";
 
-                // Parse answers like (a) reigns (b) speaking
                 const pattern = /\(([a-n])\)([\s\S]*?)(?=\([a-n]\)|$)/g;
                 let match;
                 while ((match = pattern.exec(rawAns)) !== null) {
                     ansMap[match[1]] = match[2].trim().replace(/;$/, '');
                 }
 
-                // Replace (a) --- (reign) with input
                 let html = text.replace(/\(([a-n])\)\s*[-—._\s]+\(([a-zA-Z\s]+)\)/g, (m, letter, verb) => {
                     return `<span class="letter-label">(${letter})</span><input type="text" class="gap-input" data-letter="${letter}" data-qid="${idx}" autocomplete="off" placeholder="(${verb})">`;
                 });
 
-                // Fallback for different formats (a) ------- (be)
                 html = html.replace(/\(([a-n])\)\s*[-—._\s]+/g, (m, letter) => {
                     if (m.includes('<input')) return m;
                     return `<span class="letter-label">(${letter})</span><input type="text" class="gap-input" data-letter="${letter}" data-qid="${idx}" autocomplete="off">`;
@@ -264,7 +321,6 @@
                     const userVal = cleanString(input.value);
                     const official = item.answers[letter] || "";
 
-                    // Support multiple answers like "getting/to get" or "don't shine / never shine"
                     const possible = official.split(/[/;]|\sor\s/).map(o => cleanString(o));
                     const isCorrect = userVal !== "" && possible.some(p => p === userVal);
 
