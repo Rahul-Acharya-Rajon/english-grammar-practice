@@ -52,9 +52,30 @@
             margin-bottom: 30px;
         }
 
+        /* Mobile Responsive Adjustments */
         @media (max-width: 768px) {
             .setup-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .gap-input {
+                min-width: 100px;
+                font-size: 15px;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
             }
         }
 
@@ -114,7 +135,6 @@
             margin: 0 6px;
             padding: 3px 6px;
             border-radius: 6px 6px 0 0;
-            transition: border-color 0.2s;
             vertical-align: middle;
         }
 
@@ -137,6 +157,7 @@
             color: white;
             margin: 10px 6px;
             font-size: 16px;
+            transition: 0.3s;
         }
 
         .feedback-area {
@@ -144,7 +165,6 @@
             padding: 16px;
             border-radius: 12px;
             display: none;
-            color: var(--text-main);
         }
 
         .correct-box {
@@ -178,110 +198,83 @@
             border-radius: 50px;
             cursor: pointer;
             z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .hidden {
             display: none !important;
         }
 
+        /* Print Settings Fixed */
         @media print {
-            :root {
-                --bg: #ffffff !important;
-                --card-bg: #ffffff !important;
-                --text-main: #111111 !important;
-                --border: #cccccc !important;
-                --input-bg: #fdfdfd !important;
-                --p: #1e40af !important;
-                --s: #15803d !important;
-                --d: #b91c1c !important;
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
             body {
-                background: white !important;
-                color: #111111 !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
+                padding: 0 !important;
             }
 
-            .container,
-            .quiz-card {
-                background: white !important;
+            .container {
                 box-shadow: none !important;
-                border: 1px solid #dddddd !important;
-                margin-bottom: 20px !important;
-                padding: 20px !important;
+                border: none !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
-            h2,
-            h3 {
-                color: #1e40af !important;
-                margin-bottom: 12px !important;
+            .quiz-card {
+                border: 1px solid var(--border) !important;
+                margin-bottom: 15px !important;
+                padding: 15px !important;
+                page-break-inside: avoid;
             }
 
             .gap-input {
-                background: #fdfdfd !important;
-                color: #111111 !important;
-                border-bottom: 2px solid #1e40af !important;
-                min-width: 130px;
-                margin: 2px 6px !important;
-                padding: 2px 6px;
-            }
-
-            .clue-box {
-                background: #f8f9fa !important;
-                border: 1px dashed #1e40af !important;
-                margin: 12px 0 !important;
-            }
-
-            .feedback-area {
-                display: block !important;
-                background: #f9fafb !important;
-                border: 1px solid #e5e7eb !important;
-                color: #111111 !important;
-                margin-top: 12px !important;
-                padding: 12px !important;
-            }
-
-            .correct-box {
-                background: #f0fdf4 !important;
-                border-left: 6px solid #15803d !important;
-                color: #065f46 !important;
-            }
-
-            .wrong-box {
-                background: #fef2f2 !important;
-                border-left: 6px solid #b91c1c !important;
-                color: #991b1b !important;
-            }
-
-            .ans-tag {
-                background: #f3f4f6 !important;
-                color: #111111 !important;
-                border-color: #d1d5db !important;
-                margin: 2px 6px 2px 0 !important;
-                padding: 3px 8px;
+                border-bottom: 1px solid var(--p) !important;
+                min-width: 110px !important;
+                background: transparent !important;
             }
 
             .theme-toggle,
             .btn,
-            .no-print {
+            .no-print,
+            label {
                 display: none !important;
+            }
+
+            .feedback-area {
+                display: block !important;
+                border: 1px solid var(--border) !important;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
+
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Toggle Mode</div>
 
     <div class="container">
         <h2 style="text-align:center; color:var(--p);">HSC Phrases & Words Practice</h2>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
-                <textarea id="q-input" placeholder="Paste Questions here... (শুধু ____ দিয়ে blank দাও)"></textarea>
-                <textarea id="a-input"
-                    placeholder="Paste Answers here...\n(a) had better; (b) let alone\nবা\n(a) as if (b) what does... look like"></textarea>
+                <div>
+                    <label style="display:block; margin-bottom:8px; font-weight:600;">1. Paste All Questions:</label>
+                    <textarea id="q-input" placeholder="Paste questions like: 01. ... (a) ___ (b) ___"></textarea>
+                </div>
+                <div>
+                    <label style="display:block; margin-bottom:8px; font-weight:600;">2. Paste All Answers:</label>
+                    <textarea id="a-input" placeholder="Paste answers like: 01. (a) was born; (b) as if;"></textarea>
+                </div>
             </div>
             <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Generate Practice
                 Sheet</button>
@@ -289,6 +282,7 @@
 
         <div id="quiz-view" class="hidden">
             <div id="quiz-container"></div>
+
             <div style="text-align:center;" class="no-print">
                 <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
                 <button class="btn" style="background:#9333ea" onclick="window.print()">Save as PDF</button>
@@ -301,9 +295,12 @@
         let quizData = [];
 
         function toggleTheme() {
-            document.documentElement.hasAttribute("data-theme")
-                ? document.documentElement.removeAttribute("data-theme")
-                : document.documentElement.setAttribute("data-theme", "dark");
+            const current = document.documentElement.getAttribute("data-theme");
+            if (current === "dark") {
+                document.documentElement.removeAttribute("data-theme");
+            } else {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
         }
 
         function clean(s) {
@@ -326,6 +323,7 @@
         function initApp() {
             const qIn = document.getElementById('q-input').value.trim();
             const aIn = document.getElementById('a-input').value.trim();
+
             if (!qIn || !aIn) return alert("দুটো ঘরই পূরণ করো!");
 
             const qBlocks = qIn.split(/\n\s*\d+\.\s*/).filter(b => b.trim().length > 5);
@@ -334,10 +332,11 @@
             quizData = qBlocks.map((text, idx) => {
                 let ansMap = {};
                 let clues = [];
-
                 let answerText = aBlocks[idx] || "";
+
                 answerText = answerText.replace(/^\d+\.\s*/, '');
                 let parts = answerText.split(/\s*\(([a-j])\)\s*/).filter(p => p.trim());
+
                 for (let i = 1; i < parts.length; i += 2) {
                     let letter = parts[i - 1].trim();
                     let val = parts[i].split(/;|$/)[0].trim().replace(/[:;]/g, '').trim();
@@ -359,7 +358,6 @@
                     });
                 }
 
-                // clues গুলোকে shuffle করা
                 clues = shuffleArray(clues);
 
                 let html = text.replace(/_{3,}/g, () => {
@@ -368,15 +366,12 @@
 
                 html = html.replace(/\(([a-j])\)/g, '<span class="letter-label">($1)</span>');
 
-                return {
-                    html,
-                    answers: ansMap,
-                    clues: clues
-                };
+                return { html, answers: ansMap, clues: clues };
             });
 
             document.getElementById('setup-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
+
             document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
                 <div class="quiz-card">
                     <h3>Exercise ${i + 1}</h3>
@@ -416,7 +411,6 @@
 
                     input.style.color = isCorrect ? "var(--s)" : "var(--d)";
 
-                    // answer key সবসময় দেখাবো
                     if (actual) {
                         keys.push(`<span class="ans-tag">(${letter}) ${actual}</span>`);
                     }
