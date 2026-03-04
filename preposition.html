@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Preposition Mastery - Board Practice</title>
+    <style>
+        :root {
+            --p: #2563eb;
+            --s: #16a34a;
+            --d: #dc2626;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --input-bg: #fffbeb;
+            --border: #cbd5e1;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-sub: #cbd5e1;
+            --input-bg: #334155;
+            --border: #475569;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg);
+            padding: 20px;
+            color: var(--text-main);
+            line-height: 1.8;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--p);
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        textarea {
+            width: 100%;
+            height: 400px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: var(--card-bg);
+            color: var(--text-main);
+            resize: vertical;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            margin: 10px 5px;
+            font-size: 16px;
+        }
+
+        .btn-start {
+            background: var(--p);
+            width: 100%;
+        }
+
+        .btn-submit {
+            background: var(--s);
+            width: 250px;
+        }
+
+        .btn-export {
+            background: #9333ea;
+            display: none;
+            width: 250px;
+        }
+
+        .btn-reset {
+            background: #64748b;
+            width: 150px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: var(--p);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .quiz-card {
+            border: 1px solid var(--border);
+            padding: 30px;
+            margin-bottom: 35px;
+            border-radius: 15px;
+            line-height: 2.8;
+            background: var(--card-bg);
+        }
+
+        .gap-input {
+            width: 100px;
+            border: none;
+            border-bottom: 3px solid var(--p);
+            text-align: center;
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 17px;
+            outline: none;
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .feedback-area {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            display: none;
+        }
+
+        .correct-box {
+            background: rgba(22, 163, 74, 0.15);
+            border-left: 8px solid var(--s);
+            color: var(--s);
+        }
+
+        .wrong-box {
+            background: rgba(220, 38, 38, 0.15);
+            border-left: 8px solid var(--d);
+            color: var(--d);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .ans-tag {
+            display: inline-block;
+            background: var(--bg);
+            padding: 2px 10px;
+            border-radius: 5px;
+            margin: 2px;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        @media print {
+
+            body,
+            .container,
+            .quiz-card {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-scheme: light dark !important;
+            }
+
+            .no-print,
+            .btn,
+            .theme-toggle,
+            label {
+                display: none !important;
+            }
+
+            .container {
+                box-shadow: none !important;
+                border: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .feedback-area {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Toggle Mode</div>
+
+    <div class="container">
+        <h2>HSC Preposition Practice Board</h2>
+
+        <div id="setup-view" class="no-print">
+            <div class="setup-grid">
+                <div>
+                    <label>1. Paste Questions (Format: 01. Text...):</label>
+                    <textarea id="q-input" placeholder="01. A good boy is... (a) ___ hard work."></textarea>
+                </div>
+                <div>
+                    <label>2. Paste Answers (Format: 01. (a) ans;):</label>
+                    <textarea id="a-input" placeholder="01. (a) to; (b) of/about;"></textarea>
+                </div>
+            </div>
+            <button class="btn btn-start" onclick="processData()">Build Practice Set</button>
+        </div>
+
+        <div id="quiz-view" class="hidden">
+            <div id="summary-stat" style="text-align:center; margin-bottom:30px; font-size:24px; font-weight:bold;">
+            </div>
+            <div id="quiz-container"></div>
+            <div style="text-align:center;" class="no-print">
+                <button class="btn btn-submit" onclick="runEvaluation()">Check Answers</button>
+                <button id="export-btn" class="btn btn-export" onclick="window.print()">Export PDF</button>
+                <button class="btn btn-reset" onclick="location.reload()">Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let examData = [];
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute("data-theme");
+            current === "dark" ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        // Deep clean for comparison
+        function cleanVal(val) {
+            if (!val) return "";
+            return val.toLowerCase()
+                .replace(/[()×:.|—_;\-\t\n]/g, '')
+                .replace(/\s/g, '')
+                .trim();
+        }
+
+        function processData() {
+            const qRaw = document.getElementById('q-input').value.trim();
+            const aRaw = document.getElementById('a-input').value.trim();
+
+            if (!qRaw || !aRaw) return alert("Please paste both data!");
+
+            // Split by "01.", "02." etc. This supports questions with or without "Complete the text"
+            const qBlocks = qRaw.split(/\n\s*\d+\.\s*(?:\n)?/).filter(b => b.trim().length > 10);
+            const aBlocks = aRaw.split(/\n\s*\d+\.\s*(?:\n)?/).filter(b => b.trim().length > 0);
+
+            examData = qBlocks.map((text, index) => {
+                // Keep the original text but replace gaps (a) ___ with input boxes
+                let html = text.trim().replace(/\(([a-j])\)\s*[_—|-]+/g, (match, letter) => {
+                    return `<b>(${letter})</b> <input type="text" class="gap-input" data-qid="${index}" data-letter="${letter}" autocomplete="off">`;
+                });
+
+                let ansStr = aBlocks[index] || "";
+                let ansMap = {};
+                // Improved Answer Regex: handles colon, semicolon, period, and slash
+                let matches = [...ansStr.matchAll(/\(([a-j])\)\s*([^;(.\n]+)/g)];
+                matches.forEach(m => {
+                    ansMap[m[1]] = m[2].trim().replace(/[:;.]/g, '').trim();
+                });
+
+                return { html, answers: ansMap };
+            });
+
+            renderExam();
+        }
+
+        function renderExam() {
+            const container = document.getElementById('quiz-container');
+            document.getElementById('setup-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            container.innerHTML = examData.map((item, i) => `
+                <div class="quiz-card">
+                    <h3 style="color:var(--p); margin-top:0; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Exercise ${i + 1}</h3>
+                    <div class="content-body">${item.html}</div>
+                    <div id="feedback-${i}" class="feedback-area"></div>
+                </div>
+            `).join('');
+        }
+
+        function runEvaluation() {
+            let totalMarks = 0, obtainedMarks = 0;
+            examData.forEach((item, qIdx) => {
+                let setCorrect = 0;
+                const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+                let keyList = [];
+
+                inputs.forEach(input => {
+                    totalMarks++;
+                    let letter = input.getAttribute('data-letter');
+                    let userAns = cleanVal(input.value);
+                    let correctAnsRaw = item.answers[letter] || "x";
+
+                    // Handle multiple correct options (split by / or space)
+                    let options = correctAnsRaw.split(/[\/\s]+/).map(o => cleanVal(o));
+
+                    if (options.includes(userAns) && userAns !== "") {
+                        input.style.color = "var(--s)";
+                        input.style.borderBottomColor = "var(--s)";
+                        setCorrect++; obtainedMarks++;
+                    } else {
+                        input.style.color = "var(--d)";
+                        input.style.borderBottomColor = "var(--d)";
+                    }
+                    keyList.push(`<span class="ans-tag">(${letter}) ${correctAnsRaw}</span>`);
+                });
+
+                const fb = document.getElementById(`feedback-${qIdx}`);
+                fb.style.display = "block";
+                fb.className = `feedback-area ${setCorrect === inputs.length ? 'correct-box' : 'wrong-box'}`;
+                fb.innerHTML = `<strong>Set Score: ${setCorrect} / ${inputs.length}</strong><br>
+                                <div style="margin-top:10px;"><b>Answer Key:</b> ${keyList.join(' ')}</div>`;
+            });
+
+            document.getElementById('summary-stat').innerText = `Total Score: ${obtainedMarks} / ${totalMarks}`;
+            document.getElementById('export-btn').style.display = "inline-block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

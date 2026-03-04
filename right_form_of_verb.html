@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC Right Form of Verbs - Practice Master</title>
+    <style>
+        :root {
+            --p: #2563eb;
+            --s: #16a34a;
+            --d: #b91c1c;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --text-main: #1e293b;
+            --border: #cbd5e1;
+            --input-bg: #fffbeb;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --border: #475569;
+            --input-bg: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            padding: 20px;
+            color: var(--text-main);
+            line-height: 1.8;
+            transition: 0.3s;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 350px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .quiz-card {
+            border: 1px solid var(--border);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            background: var(--card-bg);
+        }
+
+        .gap-input {
+            display: inline-block;
+            min-width: 130px;
+            border: none;
+            border-bottom: 2px solid var(--p);
+            text-align: center;
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 16px;
+            outline: none;
+            margin: 0 4px;
+            padding: 2px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .letter-label {
+            font-weight: bold;
+            color: var(--p);
+            margin-right: 2px;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: white;
+            margin: 5px;
+            font-size: 15px;
+        }
+
+        .feedback-area {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .correct-box {
+            background: rgba(22, 163, 74, 0.1);
+            border-left: 6px solid var(--s);
+        }
+
+        .wrong-box {
+            background: rgba(220, 38, 38, 0.1);
+            border-left: 6px solid var(--d);
+        }
+
+        .ans-tag {
+            display: inline-block;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin: 3px;
+            font-size: 0.9em;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--p);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .quiz-card {
+                page-break-inside: avoid;
+                border: 1px solid #eee;
+                margin-bottom: 20px;
+            }
+
+            .feedback-area {
+                display: block !important;
+                background: #f9f9f9 !important;
+                border: 1px solid #ccc !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
+    <div class="container">
+        <h2 style="text-align:center; color:var(--p);">Right Form of Verbs Practice</h2>
+
+        <div id="setup-view" class="no-print">
+            <div class="setup-grid">
+                <textarea id="q-input"
+                    placeholder="Paste Questions (e.g. 1. In this world truth (a) — (reign)...)"></textarea>
+                <textarea id="a-input" placeholder="Paste Answers (e.g. 1. (a) reigns (b) speaking...)"></textarea>
+            </div>
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Generate Practice
+                Sheet</button>
+        </div>
+
+        <div id="quiz-view" class="hidden">
+            <div id="quiz-container"></div>
+            <div style="text-align:center;" class="no-print">
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
+                <button class="btn" style="background:#9333ea" onclick="window.print()">Save as PDF</button>
+                <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizData = [];
+        function toggleTheme() {
+            document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function cleanString(str) {
+            return str.toLowerCase().replace(/\s+/g, ' ').trim().replace(/[.;:]/g, '');
+        }
+
+        function initApp() {
+            const qIn = document.getElementById('q-input').value.trim();
+            const aIn = document.getElementById('a-input').value.trim();
+            if (!qIn || !aIn) return alert("Please fill both boxes!");
+
+            // Split by number at start (1., 2. etc)
+            const qBlocks = qIn.split(/\n\s*(?=\d+\.)/).filter(b => b.trim());
+            const aBlocks = aIn.split(/\n\s*(?=\d+\.)/).filter(b => b.trim());
+
+            quizData = qBlocks.map((text, idx) => {
+                let ansMap = {};
+                let rawAns = aBlocks[idx] || "";
+
+                // Parse answers like (a) reigns (b) speaking
+                const pattern = /\(([a-n])\)([\s\S]*?)(?=\([a-n]\)|$)/g;
+                let match;
+                while ((match = pattern.exec(rawAns)) !== null) {
+                    ansMap[match[1]] = match[2].trim().replace(/;$/, '');
+                }
+
+                // Replace (a) --- (reign) with input
+                let html = text.replace(/\(([a-n])\)\s*[-—._\s]+\(([a-zA-Z\s]+)\)/g, (m, letter, verb) => {
+                    return `<span class="letter-label">(${letter})</span><input type="text" class="gap-input" data-letter="${letter}" data-qid="${idx}" autocomplete="off" placeholder="(${verb})">`;
+                });
+
+                // Fallback for different formats (a) ------- (be)
+                html = html.replace(/\(([a-n])\)\s*[-—._\s]+/g, (m, letter) => {
+                    if (m.includes('<input')) return m;
+                    return `<span class="letter-label">(${letter})</span><input type="text" class="gap-input" data-letter="${letter}" data-qid="${idx}" autocomplete="off">`;
+                });
+
+                return { html, answers: ansMap };
+            });
+
+            document.getElementById('setup-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
+                <div class="quiz-card">
+                    <h3>Exercise ${i + 1}</h3>
+                    <div style="white-space: pre-wrap;">${item.html}</div>
+                    <div id="fb-${i}" class="feedback-area"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkAnswers() {
+            quizData.forEach((item, qIdx) => {
+                let score = 0;
+                const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+                let keyHTML = "";
+                inputs.forEach(input => {
+                    const letter = input.dataset.letter;
+                    const userVal = cleanString(input.value);
+                    const official = item.answers[letter] || "";
+
+                    // Support multiple answers like "getting/to get" or "don't shine / never shine"
+                    const possible = official.split(/[/;]|\sor\s/).map(o => cleanString(o));
+                    const isCorrect = userVal !== "" && possible.some(p => p === userVal);
+
+                    input.style.color = isCorrect ? "var(--s)" : "var(--d)";
+                    input.style.borderColor = isCorrect ? "var(--s)" : "var(--d)";
+                    if (isCorrect) score++;
+                    keyHTML += `<span class="ans-tag"><b>(${letter})</b> ${official}</span>`;
+                });
+
+                const fb = document.getElementById(`fb-${qIdx}`);
+                fb.style.display = "block";
+                fb.className = `feedback-area ${score === inputs.length && score > 0 ? 'correct-box' : 'wrong-box'}`;
+                fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><br><b>Correct Answers:</b><br>${keyHTML}`;
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC English Exam Portal</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --accent: #16a34a;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 10px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card h2 {
+            margin: 10px 0;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>HSC English Exam Portal</h1>
+        <p>Prepare yourself with our board-standard practice modules</p>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+
+            <div class="card">
+                <div>
+                    <span class="icon">📝</span>
+                    <h2>Articles</h2>
+                    <p>Practice A, An, The and Zero articles with board questions.</p>
+                </div>
+                <a href="article.html" class="btn">Start Exam</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="icon">🔗</span>
+                    <h2>Prepositions</h2>
+                    <p>Master appropriate prepositions and usage in sentences.</p>
+                </div>
+                <a href="preposition.html" class="btn">Start Exam</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="icon">💡</span>
+                    <h2>Special Phrases</h2>
+                    <p>Practice "was born", "have to", "would rather" and more.</p>
+                </div>
+                <a href="phrase.html" class="btn">Start Exam</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="icon">⚙️</span>
+                    <h2>Right Form of Verbs</h2>
+                    <p>Correct the verb forms according to tense and context.</p>
+                </div>
+                <a href="right_form_of_verb.html" class="btn">Start Exam</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="icon">🔄</span>
+                    <h2>Changing Sentence</h2>
+                    <p>Voice, Degree, and Structure (Simple/Complex/Compound) transformation.</p>
+                </div>
+                <a href="changing_sentence.html" class="btn">Start Exam</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="icon">👤</span>
+                    <h2>Pronoun Reference</h2>
+                    <p>Identify and correct unclear pronoun references in passages.</p>
+                </div>
+                <a href="pronoun_reference.html" class="btn">Start Exam</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="icon">🎯</span>
+                    <h2>Modifiers</h2>
+                    <p>Practice pre-modifiers and post-modifiers to enhance sentences.</p>
+                </div>
+                <a href="modifier.html" class="btn">Start Exam</a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="icon">🖇️</span>
+                    <h2>Sentence Connectors</h2>
+                    <p>Improve the flow of your writing with logical connectors.</p>
+                </div>
+                <a href="sentence_connector.html" class="btn">Start Exam</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 HSC Exam Master. All Rights Reserved.
+    </footer>
+
+</body>
+
+</html>

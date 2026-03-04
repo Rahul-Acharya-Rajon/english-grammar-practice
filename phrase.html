@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC Phrase Master - Final</title>
+    <style>
+        :root {
+            --p: #2563eb;
+            --s: #16a34a;
+            --d: #b91c1c;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --text-main: #1e293b;
+            --border: #cbd5e1;
+            --input-bg: #fffbeb;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --border: #475569;
+            --input-bg: #334155;
+            --d: #f87171;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            padding: 20px;
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            height: 380px;
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-family: inherit;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        .clue-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 16px;
+            background: rgba(37, 99, 235, 0.08);
+            border: 2px dashed var(--p);
+            border-radius: 12px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+        .clue-item {
+            background: var(--card-bg);
+            border: 1px solid var(--p);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--p);
+        }
+
+        .quiz-card {
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin-bottom: 32px;
+            border-radius: 16px;
+            background: var(--card-bg);
+        }
+
+        .gap-input {
+            display: inline-block;
+            min-width: 140px;
+            border: none;
+            border-bottom: 3px solid var(--p);
+            text-align: center;
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 17px;
+            outline: none;
+            margin: 0 6px;
+            padding: 3px 6px;
+            border-radius: 6px 6px 0 0;
+            transition: border-color 0.2s;
+            vertical-align: middle;
+        }
+
+        .gap-input:focus {
+            border-bottom-color: var(--s);
+        }
+
+        .letter-label {
+            font-weight: bold;
+            color: var(--p);
+            margin-right: 4px;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            margin: 10px 6px;
+            font-size: 16px;
+        }
+
+        .feedback-area {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 12px;
+            display: none;
+            color: var(--text-main);
+        }
+
+        .correct-box {
+            background: rgba(22, 163, 74, 0.12);
+            border-left: 6px solid var(--s);
+        }
+
+        .wrong-box {
+            background: rgba(220, 38, 38, 0.12);
+            border-left: 6px solid var(--d);
+        }
+
+        .ans-tag {
+            display: inline-block;
+            background: var(--bg);
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin: 4px 6px 4px 0;
+            border: 1px solid var(--border);
+            font-size: 0.95em;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--p);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media print {
+            :root {
+                --bg: #ffffff !important;
+                --card-bg: #ffffff !important;
+                --text-main: #111111 !important;
+                --border: #cccccc !important;
+                --input-bg: #fdfdfd !important;
+                --p: #1e40af !important;
+                --s: #15803d !important;
+                --d: #b91c1c !important;
+            }
+
+            body {
+                background: white !important;
+                color: #111111 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .container,
+            .quiz-card {
+                background: white !important;
+                box-shadow: none !important;
+                border: 1px solid #dddddd !important;
+                margin-bottom: 20px !important;
+                padding: 20px !important;
+            }
+
+            h2,
+            h3 {
+                color: #1e40af !important;
+                margin-bottom: 12px !important;
+            }
+
+            .gap-input {
+                background: #fdfdfd !important;
+                color: #111111 !important;
+                border-bottom: 2px solid #1e40af !important;
+                min-width: 130px;
+                margin: 2px 6px !important;
+                padding: 2px 6px;
+            }
+
+            .clue-box {
+                background: #f8f9fa !important;
+                border: 1px dashed #1e40af !important;
+                margin: 12px 0 !important;
+            }
+
+            .feedback-area {
+                display: block !important;
+                background: #f9fafb !important;
+                border: 1px solid #e5e7eb !important;
+                color: #111111 !important;
+                margin-top: 12px !important;
+                padding: 12px !important;
+            }
+
+            .correct-box {
+                background: #f0fdf4 !important;
+                border-left: 6px solid #15803d !important;
+                color: #065f46 !important;
+            }
+
+            .wrong-box {
+                background: #fef2f2 !important;
+                border-left: 6px solid #b91c1c !important;
+                color: #991b1b !important;
+            }
+
+            .ans-tag {
+                background: #f3f4f6 !important;
+                color: #111111 !important;
+                border-color: #d1d5db !important;
+                margin: 2px 6px 2px 0 !important;
+                padding: 3px 8px;
+            }
+
+            .theme-toggle,
+            .btn,
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
+
+    <div class="container">
+        <h2 style="text-align:center; color:var(--p);">HSC Phrases & Words Practice</h2>
+
+        <div id="setup-view" class="no-print">
+            <div class="setup-grid">
+                <textarea id="q-input" placeholder="Paste Questions here... (শুধু ____ দিয়ে blank দাও)"></textarea>
+                <textarea id="a-input"
+                    placeholder="Paste Answers here...\n(a) had better; (b) let alone\nবা\n(a) as if (b) what does... look like"></textarea>
+            </div>
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Generate Practice
+                Sheet</button>
+        </div>
+
+        <div id="quiz-view" class="hidden">
+            <div id="quiz-container"></div>
+            <div style="text-align:center;" class="no-print">
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
+                <button class="btn" style="background:#9333ea" onclick="window.print()">Save as PDF</button>
+                <button class="btn" style="background:#64748b" onclick="location.reload()">Start Over</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizData = [];
+
+        function toggleTheme() {
+            document.documentElement.hasAttribute("data-theme")
+                ? document.documentElement.removeAttribute("data-theme")
+                : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function clean(s) {
+            if (!s) return "";
+            return s.toLowerCase()
+                .replace(/[\(\)×:.|—_;\-\t\n]/g, '')
+                .replace(/\.{3,}/g, '...')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function initApp() {
+            const qIn = document.getElementById('q-input').value.trim();
+            const aIn = document.getElementById('a-input').value.trim();
+            if (!qIn || !aIn) return alert("দুটো ঘরই পূরণ করো!");
+
+            const qBlocks = qIn.split(/\n\s*\d+\.\s*/).filter(b => b.trim().length > 5);
+            const aBlocks = aIn.split(/\n\s*\d+\.\s*/).filter(b => b.trim().length > 0);
+
+            quizData = qBlocks.map((text, idx) => {
+                let ansMap = {};
+                let clues = [];
+
+                let answerText = aBlocks[idx] || "";
+                answerText = answerText.replace(/^\d+\.\s*/, '');
+                let parts = answerText.split(/\s*\(([a-j])\)\s*/).filter(p => p.trim());
+                for (let i = 1; i < parts.length; i += 2) {
+                    let letter = parts[i - 1].trim();
+                    let val = parts[i].split(/;|$/)[0].trim().replace(/[:;]/g, '').trim();
+                    if (letter && val) {
+                        ansMap[letter] = val;
+                        clues.push(val);
+                    }
+                }
+
+                if (Object.keys(ansMap).length === 0) {
+                    let items = answerText.split(/;\s*|\s+/);
+                    items.forEach((item, i) => {
+                        let val = item.trim().replace(/^[a-j]\)\s*/, '');
+                        if (val) {
+                            let letter = String.fromCharCode(97 + i);
+                            ansMap[letter] = val;
+                            clues.push(val);
+                        }
+                    });
+                }
+
+                // clues গুলোকে shuffle করা
+                clues = shuffleArray(clues);
+
+                let html = text.replace(/_{3,}/g, () => {
+                    return `<input type="text" class="gap-input" data-qid="${idx}" autocomplete="off">`;
+                });
+
+                html = html.replace(/\(([a-j])\)/g, '<span class="letter-label">($1)</span>');
+
+                return {
+                    html,
+                    answers: ansMap,
+                    clues: clues
+                };
+            });
+
+            document.getElementById('setup-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
+                <div class="quiz-card">
+                    <h3>Exercise ${i + 1}</h3>
+                    <div class="clue-box">${item.clues.map(c => `<div class="clue-item">${c}</div>`).join('')}</div>
+                    <div>${item.html}</div>
+                    <div id="fb-${i}" class="feedback-area"></div>
+                </div>
+            `).join('');
+        }
+
+        function checkAnswers() {
+            quizData.forEach((item, qIdx) => {
+                let score = 0;
+                const inputs = [...document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`)];
+                let keys = [];
+                let keyIndex = 0;
+
+                inputs.forEach((input) => {
+                    const user = clean(input.value);
+                    const letter = String.fromCharCode(97 + keyIndex);
+                    const actual = item.answers[letter] || "";
+                    const correct = clean(actual);
+
+                    let isCorrect = false;
+
+                    if (user !== "") {
+                        if (user === correct) {
+                            isCorrect = true;
+                        } else {
+                            const userSorted = user.split(' ').sort().join(' ');
+                            const correctSorted = correct.split(' ').sort().join(' ');
+                            isCorrect = (userSorted === correctSorted);
+                        }
+
+                        if (isCorrect) score++;
+                    }
+
+                    input.style.color = isCorrect ? "var(--s)" : "var(--d)";
+
+                    // answer key সবসময় দেখাবো
+                    if (actual) {
+                        keys.push(`<span class="ans-tag">(${letter}) ${actual}</span>`);
+                    }
+
+                    keyIndex++;
+                });
+
+                const fb = document.getElementById(`fb-${qIdx}`);
+                fb.style.display = "block";
+                fb.className = `feedback-area ${score === inputs.length && inputs.length > 0 ? 'correct-box' : 'wrong-box'}`;
+                fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><br>Answer Key:<br>${keys.join('')}`;
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
