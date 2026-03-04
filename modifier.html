@@ -9,7 +9,7 @@
         :root {
             --p: #2563eb;
             --s: #16a34a;
-            --d: #b91c1c;
+            --d: #bd3c3c;
             --bg: #f8fafc;
             --card-bg: white;
             --text-main: #1e293b;
@@ -32,6 +32,7 @@
             color: var(--text-main);
             line-height: 1.6;
             transition: 0.3s;
+            margin: 0;
         }
 
         .container {
@@ -41,6 +42,42 @@
             padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .setup-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            textarea {
+                height: 250px;
+                font-size: 14px;
+            }
+
+            .gap-input {
+                min-width: 100px;
+                width: 80px;
+                font-size: 14px;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
         }
 
         .setup-grid {
@@ -145,61 +182,102 @@
             display: none !important;
         }
 
-        /* --- PRINT OPTIMIZATION --- */
+        /* --- ENHANCED PRINT OPTIMIZATION --- */
         @media print {
+            @page {
+                margin: 0.5cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
             body {
-                background: white !important;
-                color: black !important;
-                padding: 0;
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .no-print,
+            .theme-toggle,
+            .btn {
+                display: none !important;
             }
 
             .container {
                 max-width: 100% !important;
+                width: 100% !important;
                 box-shadow: none !important;
                 border: none !important;
                 padding: 0 !important;
-            }
-
-            .no-print {
-                display: none !important;
+                margin: 0 !important;
+                background: transparent !important;
             }
 
             .quiz-card {
-                border: 1px solid #eee !important;
-                margin-bottom: 15px !important;
-                padding: 15px !important;
+                border: 1px solid var(--border) !important;
+                margin-bottom: 12px !important;
+                padding: 12px !important;
                 page-break-inside: avoid;
-                /* Exercise jeno break na hoy */
+                background: var(--card-bg) !important;
+                border-radius: 8px !important;
             }
 
             .gap-input {
-                border-bottom: 1px solid black !important;
+                border-bottom: 1px solid var(--p) !important;
                 background: transparent !important;
-                min-width: 120px !important;
+                min-width: 100px !important;
+                font-size: 14px !important;
+                /* Forced colors for print */
+                color: inherit !important;
+            }
+
+            /* ইনপুটের ভেতরের কালার যেন প্রিন্টে আসে */
+            .gap-input[style*="color: var(--s)"] {
+                color: var(--s) !important;
+            }
+
+            .gap-input[style*="color: var(--d)"] {
+                color: var(--d) !important;
             }
 
             .feedback-area {
                 display: block !important;
-                /* Print এ উত্তর দেখাবে */
-                background: #f9f9f9 !important;
-                border: 1px solid #ddd !important;
-                margin-top: 10px !important;
-                padding: 10px !important;
+                background: var(--bg) !important;
+                border: 1px solid var(--border) !important;
+                margin-top: 8px !important;
+                padding: 8px !important;
+                font-size: 13px !important;
+            }
+
+            /* ফিডব্যাক বক্সের কালার প্রিন্টে ফোর্স করা */
+            .correct-box {
+                border-left: 5px solid var(--s) !important;
+                background: rgba(22, 163, 74, 0.1) !important;
+            }
+
+            .wrong-box {
+                border-left: 5px solid var(--d) !important;
+                background: rgba(220, 38, 38, 0.1) !important;
             }
 
             h2 {
-                color: black !important;
-                margin-top: 0;
+                margin: 0 0 10px 0 !important;
+                font-size: 1.2rem !important;
+                color: var(--p) !important;
             }
 
             h3 {
-                color: #333 !important;
-                margin-bottom: 5px;
+                margin: 0 0 5px 0 !important;
+                font-size: 1rem !important;
             }
 
             .ans-tag {
-                border: 1px solid #ccc !important;
-                color: black !important;
+                border: 1px solid var(--border) !important;
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
             }
         }
     </style>
