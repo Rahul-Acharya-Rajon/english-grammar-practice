@@ -44,12 +44,10 @@
             margin: auto;
             background: var(--card-bg);
             padding: 20px;
-            /* Reduced for mobile */
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
-        /* Responsive Setup Grid */
         .setup-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -57,7 +55,6 @@
             margin-bottom: 30px;
         }
 
-        /* Mobile specific adjustments */
         @media (max-width: 768px) {
             .setup-grid {
                 grid-template-columns: 1fr;
@@ -98,7 +95,6 @@
         textarea {
             width: 100%;
             height: 300px;
-            /* Adjusted height */
             padding: 15px;
             border: 2px solid var(--border);
             border-radius: 12px;
@@ -144,6 +140,18 @@
             width: 150px;
         }
 
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn-nav {
+            background: #475569;
+            padding: 10px 20px;
+        }
+
         .theme-toggle {
             position: fixed;
             top: 15px;
@@ -172,7 +180,6 @@
             position: relative;
             transition: transform 0.2s;
             overflow-x: auto;
-            /* Prevent overflow on small screens */
         }
 
         .gap-input {
@@ -182,7 +189,6 @@
             text-align: center;
             background: var(--input-bg);
             color: var(--text-main);
-            /* Ensures visibility in Dark Mode */
             font-weight: bold;
             font-size: 17px;
             outline: none;
@@ -190,7 +196,6 @@
             border-radius: 5px 5px 0 0;
         }
 
-        /* Fix for dark mode input readability */
         [data-theme="dark"] .gap-input {
             background: #2d3748;
             color: #ffffff !important;
@@ -227,7 +232,7 @@
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         .ans-tag {
@@ -240,17 +245,9 @@
             color: var(--text-main);
         }
 
-        /* Export/Print Detailed CSS */
         @media print {
 
-            body,
-            .container,
-            .quiz-card {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                color-scheme: light dark !important;
-            }
-
+            .pagination-controls,
             .no-print,
             .btn,
             .theme-toggle,
@@ -258,23 +255,9 @@
                 display: none !important;
             }
 
-            .container {
-                box-shadow: none !important;
-                border: none !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 0 !important;
-            }
-
             .quiz-card {
-                page-break-inside: avoid;
-                border: 1px solid var(--border) !important;
-                margin-bottom: 30px !important;
-            }
-
-            .feedback-area {
                 display: block !important;
-                border: 1px solid #ddd !important;
+                page-break-inside: avoid;
             }
         }
     </style>
@@ -307,6 +290,12 @@
             <div id="summary-stat" style="text-align:center; margin-bottom:30px; font-size:24px; font-weight:bold;">
             </div>
 
+            <div class="pagination-controls no-print">
+                <button id="prev-btn" class="btn btn-nav" onclick="changePage(-1)">← Previous</button>
+                <span id="page-info" style="align-self: center; font-weight: bold;"></span>
+                <button id="next-btn" class="btn btn-nav" onclick="changePage(1)">Next →</button>
+            </div>
+
             <div id="quiz-container"></div>
 
             <div style="text-align:center;" class="no-print">
@@ -320,6 +309,8 @@
 
     <script>
         let examData = [];
+        let currentPage = 0;
+        const itemsPerPage = 10;
 
         function toggleTheme() {
             const current = document.documentElement.getAttribute("data-theme");
@@ -367,6 +358,7 @@
                 return { html, answers: ansMap, originalKey: ansStr };
             });
 
+            currentPage = 0;
             renderExam();
         }
 
@@ -375,13 +367,46 @@
             document.getElementById('setup-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
 
-            container.innerHTML = examData.map((item, i) => `
-                <div class="quiz-card">
-                    <h3 style="color:var(--p); margin-top:0;">Question Set ${i + 1}</h3>
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = examData.slice(start, end);
+
+            container.innerHTML = currentItems.map((item, localIndex) => {
+                const globalIndex = start + localIndex;
+                return `
+                <div class="quiz-card" id="card-${globalIndex}">
+                    <h3 style="color:var(--p); margin-top:0;">Question Set ${globalIndex + 1}</h3>
                     <div class="content-body">${item.html}</div>
-                    <div id="feedback-${i}" class="feedback-area"></div>
+                    <div id="feedback-${globalIndex}" class="feedback-area"></div>
                 </div>
-            `).join('');
+            `}).join('');
+
+            updatePaginationUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(examData.length / itemsPerPage);
+            const nextP = currentPage + direction;
+
+            if (nextP >= 0 && nextP < totalPages) {
+                currentPage = nextP;
+                renderExam();
+            }
+        }
+
+        function updatePaginationUI() {
+            const totalPages = Math.ceil(examData.length / itemsPerPage);
+            document.getElementById('page-info').innerText = `Page ${currentPage + 1} of ${totalPages}`;
+            document.getElementById('prev-btn').disabled = currentPage === 0;
+            document.getElementById('next-btn').disabled = currentPage >= totalPages - 1;
+
+            // hide buttons if only 1 page
+            if (totalPages <= 1) {
+                document.querySelector('.pagination-controls').classList.add('hidden');
+            } else {
+                document.querySelector('.pagination-controls').classList.remove('hidden');
+            }
         }
 
         function runEvaluation() {
@@ -392,6 +417,8 @@
                 let setCorrect = 0;
                 const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
                 let keyList = [];
+
+                if (inputs.length === 0) return; // Skip sets not currently rendered if necessary, but actually we want to evaluate all that have been interacted with
 
                 inputs.forEach(input => {
                     totalMarks++;
@@ -414,15 +441,27 @@
                 });
 
                 const fb = document.getElementById(`feedback-${qIdx}`);
-                fb.style.display = "block";
-                fb.className = `feedback-area ${setCorrect === inputs.length ? 'correct-box' : 'wrong-box'}`;
-                fb.innerHTML = `<strong>Set Accuracy: ${setCorrect} / ${inputs.length}</strong><br>
-                                <div style="margin-top:10px;"><b>Answer Key:</b> ${keyList.join(' ')}</div>`;
+                if (fb) {
+                    fb.style.display = "block";
+                    fb.className = `feedback-area ${setCorrect === inputs.length ? 'correct-box' : 'wrong-box'}`;
+                    fb.innerHTML = `<strong>Set Accuracy: ${setCorrect} / ${inputs.length}</strong><br>
+                                    <div style="margin-top:10px;"><b>Answer Key:</b> ${keyList.join(' ')}</div>`;
+                }
             });
 
-            const percentage = Math.round((obtainedMarks / totalMarks) * 100) || 0;
+            // Re-calculate based on ALL inputs if possible, or just current visible ones. 
+            // For a better UX, we'll calculate based on what's currently in the DOM.
+            const allVisibleInputs = document.querySelectorAll('.gap-input');
+            let visibleTotal = allVisibleInputs.length;
+            let visibleCorrect = 0;
+
+            allVisibleInputs.forEach(input => {
+                if (input.style.color === "var(--s)") visibleCorrect++;
+            });
+
+            const percentage = Math.round((visibleCorrect / visibleTotal) * 100) || 0;
             document.getElementById('summary-stat').innerHTML =
-                `Final Result: ${obtainedMarks} / ${totalMarks} (${percentage}%)`;
+                `Page Result: ${visibleCorrect} / ${visibleTotal} (${percentage}%)`;
 
             document.getElementById('export-btn').style.display = "inline-block";
             window.scrollTo({ top: 0, behavior: 'smooth' });
