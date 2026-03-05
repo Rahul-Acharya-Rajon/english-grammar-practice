@@ -44,7 +44,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsive Grid for Mobile */
         .setup-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -158,7 +157,17 @@
             display: none !important;
         }
 
-        /* --- ADVANCED PRINT FIXES --- */
+        #total-score {
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 12px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
         @media print {
             * {
                 -webkit-print-color-adjust: exact !important;
@@ -188,7 +197,13 @@
                 display: none !important;
             }
 
+            /* ────────────── শুধু বর্তমান পেজের কার্ড প্রিন্ট হবে ────────────── */
             .quiz-card {
+                display: none !important;
+            }
+
+            .quiz-card[style*="block"] {
+                display: block !important;
                 border: 1px solid var(--border) !important;
                 margin-bottom: 15px !important;
                 padding: 15px !important;
@@ -196,23 +211,18 @@
                 background: var(--card-bg) !important;
             }
 
-            /* ইনপুটের কালার প্রিন্টে ফোর্স করা হয়েছে */
+            /* ─────────────────────────────────────────────────────────────── */
+
             .gap-input {
                 border-bottom: 2px solid var(--p) !important;
                 background: var(--input-bg) !important;
                 min-width: 100px !important;
                 font-size: 12pt !important;
                 color: inherit !important;
-                /* স্ক্রিনে যে কালার আছে তাই নিবে */
             }
 
-            h2 {
-                font-size: 18pt !important;
-                margin-bottom: 10px !important;
-                color: var(--p) !important;
-            }
-
-            .letter-label {
+            h2,
+            h3 {
                 color: var(--p) !important;
             }
 
@@ -220,18 +230,14 @@
                 display: block !important;
                 background: var(--bg) !important;
                 border: 1px solid var(--border) !important;
-                color: var(--text-main) !important;
                 margin-top: 8px !important;
                 padding: 8px !important;
                 font-size: 10pt !important;
             }
 
-            .ans-tag {
-                border: 1px solid var(--border) !important;
-                color: var(--text-main) !important;
-                background: var(--bg) !important;
-                font-size: 9pt !important;
-                padding: 2px 5px !important;
+            #total-score,
+            #pagination {
+                display: none !important;
             }
         }
     </style>
@@ -243,6 +249,7 @@
         <h2 style="text-align:center; color:var(--p);">HSC Sentence Connectors Practice</h2>
 
         <div id="setup-view" class="no-print">
+            <p>Enter Questions & Answers</p>
             <div class="setup-grid">
                 <textarea id="q-input" placeholder="Paste Questions..."></textarea>
                 <textarea id="a-input" placeholder="Paste Answers..."></textarea>
@@ -252,10 +259,11 @@
         </div>
 
         <div id="quiz-view" class="hidden">
+            <div id="total-score" class="no-print hidden">Total Score: — / — (checked sets only)</div>
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
                 <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
-                <button class="btn" style="background:#9333ea" onclick="window.print()">Print / Save PDF</button>
+                <button class="btn" style="background:#9333ea" onclick="printSheet()">Print / Save PDF</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
             </div>
         </div>
@@ -263,18 +271,27 @@
 
     <script>
         let quizData = [];
+        let currentPage = 0;
+        const pageSize = 10;
+
         function toggleTheme() {
-            document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+            document.documentElement.hasAttribute("data-theme")
+                ? document.documentElement.removeAttribute("data-theme")
+                : document.documentElement.setAttribute("data-theme", "dark");
         }
+
         function cleanString(str) {
             return str.toLowerCase().replace(/\s+/g, ' ').trim().replace(/[.;:]/g, '');
         }
+
         function initApp() {
             const qIn = document.getElementById('q-input').value.trim();
             const aIn = document.getElementById('a-input').value.trim();
             if (!qIn || !aIn) return alert("Fill both boxes!");
+
             const qBlocks = qIn.split(/\n\s*(?=\d+\.)/).filter(b => b.trim());
             const aBlocks = aIn.split(/\n\s*(?=\d+\.)/).filter(b => b.trim());
+
             quizData = qBlocks.map((text, idx) => {
                 let ansMap = {};
                 let rawAns = aBlocks[idx] || "";
@@ -286,23 +303,89 @@
                 let html = text.replace(/\(([a-n])\)\s*[_—.-]+/g, (m, letter) => {
                     return `<span class="letter-label">(${letter})</span><input type="text" class="gap-input" data-letter="${letter}" data-qid="${idx}" autocomplete="off">`;
                 });
-                return { html, answers: ansMap };
+                return { html, answers: ansMap, checked: false, score: 0, totalGaps: 0 };
             });
+
             document.getElementById('setup-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
+
             document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
-                <div class="quiz-card">
+                <div class="quiz-card" data-qidx="${i}" style="display: none;">
                     <h3>Set ${i + 1}</h3>
                     <div style="white-space: pre-wrap; font-size: 16px;">${item.html}</div>
                     <div id="fb-${i}" class="feedback-area"></div>
                 </div>
             `).join('');
+
+            const pagination = `
+                <div id="pagination" class="no-print" style="text-align:center; margin:25px 0;">
+                    <button id="prev-btn" class="btn" style="background:#64748b" onclick="prevPage()">Prev</button>
+                    <span id="page-info" style="font-size:1.1em; margin:0 20px; font-weight:bold;"></span>
+                    <button id="next-btn" class="btn" style="background:#64748b" onclick="nextPage()">Next</button>
+                </div>
+            `;
+            document.getElementById('quiz-container').innerHTML += pagination;
+
+            showPage(0);
         }
+
+        function showPage(page) {
+            currentPage = page;
+            const start = page * pageSize;
+            const end = Math.min(start + pageSize, quizData.length);
+
+            document.querySelectorAll('.quiz-card').forEach((card, i) => {
+                card.style.display = (i >= start && i < end) ? 'block' : 'none';
+            });
+
+            const totalPages = Math.ceil(quizData.length / pageSize);
+            document.getElementById('page-info').innerHTML = `Page ${page + 1} of ${totalPages}`;
+
+            document.getElementById('prev-btn').disabled = page === 0;
+            document.getElementById('next-btn').disabled = page === totalPages - 1;
+
+            document.getElementById('quiz-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function prevPage() {
+            if (currentPage > 0) showPage(currentPage - 1);
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(quizData.length / pageSize);
+            if (currentPage < totalPages - 1) showPage(currentPage + 1);
+        }
+
+        function updateTotalScore() {
+            let totalCorrect = 0;
+            let totalAttemptedGaps = 0;
+
+            quizData.forEach(item => {
+                if (item.checked) {
+                    totalCorrect += item.score;
+                    totalAttemptedGaps += item.totalGaps;
+                }
+            });
+
+            const scoreEl = document.getElementById('total-score');
+            if (totalAttemptedGaps > 0) {
+                scoreEl.innerHTML = `Total Score (checked sets): ${totalCorrect} / ${totalAttemptedGaps}`;
+                scoreEl.classList.remove('hidden');
+            } else {
+                scoreEl.classList.add('hidden');
+            }
+        }
+
         function checkAnswers() {
-            quizData.forEach((item, qIdx) => {
+            const start = currentPage * pageSize;
+            const end = Math.min(start + pageSize, quizData.length);
+
+            for (let qIdx = start; qIdx < end; qIdx++) {
+                const item = quizData[qIdx];
                 let score = 0;
                 const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
                 let keyHTML = "";
+
                 inputs.forEach(input => {
                     const letter = input.dataset.letter;
                     const userVal = cleanString(input.value);
@@ -310,17 +393,27 @@
                     const possible = official.split(/[/;]|\sor\s/).map(o => cleanString(o));
                     const isCorrect = userVal !== "" && possible.some(p => p === userVal);
 
-                    // এখানে কালার সেট করা হচ্ছে যা প্রিন্টেও কাজ করবে
                     input.style.setProperty('color', isCorrect ? 'var(--s)' : 'var(--d)', 'important');
 
                     if (isCorrect) score++;
                     keyHTML += `<span class="ans-tag"><b>(${letter})</b> ${official}</span>`;
                 });
+
                 const fb = document.getElementById(`fb-${qIdx}`);
                 fb.style.display = "block";
                 fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><b>Answers:</b> ${keyHTML}`;
-            });
+
+                item.checked = true;
+                item.score = score;
+                item.totalGaps = inputs.length;
+            }
+
+            updateTotalScore();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function printSheet() {
+            window.print();
         }
     </script>
 </body>
