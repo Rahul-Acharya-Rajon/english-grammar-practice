@@ -143,7 +143,32 @@
             border-radius: 5px 5px 0 0;
         }
 
-        /* Mobile Responsive Adjustments */
+        /* Pagination Styles */
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: var(--bg);
+            border-radius: 10px;
+        }
+
+        .page-btn {
+            background: var(--p);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .page-btn:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -222,17 +247,10 @@
 
         @media print {
 
-            body,
-            .container,
-            .quiz-card {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                color-scheme: light dark !important;
-            }
-
             .no-print,
             .btn,
             .theme-toggle,
+            .pagination-controls,
             label {
                 display: none !important;
             }
@@ -243,6 +261,10 @@
                 width: 100% !important;
                 max-width: 100% !important;
                 padding: 0 !important;
+            }
+
+            .quiz-card {
+                display: block !important;
             }
 
             .feedback-area {
@@ -257,7 +279,7 @@
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Toggle Mode</div>
 
     <div class="container">
-        <h2>HSC Preposition Practice Board</h2>
+        <h2 id="top-heading">HSC Preposition Practice Board</h2>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -276,7 +298,13 @@
         <div id="quiz-view" class="hidden">
             <div id="summary-stat" style="text-align:center; margin-bottom:30px; font-size:24px; font-weight:bold;">
             </div>
+
+            <div class="pagination-controls no-print" id="pagination-top"></div>
+
             <div id="quiz-container"></div>
+
+            <div class="pagination-controls no-print" id="pagination-bottom"></div>
+
             <div style="text-align:center;" class="no-print">
                 <button class="btn btn-submit" onclick="runEvaluation()">Check Answers</button>
                 <button id="export-btn" class="btn btn-export" onclick="window.print()">Export PDF</button>
@@ -287,19 +315,17 @@
 
     <script>
         let examData = [];
+        let currentPage = 1;
+        const itemsPerPage = 10;
 
         function toggleTheme() {
             const current = document.documentElement.getAttribute("data-theme");
             current === "dark" ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
         }
 
-        // Deep clean for comparison
         function cleanVal(val) {
             if (!val) return "";
-            return val.toLowerCase()
-                .replace(/[()×:.|—_;\-\t\n]/g, '')
-                .replace(/\s/g, '')
-                .trim();
+            return val.toLowerCase().replace(/[()×:.|—_;\-\t\n]/g, '').replace(/\s/g, '').trim();
         }
 
         function processData() {
@@ -308,27 +334,25 @@
 
             if (!qRaw || !aRaw) return alert("Please paste both data!");
 
-            // Split by "01.", "02." etc. This supports questions with or without "Complete the text"
             const qBlocks = qRaw.split(/\n\s*\d+\.\s*(?:\n)?/).filter(b => b.trim().length > 10);
             const aBlocks = aRaw.split(/\n\s*\d+\.\s*(?:\n)?/).filter(b => b.trim().length > 0);
 
             examData = qBlocks.map((text, index) => {
-                // Keep the original text but replace gaps (a) ___ with input boxes
                 let html = text.trim().replace(/\(([a-j])\)\s*[_—|-]+/g, (match, letter) => {
                     return `<b>(${letter})</b> <input type="text" class="gap-input" data-qid="${index}" data-letter="${letter}" autocomplete="off">`;
                 });
 
                 let ansStr = aBlocks[index] || "";
                 let ansMap = {};
-                // Improved Answer Regex: handles colon, semicolon, period, and slash
                 let matches = [...ansStr.matchAll(/\(([a-j])\)\s*([^;(.\n]+)/g)];
                 matches.forEach(m => {
                     ansMap[m[1]] = m[2].trim().replace(/[:;.]/g, '').trim();
                 });
 
-                return { html, answers: ansMap };
+                return { html, answers: ansMap, userValues: [] };
             });
 
+            currentPage = 1;
             renderExam();
         }
 
@@ -336,52 +360,120 @@
             const container = document.getElementById('quiz-container');
             document.getElementById('setup-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
-            container.innerHTML = examData.map((item, i) => `
-                <div class="quiz-card">
-                    <h3 style="color:var(--p); margin-top:0; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Exercise ${i + 1}</h3>
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = examData.slice(startIndex, endIndex);
+
+            container.innerHTML = pageData.map((item, localIdx) => {
+                const globalIdx = startIndex + localIdx;
+                return `
+                <div class="quiz-card" id="card-${globalIdx}">
+                    <h3 style="color:var(--p); margin-top:0; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Exercise ${globalIdx + 1}</h3>
                     <div class="content-body">${item.html}</div>
-                    <div id="feedback-${i}" class="feedback-area"></div>
+                    <div id="feedback-${globalIdx}" class="feedback-area"></div>
                 </div>
-            `).join('');
+            `}).join('');
+
+            // Restore user inputs if they were already entered
+            pageData.forEach((item, localIdx) => {
+                const globalIdx = startIndex + localIdx;
+                if (item.userValues.length > 0) {
+                    item.userValues.forEach(uv => {
+                        const input = document.querySelector(`.gap-input[data-qid="${globalIdx}"][data-letter="${uv.letter}"]`);
+                        if (input) input.value = uv.val;
+                    });
+                }
+            });
+
+            updatePagination();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(examData.length / itemsPerPage);
+            const controls = `
+                <button class="page-btn" onclick="changePage(-1)" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
+                <span>Page ${currentPage} of ${totalPages}</span>
+                <button class="page-btn" onclick="changePage(1)" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
+            `;
+            document.getElementById('pagination-top').innerHTML = controls;
+            document.getElementById('pagination-bottom').innerHTML = controls;
+        }
+
+        function changePage(direction) {
+            // Save current page data before switching
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            for (let i = 0; i < itemsPerPage; i++) {
+                const globalIdx = startIndex + i;
+                const inputs = document.querySelectorAll(`.gap-input[data-qid="${globalIdx}"]`);
+                if (inputs.length > 0 && examData[globalIdx]) {
+                    examData[globalIdx].userValues = Array.from(inputs).map(inp => ({ letter: inp.getAttribute('data-letter'), val: inp.value }));
+                }
+            }
+            currentPage += direction;
+            renderExam();
         }
 
         function runEvaluation() {
-            let totalMarks = 0, obtainedMarks = 0;
-            examData.forEach((item, qIdx) => {
+            let pageTotal = 0, pageObtained = 0;
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, examData.length);
+
+            // Scroll to top of the results
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            for (let qIdx = startIndex; qIdx < endIndex; qIdx++) {
+                let item = examData[qIdx];
                 let setCorrect = 0;
                 const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+
+                if (inputs.length > 0) {
+                    item.userValues = Array.from(inputs).map(i => ({ letter: i.getAttribute('data-letter'), val: i.value }));
+                }
+
+                const currentAnswers = item.userValues || [];
                 let keyList = [];
+                let totalInSet = Object.keys(item.answers).length;
 
-                inputs.forEach(input => {
-                    totalMarks++;
-                    let letter = input.getAttribute('data-letter');
-                    let userAns = cleanVal(input.value);
+                Object.keys(item.answers).forEach(letter => {
+                    pageTotal++;
+                    let userAnsObj = currentAnswers.find(ua => ua.letter === letter);
+                    let userAnsClean = cleanVal(userAnsObj ? userAnsObj.val : "");
                     let correctAnsRaw = item.answers[letter] || "x";
-
-                    // Handle multiple correct options (split by / or space)
                     let options = correctAnsRaw.split(/[\/\s]+/).map(o => cleanVal(o));
 
-                    if (options.includes(userAns) && userAns !== "") {
-                        input.style.color = "var(--s)";
-                        input.style.borderBottomColor = "var(--s)";
-                        setCorrect++; obtainedMarks++;
-                    } else {
-                        input.style.color = "var(--d)";
-                        input.style.borderBottomColor = "var(--d)";
+                    if (options.includes(userAnsClean) && userAnsClean !== "") {
+                        pageObtained++;
+                        setCorrect++;
                     }
                     keyList.push(`<span class="ans-tag">(${letter}) ${correctAnsRaw}</span>`);
                 });
 
                 const fb = document.getElementById(`feedback-${qIdx}`);
-                fb.style.display = "block";
-                fb.className = `feedback-area ${setCorrect === inputs.length ? 'correct-box' : 'wrong-box'}`;
-                fb.innerHTML = `<strong>Set Score: ${setCorrect} / ${inputs.length}</strong><br>
-                                <div style="margin-top:10px;"><b>Answer Key:</b> ${keyList.join(' ')}</div>`;
-            });
+                if (fb) {
+                    fb.style.display = "block";
+                    fb.className = `feedback-area ${setCorrect === totalInSet ? 'correct-box' : 'wrong-box'}`;
+                    fb.innerHTML = `<strong>Set Score: ${setCorrect} / ${totalInSet}</strong><br>
+                                    <div style="margin-top:10px;"><b>Answer Key:</b> ${keyList.join(' ')}</div>`;
 
-            document.getElementById('summary-stat').innerText = `Total Score: ${obtainedMarks} / ${totalMarks}`;
+                    inputs.forEach(input => {
+                        let letter = input.getAttribute('data-letter');
+                        let userAns = cleanVal(input.value);
+                        let options = (item.answers[letter] || "x").split(/[\/\s]+/).map(o => cleanVal(o));
+                        if (options.includes(userAns) && userAns !== "") {
+                            input.style.color = "var(--s)";
+                            input.style.borderBottomColor = "var(--s)";
+                        } else {
+                            input.style.color = "var(--d)";
+                            input.style.borderBottomColor = "var(--d)";
+                        }
+                    });
+                }
+            }
+
+            document.getElementById('summary-stat').innerText = `Current Page Score: ${pageObtained} / ${pageTotal}`;
             document.getElementById('export-btn').style.display = "inline-block";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
