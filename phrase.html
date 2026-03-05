@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Phrase Master - Final</title>
+    <title>HSC Phrase Master</title>
     <style>
         :root {
             --p: #2563eb;
@@ -52,7 +52,6 @@
             margin-bottom: 30px;
         }
 
-        /* Mobile Responsive Adjustments */
         @media (max-width: 768px) {
             .setup-grid {
                 grid-template-columns: 1fr;
@@ -205,7 +204,24 @@
             display: none !important;
         }
 
-        /* Print Settings Fixed */
+        .pagination-info {
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+            color: var(--p);
+        }
+
+        .page-total-score {
+            text-align: center;
+            background: var(--p);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 1.2em;
+        }
+
         @media print {
             @page {
                 margin: 1cm;
@@ -235,6 +251,7 @@
                 margin-bottom: 15px !important;
                 padding: 15px !important;
                 page-break-inside: avoid;
+                display: block !important;
             }
 
             .gap-input {
@@ -246,7 +263,9 @@
             .theme-toggle,
             .btn,
             .no-print,
-            label {
+            label,
+            .pagination-info,
+            .page-total-score {
                 display: none !important;
             }
 
@@ -281,10 +300,19 @@
         </div>
 
         <div id="quiz-view" class="hidden">
+            <div class="pagination-info no-print" id="page-label"></div>
+            <div id="page-score-display" class="page-total-score no-print"></div>
+
             <div id="quiz-container"></div>
 
             <div style="text-align:center;" class="no-print">
-                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
+                <button class="btn" style="background:var(--p)" id="prev-btn" onclick="changePage(-1)">Previous</button>
+                <button class="btn" style="background:var(--s)" onclick="checkPageAnswers()">Check Answers (Current
+                    Page)</button>
+                <button class="btn" style="background:var(--p)" id="next-btn" onclick="changePage(1)">Next</button>
+            </div>
+
+            <div style="text-align:center; margin-top:10px;" class="no-print">
                 <button class="btn" style="background:#9333ea" onclick="window.print()">Save as PDF</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Start Over</button>
             </div>
@@ -293,6 +321,8 @@
 
     <script>
         let quizData = [];
+        let currentPage = 0;
+        const itemsPerPage = 10;
 
         function toggleTheme() {
             const current = document.documentElement.getAttribute("data-theme");
@@ -358,7 +388,7 @@
                     });
                 }
 
-                clues = shuffleArray(clues);
+                clues = shuffleArray([...clues]);
 
                 let html = text.replace(/_{3,}/g, () => {
                     return `<input type="text" class="gap-input" data-qid="${idx}" autocomplete="off">`;
@@ -371,21 +401,52 @@
 
             document.getElementById('setup-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
-
-            document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
-                <div class="quiz-card">
-                    <h3>Exercise ${i + 1}</h3>
-                    <div class="clue-box">${item.clues.map(c => `<div class="clue-item">${c}</div>`).join('')}</div>
-                    <div>${item.html}</div>
-                    <div id="fb-${i}" class="feedback-area"></div>
-                </div>
-            `).join('');
+            currentPage = 0;
+            renderPage();
         }
 
-        function checkAnswers() {
-            quizData.forEach((item, qIdx) => {
-                let score = 0;
-                const inputs = [...document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`)];
+        function renderPage() {
+            const container = document.getElementById('quiz-container');
+            const scoreDisplay = document.getElementById('page-score-display');
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageData = quizData.slice(start, end);
+
+            scoreDisplay.style.display = 'none';
+
+            container.innerHTML = pageData.map((item, i) => {
+                const globalIdx = start + i;
+                return `
+                <div class="quiz-card" data-global-id="${globalIdx}">
+                    <h3>Exercise ${globalIdx + 1}</h3>
+                    <div class="clue-box">${item.clues.map(c => `<div class="clue-item">${c}</div>`).join('')}</div>
+                    <div>${item.html}</div>
+                    <div id="fb-${globalIdx}" class="feedback-area"></div>
+                </div>
+            `}).join('');
+
+            document.getElementById('page-label').innerText = `Showing Exercises ${start + 1} - ${Math.min(end, quizData.length)} of ${quizData.length}`;
+            document.getElementById('prev-btn').disabled = currentPage === 0;
+            document.getElementById('next-btn').disabled = end >= quizData.length;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            renderPage();
+        }
+
+        function checkPageAnswers() {
+            const visibleCards = document.querySelectorAll('.quiz-card');
+            let totalPageScore = 0;
+            let totalPagePossible = 0;
+
+            visibleCards.forEach(card => {
+                const qIdx = parseInt(card.getAttribute('data-global-id'));
+                const item = quizData[qIdx];
+                let exerciseScore = 0;
+                const inputs = [...card.querySelectorAll(`.gap-input`)];
                 let keys = [];
                 let keyIndex = 0;
 
@@ -396,7 +457,6 @@
                     const correct = clean(actual);
 
                     let isCorrect = false;
-
                     if (user !== "") {
                         if (user === correct) {
                             isCorrect = true;
@@ -405,24 +465,28 @@
                             const correctSorted = correct.split(' ').sort().join(' ');
                             isCorrect = (userSorted === correctSorted);
                         }
-
-                        if (isCorrect) score++;
+                        if (isCorrect) exerciseScore++;
                     }
 
                     input.style.color = isCorrect ? "var(--s)" : "var(--d)";
-
                     if (actual) {
                         keys.push(`<span class="ans-tag">(${letter}) ${actual}</span>`);
                     }
-
                     keyIndex++;
                 });
 
+                totalPageScore += exerciseScore;
+                totalPagePossible += inputs.length;
+
                 const fb = document.getElementById(`fb-${qIdx}`);
                 fb.style.display = "block";
-                fb.className = `feedback-area ${score === inputs.length && inputs.length > 0 ? 'correct-box' : 'wrong-box'}`;
-                fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><br>Answer Key:<br>${keys.join('')}`;
+                fb.className = `feedback-area ${exerciseScore === inputs.length && inputs.length > 0 ? 'correct-box' : 'wrong-box'}`;
+                fb.innerHTML = `<b>Score: ${exerciseScore} / ${inputs.length}</b><br><br>Answer Key:<br>${keys.join('')}`;
             });
+
+            const scoreDisplay = document.getElementById('page-score-display');
+            scoreDisplay.innerHTML = `<b>Total Score for this Page: ${totalPageScore} / ${totalPagePossible}</b>`;
+            scoreDisplay.style.display = 'block';
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
