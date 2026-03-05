@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Transformation Master - Color Print</title>
+    <title>HSC Transformation Master</title>
     <style>
         :root {
             --p: #2563eb;
@@ -155,6 +155,13 @@
             display: none !important;
         }
 
+        .page-info {
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+            color: var(--p);
+        }
+
         /* --- COLOR PRINT OPTIMIZATION --- */
         @media print {
             @page {
@@ -235,6 +242,11 @@
                 color: #60a5fa !important;
                 border-color: #3b82f6 !important;
             }
+
+            .page-info,
+            .no-print {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -245,6 +257,7 @@
         <h2 style="text-align:center;">HSC Sentence Transformation</h2>
 
         <div id="setup-view" class="no-print">
+            <p>Enter Questions & Answers</p>
             <div class="setup-grid">
                 <textarea id="q-input" placeholder="Paste Questions..."></textarea>
                 <textarea id="a-input" placeholder="Paste Answers..."></textarea>
@@ -253,8 +266,11 @@
         </div>
 
         <div id="quiz-view" class="hidden">
+            <div class="page-info no-print" id="page-info">Page 1 of 1</div>
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
+                <button id="prev-btn" class="btn" style="background:#3b82f6" onclick="prevPage()">Previous</button>
+                <button id="next-btn" class="btn" style="background:#3b82f6" onclick="nextPage()">Next</button>
                 <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
                 <button class="btn" style="background:#9333ea" onclick="window.print()">Print in Color</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
@@ -264,12 +280,22 @@
 
     <script>
         let quizData = [];
+        let currentPage = 0;
+        let setsPerPage = 10;
+
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
         }
+
         function cleanStr(str) {
             return str.toLowerCase().replace(/\s+/g, ' ').replace(/[.,?!]/g, '').trim();
         }
+
+        function scrollToTop() {
+            document.querySelector('.container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // অথবা আরও উপরে যেতে চাইলে: window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function initApp() {
             const qIn = document.getElementById('q-input').value.trim();
             const aIn = document.getElementById('a-input').value.trim();
@@ -302,28 +328,68 @@
                     };
                 }
 
-                return { intro: introPart, sentences, answers: ansMap };
+                return { intro: introPart, sentences, answers: ansMap, score: null };
             });
 
             document.getElementById('setup-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
-            document.getElementById('quiz-container').innerHTML = quizData.map((set, i) => `
-                <div class="quiz-card">
-                    <h3 style="margin-top:0">Practice Set ${i + 1}</h3>
-                    <div class="intro-text">${set.intro}</div>
-                    ${set.sentences.map(s => `
-                        <div class="sentence-row">
-                            <span class="q-text"><b>(${s.letter})</b> ${s.text}</span>
-                            <input type="text" class="gap-input" data-letter="${s.letter}" data-set="${i}" autocomplete="off">
-                        </div>
-                    `).join('')}
-                    <div id="fb-${i}" class="feedback-area"></div>
-                </div>
-            `).join('');
+            renderPage(0);
+        }
+
+        function renderPage(page) {
+            currentPage = page;
+            const totalPages = Math.ceil(quizData.length / setsPerPage);
+            const start = page * setsPerPage;
+            const end = Math.min(start + setsPerPage, quizData.length);
+
+            document.getElementById('page-info').textContent =
+                `Page ${page + 1} of ${totalPages}  |  Total Sets: ${quizData.length}`;
+
+            document.getElementById('quiz-container').innerHTML = quizData.slice(start, end).map((set, localIdx) => {
+                const globalIdx = start + localIdx;
+                return `
+                    <div class="quiz-card">
+                        <h3 style="margin-top:0">Practice Set ${globalIdx + 1}</h3>
+                        <div class="intro-text">${set.intro}</div>
+                        ${set.sentences.map(s => `
+                            <div class="sentence-row">
+                                <span class="q-text"><b>(${s.letter})</b> ${s.text}</span>
+                                <input type="text" class="gap-input" data-letter="${s.letter}" data-set="${globalIdx}" autocomplete="off">
+                            </div>
+                        `).join('')}
+                        <div id="fb-${globalIdx}" class="feedback-area"></div>
+                    </div>
+                `;
+            }).join('');
+
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            prevBtn.disabled = page === 0;
+            nextBtn.disabled = end >= quizData.length;
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                renderPage(currentPage - 1);
+                scrollToTop();
+            }
+        }
+
+        function nextPage() {
+            if ((currentPage + 1) * setsPerPage < quizData.length) {
+                renderPage(currentPage + 1);
+                scrollToTop();
+            }
         }
 
         function checkAnswers() {
-            quizData.forEach((set, setIdx) => {
+            const start = currentPage * setsPerPage;
+            const end = Math.min(start + setsPerPage, quizData.length);
+            let pageTotalScore = 0;
+            let pageTotalQuestions = 0;
+
+            for (let setIdx = start; setIdx < end; setIdx++) {
+                const set = quizData[setIdx];
                 let score = 0;
                 const inputs = document.querySelectorAll(`.gap-input[data-set="${setIdx}"]`);
                 let feedbackHTML = "<b>Correct Answers:</b><br>";
@@ -350,10 +416,24 @@
                     }
                 });
 
+                // save score for this set
+                set.score = score;
+
                 const fb = document.getElementById(`fb-${setIdx}`);
                 fb.style.display = "block";
                 fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br>${feedbackHTML}`;
-            });
+
+                pageTotalScore += score;
+                pageTotalQuestions += inputs.length;
+            }
+
+            // show page summary
+            const pageInfo = document.getElementById('page-info');
+            pageInfo.innerHTML =
+                `Page ${currentPage + 1} of ${Math.ceil(quizData.length / setsPerPage)}  |  ` +
+                `Total Sets: ${quizData.length}  |  ` +
+                `This Page Score: ${pageTotalScore} / ${pageTotalQuestions}`;
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
