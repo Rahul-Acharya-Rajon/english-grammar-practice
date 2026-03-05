@@ -9,7 +9,7 @@
         :root {
             --p: #2563eb;
             --s: #16a34a;
-            --d: #b91c1c;
+            --d: #d53f3f;
             --bg: #f8fafc;
             --card-bg: white;
             --text-main: #1e293b;
@@ -72,6 +72,13 @@
             background: var(--card-bg);
         }
 
+        .intro-text {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--p);
+            display: block;
+        }
+
         .sentence-row {
             margin-bottom: 15px;
             padding-bottom: 10px;
@@ -115,16 +122,6 @@
             display: none;
         }
 
-        .correct-box {
-            background: rgba(22, 163, 74, 0.1);
-            border-left: 6px solid var(--s);
-        }
-
-        .wrong-box {
-            background: rgba(220, 38, 38, 0.1);
-            border-left: 6px solid var(--d);
-        }
-
         .ans-tag {
             display: block;
             background: #f0f7ff;
@@ -133,7 +130,13 @@
             border-radius: 6px;
             margin-top: 5px;
             font-size: 0.95em;
-            color: var(--p);
+            color: #1e40af;
+        }
+
+        [data-theme="dark"] .ans-tag {
+            background: #1e293b;
+            color: #60a5fa;
+            border-color: #3b82f6;
         }
 
         .theme-toggle {
@@ -161,11 +164,13 @@
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
 
             body {
-                background: white !important;
                 padding: 0 !important;
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
             }
 
             .no-print,
@@ -180,49 +185,55 @@
                 max-width: 100% !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                background: transparent !important;
             }
 
             .quiz-card {
-                border: 2px solid #2563eb !important;
-                /* Blue Border in Print */
+                border: 2px solid var(--p) !important;
                 margin-bottom: 20px !important;
                 padding: 15px !important;
                 page-break-inside: avoid;
                 border-radius: 10px !important;
+                background: var(--card-bg) !important;
             }
 
-            h2 {
-                color: #2563eb !important;
-                text-align: center !important;
-            }
-
-            h3 {
-                color: #9333ea !important;
-            }
-
-            .q-text {
-                color: #1e293b !important;
+            .intro-text {
+                color: var(--p) !important;
             }
 
             .gap-input {
-                border-bottom: 2px solid #2563eb !important;
-                background: transparent !important;
+                border-bottom: 2px solid var(--p) !important;
+                background: var(--input-bg) !important;
+                color: var(--text-main) !important;
+            }
+
+            .input-correct {
+                color: var(--s) !important;
+            }
+
+            .input-wrong {
+                color: var(--d) !important;
             }
 
             .feedback-area {
                 display: block !important;
-                border-left: 5px solid #16a34a !important;
-                background: #f0fdf4 !important;
-                /* Light green background */
-                padding: 10px !important;
+                background: var(--card-bg) !important;
+                border-left: 5px solid var(--s) !important;
+                border-top: 1px solid var(--border) !important;
+                border-right: 1px solid var(--border) !important;
+                border-bottom: 1px solid var(--border) !important;
             }
 
             .ans-tag {
-                border: 1px solid #2563eb !important;
-                color: #2563eb !important;
+                border: 1px solid var(--p) !important;
+                color: #1e40af !important;
                 background: #f0f7ff !important;
-                /* Light blue background */
-                margin-top: 5px !important;
+            }
+
+            [data-theme="dark"] .ans-tag {
+                background: #1e293b !important;
+                color: #60a5fa !important;
+                border-color: #3b82f6 !important;
             }
         }
     </style>
@@ -231,7 +242,7 @@
 <body>
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
     <div class="container">
-        <h2 style="text-align:center;">HSC Sentence Transformation (Color-Print Edition)</h2>
+        <h2 style="text-align:center;">HSC Sentence Transformation</h2>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -272,6 +283,8 @@
                 let ansMap = {};
                 let rawAns = aBlocks[idx] || "";
 
+                const introPart = block.split(/\([a-e]\)/)[0].trim();
+
                 const qRegex = /\(([a-e])\)\s*([\s\S]*?)(?=\([a-e]\)|$)/g;
                 let qMatch;
                 while ((qMatch = qRegex.exec(block)) !== null) {
@@ -281,10 +294,15 @@
                 const aRegex = /\(([a-e])\)\s*([\s\S]*?)(?=\([a-e]\)|$)/g;
                 let aMatch;
                 while ((aMatch = aRegex.exec(rawAns)) !== null) {
-                    ansMap[aMatch[1]] = aMatch[2].trim().replace(/;$/, '');
+                    const fullText = aMatch[2].trim();
+                    const options = fullText.split(/\s+Or,\s+|\s+or\s+|;/gi).map(o => o.trim());
+                    ansMap[aMatch[1]] = {
+                        original: fullText,
+                        options: options
+                    };
                 }
 
-                return { sentences, answers: ansMap };
+                return { intro: introPart, sentences, answers: ansMap };
             });
 
             document.getElementById('setup-view').classList.add('hidden');
@@ -292,6 +310,7 @@
             document.getElementById('quiz-container').innerHTML = quizData.map((set, i) => `
                 <div class="quiz-card">
                     <h3 style="margin-top:0">Practice Set ${i + 1}</h3>
+                    <div class="intro-text">${set.intro}</div>
                     ${set.sentences.map(s => `
                         <div class="sentence-row">
                             <span class="q-text"><b>(${s.letter})</b> ${s.text}</span>
@@ -312,13 +331,23 @@
                 inputs.forEach(input => {
                     const letter = input.dataset.letter;
                     const userVal = cleanStr(input.value);
-                    const official = set.answers[letter] || "";
-                    const possible = official.split(/[/;]|\sor\s/).map(o => cleanStr(o));
+                    const ansData = set.answers[letter];
 
-                    const isCorrect = userVal !== "" && possible.some(p => p === userVal);
-                    input.style.color = isCorrect ? "var(--s)" : "var(--d)";
-                    if (isCorrect) score++;
-                    feedbackHTML += `<span class="ans-tag"><b>(${letter})</b> ${official}</span>`;
+                    if (ansData) {
+                        const isCorrect = userVal !== "" && ansData.options.some(opt => cleanStr(opt) === userVal);
+
+                        if (isCorrect) {
+                            input.style.color = "var(--s)";
+                            input.classList.add('input-correct');
+                            input.classList.remove('input-wrong');
+                            score++;
+                        } else {
+                            input.style.color = "var(--d)";
+                            input.classList.add('input-wrong');
+                            input.classList.remove('input-correct');
+                        }
+                        feedbackHTML += `<span class="ans-tag"><b>(${letter})</b> ${ansData.original}</span>`;
+                    }
                 });
 
                 const fb = document.getElementById(`fb-${setIdx}`);
