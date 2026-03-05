@@ -111,7 +111,6 @@
             border-left: 4px solid var(--p);
             white-space: pre-wrap;
             color: #1e293b;
-            /* Readable text */
         }
 
         [data-theme="dark"] .q-display {
@@ -205,6 +204,22 @@
             display: none !important;
         }
 
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .score-display {
+            margin: 16px 0;
+            padding: 12px;
+            background: rgba(22, 163, 74, 0.1);
+            border-radius: 8px;
+            font-weight: bold;
+            color: var(--s);
+            text-align: center;
+            border: 1px solid var(--s);
+        }
+
         /* --- ENHANCED PRINT OPTIMIZATION --- */
         @media print {
             @page {
@@ -284,6 +299,11 @@
             .actual-hint {
                 margin-bottom: 8px !important;
             }
+
+            .score-display {
+                border: 1px solid #16a34a !important;
+                background: #f0fdf4 !important;
+            }
         }
     </style>
 </head>
@@ -294,6 +314,7 @@
         <h2 style="text-align:center; color:var(--p);" class="no-print">Pronoun Reference</h2>
 
         <div id="setup-view" class="no-print">
+            <p>Enter Questions & Answers</p>
             <div class="setup-grid">
                 <textarea id="q-input" placeholder="Question passage..."></textarea>
                 <textarea id="a-input" placeholder="Corrected passage..."></textarea>
@@ -308,20 +329,28 @@
                 <button class="btn" style="background:#9333ea" onclick="window.print()">Print</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
             </div>
+            <div id="pagination" class="pagination no-print"></div>
+            <div id="score-display" class="score-display hidden"></div>
         </div>
     </div>
 
     <script>
         let quizData = [];
+        let currentPage = 0;
+        const itemsPerPage = 10;
+
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
         }
+
         function clean(str) {
             return str.toLowerCase().replace(/[.,!?;:()]/g, "").replace(/\s+/g, " ").trim();
         }
+
         function splitBySentence(text) {
             return text.split(/(?<=[.!?])\s+(?=[A-Z"])/).map(s => s.trim()).filter(s => s.length > 0);
         }
+
         function initApp() {
             const qIn = document.getElementById('q-input').value.trim();
             const aIn = document.getElementById('a-input').value.trim();
@@ -335,38 +364,81 @@
             });
             document.getElementById('setup-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
-            document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
+            renderPage(currentPage);
+        }
+
+        function renderPage(page) {
+            const start = page * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageData = quizData.slice(start, end);
+            document.getElementById('quiz-container').innerHTML = pageData.map((item, i) => `
                 <div class="quiz-card">
-                    <h3>Practice Set ${i + 1}</h3>
+                    <h3>Practice Set ${start + i + 1}</h3>
                     <div class="q-display"><strong>Original:</strong><br>${item.original}</div>
-                    <textarea class="user-input-box no-print" data-idx="${i}" placeholder="Type full rewrite here..."></textarea>
-                    <div id="fb-${i}" class="feedback-area"></div>
+                    <textarea class="user-input-box no-print" data-idx="${start + i}" placeholder="Type full rewrite here..."></textarea>
+                    <div id="fb-${start + i}" class="feedback-area"></div>
                 </div>
             `).join('');
+            renderPagination();
+            document.getElementById('score-display').classList.add('hidden');
+            // Auto scroll to top smoothly when page changes
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(quizData.length / itemsPerPage);
+            let paginationHTML = '';
+            if (currentPage > 0) {
+                paginationHTML += `<button class="btn" style="background:var(--p)" onclick="changePage(${currentPage - 1})">Previous</button>`;
+            }
+            paginationHTML += ` Page ${currentPage + 1} of ${totalPages} `;
+            if (currentPage < totalPages - 1) {
+                paginationHTML += `<button class="btn" style="background:var(--p)" onclick="changePage(${currentPage + 1})">Next</button>`;
+            }
+            document.getElementById('pagination').innerHTML = paginationHTML;
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderPage(currentPage);
+        }
+
         function checkAnswers() {
-            quizData.forEach((item, i) => {
-                const userText = document.querySelector(`.user-input-box[data-idx="${i}"]`).value.trim();
-                if (!userText) return;
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            let totalCorrect = 0;
+            let totalQuestions = 0;
+            for (let globalIdx = start; globalIdx < end && globalIdx < quizData.length; globalIdx++) {
+                const item = quizData[globalIdx];
+                const userText = document.querySelector(`.user-input-box[data-idx="${globalIdx}"]`)?.value?.trim() || "";
+                if (!userText) continue;
                 const userLines = splitBySentence(userText);
                 const correctLines = splitBySentence(item.corrected);
-                const fb = document.getElementById(`fb-${i}`);
+                const fb = document.getElementById(`fb-${globalIdx}`);
                 let reportHTML = "<h4>Correction Report:</h4><div class='diff-view'>";
                 const maxLines = Math.max(userLines.length, correctLines.length);
+                let correctCount = 0;
                 for (let idx = 0; idx < maxLines; idx++) {
                     let uL = userLines[idx] || "";
                     let cL = correctLines[idx] || "";
                     if (cL && uL && clean(uL) === clean(cL)) {
                         reportHTML += `<span class="correct-line">✓ ${uL}</span>`;
+                        correctCount++;
                     } else if (cL) {
                         reportHTML += `<span class="wrong-line">✗ ${uL || "[Missing Line]"}</span>`;
                         reportHTML += `<span class="actual-hint">➜ Correct: ${cL}</span>`;
                     }
                 }
+                totalCorrect += correctCount;
+                totalQuestions += correctLines.length;
                 reportHTML += "</div>";
                 fb.style.display = "block";
                 fb.innerHTML = reportHTML;
-            });
+            }
+            const score = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+            const scoreDisplay = document.getElementById('score-display');
+            scoreDisplay.innerHTML = `This Page Score: ${score}% <br>(${totalCorrect} correct out of ${totalQuestions} sentences)`;
+            scoreDisplay.classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
