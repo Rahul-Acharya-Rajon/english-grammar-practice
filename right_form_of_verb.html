@@ -9,7 +9,7 @@
         :root {
             --p: #2563eb;
             --s: #16a34a;
-            --d: #b91c1c;
+            --d: #db3d3d;
             --bg: #f8fafc;
             --card-bg: white;
             --text-main: #1e293b;
@@ -44,7 +44,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* Mobile Responsive adjustments */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -178,18 +177,27 @@
             display: none !important;
         }
 
-        /* Optimized Print Settings */
+        #page-total-score {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 5px solid #3b82f6;
+            text-align: center;
+        }
+
         @media print {
             @page {
                 margin: 0.5cm;
             }
 
             body {
-                background: var(--bg) !important;
-                color: var(--text-main) !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background: white !important;
+                color: black !important;
                 padding: 0;
+                margin: 0;
             }
 
             .no-print {
@@ -202,15 +210,16 @@
                 width: 100%;
                 max-width: 100%;
                 padding: 0;
-                background: transparent !important;
+                background: white !important;
+                margin: 0;
             }
 
             .quiz-card {
                 page-break-inside: avoid;
-                border: 1px solid var(--border);
+                border: 1px solid #ccc;
                 margin-bottom: 15px;
                 padding: 15px;
-                background: var(--card-bg) !important;
+                background: white !important;
             }
 
             .gap-input {
@@ -218,6 +227,7 @@
                 background: transparent !important;
                 min-width: 80px;
                 font-size: 14px;
+                color: black;
             }
 
             .feedback-area {
@@ -225,11 +235,24 @@
                 margin-top: 10px;
                 padding: 10px;
                 font-size: 13px;
+                background: #f8f8f8 !important;
+            }
+
+            #page-total-score {
+                display: block !important;
+                background: #f0f0f0 !important;
+                border-left: 5px solid #2563eb;
+            }
+
+            /* শুধু বর্তমান পেজের কার্ড দেখাবে */
+            .quiz-card:not([data-print-visible="true"]) {
+                display: none !important;
             }
 
             h2,
             h3 {
                 margin: 5px 0;
+                color: black !important;
             }
         }
     </style>
@@ -241,6 +264,7 @@
         <h2 style="text-align:center; color:var(--p);">Right Form of Verbs Practice</h2>
 
         <div id="setup-view" class="no-print">
+            <p>Enter Questions & Answers</p>
             <div class="setup-grid">
                 <textarea id="q-input"
                     placeholder="Paste Questions (e.g. 1. In this world truth (a) — (reign)...)"></textarea>
@@ -251,19 +275,33 @@
         </div>
 
         <div id="quiz-view" class="hidden">
+            <div id="page-total-score" class="no-print hidden">Page Total Score: — / —</div>
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
-                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
-                <button class="btn" style="background:#9333ea" onclick="window.print()">Save as PDF</button>
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers (Current
+                    Page)</button>
+                <button class="btn" style="background:#9333ea" onclick="preparePrintAndPrint()">Save as PDF /
+                    Print</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
+                <div id="pagination" style="margin-top: 10px;">
+                    <button class="btn" style="background:#3b82f6" onclick="prevPage()">Previous</button>
+                    <span id="page-info"></span>
+                    <button class="btn" style="background:#3b82f6" onclick="nextPage()">Next</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         let quizData = [];
+        let currentPage = 1;
+        const perPage = 10;
+        let totalPages = 0;
+
         function toggleTheme() {
-            document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+            document.documentElement.hasAttribute("data-theme")
+                ? document.documentElement.removeAttribute("data-theme")
+                : document.documentElement.setAttribute("data-theme", "dark");
         }
 
         function cleanString(str) {
@@ -300,26 +338,81 @@
                 return { html, answers: ansMap };
             });
 
+            totalPages = Math.ceil(quizData.length / perPage);
+
             document.getElementById('setup-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
             document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
-                <div class="quiz-card">
+                <div class="quiz-card" data-page="${Math.floor(i / perPage) + 1}" data-qid="${i}">
                     <h3>Exercise ${i + 1}</h3>
                     <div style="white-space: pre-wrap;">${item.html}</div>
                     <div id="fb-${i}" class="feedback-area"></div>
                 </div>
             `).join('');
+
+            showPage(currentPage);
+        }
+
+        function showPage(page) {
+            currentPage = page;
+            const cards = document.querySelectorAll('.quiz-card');
+            cards.forEach(card => {
+                card.style.display = (parseInt(card.dataset.page) === currentPage) ? 'block' : 'none';
+                // print এর জন্য data attribute সেট করা হবে পরে
+                card.removeAttribute('data-print-visible');
+            });
+
+            document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('page-total-score').classList.add('hidden');
+            document.getElementById('page-total-score').innerHTML = `Page Total Score: — / —`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function preparePrintAndPrint() {
+            // শুধু বর্তমান পেজের কার্ডগুলোকে print-visible করা
+            document.querySelectorAll('.quiz-card').forEach(card => {
+                if (parseInt(card.dataset.page) === currentPage) {
+                    card.setAttribute('data-print-visible', 'true');
+                } else {
+                    card.removeAttribute('data-print-visible');
+                }
+            });
+
+            // একটু পরে প্রিন্ট ডায়ালগ ওপেন করা (CSS কাজ করার জন্য)
+            setTimeout(() => {
+                window.print();
+            }, 100);
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
         }
 
         function checkAnswers() {
-            quizData.forEach((item, qIdx) => {
+            const start = (currentPage - 1) * perPage;
+            const end = start + perPage;
+            let pageTotalCorrect = 0;
+            let pageTotalBlanks = 0;
+
+            for (let qIdx = start; qIdx < end && qIdx < quizData.length; qIdx++) {
                 let score = 0;
                 const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
                 let keyHTML = "";
+
                 inputs.forEach(input => {
                     const letter = input.dataset.letter;
                     const userVal = cleanString(input.value);
-                    const official = item.answers[letter] || "";
+                    const official = quizData[qIdx].answers[letter] || "";
 
                     const possible = official.split(/[/;]|\sor\s/).map(o => cleanString(o));
                     const isCorrect = userVal !== "" && possible.some(p => p === userVal);
@@ -334,7 +427,15 @@
                 fb.style.display = "block";
                 fb.className = `feedback-area ${score === inputs.length && score > 0 ? 'correct-box' : 'wrong-box'}`;
                 fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><br><b>Correct Answers:</b><br>${keyHTML}`;
-            });
+
+                pageTotalCorrect += score;
+                pageTotalBlanks += inputs.length;
+            }
+
+            const scoreEl = document.getElementById('page-total-score');
+            scoreEl.innerHTML = `Page Total Score: <span style="color:var(--s)">${pageTotalCorrect}</span> / ${pageTotalBlanks}`;
+            scoreEl.classList.remove('hidden');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
