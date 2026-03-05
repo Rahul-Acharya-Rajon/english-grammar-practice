@@ -245,47 +245,22 @@
             color: var(--text-main);
         }
 
+        /* ──────────────────────────────────────────────── */
+        /*          COLOR PRINTING SUPPORT ADDED            */
+        /* ──────────────────────────────────────────────── */
         @media print {
 
-            .pagination-controls,
+            /* Very important: tell browser to print background colors */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
             .no-print,
-            .btn,
+            .pagination-controls,
             .theme-toggle,
-            label {
+            .btn {
                 display: none !important;
-            }
-
-            .quiz-card {
-                display: block !important;
-                page-break-inside: avoid;
-            }
-        }
-
-        @media print {
-            :root {
-                /* Force light mode variables for printing */
-                --bg: #ffffff !important;
-                --card-bg: #ffffff !important;
-                --text-main: #000000 !important;
-                --text-sub: #333333 !important;
-                --input-bg: #f8f8f8 !important;
-                --border: #cccccc !important;
-                --p: #1e40af !important;
-                /* slightly darker blue for better print contrast */
-                --s: #166534 !important;
-                /* darker green */
-                --d: #991b1b !important;
-                /* darker red */
-            }
-
-            [data-theme="dark"] {
-                /* Reset dark variables to light ones when printing */
-                --bg: #ffffff !important;
-                --card-bg: #ffffff !important;
-                --text-main: #000000 !important;
-                --text-sub: #333333 !important;
-                --input-bg: #f8f8f8 !important;
-                --border: #cccccc !important;
             }
 
             body {
@@ -296,34 +271,61 @@
             .container,
             .quiz-card {
                 background: white !important;
-                color: black !important;
                 box-shadow: none !important;
-                border: 1px solid #aaa !important;
+                border: 1px solid #999 !important;
+                margin-bottom: 40px !important;
+                page-break-inside: avoid;
+                page-break-after: always;
+            }
+
+            h2,
+            h3 {
+                color: #1e40af !important;
             }
 
             .gap-input {
-                background: #f8f8f8 !important;
+                background: #f8fafc !important;
                 color: black !important;
-                border-bottom: 3px solid #1e40af !important;
+                border-bottom: 3px solid #2563eb !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
-            /* Make sure feedback boxes look decent in black & white */
+            /* Preserve correct/wrong colors in print */
+            input.gap-input[style*="color: var(--s)"] {
+                color: #16a34a !important;
+                border-bottom-color: #16a34a !important;
+            }
+
+            input.gap-input[style*="color: var(--d)"] {
+                color: #dc2626 !important;
+                border-bottom-color: #dc2626 !important;
+            }
+
             .correct-box {
-                background: #f0fdf4 !important;
-                border-left: 8px solid #166534 !important;
+                background-color: #f0fdf4 !important;
+                border-left: 8px solid #16a34a !important;
                 color: #166534 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
             .wrong-box {
-                background: #fef2f2 !important;
-                border-left: 8px solid #991b1b !important;
+                background-color: #fef2f2 !important;
+                border-left: 8px solid #dc2626 !important;
                 color: #991b1b !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
-            /* Optional: better spacing & readability when printed */
-            .quiz-card {
-                margin-bottom: 40px !important;
-                padding: 15px !important;
+            .ans-tag {
+                background: #f1f5f9 !important;
+                border: 1px solid #cbd5e1 !important;
+                color: #1e293b !important;
+            }
+
+            .feedback-area {
+                display: block !important;
             }
         }
     </style>
@@ -467,7 +469,6 @@
             document.getElementById('prev-btn').disabled = currentPage === 0;
             document.getElementById('next-btn').disabled = currentPage >= totalPages - 1;
 
-            // hide buttons if only 1 page
             if (totalPages <= 1) {
                 document.querySelector('.pagination-controls').classList.add('hidden');
             } else {
@@ -484,7 +485,7 @@
                 const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
                 let keyList = [];
 
-                if (inputs.length === 0) return; // Skip sets not currently rendered if necessary, but actually we want to evaluate all that have been interacted with
+                if (inputs.length === 0) return;
 
                 inputs.forEach(input => {
                     totalMarks++;
@@ -515,8 +516,6 @@
                 }
             });
 
-            // Re-calculate based on ALL inputs if possible, or just current visible ones. 
-            // For a better UX, we'll calculate based on what's currently in the DOM.
             const allVisibleInputs = document.querySelectorAll('.gap-input');
             let visibleTotal = allVisibleInputs.length;
             let visibleCorrect = 0;
