@@ -260,6 +260,72 @@
                 page-break-inside: avoid;
             }
         }
+
+        @media print {
+            :root {
+                /* Force light mode variables for printing */
+                --bg: #ffffff !important;
+                --card-bg: #ffffff !important;
+                --text-main: #000000 !important;
+                --text-sub: #333333 !important;
+                --input-bg: #f8f8f8 !important;
+                --border: #cccccc !important;
+                --p: #1e40af !important;
+                /* slightly darker blue for better print contrast */
+                --s: #166534 !important;
+                /* darker green */
+                --d: #991b1b !important;
+                /* darker red */
+            }
+
+            [data-theme="dark"] {
+                /* Reset dark variables to light ones when printing */
+                --bg: #ffffff !important;
+                --card-bg: #ffffff !important;
+                --text-main: #000000 !important;
+                --text-sub: #333333 !important;
+                --input-bg: #f8f8f8 !important;
+                --border: #cccccc !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .container,
+            .quiz-card {
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+                border: 1px solid #aaa !important;
+            }
+
+            .gap-input {
+                background: #f8f8f8 !important;
+                color: black !important;
+                border-bottom: 3px solid #1e40af !important;
+            }
+
+            /* Make sure feedback boxes look decent in black & white */
+            .correct-box {
+                background: #f0fdf4 !important;
+                border-left: 8px solid #166534 !important;
+                color: #166534 !important;
+            }
+
+            .wrong-box {
+                background: #fef2f2 !important;
+                border-left: 8px solid #991b1b !important;
+                color: #991b1b !important;
+            }
+
+            /* Optional: better spacing & readability when printed */
+            .quiz-card {
+                margin-bottom: 40px !important;
+                padding: 15px !important;
+            }
+        }
     </style>
 </head>
 
