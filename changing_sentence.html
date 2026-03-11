@@ -296,6 +296,37 @@
             // অথবা আরও উপরে যেতে চাইলে: window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function expandVariants(text) {
+
+            let results = [text];
+
+            while (results.some(t => /\b[\w'-]+\/[\w'-]+\b/.test(t))) {
+
+                let newResults = [];
+
+                results.forEach(str => {
+
+                    const match = str.match(/\b([\w'-]+)\/([\w'-]+)\b/);
+
+                    if (match) {
+
+                        newResults.push(str.replace(match[0], match[1]));
+                        newResults.push(str.replace(match[0], match[2]));
+
+                    } else {
+
+                        newResults.push(str);
+
+                    }
+
+                });
+
+                results = newResults;
+            }
+
+            return [...new Set(results.map(r => r.trim()))];
+        }
+
         function initApp() {
             const qIn = document.getElementById('q-input').value.trim();
             const aIn = document.getElementById('a-input').value.trim();
@@ -321,7 +352,19 @@
                 let aMatch;
                 while ((aMatch = aRegex.exec(rawAns)) !== null) {
                     const fullText = aMatch[2].trim();
-                    const options = fullText.split(/\s+Or,\s+|\s+or\s+|;/gi).map(o => o.trim());
+                    // const options = fullText.split(/\s+Or,\s+|\s+or\s+|;/gi).map(o => o.trim());
+                    let options = fullText
+                        .split(/\s+Or,\s+|\s+or\s+|;/gi)
+                        .map(o => o.trim());
+
+                    let expanded = [];
+
+                    options.forEach(opt => {
+                        expanded.push(...expandVariants(opt));
+                    });
+
+                    options = expanded;
+                    
                     ansMap[aMatch[1]] = {
                         original: fullText,
                         options: options
