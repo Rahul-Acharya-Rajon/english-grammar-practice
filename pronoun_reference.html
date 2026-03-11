@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Pronoun Reference - Print Optimized</title>
+    <title>Pronoun Reference Practice Sheet</title>
     <style>
         :root {
             --p: #2563eb;
@@ -226,6 +226,10 @@
                 margin: 0.5cm;
             }
 
+            html {
+                background: var(--bg) !important;
+            }
+
             body {
                 background: var(--bg) !important;
                 color: var(--text-main) !important;
@@ -248,7 +252,7 @@
                 padding: 0 !important;
                 margin: 0 !important;
                 box-shadow: none !important;
-                background: transparent !important;
+                background: var(--card-bg) !important;
             }
 
             .quiz-card {
@@ -314,12 +318,20 @@
         <h2 style="text-align:center; color:var(--p);" class="no-print">Pronoun Reference</h2>
 
         <div id="setup-view" class="no-print">
-            <p>Enter Questions & Answers</p>
             <div class="setup-grid">
-                <textarea id="q-input" placeholder="Question passage..."></textarea>
-                <textarea id="a-input" placeholder="Corrected passage..."></textarea>
+                <div>
+                    <label>1. Paste Questions:</label>
+                    <textarea id="q-input" placeholder="Question passage..."></textarea>
+                </div>
+                <div>
+                    <label>2. Paste Answers:</label>
+                    <textarea id="a-input" placeholder="Corrected passage..."></textarea>
+                </div>
             </div>
-            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Start Practice</button>
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
+                Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -341,6 +353,1220 @@
 
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `01. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear. 
+Autism is a physical disorder of the brain who (which) causes a lifelong developmental disability. Unfortunately, a number of boys and girls become victim of it (autism) after their birth. Children with autism vary widely in their activities, abilities, behaviours etc. and the symptoms may appear differently in him (them). The sorrows and sufferings of the parents of those (them) know no bounds. Though the autistic children are quite different in activities from the normal children, they (autistic children) should not be neglected. Rather, we have a great responsibility towards them.
+[Dhaka Board-2019]
+
+02. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Do you know the importance of trees? They are our best friends. Our existence on earth will be at stake without it (them). We inhale oxygen which trees produce. Again, we exhale carbon dioxide which it (they) absorbs. Besides, we get food from trees and firewood to cook it (food). But some irresponsible people cut down trees indiscriminately. It (They) should be brought to light. Furthermore, one should take keen interest to plant more trees so that we can live comfortably on earth.
+[Chattogram Board-2019]
+
+03. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Salam and Salma are siblings. They read in a local primary school. Salam is in class five whereas her sister, Salma reads in class three. They (Salma and Salam) go to school together. Sometimes they take rickshaw because it (their school) is five kilometers away from his (their) home. Today, she (Salma) is going to school with her father because her brother, Salam is sick. He (Salam) is taking medicine and bed rest.
+[Rajshahi Board-2019, 2016]
+
+04. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Women are nowadays as important as men in society. She (women) constitutes (constitute) nearly half of the total population. No nation can make real progress keeping half of it (population) in the dark. Without the improvement of the women’s status, it (progress) is not at all possible. Again, without education, women cannot be uplifted. So, proper education should be given to her (women) so that they (women) can work hand in hand with them (men) in all development programmes.
+[Cumilla Board-2019, 2016; Barishal Board-2016]
+
+05. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Both educated and uneducated women are at present as important as men in our society. She (women) constitutes (consitute) nearly half of our total population. No country can make real progress keeping half of it (population) in darkness. Without the upliftment of our women, it (progress) is not at all possible. Again, without education, women cannot be uplifted. So proper education should be given to her (women) in order that they (women) can work hand in hand with them (men) in all development programmes.
+[Jashore Board-2019]
+
+06. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+The Liberation War of Bangladesh is a memorable event in our national life. She (Bangladesh) achieved her independence through sacrifice and bloodshed. It (Independence) is the birthright of a man. On the night of March 25, 1971, the Pakistan army fell upon the unarmed sleeping Bangalees. But we (Bangaless) were not cowards. They built up strong resistance against them (Pakistan army). They (Freedom fighters) fought with courage for long nine months. After nine months’ bloody war and sacrifice of the freedom fighters, the red sun of independence rose in our soil on the 16th December 1971. Now we remember them (freedom fighters) with great respect.
+[Dinajpur Board-2019]
+
+07. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Robin hates people who are mean to animals. Last afternoon, as he was walking home from work, he saw some boys throwing stones at an old lame dog. Immediately, he rushed to help the animal. “Stop it”! he shouted as he ran towards the unruly boys, “Leave him (the dog) alone!” Startled by the big man’s shouts, they (the boys) ran away. One of them jeered at him (Robin) while running away. Robin, however, was totally unmoved by the jeering. He was happy that he could save it. Robin has always felt some affection for animals. Once he even went to the police station to complain about a neighbour who threw a cat out of the window. Instead of taking any action, they (polices) laughed at him and advised him not to worry about such ‘petty’ matters.
+[Sylhet Board-2019]
+
+08. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Honesty is the best policy. It is honesty which brings happiness in life. Without it (honesty), none can dream of a great life. These who were great in their lifetime were honest. They (Honest people) worked with sincerity, lived earnestly and died with honour. His (Their) contributions (contribution) to this world are unforgettable. So if you want themselves (yourself) to be in their (honest people’s) league, be honest. Remember, there is no shortcut way to a great life.
+[Barishal Board-2019]
+
+09. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+There lived a man in a village which had a great attraction to English. He went to a teacher in order to learn English well. Though he (the man) was dull-headed, He (the teacher) tried his best to teach him (the man) but the man learnt only three English words-yes, no and very good. Though the man did not know the meaning of it (the words), he used them (the words) frequently in his conversation. He did not understand that a little learning is a dangerous thing and very soon he would be a victim of it.
+[Combined Board -Ka Set-2018]
+
+10. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Travelling is a part of education. These (Travelling) means going from place to place. One can enhance knowledge by going from place to place. Thus (Travelling) gives one the opportunity to see the unseen and know the unknown. Some people are averse to travelling. This (Averse/Not going to travelling) limits his (people’s) vision. However, by travelling different parts of the world, my knowledge may be enriched. 
+[Dhaka Board-2017; Cumilla Board-2017;
+Dinajpur Board-2016]
+
+11. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+A rich man went to a farmer with one thousand taka in a bag. He said to him, “Look, my friend, I have brought one thousand taka for you. Keep this money and remove your distress.” He was surprised. He took the bag from the rich man and thanked him. He said to himself, “One thousand taka is a lot of money.” He could not think where to keep the money. He did not find any safe place. He dug a hole in his hut and kept it there.
+[Chattogram Board-2017]
+
+12. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Education is the birthright of every man. But even then many people in our country are deprived of this for many reasons. They are unconscious and unskilled for want of it. For this, they are unable not only to develop their own fate or their family, but also unable to play any role for the development of society or the state. If the people are not properly educated, that is not possible. So, the more we can educate our people, the more the country will be developed. With a view to developing human resource, the government has given many benefits in the field of expanding the primary and secondary education. We must ensure these for every child of the country.
+[Rajshahi Board-2017]
+
+13. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Mandela left public life in June 2004 telling his adoring countrymen not to call them. Regarding it, Nadine Gordimer said, “He is at the epicenter of his time, our in South Africa and your, wherever you are.”
+[Jashore Board-2017]
+
+14. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Sunlight is the source of all energy of the earth. All the living beings are dependent upon this. Greenplants are the producers of the ecosystem. All plants and animals of it are interconnected serially. Consequently, there develops a food chain among these. The transfer of food energy takes place from producers through a series of food levels. This is called the food chain in the ecosystem. There are numerous food chains in an ecosystem. Food chain does not work in isolation. These are linked together to form a food web.
+[Dinajpur Board-2017]
+
+15. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Books are the medium through which human beings talk with enlightened minds, the great men of the world. They are our best friends. They introduce them to the life and the world. Books are the mirrors of past, present and even future. These are having an active voice. We know about the thoughts and deeds of our ancestors through it. They make the noblemen alive in the world forever.
+[Sylhet Board-2017]
+
+16. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Teaching is a profession who is full of challenge. I want to be a teacher because you like working with children. But my father argues that one cannot make much 4  English 2nd Paper – Preposition money from it. He wants me to look after their farms instead. But this does not inspire me much.
+[Barishal Board-2017]
+
+17. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+A cook once roasted a duck for its master. He looked so delicious that he could not resist the temptation and ate up one of drumsticks. When he sat down to eat the meal, he quickly noticed the missing leg. He asked him what had happened to the other leg. The cook told him that it had one leg only. The master said that there was no such thing as a one-legged duck but the cook insisted that every duck had only one leg.
+[Dhaka Board-2016]
+
+18. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+A stormy night is fearful and horrible. They cause untold sufferings to the people. In a stormy night; the whole sky is totally overcast with dark cloud. Only the roaring of violent wind can be heard. The wind begins to blow with fearful sound from no directions. People get frightened with sound of storm. In addition to it, there is thundering and lightning. The frequent thundering and lighting cause much terror and fear in the mind of the people whom always think that this night may be the end of our lives and the terrible and destructive storm will never come to an end. Storm causes harm to them. The house roofs are blown away. Many trees are uprooted. A large number of houses and shelters are damaged within a very short time. Standing crops are badly damaged. That is thus a dreadful night to the people.
+[Sylhet Board-2016]
+
+19. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+On a summer day, becoming very thirsty, a lion and a boar came at the same moment to a small well to drink. Those fiercely quarrelled which of them should drink first, and were soon engaged in a mortal fighting. On his stopping on a sudden to take breath for renewal of the fighting, it saw some vultures waiting in the distance to feast on the one which should fall first. They at once stopped the quarrel, saying: “That is better for us to make friends than to become the food of crows or vultures, as will certainly happen if ourselves are disabled.”
+[Jashore Board-2016]
+
+20. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+The Chinese put a lot of emphasis on the utility of the family. In the cities, the parks are often crowded with them spending their time together. There are lots of nice clean parks for people to spend their time in. Sometimes musicians and acrobats perform in the open air to entertain them who are present there. In the evening, many families spend its free time watching television. The Japanese love to take part in sports in its free time. They also love skateboarding who involves riding on a flat piece of wood that has wheels under it.
+
+21. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Once upon a time, there lived a poor widow. She had a son. He was foolish. One day, the widow told him to sell the calf. It was their only asset. The boy took the calf to the market. But he could not sell them. An old man took the calf for three peanuts. In the evening, the boy returned home with those peanuts. She got furious to see it. She threw away the peanuts out of the window. Next morning, he saw a big nut tree beside the window. He climbed up the tree. He saw a big palace on the top of the tree.
+
+22. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Liberty does not descend upon people. People must raise its to it. It is a fruit that must be earned before them can be enjoyed. This freedom meaning freedom only from foreign domination is an out-worn idea. This is the main task that confronts us if we are to take our rightful place in the modern world. We cannot hold the clock back and therefore, it is us who must go forwards at a double pace bending all our resources and all our energies to a great purpose.
+
+23. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Teachers are the guardians of the civilization. In fact, these are like candles. It is because they burn themselves like give to light all their students. They are really worthy of getting respect. They do not consider any caste and creed of the students. They treat all equally and spare no pains to teach them. They not only teach the students in the classroom but also mould their character to be a complete human being. They consider it a mission. They take care of the students very sincerely to make this a success. They are the social reformers too. They lead the society in the right direction. So, all society needs them. Though they do their duty round the clock most of them are economically insolvent because they do not work for achieving their selfish end.
+
+24. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+If we want to succeed in life, one must remember the old saying that time and tide wait for none. They never stop their onward march rather they continue to move on giving any particular attention to us. It cannot be stopped by any kind of request or enticement. Therefore, for the sake of their welfare, we should never waste even a single moment in vain. This will cost us a lot, and we will not be able to reach our goal of our life.
+
+25. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Human life on earth is very short. In this short span of life, he should have a definite aim to attain success in it. In other words, it is nothing but a journey. To reach the destination of the journey, every man has some plans and programmes. It is his aim. An aim is the cornerstone to success in human life. A life without it is like a ship without a rudder. An aim helps a man to gain his coveted objective. So, to be successful in life, it should be fixed earlier.
+
+26. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+The Taj Mahal is surrounded by a beautiful garden, and it is a long pool that stretches out in front of the building. He can see the beauty of the Taj Mahal in its reflection in the pool water. Visitors come to see these wonderful building at different times of the day since it assumes a different look at different times. Most people like this best on moonlit nights.
+
+27. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Character is the most valuable thing in our life. It is called the crown of human life. There are some noble qualities that distinguish a good man from a bad man. A man who cherishes them can be successful in his life. A man of character is respected everywhere. Many people do not know how much valuable it is. A man will be loser if he loses his character. A man without it is like a beast. He has no moral scruple and is capable of doing any evil thing. Nobody likes an unscrupulous person. Everybody likes a man who has good character. He is like a beacon-light and one of the moral forces of the world.
+
+28. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+The term 'diaspora' is used to refer to people which have left his homelands and settled in other parts of the world. either because they were forced to do so or because they wanted to leave on their own. It is increasingly used for such people as a collective group and/or a community. The word has seen many such, but scholars have been studying the phenomenon with great interest only in recent decades. Among the great ones of history is that of the Jewish people, who were forced to leave their lands in ancient times.
+
+29. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+A beggar is a person who begs from door to door. Some beggars beg on streets. He is called street beggars. It is not a profession. It is a social problem. They are the ignorable persons in the society. Though they earn money by begging, they do not contribute to it. We should rehabilitate it through employment.
+
+30. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+One must possess honesty and perseverance if he wants to be successful in life. Without it, you cannot expect trust and respect from others. Without perseverance, you cannot maintain your success for a long time, because it needs continuous effort. Honesty and perseverance go hand in hand, and they complement the other. Its combination always brings the best result.
+
+31. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Robert Bruce, king of Scotland, fought several battles against King Edward I of England, but unfortunately, he was defeated in it. While the pensive king was thinking about it lying in a cave, he saw a spider. He was working with a goal. It was to reach the ceiling, and that was not an easy task for the little creature. It fell down again and again, but did not give up hope and eventually, it succeeded at its seventh attempt. This encouraged Robert Bruce; he fought again, and this time he defeated the English army and secured the independence of Scotland.
+
+32. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Terrorism is the most burning issue of the country. Our normal life has been threatened due to this. Our country is now almost in the grip of the terrorists. They commit crimes in the broad daylight. The businessmen are the worst victims of these. They have to pay the lion's share of their profit to the terrorists. The people of the other professions also become their victims very often. Our normal life has become intolerable because of it. We must punish the terrorists if we want progress and prosperity of the country. When all come forward to stop terrorism, this will be easily achieved.
+
+33. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Many people think that poverty is a great evil who makes life a hell. On the other hand, money can make him feel happy. But it is not true. If we investigate a poor man, we may find happiness in him, but if we do the same for the rich, we may find unhappiness in her. For this, we often say that they are not always happy. Actually, it consists in contentment.
+
+34. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Shefali comes of a poor illiterate family of a remote village. Her father is a day labourer and mother is a housewife. Her prime concern is to marry Shefali off. But they is only 13 now. It is so little that she cannot even think of a marriage life. It seems to be an imprisonment to her. Shefali wants to concentrate on her studies so that they can be proud of a well-educated daughter.
+
+35. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Nelson Mandela was the greatest leader of South Africa. In fact, it was one of the greatest leaders in the world. All his life, he struggled against apartheid. This was a government policy of racial segregation. The Europeans were separated from the non-Europeans. The blacks were treated cruelly. Those were aliens in its country.
+
+36. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+There goes a proverb, "Grasp all, lose all" We know that greediness is one of the worst vices. Whenever the greed of a person exceeds the limit, he gets punished. It gradually draws them to the ultimate doom. All of us should be averse to worldly possessions. Then it will help us live a happy devoid of this..
+
+37. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Rokeya is a Bangladeshi girl who is about to finish school but he has no hopes of going on to college. Her parents are not willing to educate their daughter. They think that this is a waste of time and money. So, they have decided that they will marry her off. This has become the prime concern of the parents when Rokeya has finished school. Rokeya becomes worried about it. She used to dream about being a doctor, but now faces a life of household chores and bringing up children. She used to be happy being a girl, but now wishes he were a boy. If she had been a boy, she could have gone to college and university.
+
+38. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Nearly half a million people depend on the Sundarbans for their livelihood. Some people venture deep into the forest to catch fish or gather honey. Tigers often attack 8  English 2nd Paper – Preposition them. Some frequently raid the villages bordering it and kill goats and cows. It causes panic among the villagers. The villagers do not go out of the village after the sunset. They have recently formed tiger response team, to protect them from tigers whenever it enters the villages.
+
+39. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Read the newspaper carefully. Every days one will find here many examples of human joy and human tragedy which can give you ideas for articles, essays, or short stories. Keep a notebook in which to put down that you notice or ideas that come to you when you are out walking, when you are reading a book or magazine, or any other time. Some people get the ideas in the bath, or when are awake during the night. Unless they write it down at once, they often forget them.
+
+40. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Once a clever fox, while walking through the jungle, fell into a trap; but he somehow managed to get out of the trap at the cost of his tail. Without it, he looked very strange and ugly. It made him sad and ashamed, and he thought out a plan in order to get rid of his miserable condition. He invited all other foxes of the jungle, and when he attended the meeting, he told them about the uselessness of the tails and made a suggestion to cut them off. After hearing it, the foxes wanted to cut off his tail without wasting any time.
+
+41. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+King Lear, in his old age, determines to give up his kingdom to his three daughters. Before he does so, he tries to assure themselves of their love for his. The two elder women, Goneril and Regan vow that she loves him intensely. The youngest, Cordelia can only told them that she cares for him as a daughter should. For her true words she was immediately cast off by the king who is taken to wife by the king of France.
+
+42. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+The moon is a very familiar figure to all of us. She awakens a feeling of love in our hearts. Even the infant stretches out his hand to grasp this beautiful thing. It has always played an important role in literature. But science has a different tale to tell about the moon. Science reveals to them that the moon has no light of her own. It grasps only a little of what the sun pours forth. She reflects a small fraction of it.
+
+43. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Once two women came to King Solomon's court with a baby, and each of them claimed that they were the mother of the baby. He thought for a while and got a brilliant idea. He ordered one of his men to cut the baby into two equal halves and give one half to them. The real mother of the baby became very nervous by this, but the other woman was totally untouched by the event. The king noticed the change in the face of her, handed over the baby to her, and punished the other woman.
+
+44. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear. 
+Reading comprehension questions tests your ability to understand a passage and answer questions on the basis of what is stated and implied in it. One needs to read the passage first so that you can identify the main idea of the passage. If the learners are not clear on the main idea of the passage, it will be really hard for them to answer the questions. It is because most of them are done based on it.
+
+45. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+One day, a cowboy was tending their cows in the field. Many wolves lived in the forest. The cowboy would often cry out 'Wolf!' in fun. The farmers working in the field heard his cries and thought that he had been really attacked by them. So, they all rushed to the spot to save the cowboy. But to their surprise, they found no wolf there. Seeing them the boy began to laugh at them. He played the same trick for several times, and the men were befooled. So, they became very angry. One day, a wolf really came and attacked the cows. Now, the cowboy cried out. 'Wolf! Wolf!' in fear but one time nobody came to help him. The wolf first killed them, and at last it killed the boy.
+
+46. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Nelson Mandela spent almost thirty years in prison for its struggle against apartheid. Mandela was the victim of apartheid thoughout his life that led him to fight against it. He was the first Black president of South Africa, and this had been ruled by the white minority for a long time. He is respected by the people not only in South Africa but also outside South Africa.
+
+47. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Questions are set to assess the learners' ability to make out a passage and answer the questions on the basis of that is stated in it. They need to read it so that one can identify the main idea. If the learners are not clear on it, it will be difficult for them to answer the questions.
+
+48. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+On Pahela Boishakh, you can join the traditional celebration at any place all over Bangladesh. It can make your time more enjoyable by celebrating it along with our family members or friends. This will lead you to a further understanding of our rich cultural heritage. This is an important part of creating a patriotic fervor within you. Joining it will definitely make your patriotic feeling stronger.
+
+49. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Environmental pollution has been a burning issue in the present world. As a result of it, every year millions of people all over the world die unnecessarily. These are brought about by four specific factors. They are air pollution, water pollution, sound pollution and odour pollution. Air pollution from factories, burning trash and vehicle fumes causes pneumonia, bronchitis and other respiratory diseases. People dump human waste into rivers and canals. This causes poisoning and waterborne diseases. Industrial discharge and disposal of toxic chemical also cause water pollution. It can save our lives if we take determined action to control environmental pollution.
+
+50. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+One of the sources in our economy is rivers. They are everywhere in our life, literature, economy and culture. But are they in good shapes? Unfortunately, they are not. A few rivers are already dead, and they are going through the pangs of death. The river Buriganga is an example of a dying river. We know what has happened to it and why. We have seriously polluted her water.
+
+51. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Human beings have invented many important things so far, and he has brought great civilization to the world through these inventions. But the greatest invention is the invention of the wheel, which is a circular object and can rotate around their axis and help the easy movement of things across a surface. The wheels are, in fact, everywhere that are on our cars, trains, planes, wagons, and so on. They cannot imagine a modern life without wheels. But we do not know exactly which made the first wheel.
+
+52. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Life is nothing but a sum total of some moments. If one does not utilize his time properly, it becomes nothing but cries, wails and sighs. For this reason, proper use of it is necessary. There is a proverb that says, "Time and tide wait for none." This proverb is absolutely true, because anybody can't stop the cycle of time. We may have dream to have success in life. But it will not come without making a proper use of our time.
+
+53. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Life on earth is impossible without trees. Our existence will be at stake without it. We exhale CO2 who it absorbs. Besides, we get foods from trees and firewood to cook food. Those who illegally cut down trees should be brought to book. One should plant more trees so that this may become possible on Earth.
+
+54. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Hamlet was suspicious about the sudden death of his father. Claudius, his uncle, showed much love for Hamlet, but Hamlet suspected some evil in Claudius. The ghost of the king urged him to take revenge for his murder, but Hamlet became suspicious if they were really the ghost of his father or if it was an evil spirit compelling him to do evil.
+
+55. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Once there lived two friends, a grocer and a fruit seller. The grocer was intelligent, but the latter one was very dishonest. One day, he borrowed a balance and weights from him. After a few days, he told his friend to return his balance and weights. The grocer showed a lame excuse and said that a rat had eaten away its balance and weights. It made the fruit seller very angry.
+
+56. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+In our country, the condition of the female education in the poor family is frustrating. When she is born into a poor family, it is not regarded as a happy event. They think that she has come to add to the sufferings. They seldom think of sending her to school. They think that educating their daughter is just a waste of time. The parents try to find a husband for his daughter even before he attains physical and mental maturity.
+
+57. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Trees are our best friends on earth. Without it, we cannot survive. But, one is very unfortunate that many of us cut down trees indiscriminately. This destroys the ecological balance and has a dangerous effect on our environment. We must be very careful about it. Otherwise, they will wipe us out from this world.
+
+58. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Once a golden necklace was lost from a rich man's house. A few servants worked in that house. Naturally, it was suspected that any one of the servants had stolen the necklace. But nobody confessed the guilt. So, he lodged a complaint before the judge. All of the servants were summoned to the court. He denied the charge. Then, they hit upon a plan. He gave each of them a stick of the same length and told them to submit it to the court on the following day. He told him that the person who had stolen the necklace would have his stick increased by an inch. When they returned home, they kept his sticks as they were.
+
+59. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+One should do his duty attentively and on time. He should also be mindful of the passage of time whose is very precious in human life. Your life is nothing but the sum total of time. That is why it should value time to a greater extent.
+
+60. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Capital punishment is a controversial matter of the present time. It is a matter of debate whether capital punishment should be allowed in modern societies. Many countries have already withdrawn capital punishment from its legal systems. Still, capital punishment is considered an essential part of justice in many countries. People against them argue that capital punishment is something irrevocable. They can devoid a man of their life but cannot give it to a man. So, it is not right to take away something that we cannot return.
+
+61. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+In a village, there lived a poor old woman who had gathered together a dish of beans and wanted to cook it. So, she made a fire, and to burn quicker, she lighted it with a handful of straw. When she was emptying the beans into the pan, one dropped without she observing it, and lay on the ground beside a straw. Soon afterwards, a burning coal sprang from the fire, and they leapt down to the two. The coal said, "I fortunately sprang out of it, and if I had not escaped, my death would have been certain; I would have been burnt to ashes."
+
+62. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Television is a strong and popular media all over the world at the present time. This has a great role to play for the nation. It presents various kinds of entertaining programmes along with informative and educative programmes to entertain and educate people. Television has huge influence over people. Informative and educative programmes can amuse them if these are presented in attractive ways. Television can enlighten patriotic feelings among new generations by introducing them to their country and its traditions. It is very important because no nation can prosper without such. But to too much addiction to television hampers students' studies too. So, we should make them aware about that.
+
+63. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+The persons who engaged them in cleaning activities are called cleaners. They collect rubbish from the working area of their city. In general, they put their rubbish in plastic bins and leave it in front of their houses. They walk from door to door to collect it. Sometimes they are very dirty and smells bad. But the cleaners don't mind. They take out everything from the bins and put it in a large plastic bag or in the pushcart with them. However, many people hate it. But the cleaners don't care about them. They work hard every day to keep their area clean. So, the cleaner is very important for us.
+
+64. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+One day a countryman going to the nest of his goose found there an egg all yellow and glittering. When it took it up, it was as heavy as lead, and he was going to throw it away, because he thought a trick had been played on them. But he took it home on second thoughts, and soon found that it was an egg of pure gold. Every morning, it occurred, and he grew rich by selling them. As he grew rich, he grew greedy, and thinking to get at once all the gold it could give, he killed it and opened it only to find nothing.
+
+65. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Watching television is the most common and widespread source of entertainment for all classes of people. Almost every family has at least one television set. It has both positive and negative effect on the viewers. For example, foreign channels do not necessarily mean all absolutely bad or good for the viewers. Some of them are notable for its authentic and searching news programmes and attractive educational, informative and even entertaining values. On the other hand, ignoring own culture, many of them follow the foreign culture. As they often look for newer types of programmes. they find a wide variety on different channels. In fact, the tendency of following foreign culture is increasing day by day. Thus it poses a great threat to our native culture.
+
+66. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+Once a poor woman came to Buddha and asked her whether he could give her any medicine to restore her dead child to life. Buddha was very much touched by this. He told her that there was one medicine which could revive your son. It was a handful of mustard seeds obtained from a house where death had riever entered. The sorrowful mother went from door to door searching for the same. But being disappointed, she came back to Buddha and told her about it.
+
+67. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+When it was no hope for the young people, he generally becomes addicted to drugs for temporary pleasure. It carries him to an illusory world. Moreover, it often feel drowsy and lose appetite. They may also damage the internal function of the body and thus slowly leads you to death.
+
+68. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+A farmer's child was eating a piece of meat. Suddenly, a crow snatched the piece of meat from him and flew to a tree. A fox was going under it. He saw the piece of meat in the beak of the crow. He was very tempted. He thought of having a good meal with that. So, he started flattering him. "Hi, Mr. Crow." said the fox. "It is known to everybody that you have a sweet tone. Will you please sing a song for me?" The crow felt very flattered and agreed to sing. When he opened his mouth, the piece of meat fell to the ground. The fox took it up and left the place, befooling the crow. Then the crow realized this and decided not to believe a flatterer again.
+
+69. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear.
+We know that the biodiversity in the Sundarbans is already at stake as salinity is increasing at an alarming rate. In agricultural lands, this is creating an adverse effect in the coastal areas. Therefore, lands are losing fertility in these. It has affected the agricultural products to a great extent. The farmers of these areas are becoming disheartened because of the reduction in it. Not only that, people of these areas have to undergo many other problems also. For example, many species of trees and sweet water fishes are lost in the meantime. All those have adverse impact on people's life and livelihood. They are going to cities for their survival. So, the cities are getting overburdened.
+
+70. Identify the unclear pronoun references in the following paragraph. Where necessary, rewrite the sentences so that all pronoun references are clear. 
+A teacher who devotes him to the task of teaching his students is an ideal teacher. He is a very important person in any society or country. He dispels the darkness of ignorance from the minds of them and enkindles the light of education in them. He helps his students in learning their lessons. The teacher teaches him to follow the path of truth and avoid the path of vice. It may lead one astray. He is, in fact, a friend, philosopher and guide to the students. That is why he is considered one of the most important persons in society and in the nation. He is also regarded as a guardian of civilization.
+`;
+
+            const demoAnswers = `01. 
+Autism is a physical disorder of
+the brain that/which causes a lifelong
+developmental disability. Unfortunately, a
+number of boys and girls become victim
+of autism after their birth. Children with
+autism vary widely in their activities, -
+abilities, behaviours etc. and the symptoms
+may appear differently in them. The
+sorrows and sufferings of the parents
+of those autistic children know no bounds.
+Though the autistic children are quite
+different in activities from the normal
+children, they should not be neglected.
+Rather, we have a great responsibility
+towards these children.
+02.
+Do you know the importance of
+trees? They are our best friends. Our
+existence on earth will be at stake
+without trees. We inhale oxygen which
+trees produce. Again, we exhale carbon
+dioxide which trees absorb. Besides, we get
+food from trees and firewood to cook food.
+But some irresponsible people cut down
+trees indiscriminately. They should be
+brought to light. Furthermore, we should
+take keen interest to plant more trees so that
+we can live comfortably on earth.
+03.
+Salam and Salma are siblings.
+They read in a local primary school. Salam
+is in class five whereas his sister Salma
+reads in class three. They go to school
+together. Sometimes they take rickshaw
+because their school is five kilometres
+away from their home. Today, Salma is
+going to school with their father because
+her brother, Salam is sick. He is taking
+medicine and bed rest.
+04.
+Women are nowadays as
+important as men in
+society. They constitute nearly half of the
+total population. No nation can make real
+progress keeping half of its population in
+the dark Without the improvement of the
+women's status, real progress is not at all
+possible. Again, without education, women
+cannot be uplifted. So, proper education
+should be given to them/ womenfolk so that
+they can work hand in hand with men in all
+development programmes.
+05..
+Both educated and uneducated
+women are at present as important as men
+in our society. Women constitute nearly
+half of our total population. No country can
+make real progress keeping half of
+its population in darkness. Without the
+upliftment of our women, real progress is
+not at all possible. Again, without
+education, women cannot be uplifted. So
+proper education should be given
+to womenfolk/ them in order that they can
+work hand in hand with men in all
+development programmes.
+06.
+The Liberation War of
+Bangladesh is a memorable event in our
+national life. Bangladesh achieved her
+independence through sacrifice and bloodshed. Independence is the birthright of a
+man. On the night of March 25, 1971, the
+Pakistan army fell upon the unarmed
+sleeping Bangalees. But the Bangalees
+were not cowards. They built up strong
+resistance against the Pakistani army. They
+fought with courage for long nine months.
+After nine months' bloody war and the
+sacrifice of the freedom fighters, the red sun
+of independence rose in our soil on the 16th
+December 1971. Now we remember the
+freedom fighters with great respect.
+07.
+Robin hates people who are mean
+to animals. Yesterday afternoon, as he was
+walking home from work, he saw some
+boys throwing stones at an old lame dog.
+Immediately, he rushed to help the animal.
+"Stop it!" he shouted as he ran towards the
+unruly boys, "Leave it alone!" Startled by
+the big man's shouts, the boys ran away.
+One of them jeered at Robin while running
+away. Robin, however, was totally
+unmoved by the jeering. He was happy that
+he could save it. Robin has always felt some
+affection for animals. Once he even went to
+the police station to complain about a
+neighbour who threw a cat out of the
+window. Instead of taking any action, the
+police laughed at him and advised him not
+to worry about such 'petty' matters.
+08.
+Honesty is the best policy. It is
+honesty which brings happiness in life.
+Without honesty, none can dream of a great
+life. Those who were great in their lifetime
+were honest. The great people worked with
+sincerity, lived earnestly and died with
+honour. Their contributions to this world
+are unforgettable. So, if you
+want yourself to be in their league, be
+honest. Remember, there is short-cut to a
+great life.
+09.
+There lived a man in a village who
+had a great attraction to English. The
+man went to a teacher in order to learn
+English well though he was dullheaded. The teacher tried his best to teach
+him but the man learnt only three English
+words-yes, no and very good. Though the
+man did not know the meaning
+of these words, he used them frequently in
+his conversation. The man did not
+understand that a little learning is a
+dangerous thing and very soon he would be
+a victim of it.
+10. Travelling is a part of education. This/
+It means going from place to
+place. One can enhance knowledge by
+going from place to place. It/ This gives
+one the opportunity to see the unseen and
+know the unknown. Some people are averse
+to travelling. This
+aversion limits their/people's vision.However, by travelling different parts of the
+world, one's/our knowledge may be
+enriched.
+11.
+A rich man went to a farmer with
+one thousand taka in a bag. The rich
+man said to the farmer, "Look, my friend, I
+have brought one thousand taka for you.
+Keep this money and remove your
+distress." The farmer was surprised. He
+took the bag from the rich man and thanked
+him. The farmer said to himself "One
+thousand taka is a lot of money." He could
+not think where to keep the money. He did
+not find any safe place. He dug a hole in his
+hut and kept the money there.
+12.
+Education is the birthright of
+every man. But even then many people in
+our country are deprived of education, this
+right for many reasons. They are
+unconscious and unskilled for want
+of education. For this unconsciousness and
+unskilledness, they are unable not only to
+develop their own fate or their family, but
+also unable to play any role for the
+development of society or the state. If the
+people are not properly educated, the
+development of society or the state is not
+possible. So, the more we can educate our
+people, the more the country will be
+developed. With a view to developing
+human resource, the government has given
+many incentives in the field of expanding
+the primary and secondary education. We
+must ensure these incentives for every child
+of the country.
+13.
+Mandela left public life in June
+2004 telling his adoring countrymen not to
+call him. Regarding him, Nadine Gordimer
+said, 'Mandela is at the epicenter of our
+time, ours in South Africa and yours,
+whenever you want
+14.
+Sunlight is the source of all
+energy of the earth. All the living beings are
+dependent upon the sunlight. Green plants
+are the producers of the ecosystem. All
+plants and animals of the ecosystem are
+interconnected serially. Consequently,
+there develops a food chain among these
+plants ar animals. The transfer of food
+energy takes place from producers through
+a series of food levels. This transfer of food
+energy is called the food chain in the
+ecosystem. There are numerous food chains
+in an ecosystem. Food chain does not work
+in isolation. These food chains are linked
+together to form a food web.
+15.
+Books are the medium through
+which human beings talk with enlightened
+minds, the great men of the
+world. Books are our best
+friends. They introduce us to the life and
+the world. Books are the mirrors of past,
+present and even future. They are hang an
+active voice. We know about the thoughts
+and deeds of our ancestors through books.
+Books make the noble men alive in the
+world forever.
+16.
+Teaching is a profession which is
+full of challenge. I want to be a teacher
+because I like working with children. But
+my father argues that one cannot make
+much money from teaching. He wants me
+to look after his farms instead. But looking
+after father's farms/ the idea does not
+inspire me much.
+17.
+A cook once roasted a duck for his
+master. The roast looked so delicious that
+he could not resist the temptation and ate up
+one of drumsticks. When his master sat
+down to eat the meal, he quick noticed the
+missing leg. He asked the cook what had
+happened to the other leg. The cook told
+him that this duck had one leg only. The
+master said that there was no such thing as
+a one-legged duck but the cook insisted that
+every duck had only one leg.
+18.
+A stormy night is fearful and
+horrible. A storm causes untold sufferings
+to the people. In a stormy night, the whole
+sky is totally overcast with dark cloud. Only
+the roaring of violent wind can be heart The
+wind begins to blow with fearful sound
+from no directions. People get frightened
+with sound storm. In addition to the
+fearful sound of the violent wind, there is
+thundering and lightning. T frequent
+thundering and lightning causes much
+terror and fear in the mind of the
+people who always think that this night
+may be the end of their lives and the terrible
+and destructive storm will never come to an
+end. Storm causes harm to them. The house
+roofs are blown away. Many trees am
+uprooted. A large number of houses and
+shelters are damaged within a very short
+time. Standing crops are badly damaged. A
+stormy night is thus a dreadful night to the
+people.
+19.
+On a summer day, becoming very
+thirsty, a lion and a boar came at the same
+moment to a small well to
+drink They fiercely quarrelled which of
+them should drink first, and were soon
+engaged in a more fighting.
+On their stopping on a sudden to take
+breath for renewal of the fighting, they saw
+some vultures waiting in the distance to
+fears the one which should fall first. They
+at once stopped the quarrel, saying: "It is
+better for us to make friends than to become
+the food of crows or vultures, will certainly
+happen if we are disabled."
+20.
+The Chinese put a lot of emphasis
+on the utility of the family. In the cities, the
+parks are often crowded with families
+spending their time together. There are lots
+of nice clean parks for people to spend their 
+time in. Sometimes musicians and acrobats
+perform in the open air to entertain people
+who are present there. In the evening, many
+families spend their free time watching
+television. The Japanese love to take part in
+sports in their free time. They also love
+skateboarding which involves riding on a
+flat piece of wood that has wheels under it.
+21.
+Once upon a time, there lived a poor
+widow. She had a son. The son was foolish.
+One day, the widow told him to sell the calf.
+It was her only asset. The boy took the calf
+to the market. But he could not sell them.
+An old man took the calf for three peanuts.
+In the evening, the boy returned home with
+those peanuts. The widow got furious to see
+the peanuts. She threw away the peanuts out
+of the window. Next morning, he saw a big
+nut tree beside the window. He climbed up
+the tree. He saw a big palace on the top of
+the tree.
+22.
+Liberty does not descend upon people.
+People must raise themselves to it. It is a
+fruit that must be earned before them can be
+enjoyed. That freedom meaning freedom
+only from foreign domination is an outworn idea. This thinking is the main task
+that confronts us if we are to take our
+rightful place in the modern world. We
+cannot hold the clock back and therefore, it
+is we who must go forwards at a double
+pace bending all our resources and all our
+energies to a great purpose.
+23.
+Teachers are the guardians of the
+civilization. In fact, they are like candles. It
+is because they burn themselves like
+candles to give to light all their students.
+They are really worthy of getting respect.
+They do not consider any caste and creed of
+the students. They treat all the students
+equally and spare no pains to teach them.
+They not only teach the students in the
+classroom but also mould their character to
+be a complete human being. They consider
+it a mission. They take care of the students
+very sincerely to make this mission a
+success. They are the social reformers too.
+They lead the society in the right direction.
+So, all society needs those reformers.
+Though they do their duty round the clock
+most of them are economically insolvent
+because they do not work for achieving
+their selfish end.
+24.
+If we want to succeed in life, we must
+remember the old saying that time and tide
+wait for none. Time and tide never stop
+their onward march rather they continue to
+move on giving any particular attention to
+us. The ongoing movement of time cannot
+be stopped by any kind of request or
+enticement. Therefore, for the sake of their
+welfare, we should never waste even a
+single moment in vain. Wasting time will
+cost us a lot, and we will not be able to reach
+our goal of our life.
+25.
+Human life on earth is very short. In this
+short span of life, a man should have a
+definite aim to attain success in life. In other
+words, life is nothing but a journey. To
+reach the destination of the journey, every
+man has some plans and programmes.
+These plans and programmes is his aim. An
+aim is the cornerstone to success in human
+life. A life without an aim is like a ship
+without a rudder. An aim helps a man to
+gain his coveted objective. So, to be
+successful in life, the aim should be fixed
+earlier.
+26.
+The Taj Mahal is surrounded by a beautiful
+garden, and there is a long pool that
+stretches out in front of the building.
+Visitors can see the beauty of the Taj Mahal
+in its reflection in the pool water. Visitors
+come to see this wonderful building at
+different times of the day since the building
+assumes a different look at different times.
+Most people like it best on moonlit nights.
+27.
+Character is the most valuable
+thing in our life. Character is called the
+crown of human life. There are some noble
+qualities that distinguish a good man from
+a bad man. A man who cherishes these
+noble qualities can be successful in his life.
+A man of character is respected
+everywhere. Many people do not know how
+much valuable character is. A man will be
+loser if he loses his character. A man
+without character is like a beast. He has no
+moral scruple and is capable of doing any
+evil thing. Nobody likes an unscrupulous
+person. Everybody likes a man who has
+good character. A man of character is like a
+beacon-light and one of the moral forces of
+the world.
+28.
+The term 'diaspora' is used to refer
+to people who have left their homelands and
+settled in other parts of the world. either
+because those people were forced to do so
+or because they wanted to leave on their
+own. The term ‘diaspora’ is increasingly
+used for such people as a collective group
+and/or a community. The word has seen
+many diasporas, but scholars have been
+studying the phenomenon with great
+interest only in recent decades. Among the
+great diaspora of history is the diaspora of
+the Jewish people, who were forced to leave
+their lands in ancient times.
+29.
+A beggar is a person who begs
+from door to door. Some beggars beg on
+streets. They are called street beggars.
+Begging is not a profession. It is a social
+problem. Beggers are the ignorable persons
+in the society. Though they earn money by
+begging, they do not contribute to the
+nation/country/society. We should
+rehabilitate them through employment.
+30.
+One must possess honesty and
+perseverance if one wants to be successful
+in life. Without honesty and perseverance,
+one cannot expect trust and respect from
+others. Without perseverance, you cannot
+maintain one’s success for a long time,
+because success needs continuous effort.
+Honesty and perseverance go hand in hand,
+and they complement the other. The
+combination of honesty and perseverance
+always brings the best result.
+31.
+Robert Bruce, king of Scotland,
+fought several battles against King Edward
+I of England, but unfortunately, Robert
+Bruce was defeated in the battle. While the
+pensive king was thinking about his defeat
+lying in a cave, he saw a spider. The spider
+was working with a goal. The goal was to
+reach the ceiling, and climbing up the
+celling/to reach the celling was not an easy
+task for the little creature. It fell down again
+and again, but did not give up hope and
+eventually, it succeeded at its seventh
+attempt. The act of spider encouraged
+Robert Bruce; he fought again, and this
+time he defeated the English army and
+secured the independence of Scotland.
+32.
+Terrorism is the most burning
+issue of the country. Our normal life has
+been threatened due to this terrorism. Our
+country is now almost in the grip of the
+terrorists. They commit crimes in the broad
+daylight. The businessmen are the worst
+victims of these terrorists. They have to pay
+the lion's share of their profit to the
+terrorists. The people of the other
+professions also become their victims very
+often. Our normal life has become
+intolerable because of terrorism. We must
+punish the terrorists if we want progress
+and prosperity of our country. When all
+come forward to stop terrorism, this
+prosperity will be easily achieved.
+33.
+Many people think that poverty is
+a great evil that makes life a hell. On the
+other hand, they opine that money can make
+them feel happy. But it is not true. If we
+investigate a poor man, we may find
+happiness in him, but if we do the same
+thing for the rich, we may find unhappiness
+in them. For this reason, we often say that
+the rich are not always happy. Actually,
+happiness consists in contentment.
+34.
+Shefali comes of a poor illiterate
+family of a remote village. Her father is a
+day labourer and mother is a housewife.
+Her parents’ prime concern is to marry
+Shefali off. But Shefali is only 13 now. She
+is so little that she cannot even think of a
+marriage life. Married life seems to be an
+imprisonment to her. Shefali wants to
+concentrate on her studies so that her
+parents can be proud of a well-educated
+daughter.
+35.
+Nelson Mandela was the greatest
+leader of South Africa. In fact, he was one
+of the greatest leaders in the world. All his
+life, he struggled against apartheid. It was a
+government policy of racial segregation.
+The Europeans were separated from the
+non-Europeans. The blacks were treated
+cruelly. They were aliens in its country.
+36.
+There goes a proverb, "Grasp all,
+lose all" We know that greediness is one of
+the worst vices. Whenever the greed of a
+person exceeds its limit, he gets punished.
+Greediness/Greed gradually draws him to
+the ultimate doom. All of us should be
+averse to worldly possessions. Then
+aversion to worldly possessions will help us
+live a happy devoid of greed/greediness.
+37.
+Rokeya is a Bangladeshi girl who
+is about to finish school but she has no
+hopes of going on to college. Her parents
+are not willing to educate her. They think
+that educating her is a waste of time and
+money. So, they have decided that they will
+marry her off. Marrying of her has become
+the prime concern of the parents when
+Rokeya has finished school. Rokeya
+becomes worried about it. She used to
+dream about being a doctor, but now faces
+a life of household chores and bringing up
+children. She used to be happy being a girl,
+but now wishes she were a boy. If she had
+been a boy, she could have gone to college
+and university.
+38.
+Nearly half a million people
+depend on the Sundarbans for their
+livelihood. Some people venture deep into
+the forest to catch fish or gather honey.
+Tigers often attack them. Some tigers
+frequently raid the villages bordering the
+forest and kill goats and cows. These raids
+by the tigers cause panic among the
+villagers. The villagers do not go out of the
+village after the sunset. These villagers
+have recently formed tiger response team,
+to protect themselves from tigers whenever
+the animals enter the villages.
+39.
+Read the newspaper carefully.
+Every day you will find here many
+examples of human joy and human tragedy.
+These things can give you ideas for articles,
+essays, or short stories. Keep a notebook in
+which to put down the things you notice or
+ideas that come to you when you are out
+walking, when you are reading a book or
+magazine, or any other time. Some people
+get the ideas in the bath, or when they are
+awake during the night. Unless they write
+these ideas down at once, they often forget
+them.
+40.
+Once a clever fox, while walking
+through the jungle, fell into a trap; but he
+somehow managed to get out of the trap at
+the cost of his tail. Without the tail, he
+looked very strange and ugly. The loss of
+tail made him sad and ashamed, and he
+thought out a plan in order to get rid of his
+miserable condition. He invited all other
+foxes of the jungle, and when they attended
+the meeting, he told them about the
+uselessness of the tails and made a
+suggestion to cut them off. After hearing his
+suggestion, the foxes wanted to cut off their
+tails without wasting any time.
+41.
+King Lear, in his old age,
+determines to give up his kingdom to his
+three daughters. Before he does so, the king
+tries to assure himself of their love for him.
+The two elder daughters, Goneril and
+Regan vow that they love him intensely.
+The youngest, Cordelia can only tell Lear
+that she cares for him as a daughter should.
+For her true words she was immediately
+cast off by the king Cordelia is taken to wife
+by the king of France.
+42.
+The moon is a very familiar figure
+to all of us. She awakens a feeling of love
+in our hearts. Even the infant stretches out
+its hand to grasp this beautiful thing. The
+moon has always played an important role
+in literature. But science has a different tale
+to tell about the moon. Science reveals to
+them that the moon has no light of her own.
+She grasps only a little of what the sun
+pours forth. She reflects a small fraction of
+the light she grapes.
+43.
+Once two women came to King
+Solomon's court with a baby, and each of
+them claimed that they were the mother of
+the baby. The king/Solomon thought for a
+while and got a brilliant idea. He ordered
+one of his men to cut the baby into two
+equal halves and give one half to each of the
+two women. The real mother of the baby
+became very nervous by this order, but the
+other woman was totally untouched by the
+event. The king noticed the change in the
+face of the real mother, handed over the
+baby to her, and punished the other woman.
+44.
+Reading comprehension
+questions tests one’s ability to understand a
+passage and answer questions on the basis
+of what is stated and implied in the passage.
+One needs to read the passage first so that
+you can identify the main idea of the
+passage. If the learners are not clear on the
+main idea of the passage, it will be really
+hard for the learners to answer the
+questions. It is because most of the answers
+are done based on the understanding of the
+main odea of the passage.
+45.
+One day, a cowboy was tending
+his cows in the field. Many wolves lived in
+the forest. The cowboy would often cry out
+'Wolf!' in fun. The farmers working in the
+field heard his cries and thought that he had
+been really attacked by the wolves. So, they
+all rushed to the spot to save the cowboy.
+But to their surprise, they found no wolf
+there. Seeing the farmers, the boy began to
+laugh at them. He played the same trick for
+several times, and the men were befooled.
+So, they became very angry. One day, a
+wolf really came and attacked the cows.
+Now, the cowboy cried out. 'Wolf! Wolf!'
+in fear but that time nobody came to help
+him. The wolf first killed the cows, and at
+last it killed the boy.
+46.
+Nelson Mandela spent almost
+thirty years in prison for his struggle against
+apartheid. Mandela was the victim of
+apartheid throughout his life that led him to
+fight against the racial segregation.
+Mandela was the first Black president of
+South Africa, and this country had been
+ruled by the white minority for a long time.
+The great leader is respected by the people
+not only in South Africa but also outside
+South Africa.
+47.
+Questions are set to assess the
+learners' ability to make out a passage and
+answer the questions on the basis of what is
+stated in the passage. The learners need to
+read the passage so that they can identify
+the main idea. If the learners are not clear 
+on the main idea of the passage, it will be
+difficult for them to answer the questions.
+48.
+On Pahela Boishakh, you can join
+the traditional celebration at any place all
+over Bangladesh. You can make your time
+more enjoyable by celebrating the day
+along with your family members or friends.
+Joining this celebration will lead you to a
+further understanding of our rich cultural
+heritage. Understanding our rich cultural
+heritage is an important part of creating a
+patriotic fervor within you. Join the
+celebration will definitely make your
+patriotic feeling stronger.
+49.
+Environmental pollution has been
+a burning issue in the present world. As a
+result of this pollution, every year millions
+of people all over the world die
+unnecessarily. These deaths are brought
+about by four specific factors. They are air
+pollution, water pollution, sound pollution
+and odour pollution. Air pollution from
+factories, burning trash and vehicle fumes
+causes pneumonia, bronchitis and other
+respiratory diseases. People dump human
+waste into rivers and canals. Dumping
+waste causes poisoning and waterborne
+diseases. Industrial discharge and disposal
+of toxic chemical also cause water
+pollution. Water can save our lives if
+human beings take determined action to
+control environmental pollution.
+50.
+One of the sources in our
+economy is rivers. Rivers are everywhere in
+our life, literature, economy and culture.
+But are the rivers in good shapes?
+Unfortunately, they are not. A few rivers
+are already dead, and several are going
+through the pangs of death. The river
+Buriganga is an example of a dying river.
+We know what has happened to the River
+Buriganga and why. We have seriously
+polluted its water.
+51.
+Human beings have invented
+many important things so far, and they have
+brought great civilization to the world
+through these inventions. But the greatest
+invention is the invention of the wheel,
+which is a circular object and can rotate
+around its axis and help the easy movement
+of things across a surface. The wheels are,
+in fact, everywhere: they/these/those are on
+our cars, trains, planes, wagons, and so on.
+We cannot imagine a modern life without
+wheels. But we do not know exactly who
+made the first wheel.
+52.
+Life is nothing but a sum total of
+some moments. If a person does not utilize
+his/her time properly, life becomes nothing
+but cries, wails and sighs. For this reason,
+proper use of time is necessary. There is a
+proverb that says, "Time and tide wait for
+none." This proverb is absolutely true,
+because nobody can stop the cycle of time.
+We may have dream to have success in life.
+But success will not come without making
+a proper use of our time.
+53.
+Life on earth is impossible
+without trees. Our existence will be at stake
+without it. We exhale CO2 , which trees
+absorb. Besides, we get foods from trees
+and firewood to cook food. Those criminals
+who illegally cut down trees should be
+brought to book. We should plant more
+trees so that this may become possible on
+Earth.
+54.
+Hamlet was suspicious about the
+sudden death of his father. Claudius,
+Hamlet’s uncle, showed much love for
+Hamlet, but Hamlet suspected some evil in
+Claudius. The ghost of the king urged
+Hamlet to take revenge for his father’s
+murder, but Hamlet became suspicious if it
+was really the ghost of his father or if the
+ghost was an evil spirit compelling him to
+do evil.
+55.
+Once there lived two friends, a
+fruit seller and a grocer. The fruit seller was
+intelligent but the latter one was very
+dishonest. One day, the grocer borrowed a
+balance and weights from the fruit seller.
+After a few days, the fruit seller told his
+friend to return his balance and weights.
+The grocer showed a lame excuse and said
+that a rat had eaten away the fruit seller's
+balance and weights. The lame excuse
+made the fruit seller very angry.
+56.
+In our country, the condition of
+the female education in the poor family is
+frustrating. When a female child is born
+into a poor family, the event is not regarded
+as a happy event. Parents think that she has
+come to add to the sufferings. They seldom
+think of sending her to school. They think
+that educating their daughter is just a waste
+of time. The parents try to find a husband
+for their daughter even before she attains
+physical and mental maturity.
+57.
+Trees are our best friends on
+earth. Without them, we cannot survive.
+But, we are very unfortunate that many of
+us cut down trees indiscriminately. Cutting
+down trees destroys the ecological balance
+and has a dangerous effect on our
+environment. We must be very careful
+about such an action Otherwise, its
+consequence will wipe us out from this
+world.
+58.
+Once a golden necklace was lost
+from a rich man's house. A few servants
+worked in that house. Naturally, it was
+suspected that any one of the servants had
+stolen the necklace. But nobody confessed
+the guilt. So, he lodged a complaint before
+the judge. All of the servants were
+summoned to the court. They denied the
+charge. Then, the judge hit upon a plan. He
+gave each of them a stick of the same length
+and told them to submit their sticks to the
+court on the following day. He told them
+that the person who had stolen the necklace
+would have his stick increased by an inch.
+When they returned home, they kept their
+sticks as they were.
+59.
+One should do one's duty
+attentively and on time. One should also be
+mindful of the passage of time, which is
+very precious in human life. One's life is
+nothing but the sum total of time. That is
+why one should value time to a greater
+extent.
+60.
+Capital punishment is a
+controversial matter of the present time. It
+is a matter of debate whether capital
+punishment should be allowed in modern
+societies. Many countries have already
+withdrawn capital punishment from their
+legal systems. Still, capital punishment is
+considered an essential part of justice in
+many countries. People against capital
+punishment argue that capital punishment
+is something irrevocable. Judges can
+devoid a man of his life but cannot give life
+to him. So, it is not right to take away
+something that we cannot return.
+61.
+In a village, there lived a poor old
+woman who had gathered together a dish of
+beans and wanted to cook them. So, she
+made a fire, and to burn quicker, she lighted
+the fire with a handful of straw. When she
+was emptying the beans into the pan, one
+bean dropped without her observing it, and
+lay on the ground beside a straw. Soon
+afterwards, a burning coal sprang from the
+fire, and it leapt down to the two. The coal
+said, "I fortunately sprang out of the fire,
+and if I had not escaped, my death would
+have been certain: I would have been burnt
+to ashes."
+62. 
+Television is a strong and popular
+media all over the world at the present time.
+This medium has a great role to play for the
+nation. It presents various kinds of
+entertaining programmes along with
+informative and educative programmes to
+entertain and educate people. Television
+has huge influence over people.
+Informative and educative programmes can
+amuse people if the programmes are
+presented in attractive ways. Television can
+enlighten patriotic feelings among new
+generations by introducing them to their
+country and its traditions. It is very
+important because no nation can prosper
+without such feelings, But too much
+addiction to television hampers students'
+studies too. So, we should make the
+students aware about the addiction.
+63.
+The persons who engaged them in
+cleaning activities are called cleaners. They
+collect rubbish from the working area of
+their city. In general, people put their
+rubbish in plastic bins and leave it in front
+of their houses. The cleaners walk from
+door to door to collect it. Sometimes the
+rubbish is very dirty and smells bad. But the
+cleaners don't mind. They take out
+everything from the bins and put it in a large
+plastic bag or in the pushcart with them.
+However, many people hate the cleaners.
+But the cleaners don't care about this hatred.
+They work hard every day to keep their area
+clean. So, the cleaner is very important for
+us.
+64.
+One day a countryman going to
+the nest of his goose found there an egg all
+yellow and glittering. When he took the egg
+up, it was as heavy as lead, and he was
+going to throw it away, because he thought
+a trick had been played on him. But he took
+it home on second thoughts and soon found
+that it was an egg of pure gold. Every
+morning, the same thing occurred, and he
+grew rich by selling them. As he grew rich,
+he grew greedy, and thinking to get at once
+all the gold the goose could give, he killed
+it and opened its belly only to find nothing.
+65.
+Watching television is the most
+common and widespread source of
+entertainment for all classes of people.
+Almost every family has at least one
+television set. Television has both positive
+and negative effect on the viewers. For
+example, foreign channels do not
+necessarily mean all absolutely bad or good
+for the viewers. Some of the foreign
+channels are notable for their authentic and
+searching news programmes and attractive
+educational, informative and even
+entertaining values. On the other hand,
+ignoring own culture, many of the viewers
+follow the foreign culture. As they often
+look for newer types of programmes, they
+find a wide variety on different channels. In
+fact, the tendency of following foreign
+culture is increasing day by day. Thus,
+foreign culture poses a great threat to our
+native culture.
+66.
+Once a poor woman came to
+Buddha and asked him whether he could
+give her any medicine to restore her dead
+child to life. Buddha was very much
+touched by her sorrow. He told her that
+there was one medicine which could revive
+her son. The medicine was a handful of
+mustard seeds obtained from a house where
+death had never entered. The sorrowful
+mother went from door to door searching
+for the mustard seeds. But being
+disappointed, she came back to Buddha and
+told him about the result of her searching.
+67.
+When there is no hope for the
+young people, they generally become
+addicted to drugs for temporary pleasure.
+Addiction to drugs carries them to an
+illusory world. Moreover, they often feel
+drowsy and lose appetite. Drugs may also
+damage the internal function of the body
+and thus slowly lead them to death.
+68.
+Suddenly, a crow snatched the
+piece of meat from him and flew to a tree.
+A fox was going under the tree. He saw the
+piece of meat in the beak of the crow. The
+fox was very tempted. He thought of having
+a good meal with the piece of meat. So, he
+started flattering the crow. "Hi, Mr. crow,"
+said the fox. "It is known to everybody that
+you have a sweet tone. Will you please sing
+a song for me?" The crow felt very flattered
+and agreed to sing. When he opened his
+mouth, the piece of meat fell to the ground.
+The fox took it up and left the place,
+befooling the crow. Then the crow realized
+his foolishness and decided not to believe a
+flatterer again.
+69.
+We know that the biodiversity in
+the Sundarbans is already at stake as
+salinity is increasing at an alarming rate. In
+agricultural lands, this salinity is creating
+an adverse effect in the coastal areas.
+Therefore, lands are losing fertility in these
+areas. This loss of fertility has affected the
+agricultural products to a, great extent. The
+farmers of these areas are becoming
+disheartened because of the reduction in
+agricultural products. Not only that, people
+of these areas have to undergo many other
+problems also. For example, many species
+of trees and sweet water fishes are lost in
+the meantime. All those problems have
+adverse impact on people's life and
+livelihood. People are going to cities for
+their survival. So, the cities are getting
+overburdened.
+70.
+A teacher who devotes himself to
+the task of teaching his students is an ideal
+teacher. He is a very important person in
+any society or country. He dispels the
+darkness of ignorance from the minds of his
+students and enkindles the light of
+education in them. He helps his students in
+learning their lessons. The teacher teaches
+them to follow the path of truth and avoid
+the path of vice. The path of vice may lead
+one astray. A teacher is, in fact, a friend,
+philosopher and guide to the students. That
+is why he is considered one of the most
+important persons in society and in the
+nation. He is also regarded as a guardian of
+civilization.
+`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function clean(str) {
