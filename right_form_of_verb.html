@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Right Form of Verbs - Practice Master</title>
+    <title>Right Form of Verbs Practice Sheet</title>
     <style>
         :root {
             --p: #2563eb;
@@ -276,17 +276,23 @@
 <body>
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
     <div class="container">
-        <h2 style="text-align:center; color:var(--p);">Right Form of Verbs Practice</h2>
+        <h2 style="text-align:center; color:var(--p);">HSC Right Form of Verbs Practice Sheet Generator</h2>
 
         <div id="setup-view" class="no-print">
-            <p>Enter Questions & Answers</p>
             <div class="setup-grid">
-                <textarea id="q-input"
-                    placeholder="Paste Questions (e.g. 1. In this world truth (a) — (reign)...)"></textarea>
-                <textarea id="a-input" placeholder="Paste Answers (e.g. 1. (a) reigns (b) speaking...)"></textarea>
+                <div>
+                    <label style="display:block; margin-bottom:8px; font-weight:600;">1. Paste All Questions:</label>
+                    <textarea id="q-input"
+                        placeholder="Paste Questions (e.g. 1. In this world truth (a) — (reign)...)"></textarea>
+                </div>
+                <div>
+                    <label style="display:block; margin-bottom:8px; font-weight:600;">2. Paste All Answers:</label>
+                    <textarea id="a-input" placeholder="Paste Answers (e.g. 1. (a) reigns (b) speaking...)"></textarea>
+                </div>
             </div>
-            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Generate Practice
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
                 Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions & Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -317,6 +323,428 @@
             document.documentElement.hasAttribute("data-theme")
                 ? document.documentElement.removeAttribute("data-theme")
                 : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `1. Read the following text and fill in the gaps with correct form of verbs as per subject and context.
+In this world truth (a) — (reign) over falsehood. Those who are always in the habit of (b) —  (speak) the truth (c) — (respect) everywhere. But those who are involved in telling lies (d) — (shine) in life. That is why, we see that many great men in the history used to (e) — (preach) truth among their countrymen. (f) — (be) truthful is essential for our society. It (g) — (hold) the highest value in (h) — (make) our society better. This quality (i) — (consider) as one of the essential factors that empower us from within. A truthful man is a (j) — (trust) person. And this trust (k) — (build) confidence in us. Confidence makes us (l) — (feel) better. When we start (m) — (get) comfortable with speaking the truth, we will begin to prosper. So, we should try hard (n) — (stay) away from the lies.
+
+2. Read the following text and fill in the gaps with correct form of verbs as per subject and context.
+Once upon a time, there (a) ------- (be) a king who was very fond of (b) ------- (know) his future from the astrologers. A famous astrologer (c) -------- (stop) at his capital on his way to home. The king called on him to (d) ------ (know) about the future and the astrologer (e) ------- (tell) him something unpleasant. At this the king (f) -------- (get) furious and (g) ------ (condemn) him to death saying, "Men like you (h) -------- (live) to spoil the peace of the world." But another thought (i) --------- (cross) his mind before the astrologer (j) ------ (send) for execution. "How long will you (k) ---- (live)?’ asked the king. With ready wit, the astrologer said. "The stars (l) ---- (declare) that I shall die only a week before your Majesty, so goodbye." (m) ---- (hear) this, the king turned pale like a dead man and shouted, "Drive this wretch away, let him not (n) ----- (come) here again."
+
+3. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Student life is the best time for (a)__ (prepare) ourselves for future. It is (b)___ (call) the seed time of life. So, during this period of life students mustn’t (c)___ (waste) time. The main pursuit of the students (d)___ (be) study. They should prepare themselves for the life (e)___ (lie) ahead. They should also (f)___ (participate) in co-curricular activities. By (g)___ (read) newspaper they will know what (h)__ (happen) in the world. When the country (i) ____ (face) with a natural calamity, they should (j)____ (come) forward with a view to (k)__ (remove) the sufferings of the affected people. Even in normal times they (l) ____ (engage) themselves in acts of social service. The students cannot do well in the examination without (m) ____ (work) hard. It is a pity that many students are trying to (n) ____ (succeed) in the shortest and easiest way.
+
+4. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Cricket is a popular game. Both the young and the old (a) __ (get) pleasure from this game. In fact, cricket (b) ___ (call) the gentlemen’s game. It (c) ___ (entertain) us with politeness and discipline. A sense of brotherhood and fraternity (d) ____ (create) among the playing nations through it. At present, cricket is the most popular game in Bangladesh. The English (e) ___ (play) it here in this subcontinent and since then it (f) ___ (become) an integral part of our entertainment. Our team (g) ___ (consist) of skilled players. They already (h) ___ (show) their performance in several matches. But it is a matter of sorrow that sometimes our players (i) ___ (play) so poorly that our countrymen ____ (j)____ (become) astonished.
+
+5. Read the following text and fill in the gaps with correct form of verbs as per subject and context.
+A mother is a supreme gift (a) —— (bestow) upon us by Allah. She (b) — (exercise) an undeniable influence in (c) — (mould) the character of a child and also in (d) — (shape) their future destiny. A mother (e) — (regard) as the best teacher, guide and protector. An educated mother (f) — (manage) the family in a far better way than a mother who has (g)— (have) no schooling. She (h) — (be) more interested in (i) — (get) her children educated. She (j) — (sacrifice) her own happiness to (k) — (ensure) a better future for her children. So, often it (l) — (say) that the hands that (m) — (rock) the cradle (n) — (rule) the world.
+
+6. Read the following text and fill in the gaps with correct form of verbs as per subject and context.
+Relationships (a) ------- (be) of different kinds. Some (b) ------- (be) familial and intimate, (c) ------ (form) by blood and by marriage: some are social like the ones we have with friends and some (d) ------ (make) in school where we (e) ------ (form) close bonds with classmates and teachers. Relationship can also (f) ------- (foster) in workplace, which may quickly (g) ------ (change) from professional to social. There (h) ------ (be) relationships also between human beings and animals, between children and their toys that they can't (i) -------- (part) with. All these relationships (j) ------ (keep) us close to each other and (k) -------- (provide) us all kinds of support, love and affection. A person (l) ------ (have) no family feels the pain of loneliness and isolation. There (m) ------- (be) no one to laugh or (n) ------ (cry) with him/her.
+
+7. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+While (a)__ (eat) food, we should (b)___ (bear) in mind that we don’t eat just to (c)___ (satisfy) hunger or to (d)___ (fill) the belly. We eat to (e)___ (preserve) our health. For good health, a man (f)___ (eat) good food. Sometimes, it so (g)___ (happen) that people who (h)__ (live) even in the midst of plenty do not (i) ____ (eat) the food they need for good health. Actually they (j)____ (have) no knowledge of health and nutrition. They don’t know how to (k)__ (select) a balanced diet from the many foods that (l) ____ (be) available to them. Besides, foods are being (m) ____ (adulterate) in many ways now a days. So, it is high time we (n) ____   (select) right kind of foods for avoiding health hazard.
+
+8. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Man is a social and rational being. He (a)__has should have (have) freedom of choice, thought and expression. But everybody should (b)___ (consider) that he is not the only person in a society. There (c)___ (be) many persons in the society and they (d)___ (have) the same right that one (e)___ (expect) from one’s society. So to (f)___ (form) a peaceful society one should be watchful to see that other’s rights are not violated. Every citizen must (g)___ (cultivate) the habit of obeying the rules and regulations of the society. Selfishness (h)__ (not help) the society. Rather it (i) ____ (destroy) the peace and happiness of others. So, we all (j)____ (think) of the greater interest of the society.
+
+9. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+The Liberation War of Bangladesh inspired many artists, singers and cultural activists. Eminent artiste Shaheen Samad (a)__ (join) Bangladesh Mukti Sangrami Shilpi Sangstha during the Liberation War. She along with others (b)___ (inspire) millions with her voice (c)___ (raise) funds for the refugee camps. The cultural troupe used to (d)___ (travel) to refugee camps and different areas in Mukta Anchal. They (e)___ (perform) patriotic songs and arranged puppet shows, besides, (f)___ (stage) dramas. Shaheen Samad said, “Liberation War always (g)___ (be) an inspiration for me” She sang a lot of songs during that time and now (h)__ (feel) honoured to have been able to inspire the freedom fighters. She has the memorable harmonium with which she sang in 1971. Now she (i)____ (wish) to hand it over to Liberation War Museum. The eminent artiste wants live performance of those moving songs on TV channel, at least one song in a week and thus (j)____ (cover) all the years round.
+
+10. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+To err is human. If a man commits crime anytime and repents truly for his misdeed, he may (a)__ (forgive). But the man who (b)___ (not, give up) the wrong, (c)___ (suffer) surely. In the long run, he (d)___ (will take) to the land of death. The old sailor (e)___ (be) a wrongdoer in his long journey. He committed a crime (f)___ (kill) a sea bird (g)___ (call) Albatross. That crime ultimately (h)__ (bring) bad luck to them. The ship (i)____ (leave) in the icy sea. The sun shone over their head. The wind (j)____ (drop) down. It was a great disaster.
+
+11. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Change (a) —— (be) the order of nature because we know the proverb that old order changes (b) — (yield) place to the new. So, nothing (c) —(remain) new forever. The same we (d) -- (notice) in entertainment also. Old and traditional forms (e) — (change) and (f) —(modify) by new and modern forms of entertainment. Many of them (g) —(exist) any longer. Today TV channels and satellite (h) ——(supersede) radio; similarly band and pop music (i) - (replace) our popular old songs. Football (j) —(lose) its appeal day by day. Cricket and other games (k) —(become) more and more popular. Our idea about the popularity of entertainment also (l) —(change). We've started (m) —(look) upon our forms of all life in a new way and (n) — (get) habituated to it.
+
+12. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+The life of our farmers (a) ------ (be) full of hardships. Many a farmer (b) ---- (not know) how to cultivate scientifically. They (c) ----- (work) hard from dawn to dusk. But their toil (d) ---- (go) away due to lack of scientific knowledge. Our government offers a lot of opportunities to them with a view to (e) ----- (eliminate) their sufferings. Unfortunately, they (f) ------ (not avail) themselves of those opportunities. It is time they (g) ------ (to get) scientific education and all concerned (h) ------ (to help) them. If they (i) ------ (to educate), they (j) ----- (to contribute) better to the prosperity of the country. The prosperity of our country (k) - ----- (to lie) in their proper education. (l) --- -- (to educate) a farmer (m) ------ (mean) educating a family and a nation. And, it (n) ------ (to result) in greater success in every sector of the country.
+
+13. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+If all the children (a)__ (go) to school, the country (b) ___ (get) rid of the curse of illiteracy. To boost up education, the govt. (c)___ (spend) more money. Subsidies must (d)___ (give) in the education sector. Teachers (e)___ (need) to (f)___ (train) for good teaching. The poor students can (g)___ (bring) under “Food for Education” Programme. We (h)__ (take) care that no institution (i) ____ (close) down due to political clashes. All concerned (j)____ (be) conscious about it. If we cannot (k)__ (keep) pace with the present world, we (l) ____ (lag) behind. For this we have to (m) ____ (ensure) education for all and set a bright prospect for (n) ____ (implement) all necessary steps.
+
+14. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+There are many reasons for which many a student in our country (a)__ (fail) in English. That English is a foreign language is the main reason. English is as if it (b)___ (to be) a language (c)___ (mean) for a particular class of people. It (d)___ (regard) as a sheer wastage of time. They (e)___ (begin) to cram English as though they (f)___ (consider) cramming is the only way to learn English. But (g)___ (have) they been earnest in learning English, they could have (h)__ (learn) it easily. Moreover, they are not (i) ____ (motivate) properly. In addition, the textbooks (j)____ (not write) according to the need of the learners.
+
+15. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+A poor man was once (a)__ (put) in a jail although he (b)___ (do) no wrong. After a long time, the king of the state (c)___ (visit) the jail and the man told him that he was innocent but a case (d)___ (file) against him by some of his enemies. The king (e)___ (inquire) privately and (f)___ (find) that it was true. He (g)___ (give) the man some money and set him free. He went straight to the market. In a shop there, wild birds (h)__ (keep) in cages for sale. He said to the shopkeeper, I wish to buy all the birds of your shop. These birds unjustly (i) ____ (imprison) and I like to (j)____ (set) them free.
+
+16. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+It has been over three hundred years since emperor Shah Jahan of Delhi (a)__ (build) the Taj Mahal as a tomb for his wife in Agra. Architecturally, it (b)___ (be) one of the most beautiful buildings in the world. The building (c)___ (make) of fine white marble with inlays of coloured marble. It (d)___ (have) eight sides and many open arches. It (e)___ (rest) on a platform terrace of red sandstone. Four slender white towers (f)___ (rise) from the comers of the terrace. A large dome (g)___ (stand) above the center of the building. Around this large dome there (h)__ (be) four smaller domes. Just inside the outer walls, there is an open corridor from which the visitors (i) ____ (look) through carved marble screens into a central room. The bodies of Shah Jahan and his wife Mumtaz (j)____ (lie) in two graves below this room.
+
+17. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+A teacher (a) — (compare) with an architect. Teachers (b) — (call) the architects of a nation. They (c) —— (play) an important role in order to build a nation. They are used (d) — (make) the illiterate people worthy citizens. But the teachers (e) — (hold) in high respect in our country. They are habituated to (f) — (lead) a humble life in the midst of want. Still they (g) — (keep) the light of education (h) — (burn) with a view to (i) — (remove) the darkness of illiteracy. It is high time we (j) — (change) our outlook towards the teachers. In many developed countries, teachers (k) — (give) high respect. "A most important truth, which we are apt (1) — (forget), is that a teacher can never truly teach unless he is still (m) — (learn) himself. A lamp can never light another lamp unless it (n) — (continue) to burn its own flame," Tagore said.
+
+18. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Students get themselves (a) ----- (admit) into universities for higher education. They acquire higher education from two streams; one is public and the other is private. The private universities (b) ----- (be) open to all but one has to (c) ----- (face) tough competition for (d) ----- (get) a seat there. The public universities are cheaper in terms of tuition fees. They (e) ----- (offer) residential and boarding facilities at subsidized rates. But public universities often (f) ----- (face) a number of problems. Student politics (g) ---- (play) a vital role in (h) ------ (deteriorate) the academic environment there. As a result, students (i) ----- (face) session jam. So, the conscious and moneyed persons (j) --- (Impress) by the private universities. Since this is the age of privatisation, the private universities (k) ------ (become) popular day by day. Besides, it is less difficult (l) ------- (get) a seat in a private university but here they are to pay a lot. However, the private sectors have some limitations. In fact, the two streams should (m) --------(develop) in a balanced way. Because, both sectors are playing important roles with a view to (n) - ------ (make) the nation highly educated.
+
+19. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Newspaper (a) ___ (consider) the people’s parliament. The newspaper (b)___ (play) a vital role in modern civilization. It (c)___ (call) to be the mirror of the world. We must (d)___ (develop) the habit of (e)___ (read) the newspaper daily. It helps us (f)___ (acquire) general knowledge, which (g)___ (be) essential for our education. Nobody (h)__ (maintain) contact with the outside world without reading the newspaper. Mere bookish knowledge (i) ____ (be) not sufficient in the struggle of life. A man who (j)____ (read) the newspaper daily (k)__ (be) like a creature of the narrow well. Being ignorant of current topics, he cannot (l) ____ (take) part in the talks and discussions in an enlightened society and he (m) ____ (live) like a fish out of water in it. Students (n) ____ (ask) for reading newspaper daily. 
+
+20. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+(a)__ (acquire) knowledge is not limited to any age or time. It can (b)___ (gain) by any person all through the life. It (c)___ (be) like unlimited wealth which can never (d)___ (finish). However, the level of a person’s knowledge (e)___ (develop) with his dedication, patience and continuity. A person (f)___ (have) some new knowledge through regular observation and experimentation. The progress of human being largely (g)___ (depend) on the growth of knowledge in various fields in positive and constructive ways. For example, Newton (h)__ (discover) a theory of gravitation and there are many famous scientists who (i) ____ (invent) amazing things (j)____ (make) life easy on the earth.
+
+21. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+(a)__ (Teach) is a noble profession. A teacher (b)___ (teach) his students from the core of his heart. He teaches his students with a view to (c)___ (give) the light of education. By (d)___ (get) the light of education, students can (e)___ (enlighten) their inside. The students (f)___ (learn) their lessons now as their teachers (g)___ (instruct) them. But the students nowdays act as though they (h)__ (know) everything. They are not (i) ____ (pay) heed to their teacher’s advice. But t he students must be careful in their lessons lest they (j)____ (fail) to secure good marks.
+
+22. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+English (a)__ (be) the most widely used international language. It (b)___ (learn) to communicate with the foreigners for various purposes such as (c)___ (maintain) cooperation, co-existence and exchanging business information. There are also certain jobs which (d)___ (require) a good functional knowledge of English. The jobs of a pilot, a postman, a telephone operator, a tour guide, a mechanic, a receptionist of an international hotel, an executive of a multinational firm, etc (e)___ (be) a few of them. Besides, a student (f)___ (wish) to go for higher studies must learn English because the books on advanced education are mostly (g)___ (write) in English. So, the importance and demand of learning English in our country can, in on way, be (h)__ (ignore). Rather, we should (i) ____ (put) high importance on (j)____ (learn) English to make room for ourselves in the competitive world.
+
+23. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Books (a) ____ (possess) as essence of immortality. They (b) ____ (be) the most precious products of human efforts. Temptations (c) ____ (crumble) into ashes. Pictures and statues (d) ____ (decay) but books (e) ____ (survive). Time is of no account for great thoughts which (f) ____ (be) as fresh today as they (g) ____ (be) when came through the authors' minds ages ago. What (h) _____ (be) then thought or said still (i) ____ (speak) to us. Books (j) ____ (introduce) us to the best society. They (k) ____ (bring) us into the presence of the noblest minds that have ever (l) ____ (live). We hear what they (m) ____ (think) or said. We see them as if they (n) ____ (be) really alive.
+
+24. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Dear Mr. and Mrs. Biswas, We are very (a) ------ (concern) about your son Rahel's behaviour. He (b) ---- (play) truant from school three times last month. When he (c) ----- (come) to class, he usually (d) ----- (not concentrate) on his lessons. He does not seem to understand texts and never (e) ---- (ask) any questions. The only time he (f) ------ (show) any initiative is in (g) -- ---- (make) excuses for not (h) ------- (to have) (i) ----- (do) his homework. Although he (j) ----- (have) a natural talent for art, he even (k) ----- (not take) any interest in art lessons. This is (l) ----- (disappoint), because even last year he (m) ------ (be) attentive in his studies. We hoped he (n) --- --- (win) a scholarship. 
+I would like to request you to come to school to discuss this situation further.
+Yours sincerely,
+J. H. Khan. Principal.
+
+25. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Dhaka, the world’s densest and fastest growing city, (a)__ (face) unbearable traffic jams. There (b)___ (be) many reasons for this. The ever-increasing number of vehicles and population (c)___ (be) the main reason. During a traffic jam, people (d)___ (has) to suffer much. They have to (e)___ (move) inch by inch. They have to wait on roads hours after hours (f)___ (face) unbearable sufferings. Again, the roads of Dhaka city (g)___ (be not) spacious. Only seven percent of Dhaka city is (h)__ (cover) by roads, compared with around 25 percent of Paris and Vienna. If anybody falls in a traffic jam, he (i) ____ (not know) when he will reach home. Sometimes, a distance of 1 km (j)____ (take) an hour to cross. Office and school goers find it very difficult (k)__ (reach) their destination in time. Our government (l) ____ (try) heart and soul to solve this problem. Flyovers (m) ____ (build) in different place in order to control traffic jam. Besides, traffic police and sergents (n) ____ (see) filing cases against vehicles breaking road transport rules. But still, it is becoming impossible to control traffic jam.
+
+26. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Would you mind (a)__ (receive) my letter. I am extremely sorry for (b)___ (be) late. Had I had any message about your illness, I (c)___ (visit) you. Believe me, since my return from Australia, I have got myself (d)___ (engage) in raising awareness among people (e)___ (send) their daughters to school. In this country, girls (f)___ (deprive) of proper education and guidance. Due to lack of education, they (g)___ (not know) what they (h)__ (need). For years, they (i) ____ (neglect) in society.
+
+27. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Kuakata, locally (a)__ (know) as Sagar Kannya (b)___ (be) an uncommon scenic spot of Bangladesh. Kuakata (c)___ (take) its origin from the story of a “Kua” or welldug on the seashore. It (d)___ (allow) a visitor to watch both the sunrise and the sunset from the beach. The beach (e)___ (have) a typical natural setting. This sandy beach (f)___ (slope) gently into the Bay and (g)___ (bathe) there is an pleasant as is swimming or dividing. Fishing boats (h)__ (ply) in the Bay of Bengal and (i) ____ (surf) waves add to the vibrant colours of Kuakata. Steps (j)____ (take) to preserve the beauty of famous beach.
+
+
+28. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Most of the people who (a)__ (appear) most often and most gloriously in the pages of history (b)___ (be) great conquerors and generals and soldiers, where as the people who really (c)___ (help) civilization forward are often never (d)___ (mention) at all. We do not known who first (e)___ (set) a broken leg or launched a sea worthy boat or (f)___ (calculate) the length of a year but we (g)___ (know) all about the killers and destroyers. People think a great deal of them to much so that on all the highest pillars in great cities of the world you (h)__ (find) figures of a conqueror or a general or a soldier. And I think that most people (i) ____ (believe) that the greatest countries are those that (j)____ (beat) in the battle the greatest numbers of countries and ruled over them as conquerors.
+
+29. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Idle brain is devil’s workshop. If we (a)__ (waste) our time in idleness, all sorts of evil thoughts will crowd in our brain. Idle persons who (b)___ (kill) their time are burdens of society. They (c)___ (sit) idle and cherish no high ideal and lofty ambition in life. They (d)___ (not support) themselves. They (e)___ (lead) an unhappily life and (f)___ (suffer) in the long run. There should be time for reading, for office or other work, time for physical exercise, time for recreation and time for prayer. This (g)___ (indicate) that we should do everything at the right moment. We (h)__ (lead) a healthy and prosperous life only when we (i) ____ (follow) the routine which we (j)____ (make) for our guidance.
+
+30. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+In the current social and economic system of Bangladesh, everyone (a) ____ (depend) on his income in order to (b) ____ (meet) the daily needs. However, many people of our country (c) ____ (not earn) enough to live comfortably. People of low income are to (d) ____ (struggle) a lot to buy food, clothes and medicine because prices of everything (e) ____ (rise) high day by day. Generally, people in rural areas (f) ____ (feel) the pressure even more as they earn less. In fact, they (g) ____ (have) fewer opportunities to improve their financial condition. When prices go up, many families (h) ____ (not buy) enough healthy food and this causes malnourishment of the children. Sometimes they cannot help (i) ____ (borrow) money, which (j) ____ (lead) to debt. High prices also (k) ____ (affect) their children's education. Many a student (l) ____ (drop) out of school as their parents cannot afford to (m) ____ (bear) their educational expenses. But for the true development of our country proper education must be (n) ____ (ensure) at any cost.
+
+31. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Tigers (a) ------ (know) as ferocious animals. But they hardly (b) ------- (kill) any animal when they are not hungry. Usually the tigers (c) ----- (reside) in the deep forest. They are hardly (d) ----- (see) in the open unless there (e) ------ (to be) a strong necessity. They often remain (f) ---- -- (hide) under the deep green in search of the prey. Whenever they (g) ------ (discern) any prospective prey, they take a pose to (h) ------ (fall) upon it. Tigers often (i) ----- (unite) themselves to (j) ----- (attack) their prey from different directions. An adult tiger (k) ----- (devour) 20 to 30 kilograms of meat at a single meal. In our Sundarbans, the number of tigers (l) --------- (decrease) day by day. Poaching and illegal trafficking (m) ------- (to be) the main reasons of decrease. So, the concerned authority should be committed to (n) ------- (take) action to protect the tigers.
+
+32. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+On 26 march, 1971, Bangabandhu Sheikh Mujibur Rahman (a)__ (declare) the independence of Bangladesh. (b)___ (follow) this declaration, a war began between, the freedom loving Bengalis and the brutal forces of West Pakistan, (c)___ (result) in independence of Bangladesh. The Pakistani Military junta (d)___ (base) in West Pakistan (e)___ (launch) the Operation Searchlight against the unarmed people of East Pakistan (f)___ (initiate) genocide in Bangladesh. In response to the violence, members of Mukti Bahini (g)___ (start) a mass guerrilla war against the occupation forces. People from all walk of life (h)__ (respond) to the call of Bangabandhu and joined the war (i) ____ (liberate) their dear motherland. The war (j)____ (continue) for about nine months. The heroic sons of soil made the supreme sacrifices with a view to (k)__ (snatch) away the long-cherished freedom and thus (l) ____ (establish) Bangladesh as an independent country in the world map. Now, it (m) ____ (be) our bounden duty (n) ____ (uphold) the freedom of the country.
+
+33. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Football is a favourite game in our country. It (a)__ (arrange) between two teams (b)___ (contain eleven players each. The captains of both teams (c)___ (lead) their groups. This is the mess exciting and enjoyable game ever (d)___ (play) across the world. It (e)___ (run) for an hour and half with an interval after half of the time (f)___ (be) over. Any football tournament (g)___ (arrange) between two strong teams can be exciting. The result (h)__ (remain) almost unpredictable till the end because any team might win the other team (i) ____ (score) a goal within seconds. The referee is to see whether rules and order (j)____ (maintain) by the players.
+
+34. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Air (a)__ (be) an important element of the environment. But it is constantly being (b)___ (pollute) in many ways. We make fire to cook food and (c)___ (do) many works. This fire emits smoke which (d)___ (contaminate) air. Vehicles pollute air to a great extent by (e)___ (burn) fuel. Air pollution also (f)___ (happen) when coal and oil (g)___ (burn). Mills and factories can be (h)__ (hold) responsible for this pollution. It is high time we (i) ____ (check) air pollution. Otherwise, we (j)____ (suffer) a lot.
+
+35. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+There are many people who (a)__ (not take) physical exercise. They can hardly (b)___ (realize) that they themselves (c)___ (ruin) their health. They (d)___ (fall) victim to many diseases. Life (e)___ (become) dull to them. They (f)___ (remain) always ill tempered. We (g)___ (build) good health and sound mind through physical exercise. Physical exercise (h)__ (make) our body active and the muscles strong. It also (i) ____ (improve) our power of digestion and blood circulation. It (j)____ (give) strength to our brain.
+
+36. Read the text and fill in the gaps with correct form of verbs as per subject and context:
+Festivals (a) ______ (be) common to all societies and cultures. With the change of social and economic structures, the nature of festivals also (b) ______ (change). But some festivals (c) ______ (be) so deeply (d) ____ (root) in the social organism that they (e) _______ (continue) to entertain from generation to generation. Some of the festivals (f) ______ (bear) the mark of the community and nationality, some (g) _____ (have) the stamp of religion and again some (h) _______ (bear) the impression of politics. The festivals, which (i) _____ (get started) in the primitive society centering on the prayer for food (j) _____ (have) now been (k) ______ (fill) with various colours and varieties. The main foundation of festivals (l) _____ (be) ritual and most of the ancient rituals (m) _______ (be) collective activities. Many of the rituals were (n) ______ (relate) to agriculture and were determined by lunar months.
+
+37. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+It is natural that a man cannot (a)__ (live) alone. He always (b)___ (need) a company. He has to (c)___ (express) his thought and ideas, (d)___ (think) others while the others (e)___ (be) of the same needs. He (f)___ (have) also the need of others for (g)___ (ensure) their safety and comfort. So, he is bound (h)__ (live) with others (i) ____ (make) an institution and it (j)____ (call) society. Society (k)__ (be) the first organization which (l) ____ (make) by our primitive ancestors. They (m) ____ (be) the first to contribute to (n) ____ (develop) the civilization.
+
+38. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+COVID-19 (a)__ (transmit) when people (b)___ (breathe) in air contaminated by droplets and small airborne particles (c)___ (contain) the virus. The risk of breathing (d)___ (b) highest when people (e)___ (be) in close proximity, but they (f)___ (inhale) over longer distances, particularly indoors. Transmission also (g)___ (occur) if splashed or (h)__ (spray) with contaminated fluids in the eyes, nose or mouth and rarely via contaminated surfaces. People remain contagious for up to 20 days and (i) ____ (spread) the virus even if they (j)____ (not develop) symptoms.
+
+39. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+One night the entire village was sleeping. The boy Bayazid Bustami was busy in study. His mother (a)__ (sleep). Suddenly she woke up and (b)___ (feel) thirsty. (c)___ (call) her son, she told her son to give her a glass of water and (d)___ (fall) asleep again. When Bayazid went to the pitcher, he (e)___ (find) it empty. So he went out with the pitcher in search of water. After a while he (f)___ (come) back home with water and found his mother (g)___ (sleep). Then he waited (h)__ (stand) by her bed with a glass of water. He did not make any sound lest she (i) ____ (wake) up. Suddenly his mother woke up and saw him with the glass of water. At once she (j)____ (understand) what was the matter.
+
+40. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Jerry is an orphan. He (a)__ (come) to the orphanage at the age of four. He (b)___ (lose) his parents in his infancy. Then, he (c)___ (commit) to the care of the orphanage. He could hardly (d)___ (recollect) his parents memory. In spite of (e)___ (be) an orphan, he had developed a strong fabric of morality. His inimitable morality (f)___ (draw) him close to the writer. The writer (g)___ (impress) with him. She started (h)__ (show) affection for him. Jerry (i) ____ (take) her for his mother. He fabricated a lie (j)____ (win) her heart.
+
+41. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Jerry is an orphan. He (a) ______ (come) to the orphanage at the age of four. He (b) ______ (lose) his parents in his infancy. Then, he (c) ______ (commit) to the care of the orphanage. He could hardly (d) _____ (recollect) his parents' memory. In spite of (e) _____ (be) an orphan, he had developed a strong fabric of morality. His inimitable morality (f) _____ (draw) him close to the writer. The writer (g) _____ (impress) with him. She started (h) _____ (show) affection for him. Jerry (i) _____ (take) her as his mother. He fabricated a lie (j) _____ (win) her heart. The orphan boy (k) _____ (come) closer to her. She also (l) _____ (love) him like her son. Once she (m) _____ (leave) the place but she (n) _____ (cherish) the memory of the boy till her old age.
+
+42. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+We can't help (a) ------- (rely) on English. Now, English is (b) ------ (use) as a common language for global communication. It (c) ------- (recognize) as an international language. English is important for (d) ----- (maintain) communication with our development partners. A good command over English as well as regular practices (e) ----- (be) essential for us. 80% information of all the computers (f) ------ (be) in English. With a view to (g) ----- (exchange) our views with the rest of the world, we have to (h) ----- (learn) English. Moreover, we (i) ------ (provide) with the good scope of (j) ------- (enjoy) the best books through English. English (k) ------ (be) now no longer the native speaker's language. Now, it (l) ----- (belong) to the world's people. It is high time we (m) ------ (pay) more attention to English. Otherwise, we (n) ------ (lag) behind.
+
+43. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Deforestation (a)__ (mean) cutting down trees at random. It (b)___ (cause) mainly by a group of dishonest people. They cut trees (c)___ (make) profit. Ordinary people also (d)___ (use) trees as fuel and furniture. Because of (e)___ (out) more and more trees. we are going (f)___ (face) a great danger in the coming future. We (g)___ (know) that oxygen (h)__ (supply) by trees for animals. Without (i) ____ (take) oxygen, we cannot live a single moment. If trees (j)____ (cut) down in this way, the amount of carbon dioxide (k)__ (increase) in the atmosphere. As a result, the heat (l) ____ (rise). It (m) ____ (call) greenhouse effect. (n) ____ (enjoy) a peaceful life, we must plant more and more trees.
+
+44. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+I have tried a lot of different exercises, but have never (a)__ (stick) with any of them. I swam for a while but when the weather got cold, I (b)___ (quit). I tried jogging but that really (c)___ (wear) me out. I (d)___ (play) badminton for a few weeks but I could not find anyone (e)___ (play) with regularly. Then one day, I read in a magazine about a form of exercise that I did not even (f)___ (consider) exercise. That was plain walking! I tried it for a month and it (g)___ (be) so easy and enjoyable that I kept (h)__ (do) it. While walking, I could enjoy the scenery, talk to people I (i) ____ (meet) and come back home (j)____ (feel) great.
+
+45. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+People who (a)__ (appear) most often and most glorious in the pages of history (b)___ (be) great conquerors and generals. Whereas, the people who really (c)___ (help) civilization forward are often never (d)___ (mention) at all. We do not know who first (e)___ (set) a broken leg or (f)___ (launch) a sea worthy boat or (g)___ (calculate) the length of a year. The great men are those who (h)__ (work) ceaselessly to quicken the pace of civilization. On the contrary, the condemned men are those who (i) ____ (cause) bloodshed and violence in the world. All of us (j)____ (adore) the great men of the world.
+
+46. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+In the last autumn vacation I (a)__ (get) sufficient time. So I (b)___ (make) up my mind to make a journey by train from Dhaka to Chattogram. I (c)___ (teach) the station about half an hour before the departure of the train. It (d)___ (be) then a very busy time. Rickshaw, motorcars and other vehicles (e)___ (come) to the station with passengers. Coolies (f)___ (run) behind them. There (g) ___ (be) shouts and rush of the passengers and the coolies. After some time hearing a whistle, the passengers (h)__ (stand) in a queue before the ticket counter. I also (i) ____ (stand) in the line and (j) ____ a second class ticket.
+
+47. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Many events of great importance (a)__ (take) place during the last century. Significant advances (b)___ (make) in the field of science and technology. Many European colonies (c)___ (gain) independence. The movement for democracy (d)___ (become) prominent in many parts of the world. Two World Wars (e)___ (break) out in this century. It also (f)___ (witness) the misuse of atomic energy. Two cities of Japan were completely (g)___ (destroy) as a result of the dropping of atom bombs. However, the emergency of Bangladesh as an independent nation (h) __ (become) a momentous event. After a bloody war of nine months Bangladesh (i) ____ (bear). Now we (j)____ (hold) our heads high in the community of nations.
+
+48. Read the following text and fill in the gaps with correct form of verbs as per subject and context.
+One day in 1976, Professor Muhammad Yunus (a) ______ (visit) a poor village near Chittagong University. He (b) _____ (meet) a poor woman who made bamboo stools for a living. Although she (c) _____ (work) hard, she (d) _______ (remain) poor because she (e) ______ (force) to pay a high price for the bamboo. She did not have enough money (f) ______ (buy) the bamboo and used to (g) ____ (take) loans from the moneylenders on an exorbitant interest. Professor Yunus (h) _____ (know) that he could not simply (i) _______ (give) her the money she needed because it (j) _______ (rob) the woman of her dignity. Instead, he (k) _______ (ask) the people in the village how much money they (l) ______ (need) to start their own business and free themselves from poverty. He (m) _______ (lend) the equivalent of about US$27-00 from his pocket to 42 women of the village. Those women (n) _______ (set) up their small business and started to earn money to support their families.
+
+49. Read the following text and fill in the gaps with correct form of verbs as per subject and context.
+Man has unquenchable thirst for knowledge. He is never (a) ----- (satisfy) with what he already (b) ----- (know) and (c) -----(see). Naturally, he (d) ----- (want) to know and (e) ----(see) more and more. This curiosity for (f) ----- (know) more has (g) ----- (inspire) him (h) ----- (undertake) and (i) ------ (carry) out difficult and dangerous tasks which eventually (j) ----- (result) in epoch making discoveries and inventions and (k)------ (lead) him in his long and continuous journey from his helpless state of caveman to his present situations of power and progress. He (l) --- - (be) helpless still now, he would not have (m) ------ (be) able to control all powers and forces. (n)------ (invent) so many technologies he now controls almost all destructive powers and forces.
+
+50. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Cricket (a) __ (be) a popular game. Now-adays, people (b)___ (long) to watch it to get pleasure. Cricket (c)___ (call) a gentlemen’s game too. A bond of friendship (d)___ (create) among the playing nations. The Bangladesh national cricket team is popularly (e)___ (know) as the Tigers. Our cricket team (f)___ (be) very organized. It already (g)___ (prove) its worth in many an international match. Our cricketers (h)__ (be) capable of (i) ____ (compete) with the renowned cricket teams of the world. The prestige of our country already (j)____ (go) up in the international arena; thanks to our cricket team. In spite of its renown, sometimes our cricket team (k) __ (shock) us by (l) ____ (perform) poorly. Even after that, we believe, our cricketers (m) ____ (outshine) all other competitors in future. However, they (n) ____ (need) more vigorous practice to reach their goals.
+
+51. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+People who (a)__ (appear) most often and most gloriously in the pages of history (b)___ (be) great conquerors and generals. Whereas, the people who really (c)___ (help) civilization forward are often never (d)___ (mention) at all. We do not know who first (e)___ (set) a broken leg or (f)___ (launch) a sea worthy boat or (g)___ (calculate) the length of a year. The great men are those who (h)__ (work) ceaselessly to quicken the pace of civilization. On the contrary, the condemned men are those who (i) ____ (cause) bloodshed and violence in the world. All of us praise the great men of the world. We are highly indebted to those great men who contributed a lot to (j)____ (flourish) the civilization.
+
+52. Read the text and fill in the gaps with correct form of verbs as per subject and context :
+When I was a child I (a)__ (be) afraid of the dark and I (b)___ (go) to sleep with a light on. Even then, I feared that monsters (c)___ (climb) in through my bedroom window. Every sound I (d)___ (hear) struck fear into me. Often, I ran away from the room and (e)___ (sleep) on the floor at the foot of my parent’s bed. Now that I (f)___ (be) almost twenty. I obviously do better than what I (g)___ (do) as a child. However, I (h) __ (be) still scared of bedtime. I have (i) ____ (sleep) alone and I still keep a tiny nightlight on. And before I go to bed, I double-check every door and every window to make sure that they (j)____ (be) locked.
+
+53. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Parents (a)__ (be) blessings of God to us. When a child (b)___ (bear), their joys (c) ___ (know) no bounds. They (d)___ (start) (e) ___ (think) of (f) ___ (nurse) and (g) ___ (bring) up their children. They (h) __ (remain) safe under the custody of their parents since birth. Parents never mind (i) ____ (take) pains for the upbringing of their off-spring. We (j) ____ never (offend) our parents.
+
+54. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Road mishap (a)__ (happen) in our country almost every day. Recently, it (b)___ (rise) to an alarming rate (c)___ (take) a heavy tool of human lives. The members of a family remain anxious if someone (d)___ (travel) in a bus. In most cases, reckless driving (e)___ (cause) road accidents. The drivers are in the habit of (f)___ (violate) traffic rules. Road accidents can (g)___ (reduce) if the drivers drive their vehicles carefully. People should be conscious in this respect. While (h)__ (cross) the road, they should be careful. Some people travel (i) ____ (climb) on the roof of the buses and trains. Traffic rules (j)____ (maintain) strictly with a view to controlling road accidents.
+
+55. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Once there (a) __ (live) an idle king. He (b)___ (not undergo) physical labour. As a result, he (c) ___ (get) bulky and could not move from one place to another. He (d) ___ (call) in a doctor. The doctor (e)___ (be) clever and wise. He did not (f)___ (prescribe) any medicine for the king. He asked the king to buy a club and (g)___ (move) it in the air till his hands (h)__ (get) moistened. The king started (i) ____ (follow) the prescription. Thus the king (j)____ (relieve) of his problem.
+
+56. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+If all the children of Bangladesh (a)__ (go) to school, the country (b)___ (get) rid of the curse of illiteracy. To boost up education, the government (c)___ (spend) more money. Subsidies must (d)___ (give) in the education sector. Teachers (e)___ (need) to (f)___ (train) for good teaching. The poor students can (g)___ (bring) under “Food for Education” programme. We (h)__ (take) care that no institution (i) ____ (close) down due to political clashes. All concerned (j)____ (be) conscious about it.
+
+57. Read the text and fill in the gaps with correct form of verbs as per subject and context.
+Trees contribute a lot of maintain ecological balance. A month-long tree fair (a)__ (begin) in Kurigram stadium recently. It (b)___ (organize) by the local administration and the Department of Social Forestation. The fair (c)___ (inaugurate) yesterday by the DC of Kurigram. It was also addressed by the other speakers who (d)___ (emphasize) the need for planting more trees. The chief guest in his speech (e)___ (put) importance on planting trees so that we (f)___ (save) our environment from other effects of climate change and natural disasters. A huge procession (g)___ (parade) through the streets of the town after the inaugural session. Various government and nongovernment organizations (h)__ (set) up stalls displaying saplings of different varieties. Cultural functions (i) ____ (arrange) every night (j)____ (inspire) people to plant trees.
+`;
+
+            const demoAnswers = `1. (a) reigns (b) speaking (c) are respected
+(d) don't shine / never shine (e) preach (f)
+Being (g) holds (h) making (i) is
+considered (j) trusted (k) builds (l) feel
+(m) getting/ to get (n) to stay
+2. (a) was (b) knowing (c) stopped (d) know
+(e) told (f) got (g) condemned (h) live (i)
+crossed (j) was sent (k) live (l) declare
+(m) Hearing (n) come
+3. (a) preparing; (b) called; (c) waste; (d) is;
+(e) lying; (f) participate; (g) reading; (h)
+is happening; (i) is faced; (j) come; (k)
+removing; (l) should engage; (m)
+working; (n) succeed
+4. (a) get; (b) is called; (c) entertains; (d) is
+created; (e) played; (f) has become;
+(g)consists; (h) have shown; (i) play; (j)
+become
+5. (a) bestowed (b) exercises (c) moulding
+(d) shaping (e) is regarded (f) can manage
+(g) had (h) is (i) getting (j) sacrifices (k)
+ensure (l) is said (m) rock (n) rule
+6. (a) are (b) are (c) formed (d) are made (e)
+form (f) be fostered (g) change (h) are (i)
+part (j) keep (k) provide (l) having (m) is
+(n) cry
+7. (a) eating; (b) bear; (c) satisfy; (d) fill; (e)
+preserve; (f) should eat; (g) happens; (h)
+live; (i) eat; (j) have;(k) select; (l) are; (m)
+adulterated; (n) selected
+8. (a) should have; (b) consider; (c) are; (d)
+have; (e) expects; (f) form; (g) cultivate;
+(h) does not help; (i) destroys; (j) should
+think
+9. (a) joined; (b) inspired; (c) raising; (d)
+travel; (e) performed; (f) staging; (g) is;
+(h) feels; (i) wishes; (j) covers.
+10. (a) be forgiven; (b) does not give up; (c)
+suffers; (d) will be taken; (e) was; (f)
+killing; (g) called; (h) brought; (i) was
+left; (j) dropped
+11. (a) is (b) yielding (c) remains (d) notice
+(e) have been changed (f) modified (g)
+don't exist (h) have superseded (i) have
+replaced (j) is losing (k) are becoming (l)
+has also changed/is also changing (m) to
+look/looking (n) have got/ are getting
+12. (a) is (b) does not know (c) work (d) goes
+(e) eliminating (f) do not avail (g) got (h)
+helped (i) are educated (j) will contribute
+(k) lies (l) Educating (m) means (n)
+results
+13. (a) went/ go; (b) would get/ will get; (c)
+should/ must spend; (d) be given; (e)
+need; (f) be trained; (g) be brought; (h)
+should take; (i) closes; (j) should/ must
+be; (k) keep; (l) will lag; (m) ensure; (n)
+implementing
+14. (a) fails; (b) is; (c) meant; (d) is regarded;
+(e) begin; (f) consider; (g) had; (h) learnt;
+(i) motivated; (j) are not written
+15. (a) put; (b) did; (c) visited/ has visited; (d)
+was filed; (e) inquired; (f) found; (g)
+gave; (h) were kept; (i) have been
+imprisoned/ are imprisoned; (j) set.
+16. (a) built; (b) is; (c) is made; (d) has; (e)
+rests; (f) have risen; (g) stands; (h) are; (i)
+look; (j) lie
+17. (a) is compared (b) are called (c) play (d)
+to making (e) are not held (f) leading (g)
+keep (h) burning (i) removing (j) changed
+(k) are given (l) to forget (m) learning (n)
+Continues
+18. (a) admitted (b) are (c) face (d) getting (e)
+offer (f) face (g) plays (h) deteriorating
+(i) face (j) are impressed (k) are
+becoming (l) to get (m) develop (n)
+making
+19. (a) is considered; (b) plays; (c) is called;
+(d) develop; (e) reading; (f) to acquire;
+(g) is; (h) can maintain; (i) is; (j) does not
+read;(k) is; (l) take; (m) cannot live; (n)
+are asked
+20. (a) Acquiring; (b) be gained; (c) is; (d) be
+finished; (e) develops; (f) may have; (g)
+depends; (h) discovered; (i) invented; (j)
+to make
+21. (a) Teaching; (b) teaches; (c) giving; (d)
+getting; (e) enlighten; (f) should learn; (g)
+instruct; (h) knew; (i) paying; (j) should
+fail / might fail.
+22. (a) is; (b) is learnt; (c) maintaining; (d)
+require; (e) are; (f) wishing; (g) written;
+(h) ignored; (i) put; (j) learning
+23. (a) possess (b) are (c) crumble (d) decay
+(e) survive (f) are (g) were (h) was (i)
+speaks (j) introduce (k) bring (l) lived (m)
+thought (n) were
+24. (a) concerned (b) played (c) comes (d)
+does not concentrate (e) asks (f) shows
+(g) making (h) having (i) done (j) has (k)
+does not take (l) disappointing (m) was
+(n) would win
+25. (a) faces; (b) are; (c) is; (d) have; (e)
+move; (f) facing; (g) are not; (h) covered;
+(i) does not know; (j) takes/ can take;(k)
+to reach; (l) is trying; (m) are built/ are
+being built; (n) are seen
+26. (a) receiving; (b) being; (c) would have
+visited; (d) engaged; (e) not sending; (f)
+are deprived; (g) do not know; (h) need;
+(i) have been neglected
+27. (a) known; (b) is; (c) takes; (d) allows; (e)
+has; (f) slopes; (g) bathing; (h) plying; (i)
+surfing; (j) should be taken
+28. (a) appear; (b) are; (c) help; (d)
+mentioned; (e) set; (f) calculated; (g)
+know; (h) will find; (i) believe; (j) beat
+29. (a) waste; (b) kill; (c) sit; (d) do not
+support/ cannot support; (e) lead; (f)
+suffer; (g) indicates; (h) can lead/ will
+lead; (i) follow/ will follow; (j) make
+30. (a) depends (b) meet (c) do not earn (d)
+struggle (e) are rising (f) feel (g) have (h)
+can not buy (i) borrowing (j) leads (k)
+affect (l) drops (m) bear (n) ensured
+31. (a) are known (b) kill (c) reside (d) seen
+(e) is (f) hidden (g) discern (h) fall (i)
+unite (j) attack (k) devours (l) is
+decreasing (m) are (n) taking
+32. (a) declared; (b) following; (c) resulting;
+(d) based; (e) launched; (f) initiating; (g)
+started; (h) responded; (i) to liberate; (j)
+continued; (k) snatching; (l) established;
+(m) is; (n) to uphold
+33. (a) is arranged; (b) containing; (c) lead;
+(d) played; (e) runs; (f) is; (g) arranged;
+(h) remains; (i) scoring; (j) are being
+maintained/ are maintained
+34. (a) is; (b) polluted; (c) do; (d)
+contaminates; (e) burning; (f) happens;
+(g) are burnt; (h) held; (i) checked; (j)
+will suffer
+35. (a) do no take; (b) realize; (c) are ruining;
+(d) are falling; (e) becomes; (f) remain;
+(g) can build; (h) makes; (i) improves; (j)
+gives
+36. (a) are (b) has also changed/is also
+changing (c) are (d) rooted (e) continue
+(f) bear (g) have (h) bear (i) got started (j)
+have (k) filled (l) is (m) were (n) related
+37. (a) live; (b) needs; (c) express; (d)
+thinking; (e) are; (f) has; (g) ensuring; (h)
+to live; (i) to make/ making; (j) is
+called;(k) is; (l) was made; (m) were; (n)
+develop
+38. (a) is transmitted; (b) breathe; (c)
+containing; (d) is; (e) are; (f) can be
+inhaled; (g) occurs; (h) sprayed; (i)
+spread; (j) do not develop
+39. (a) was sleeping; (b) felt; (c) Calling; (d)
+fell; (e) found; (f) came; (g) sleeping; (h)
+standing; (i) should wake; (j) could
+understand
+40. (a) came; (b) lost; (c) was committed; (d)
+recollect; (e) being; (f) drew; (g) was
+impressed; (h) showing; (i) took; (j) to
+win
+41. (a) came (b) lost (c) was committed (d)
+recollect (e) being (f) drew (g) was
+impressed (h) showing/to show (i) took
+(j) to win (k) came (l) loved (m) left (n)
+cherished
+42. (a) relying (b) used (c) is recognized (d)
+maintaining (e) are (f) is (g) exchanging
+(h) learn (i) are educated (j) will
+contribute (k) lies (l) Educating (m)
+means (n) results
+43. (a) means; (b) is caused; (c) to make; (d)
+use; (e) cutting; (f) to face; (g) know; (h)
+is supplied; (i) taking; (j) are cut; (k) will
+increase; (l) will rise; (m) is called; (n) to
+enjoy
+44. (a) stuck; (b) quit; (c) wore; (d) played;
+(e) to play; (f) consider; (g) was; (h)
+doing; (i) met; (j) feeling.
+45. (a) appear; (b) are; (c) help; (d)
+mentioned; (e) set; (f) launched; (g)
+calculated; (h) work; (i) cause; (j) should
+adore
+46. (a) got; (b) made; (c) reached; (d) was; (e)
+were coming; (f) were running; (g) were;
+(h) stood; (i) stood; (j) bought
+47. (a) took; (b) were made; (c) gained; (d)
+became; (e) broke; (f) witnessed; (g)
+destroyed; (h) became; (i) was born; (j)
+can hold
+48. (a) visited (b) met (c) worked (d)
+remained (e) was forced (f) to buy (g)
+take (h) knew (i) give (j) would rob (k)
+asked (l) needed (m) lent (n) set
+49. (a) satisfied (b) has known (c) seen (d)
+wants (e) see (f) knowing (g) inspired (h)
+to undertake/undertaking (i)
+carry/carrying (j) have resulted/resulted
+(k) led/have led (l) is/has been (m) been
+(n) Inverting
+50. (a) is; (b) long; (c) is called; (d) is
+created; (e) known; (f) is; (g) has proved;
+(h) are; (i) competing; (j) has gone;(k)
+shocks; (l) performing; (m) will outshine;
+(n) need
+51. (a) appear; (b) are; (c) help; (d)
+mentioned; (e) set; (f) launched; (g)
+calculated; (h) worked; (i) caused; (j)
+flourish
+52. (a) was; (b) used to go; (c) might climb;
+(d) heard; (e) slept; (f) am; (g) used to do;
+(h) am; (i) to sleep; (j) are
+53. (a) are; (b) is born; (c) know; (d) start; (e)
+thinking; (f) nursing; (g) bringing; (h)
+remain; (i) taking; (j) should never offend
+54. (a) happens; (b) has risen; (c) taking; (d)
+travels; (e) causes; (f) violating; (g) can
+be reduced; (h) crossing; (i) climbing; (j)
+should be maintained
+55. (a) lived; (b) would not undergo; (c) got;
+(d) called; (e) was; (f) prescribe; (g)
+move; (h) got; (i) following; (j) was
+relieved
+56. (a) go; (b) will get; (c) should spend; (d)
+be given; (e) need; (f) be trained; (g) be
+brought; (h) should take; (i) is closed; (j)
+should be
+57. (a) has begun; (b) has been organized; (c)
+was inaugurated; (d) emphasized; (e) put;
+(f) could save; (g) paraded; (h) set; (i)
+were arranged; (j) to inspire
+`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function cleanString(str) {
