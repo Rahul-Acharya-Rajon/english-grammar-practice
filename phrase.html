@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Phrase Master</title>
+    <title>Phrase Practice Sheet</title>
     <style>
         :root {
             --p: #2563eb;
@@ -282,7 +282,7 @@
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Toggle Mode</div>
 
     <div class="container">
-        <h2 style="text-align:center; color:var(--p);">HSC Phrases & Words Practice</h2>
+        <h2 style="text-align:center; color:var(--p);">HSC Phrase Practice Sheet Generator</h2>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -295,8 +295,9 @@
                     <textarea id="a-input" placeholder="Paste answers like: 01. (a) was born; (b) as if;"></textarea>
                 </div>
             </div>
-            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Generate Practice
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
                 Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions & Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -331,6 +332,1564 @@
             } else {
                 document.documentElement.setAttribute("data-theme", "dark");
             }
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `1. Complete the sentences with suitable phrases/ words given in the box below:
+(a) You ____ not touch the crocodile. It may be dangerous.
+(b) She has never boiled an egg, ____ prepared an entire meal.
+(c) It is raining outside. He will go to the shop ____ the rain stops.
+(d) I don't need a lift. I ____ walk.
+(e) They ____ solve these problems soon or the project will fail.
+(f) The house was dirty. ____ was John who cleaned the house.
+(g) ____ goes a proverb that morning shows the day.
+(h) ____ an alligator ____ ? I have never seen it.
+(i) He ____ of German parents. In fact, he lived most of his life abroad.
+(j) ____ the journey ____? It was very enjoyable to me.
+
+2. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Sumi talks too much. It is _____ she were mad.
+(b) Can anyone tell me _____ an elephant _____? I have never seen an elephant.
+(c) I am eagerly waiting for your reply. Please answer me _____ you can.
+(d) _____ it swimming in a river? I am so excited.
+(e) Helmet should be used while driving a motorbike. _____ you were on a bike and met a serious accident?
+(f) It is a secret matter. We _____ not discuss this in public.
+(g) Socrates who was sentenced to death by drinking hemlock, _____ in 469 BC.
+(h) I _____ take an auto-rickshaw than go to college on foot. The exam is about to start.
+(i) Sometimes we _____ accept something unwillingly for the sake of peace.
+(j) I can hardly walk _____ run a race.
+
+3. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Time is very valuable. We ____ utilize time properly
+(b) I _____ take a taxi than walk home. It is already too late.
+(c) Long ago _____ lived a mighty king Kubla Khan. He built an amazing palace in
+deep dark forest.
+(d) _____ it watching a horror film at midnight? You are really scared.
+(e) It is winter. You ______ buy a coat.
+(f) ______ the balcony ______? It looks very beautiful but it is really small.
+(g) Bangladesh _____ as an independent state on 16 December 1971 after nine months bloody war against the occupation Pakistan Army.
+(h) ______ was in China that the art of Bonsai originated perhaps more than 1000 years ago.
+(i) I cannot ride a bicycle ______ a motor cycle. I have no money to buy any of them.
+(j) ______ the rain stopped, I started for home.
+
+4. Complete the sentences with suitable phrases/ words given in the box below:
+(a) We have not decided yet where we are going, ______ booked the tickets.
+(b) I _____ has been many years since I saw him.
+(c) ______ has been many years since I saw him.
+(d) Have you ever seen an octopus? _____ it _____?
+(e) Socrates was a great Greek philosopher. He _____ in 469 BC.
+(f) The sailors were terrified. _____ were no birds or animals in that snow covered country.
+(g) He is not at home now. _____ he returns, I will ring you.
+(h) I hear you have joined a new job. ____ your new boss _____?
+(i) You are always late in attending class. You _____ be on time.
+(j) I _____ get to the railway station by five or else I may miss the train.
+
+5. Complete the sentences with suitable phrases/words given in the box below:
+(a) Your enemies are looking for you. ____ is high time you left this place.
+(b) It is raining heavily, ____ closing the window?
+(c) Rifat often behaves _____ he were a prince. It becomes very difficult for me to tolerate him.
+(d) Humanyon Ahmed was a teacher, author, dramatist and filmmaker. He _____ on 13 November 1984.
+(e) _____ you work hard, you will not make a good result.
+(f) I _____ resign my job than tolerate injustice. I have moral courage to raise voice against injustice.
+(g) Son: _____ a satellite ____?
+Father: I have heard of it but never got a chance to see it.
+(h) We informed the police _____ the incident took place. But the police didn't arrive even after two hours.
+(i) Our society is full of bad persons. We _____ remain aware of them.
+(j) _____ is a hue and cry on the road. Something must have happened.
+
+6. Complete the sentences with suitable phrases/words given in the box below:
+(a) Deforestation is a matter of great concern. We _____ take immediate steps against cutting down trees at random.
+(b) To tell a lie is a great sin. We ____ die than tell a lie. Otherwise none will believe us.
+(c) Helmet should be used while driving a motorcycle. ____ you were driving your bike and met a serious accident?
+(d) ____ it swimming in the sea? It seems to be very heroic to me.
+(e) _____ mother heard the news, she cried loudly. lost her child in a car accident.
+(f) Rome was not built in a day. ____ took a long time and hard labour to build this city.
+(g) Rahman is a poor man. He cannot buy a shirt, _____ a car.
+(h) Kazi Nazrul Islam is our rebel poet. He _____ in Churulia of West Bengal.
+(i) Rina's dress looks very dirty. It is old enough. She _____ buy a new dress.
+j) Rina: Hi, Robi ___ a peacock __?
+Robi: It's a very nice bird. It knows how to dance.
+
+7. Complete the sentences with suitable phrases/ words given in the box below:
+(a) When my brother was a child, he wouldn't look at all my father. ____ he gets, _____ he looks like him.
+(b) _____ are hundreds of languages spoken regularly by human beings. But everywhere of the would people speak English.
+(c) A: They won't be enjoying a holiday this year.
+B: ____ will we.
+(d) It is admitted by all the a deer can run fast. But it cannot run a _____ Cheetah.
+(e) He loves his garden very much. He does not allow his sons to pluck any flower. ____ other children.
+(f) I cannot carry the box on my back. ____ taking the box into the room?
+(g) _____ is very difficult to get good grade in Bengali and English.
+(h) It is getting dark. You ____ go home right now.
+(i) The man was seriously injured in an accident. He would have died _____ he had been taken to a nearby hospital.
+(j) The boy talks too much of himself. He talks _____ he knew everything.
+
+8. Complete the sentences with suitable phrases/words given in the box below:
+(a) The baby was crying. It stopped crying ____ it saw its mother.
+(b) Rana, don't miss the programme. It will start at 10. If ____ is any change, I will inform you.
+(c) ____ is a good idea to walk in the morning. It refreshes both the body and mind.
+(d) I had an appointment at 4 pm. I ____ start now.
+(e) She wanted to celebrate her birthday. She ____ to decorate her room.
+(f) I have not yet seen the body. ____ the newborn baby ____ ?
+(g) ____ it ____ swimming in the river? It seems to be very heroic to me.
+(h) He is very rude. He does not behave well with his parents, ____ others.
+(i) Munshi Abdur Rouf ____ on 8 May 1943, at Salamatpur village in Faridpur district. He was awarded Bir Sreshtho, which is the highest recognition of bravery in Bangladesh.
+(j) She is very reserved. She ____ remain silent than utter a word. 
+
+9. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Bangabandhu Sheikh Mujibur Rahman _____ in 1920 in Tungipara of Gopalganj district.
+(b) _____ Professor Nathaniel Kleitman _____ ? Though he looks serious, he is an interesting physiologist and sleep researcher.
+(c) The train blew whistle. _____ the passengers heard the whistle, they got into it.
+(d) _____ is very hot today. Moreover, load-shedding is aggravating the situation.
+(e) _____ mother's love _____ ? It is incomparable.
+(f) Ronny Heaslop's father is very sick. _____ seems to be no hope of recovery.
+(g) The sky is getting dark. Nahian _____ carry an umbrella.
+(h) Tahmid was too tired to walk. _____ run.
+(i) Ahsan _____ walk home than take a rickshaw. The road is jam-packed.
+(j) There is a charitable dispensary in our locality. None _____ pay for the service. 
+
+10. Complete the sentences with suitable phrases/words given in the box below:
+(a) A good citizen ____ perform a lot of things. These things will enable him to become a true patriot.
+(b) _____ is no fish here. It's a swimming pool.
+(c) Mr. Habib is an honest man. He _____ starve than take bribe.
+(d) ____ it walking alone through a forest? I had never faced such a situation.
+(e) _____ she finished her work, she called her father.
+(f) Sumi: Mom, ____ a fox _____ ?
+(g) He is very miserly. He doesn't help his neighbours, _____ the villagers.
+(h) I went to my village home on foot. ____ took me two hours to reach there.
+(i) The weather is getting worse. I ____ start for home. My parents will be anxious for me.
+(j) Tennyson was a great Victorian poet. He ______ in England.
+
+11. Complete the sentences with suitable phrases/ words given in the box below:
+(a) The examination is close at hand. I ____ study seriously.
+(b) Zahir Raihan was one of the most talented filmmakers in Bangladesh. He ____ on August 19, 1935.
+(c) You do not know how poor Sohel is. He cannot buy a cell phone _____ a desktop.
+(d) Your mother is ill. So, I think you ____ go home early.
+(e) We have spent much time, We should now conclude ____ possible.
+(f) _____ the earth _____? It looks like an apple.
+(g) _____ is no fish in the pond. It is used as a swimming pool.
+(h) We _____ sacrifice our lives than live under subordination of another country. It is different taste to live in an independent country.
+(i) _____ it _____ swimming in the river? For the first time, it seems new experience for all.
+(j) People are getting sweated easily today. _____ seems the humidity is higher.
+
+12. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Accessibility to higher education in our country is very difficult. Students must work hard get themselves admitted into universities.
+(b) Time is very important in our life. You cannot prosper in life _____ you make the best use of time.
+(c) The students were talking in the class. _____ The teacher entered the class than they stopped talking.
+(d) He proceeded _____ he had never seen me. His behaviour shocked me.
+(e) The man is very weak. He cannot walk a mile, _____ five miles.
+(f) I'm in short of time. ____ the train is late?
+(g) Once ______ lived a farmer. He had four sons.
+(h) Have you seen a camel? ______ it _____?
+(i) _____ is unfortunate that many students spoil their time by using Facebook.
+(j) ____ Joynal Abedin was a great artist. He ______ in Kishoreganj.
+
+13. Complete the sentences with suitable phrases/ words given in the box below:
+(a) It was 45 years ago when a new country named Bangladesh in the world map _____ at the cost of millions of lives.
+(b) During the Liberation War of Bangladesh _____ was a great American singer George Harison who sang for Bangladesh.
+(c) ______ living in Bangladesh? You seem to be very happy with your life in Bangladesh.
+(d) My foreign friend told me you _____ leave this country than live here. I replied "This is my motherland."
+(e) In 1971, the Pakistani army did terrible atrocities the Bangladeshis. Pakistan ________ apologize for this to Bangladesh.
+(f) Pakistan always plays a role against Bangladesh. We cannot expect any cooperation from them ______ apology.
+(g) The elements of anti-liberation forces came out of their cocoons _______ the father of the nation Bangabandhu Sheikh Mujibur Rahman was killed.
+(h) Some persons living in Bangladesh always try to make conspiracy against the country _________ Bangladesh were not their own country
+(i) The authority of Dhaka University cut ties with Pakistan. _______ the government of Bangladesh takes initiatives to out off diplomatic relation with Pakistan?
+(j) Teacher: Learners, ________ the national flower of Bangladesh ______?
+
+14. Complete the sentences with suitable phrases/ words given in the box below:
+(a) He cannot tell my name, _____ my address. He is lying.
+(b) The Bangladeshi cricketers have done well in the World Cup. They _____ struggle more to win the World Cup.
+(c) _____ does the earth ______? It's not completely round.
+(d) I ______ walk than get on the bus. This time the bus is very crowded.
+(e) ______ i reached the station, the train left. Really I was lucky.
+(f) Dr. Muhammad Shahidullah was a great linguist. He _____ m 1885 A.D.
+(g) He acts _____ he were rich. So nobody likes him.
+(h) You look sick. You _______ go home immediately.
+(1) _______ was a boy at the door. He wanted to talk to me.
+(j) _______ eating sea fish? I think you will enjoy a lot.
+
+15. Complete the sentences with suitable phrases/ words given in the box below:
+(a) A.K. Fazlul Haq ____ in Barishal. He was a scholar and a renowned politician.
+(b) The thief ran away ____ we saw him. He couldn't steal anything from the house.
+(c) The rickshaw-puller cannot afford to buy two square meals a day, ____ a rickshaw. He is very poor.
+(d) A brave warrior ____ die than yield to enemies. He is a patriot.
+(e) You ____ apply to the principal of your college for granting you a stipend. He will surely see to it.
+(f) In our country, a farmer ____ work hard day in and day out. He is our food provider through our Creator.
+(g) ____ your principal ____? He is a noble man.
+(h) ____ is unfortunate that many students spoil most of their time by using Facebook.
+(i) Now, we get information within some seconds. Cell phones are doing this miraculous thing. But ____ was a time when we had to wait day after day for a letter to come and bring the news about our near and dear ones.
+(j) Son: Dad, ____ an alien ____? Father: Well, aliens are believed to come from another planet in UFOs. Films and science fictions tell us about them. They are really awesome.
+
+16. Complete the sentences with suitable phrases/ words given in the box below:
+(a) You look exhausted. You _____ take rest for a while.
+(b) The thief has fled away _____ he might be caught.
+(c) _____ I seen the snake _____ I became awe-struck.
+(d) I would render my cooperation to you if _____ requires.
+(e) It was long _____ I had met you.
+(f) _____ he met me, he hugged me warmly.
+(g) Don’t expect any help from him. He is _____ busy _____ help you.
+(h) I am an orphan now. _____ my father had lived longer.
+(i) He cannot walk for a few steps _____ run for a mile.
+(j) He overlooks me _____ he never knew me.
+
+17. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Rupa ______ take up profession of teaching than be a nurse. She thinks teaching is a noble profession.
+(b) Edmund Burke was an orator, writer and shrewd politician. He in ______ 1729 in England.
+(c) He cannot teach in a high school, _____ in a university.
+(d) ______ is difficult to regain lost health. So, we should always take care of our health.
+(e) ______ flows a river beside our village. The river is useful to us in many ways.
+(f) Sarika is an examinee. She _____ study a lot to make a good result.
+(g) _____ honesty _____? I think it to be a noble virtue.
+(h) Rita is ill, we _____ go to see her. She will be happy to see us.
+(i) The girls fell sick _____ they had foods. The foods were contaminated.
+(j) _____ an elephant _____? I have never seen it before.
+
+18. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Susmita is very honest. She ____ resign the post than earn money in a dishonest way.
+(b) Karim: It Your new dress _____?
+(c) Sukanto ____ on 25 August, 1926 at his maternal uncle's home at Kolkata.
+(d) I cannot remember the title of the book _____ the details of the story. I read it many years ago.
+(e) You look very dirty. You _____ take bath before you go to bed.
+(f) Panic seized me ______ I heard his roaring voice.
+(g) My mother is ill. She ____ be shifted to Hospital.
+(h) I have never seen a ghost. ____ a ghost _____ ?
+(i) ______ lived a boy named Newton. The boy was very kind-hearted. So, everybody liked him.
+(j) During Spring, various kinds of flowers bloom. ______ seems that everything has got a new life.
+
+19. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Our spring is very charming. During spring various kinds of flowers bloom. ______ seems that everything has got a new life.
+(b) Baby: Mom, _____ an owl _____ ?
+(c) Don't disturb me, you _____ leave me alone at this moment.
+(d) The poor man ______ starve than beg.
+(e) _____ exists no life on Mars.
+(f) ______ taking tea with me?
+(g) Sir Walter Scott was both a poet and a nvelist. He ___ in 1771.
+(h) She acts _____ she were mad.
+(i) ____ we reached the station, the train started.
+(j) He did not even see a hill, ____ a mountain.
+
+20. Complete the sentences with suitable phrases/ words given in the box below:
+(a) The students were loiterring in the corridor. ______ they seen the teacher than they entered the classroom.
+(b) Bangabandhu Sheikh Mujibur Rahman is the father of our nation. He _____ in 1920 in Tungipara of Gopalgonj district.
+(c) I can't stand with Rubel. He always acts ___ he were smarter than everyone.
+(d) The little girl was suddenly crossing the road. A bus was passing by. As it came near the girl, the driver halted it. _____ he wouldn't - have stopped the bus?
+(e) Shoma _____ live in a hostel than live in her relative's home. She feels free and comfortable in the hostel.
+(f) You stated late. Now you are walking slowly. Walk fast ____ you should miss the bus.
+(g) He is very poor. He can't afford to travel by an AC bus _____ an aeroplane.
+(h) Daughter: Mom, ___ an albatross____?
+Mother: My dear, an albatross is a very large white bird that lives in the Pacific and Southem Oceans.
+(i) Long ago, ____ lived a mighty warrior named Kubla Khan. He was the grandson of Chenghis Khan.
+(j) I _____ seek advice from a doctor. I have been suffering from fever for a long time
+
+21. Complete the sentences with suitable phrases/ words given in the box below:
+(a) The students were making a noise in the class. But ____ the teacher entered the class, they kept quiet.
+(b) It was a hot summer day. A crow felt very thirsty. So it was flying here and there _____ find water.
+(c) Panna was a criminal. So he was always on his _____ toes. he saw the police, he hid himself.
+(d) The man is so weak that he cannot walk. He cannot walk even a kilometer, ______ five kilometers.
+(e) _______ is a nice kitchen garden just behind our houses. So we can get fresh vegetables from there.
+(f) I am too tired to talk. I can no longer give you company. You ______ leave me and let me take rest.
+(g) Though I am poor. I hate begging. Begging is most disreputable. I _____ die than beg.
+(h) Michael Madhusudan Dutt was a popular Bengali poet. He _______ in a sophisticated hindu family, but he took Christianity when he was young.
+(i) My friend Ratul talks. ________ he were a millionaire. But he comes of an impoverished family. Moreover, he is good for nothing.
+(j) Rana is a meritorious student. He is the first boy in our class. He _____ study hard and work more maintain his position in the class.
+
+22. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Truth is sometimes too bitter to digest. You ____ not ask me the truth.
+(b) I cannot tolerate such an insult. I ____ leave this place immediately than endure further humiliation.
+(c) Steve Jobs ____ into a humble family, by dint of merit, he transformed the world of technology.
+(d) The audience leaves the spot ____ Nambi finishes his storytelling.
+(e) I don't think he can finish a single chapter, ____ the whole book in one night.
+(f) ____ are many challenges in life, but with determination, we can overcome them all.
+(g) Mountaineering seems to be very exciting ____ it ____ standing on the peak of a mountain?
+(h) ____ is important to remember that success requires patience and hard work.
+(i) I ____ finish this project by tomorrow, or all my efforts will be in vain once the deadline passes.
+(j) I've never seen a snow leopard in the wild. ____ it really ____ ?
+
+23. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Selina is a poor student. She cannot afford to buy a cell phone _____ a laptop.
+(b) The sky is cloudy. It may rain today. You _____ leave early.
+(c) _____ is many years since we first met. How time does fly!
+(d) His mother is sick. He needs to go home _____ possible.
+(e) We _____ develop our humanity than observe hartal and strike.
+(f) Robert Browning is my favourite poet. He _____ in 1812.
+(g) _____ was a pandemic all over the world in 2020 and 2021.
+(h) A good citizen _____ perform a lot of things.
+(i) _____ the national flower of Bangladesh _____?
+(j) _____ honesty _____? It is the best quality of life.
+
+24. Complete the sentences with suitable phrases/ words given in the box below:
+(a) There kids are fun-loving. They ____ paly than study.
+(b) She is an irresponsible person. You can't trust her with your dog, ____ with your child.
+(c) A ____ your new office _____?
+B: I love it. The environment is very peaceful.
+(d) The show resumed ____ the power supply was restored. It was a great relief for the spectators.
+(e) I have to meet my aunt in 15 minutes. I
+_____ go now or 1 will be late.
+(f) The weather is very hot and
+humid._____ is expected that it will rain
+this evening.
+(g) _____ goes a proverb that unity is
+strength. So, we must be united till we reach
+our goal.
+(h) In England, school children _____ wear
+uniforms. What about Bangladesh.
+(i) Shakespeare ___ and raised in Stratfordupon-Avon, England.
+(j) Son: Dad, ____ an Arctic fox ______?
+Father: I've no idea. But you can always
+Google the term and find out.
+
+25. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Manners make a man. Students ____
+practice good manners in everyday life
+HSC Examination-2024 (Mymensingh Board)
+HSC Examination-2023 (Mymensingh Board)
+HSC Examination-2022 (Mymensingh Board)
+10  English 2nd Paper – special use
+(b) Most students in our country are weak
+in English. They ____ follow the advice of
+their teachers for improvement.
+(c) Cox's Bazar is a popular tourist
+hub.____ are many nice hotels for tourists.
+(d) The other day, I met an old rickshaw
+puller. He told me that ___ he pull a
+rickshaw than beg.
+(e) A poor man struggles hard to survive in
+our country. He can hardly earn Tk. 200 a
+day, ____ Tk 2,000.
+(f) In Dhaka city, traffic jam is very
+common. _______ may occur anywhere,
+anytime.
+(g) Smoking is one of the major causes of
+heart attack and cancer. _____ a smoker
+stops smoking, he can avoid the risk of
+many health hazards.
+(h) Have you ever heard the name of
+William Shakespeare? He ____ on 23 April
+1564 in - England. He was one of the
+greatest dramatists of the world.
+(i) Son: Dad, _____ an alien _____? Father:
+Well. Aliens are believed to come form
+another planet by UFOs. Films and science
+fictions tell us about them. They are really
+awesome.
+(j) Learning more than one language _____
+improves a person's capacity boosts his
+confidence. So, children are being taught
+more than one language.
+
+26. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Rifat is suffering from toothache. He
+____ see a dentist.
+(b) Rima ____ in Indonesia and raised in
+America and now she has a dual
+citizenship.
+(c) The game is delayed due to rain. It will
+resume ____ the rain stops.
+(d) In modern times, ____ has been a great
+change in the attitude of man regarding
+superstitious belief.
+(e) You look very anxious. And you cannot
+continue your study any longer. You ____
+take rest.
+(f) I like typing. I ____ use the keyboard
+than write with a pen.
+(g) We aren't being able to save the trees,
+____ our forest.
+(h) ____ mother's love ____ ? It is
+incomparable.
+(i) ____ is unfortunate that many students
+spoil their time by using Facebook.
+(j) ____ the frozen mountain peak ____ ? It
+looks like a white dome.
+
+27. Complete the sentences with suitable phrases/ words given in the box below:
+(a) _____ looks dangerous to reach the top.
+Very few people can arrive there safely.
+(b) All passengers _____ fill in an
+immigration form on arrival. It is
+mandatory.
+(c) My cousin _____ in Malaysia and raised
+in America. Now, she has dual citizenship.
+(d) _____ your family _____? Is it an
+extended family like ours?
+(e) Your mother seems to be very weak.
+You _____ consult an experienced doctor
+about her health.
+(f) His parents _____ stay in the village
+than live with him in Dhaka. Both of them
+don’t like city life.
+(g) _____ have been significant changes in
+the types of entertainment over time. Many
+of those no longer exist.
+(h) Teacher: Learners, _____ the national
+flower of Bangladesh _____? Students: It
+looks a bit like the lotus.
+(i) It is not easy to score a goal, _____ a
+hattrick.
+(j) We informed the police _____ the
+incident took place. But the police didn’t
+arrive even after two hours.
+
+28. Complete the sentences with suitable phrases/ words given in the box below:
+(a) The tennis match restarted _____ the
+rain had stopped.
+(b) In England, most school children ____
+wear a uniform. Is it same in Bangladesh?
+(c) In our country, rainy season is very
+different. During this season ______ rains
+heavily without any gap.
+(d) Socrates was a great Greek philosopher.
+He _______ in 469 BC. He spoke against
+the traditional Greek beliefs and so he was
+sentenced to death by drinking hemlock.
+(e) Long ago, _____ lived a mighty warrior,
+Kublai Khan. He built an amazing palace in
+a deep dark and mysterious forest.
+(f) A warrior ____ die than surrender to
+enemies. He loves his country more than his
+life.
+(g) We ____ take an umbrella. It may rain
+today.
+(i) Baby: Mom, _____a ghost _______?
+(j) ______ has been many years since I saw
+him. So, I cannot recognize him.
+
+29. Complete the sentences with suitable phrases/ words given in the box below:
+(a) It is such a nice weather. I _____ sit in
+the garden than watch TV.
+(b) He worked hard. He was too tired to
+walk, ______ run.
+(c) It is raining heavily now. I will go to the
+shop _____ it stops raining.
+(d) We ______ stop the devastating loss of
+our forests; otherwise life on the earth will
+be endangered.
+(e) ______ an alligator ______? Have you
+ever seen it?
+(f) _____ it _____ going to play? The
+weather is good now.
+(g) is no denying the fact that time is more
+valuable than money.
+(h) It is five o'clock. I _____ go now before
+the traffic gets too bad.
+(i) _____ appears to me that he is interested
+in the matter.
+(j) I love this city This is the city where I
+_____ in.
+
+30. Complete the sentences with suitable phrases/ words given in the box below:
+(a) The child cannot walk, _____ run in the
+field
+(b) Tareq ahmed is a renowned teacher. He
+______ in 1960.
+(c) At present, the children do not _____
+know swim in water.
+(d) Parents ____ work hard to take care of
+their children.
+(e) Rimi studied hard _____ GPA-5 should
+be missed.
+(f) Father, _____ a ghost _____?
+g) Tanisha went to college ______ she
+could learn something.
+(h) _____ people stopped corruption from
+society.
+(1) _____ swimming in the river? For the
+first time, it seems new experience for all.
+(j) You will not succeed in life _____ you
+work hard.
+
+31. Complete the sentences with suitable phrases/ words given in the box below:
+(a) There is foul smell in the room _____
+opening the windows?
+(b) Tomorrow I will be very busy. So, I'll
+say goodbye now _____ I don't see you
+again.
+(c) We ______ educate all and work hard to
+develop our country.
+(d) Nobody likes Karim at all. He talks
+_____ he knew everything.
+(e) The poor will continue to suffer ____
+they are illiterate.
+(f) Nobody likes you here. _____ you left
+this place.
+(g) He saw bear coming towards him. So,
+he climbed up a tree _____ him. the bear
+might attack.
+(h) Everybody disliked Rakib. He _____ do
+many harmful activities.
+(i) Time is very important in our life. You
+cannot prosper in life ______ you make
+proper use of time.
+(j) The students were talking in the class.
+______ the teacher entered the class than
+they stopped talking
+
+32. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Manners make a man. Students _____
+practice good manners in everyday life.
+(b) Most students in our country are weak
+in English. They _____ follow the advice of
+their teachers for improvement.
+(c) He tries to show off his knowledge in
+English. He speaks English ____ he were
+an Englishman.
+(d) Cox's Bazar is a popular tourist hub.
+____ are many nice hotels there for tourists.
+(e) The other day I met an old rickshaw
+puller. He told me that he _____ pull a
+rickshaw than beg.
+(f) A poor man struggles hard to survive in
+our country. He can hardly earn Tk. 200 a
+day, _____ Tk. 2000.
+(g) In Dhaka city, traffic jam is very
+common. _____ may occur anywhere
+anytime.
+(h) Smoking is one of the major cause of
+heart attack and cancer. ______ a smoker
+stops smoking he can avoid the risk of any
+danger.
+(i) Have you even heard the name of
+William Shakespeare? He ______ on 23rd
+April, 1564 in England. He was one of the
+greatest dramatists of the world.
+(j) Son: Dad, ____ an alien _____?
+Father: Well. Aliens are believed to come
+from another planet by UFOs, Films and
+science fiction tell us about them. They are
+really awesome.
+
+33. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Manners make a man. Students _____
+practise good manners in everyday life.
+(b) You look exhausted. You _____ take
+rest to refresh yourself.
+(c) Raihan has not yet go 1st dose of
+COVID- 19 vaccine, _____ booster.
+HSC Examination-2017 (Cumilla Board)
+HSC Examination-2016 (Cumilla Board)
+HSC Examination-2025 (Sylhet Board)
+13  English 2nd Paper – special use
+(d) Our spring is very charming. During
+spring, various kinds of flowers bloom
+______ seems that everything has got a new
+life.
+(e) Ria: _____ the frozen mountain peak
+_____?
+Purnima: It looks like a white dome.
+(f) Kazi Nazrul Islam is our rebel poet. He
+_____ in Churulia of West Bengal.
+(g) The sky is cloudy and it may storm at
+any moment. So, we should start our
+journey _____ possible.
+(h) _____ your family _____ ? I belong to
+a nuclear family.
+(i) I _____ learn than quarrel with them.
+(j) _____ was a time when people used to
+travel on foot or riding animals.
+
+34. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Anika can't afford a bus ticket ____ air
+ticket.
+(b) It may rain today, you ____ reach home
+earlier.
+(c) _____ is many years since we first met.
+How time does fly!
+(d) As his brother met an accident, he needs
+to go to hospital ____ possible.
+(e) We ____ develop our view about hartal
+and strike. Let's change our destructive
+culture.
+(f) _____ have been remarkable changes in
+the behaviour of our young generation.
+(g) Maria Manda is a promising footballer
+of our country. She ____ in a remote village
+Kalsindur.
+(h) ____ having integrity in one's character?
+It is the best quality of a man.
+(i) He is very poor but honest. He ___ starve
+than cheat anybody.
+(j) ____ Squirrel ____?
+
+35. Complete the sentences with suitable phrases/ words given in the box below:
+(a) The room appears to be suffocating
+____ opening the windows?
+(b) It is raining outside. You ____ take an
+umbrella.
+(c) He cannot read newspaper ____ edit a
+newspaper.
+(d) _____ lived a wise man but he was not
+well known to all.
+(e) You look tired. ______ appears to me
+that you worked hard.
+(f) Ismail is a symbol of versatile genius. He
+____ in a needy family.
+(g) ____ a dinosaur ______? Have you ever
+seen it?
+(h) He proceeded _____ he had never seen
+me. His defiant behaviour offended me.
+(i) Panic seized me _____ I heard his
+roaring voice.
+(j) Though I am in dire need of money, I __
+die than seek any financial help form him.
+
+36. Complete the sentences with suitable phrases/ words given in the box below:
+(a) "Can I smoke here?" "I ____ you didn't.
+It's a no smoking zone."
+(b) This car is absolutely fine _____ the
+engine is concerned.
+HSC Examination-2023 (Sylhet Board)
+HSC Examination-2022 (Sylhet Board)
+HSC Examination-2019 (Sylhet Board)
+14  English 2nd Paper – special use
+(c) We rushed to the station lest we might
+miss the train. But the train was late and we
+had to wait for an hour. We_____ hurried.
+(d) It's half past 10 and Diba is still in ____
+bed. she got up.
+(e) Nishi is a nice girl. But ___ cooking, she
+is absolutely hopeless.
+(f) Lima has always lived alone. She _____
+living alone.
+(g) Well, you don't need to. _____We know
+that you have some talent.
+(h) Look at that building! It looks ____ it
+were going to fall down!
+(i) I am very tired. I don't _____ going out
+this evening.
+(j) "It's getting late. I have to go now." "You
+____ not. It's raining very hard."
+
+37. Complete the sentences with suitable phrases/ words given in the box below:
+(a) The room appears to be suffering. ____
+opening the windows?
+(b) It is raining outside. You _____ take an
+umbrella.
+(c) He cannot read newspapers, ____ edit a
+newspaper.
+(d) ____ lived a wise man but he was not
+well known to all.
+(e) You look tired. _____ appears to me that
+you have worked hard.
+(f) Ismail is a symbol of versatile genius. He
+____ into a needy family.
+(g) ____ a dinosaur _____ ? Have you ever
+seen it?
+(h) He proceeded ____ he had never seen
+me. His defiant behaviour offended me.
+(i) Panic seized me ____ I heard his roaring
+voice.
+(j) Though I am in dire need of money. 1
+_____ die than seek my financial help from
+him.
+
+38. Complete the sentences with suitable phrases/ words given in the box below:
+(a) ____ your family? ____ Our family is
+not so big. It's comparatively small.
+b) Today is a raining day. You ____ not go
+to office today.
+(c) I have a bad headache. I __ go to doctor.
+(d) ____ lived an old man in a village. He
+was very wise.
+(e) My sister is acting ___ she were all in
+all. She always acts like this way,
+(f) I'll call you ____ I arrive. Then we will
+go to market.
+(g) Praha can't afford to buy a cell phone,
+____ a laptop. Actually, she is very poor.
+(h) Punctuality is the habit of doing things
+exactly in time. ____ is, of course, a good
+habit.
+(i) Tajuddin Ahmed, the first Prime
+Minister of Bangladesh ____ in 1925. He
+was a wise man.
+(j) Rina: ____ we miss the bus? Mina: We
+will take a taxi then.
+
+39. Complete the sentences with suitable phrases/ words given in the box below:
+(a) He cannot buy a pen, ___ a box of pens.
+(b) ____ we reached the station than the
+train started.
+(c) All seasons are very charming. During
+spring various kinds of flowers bloom.
+____ seems that everything has got a new
+life.
+(d) Baby: Mom.. _____an owl ____?
+(e) Don't disturb me. You _____ leave me
+alone at this moment.
+(f) The poor man ____ starve than beg.
+(g) ____ exists no life on Mars.
+(h) ____ taking tea with me?
+(i) Sir Walter Scott was both a poet and a
+novelist. He ____ in 1771.
+(j) He was meritorious ____ to understand
+English literature.
+
+40. Complete the sentences with suitable phrases/ words given in the box below:
+(a) He headed for the new workplace _____
+he received the transfer order.
+(b) _____ your new teacher _____? He is
+nice but a bit strict.
+(c) The Bangladesh Cricket Team dropped
+out from the tournament in the first round,
+_____ make it to the final.
+(d) I am trying to catch up on some sleep.
+You _____ turn off the TV.
+(e) _____ she _____? She is tall and has
+blonde hair.
+(f) Although Lalon Shah _____ into a
+Hindu family, he grew up in a Muslim
+family.
+(g) Nowadays, we cannot think of a single
+day without cell phones, but _____ was a
+time when even land phones were a luxury.
+(h) My aunt is shy by nature. In social
+gatherings, she _____ stay alone than
+interact with others.
+(i) _____ was a wonderful night. The sky
+was cloudless and full of stars.
+(j) You _____ follow traffic rules. You
+cannot drive as you like.
+
+41. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Manners make a man. Students _____
+practise good manners in everyday life.
+(b) You look exhausted. You _____ take
+rest to refresh yourself.
+(c) Raihan has not yet go 1st dose of
+COVID- 19 vaccine, _____ booster.
+(d) Our spring is very charming. During
+spring, various kinds of flowers bloom
+______ seems that everything has got a new
+life.
+(e) Ria: _____ the frozen mountain peak
+_____?
+Purnima: It looks like a white dome.
+(f) Kazi Nazrul Islam is our rebel poet. He
+_____ in Churulia of West Bengal.
+(g) The sky is cloudy and it may storm at
+any moment. So, we should start our
+journey _____ possible.
+(h) _____ your family _____ ? I belong to
+a nuclear family.
+(i) I _____ learn than quarrel with them.
+(j) _____ was a time when people used to
+travel on foot or riding animals.
+
+42. Complete the sentences with suitable phrases/ words given in the box below:
+(a) He cannot read newspaper, _____edit a
+newspaper.
+(b) _____ lived a wise man but he was not
+well known to all.
+(c) Suhel is a liar. He _____ give up this bad
+habit.
+HSC Examination-2024 (Jeshore Board)
+HSC Examination-2023 (Jessore Board)
+HSC Examination-2022 (Jessore Board)
+16  English 2nd Paper – special use
+(d) We ____ walk fast. Otherwise we will
+mis the class.
+(e) He ____ study English than History. He
+has interest in literature.
+(f) _____ friendship _____? Nowadays, it it
+nothing but a name.
+(g) Let me know the news _____ he arrives
+here.
+(h) Kazi Nazrul Islam is our national poet.
+He ___ in 1899 in a village named Churulia.
+(i) Teacher: Students, ____ the national
+flower of Bangladesh_____?
+(j) _____ take two to make a quarrel.
+
+43. Complete the sentences with suitable phrases/ words given in the box below:
+(a) ____ flying in the sky? I think you will
+enjoy a lot.
+(b) ____ was a king named Robert Bruce.
+He was very famous.
+(c) I _____ and brought up in Bangladesh.
+This is a very beautiful country.
+(d) Bangladesh is an emerging power in the
+world cricket. But we _____ struggle more
+to win the World Cup.
+(e) He cannot tell my name, _____ my
+address. He is really a liar.
+(f) ____ the earth ____? It's not completely
+round.
+(g) We ____ walk fast than get on the train.
+The train is very crowded.
+(h) The class started ____ I reached my
+college. I was really lucky.
+(i) You look so weak. You ____ go home
+as early as possible.
+(j) The man pretended ____ he had been
+very poor. So, we dislked him.
+
+44. Complete the sentences with suitable phrases/ words given in the box below:
+(a) In modern times, ____ has been a great
+change in the attitude of man regarding
+superstitious belief.
+(b) Our learners develop a very poor writing
+skill. They cannot write fairly well even in
+Bangla _____ in English.
+(c) Some city dwellers behaviour is often
+too formal. They speak in such a way ____
+they were never in the village.
+(d) I have never travelled by air. ____ flying
+in the sky?
+(e) Riaz: ___ the forzen mountain peak __?
+(f) Sheela is suffering from toothache. She
+___ see a dentist.
+(g) Play is delayed due to rain. It will
+resume ___ the rain stops.
+(h) Sohel is a very good natured boy. He
+___ stay at home than mix with bad
+companies.
+(i) Milton was a poet of versatile genius. He
+___ in 1608 in England. He used to believe
+that one should start a profession after
+taking necessary preparations.
+(j) We have discussed for quite a long time.
+We can't take much time any more. We
+______ come to a conclusion.
+
+45. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Shamsur Rahman ___ in Dhaka in 1929.
+He is famous both as a poet and a novelist.
+(b) ______ Diamond jumped upon the table
+the lighted candle fell on the papers. It
+HSC Examination-2019 (Jessore Board)
+HSC Examination-2017 (Jessore Board)
+HSC Examination-2016 (Jessore Board)
+17  English 2nd Paper – special use
+caused a great damage to Newton's research
+works.
+(c) You _____ apply to the Principal of
+your college for granting you a stipend. He
+will surely see on it.
+(d) Thomas Alva Edison was very
+inquistive in his childhood. He _____ do
+many harmful activities. However, he made
+a lot of inventions.
+(e) One evening I returned home groaning
+with a bad headache. My mother asked me,
+____ with you? Why do you look so pale?"
+(f) _____ your timely intervention, I would
+have been assaulted by them. I was just a
+victim of circumstances.
+(g) _____? How can rope bite a man? It is
+quite unbelievable.
+(h) He tells the matter ______ he knew it.
+Actually, he is quite ignorant of it.
+(i) _____ is a good idea to walk in the
+morning. Morning walk is very healthful.
+(j) A good citizen _____ perform a lot of
+things. These things will enable him to
+become a true patriot.
+
+46. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Our spring is very charming. During
+spring various kinds of flowers bloom.
+______ seems that everything has got a new
+life.
+(b) ____ the weather ____ today?
+(c) Don't disturb me, you _____ leave me
+alone at this moment.
+(d) The poor man ______ starve than beg.
+(e) _____ exists no life on Mars.
+(f) Baby: Mom, _____ an owl _____?
+(g) Sir Walter Scott was both a poet and a
+novelist. He ___ in 1771.
+(h) Everybody ____ pay the electricity bill
+in time.
+(i) ____ we reached the station, the train
+started.
+(j) He did not even see a hill, ____ a
+mountain.
+
+47. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Most of the kids are fun-loving. They
+_____ play than study.
+(b) _____ the weather _____ today?
+(c) Rani is an examinee. She _____ study a
+lot to make a good result.
+(d) I have been suffering from cold and
+cough. I can't speak clearly _____ sing.
+(e) _____ seems to be a crowd on the road.
+Let's go and see.
+(f) Florence Nightingale was a nurse. She
+_____ in Italy.
+(g) _____ a plane flying above _____ from
+below? It looks like a bird.
+(h) It is a cold day. _____ the sun rises, the
+fog disappears.
+(i) _____ is a lack of communication. They
+don't understand the problem at all.
+(j) We _____ go home. It's getting dark.
+
+48. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Your performance is not satisfactory.
+You will ____ be careful in future.
+(b) Mr. X is an honest man. He ____ die
+than steal.
+(c) I am a poor student. I cannot buy my
+necessary books, ____ a smart phone set.
+(d) You have failed in the test examination.
+You __ start reading attentively form today.
+HSC Examination-2025 (Dinajpur Board)
+HSC Examination-2024 (Dinajpur Board)
+HSC Examination-2023 (Dinajpur Board)
+18  English 2nd Paper – special use
+(e) Madhusudan Dutta is an epic poet. He
+____ at Sagardari in Jashore.
+(f) I had a bad luck, _____ I reached the
+station, the train left.
+(g) ____ the Bay of Bengal ____ ? My
+friend is going there for visit tomorrow.
+(h) ____ it ____ travelling by an air? I have
+no idea about it.
+(i) Recently I have visited the Sundarbans.
+_____ are tigers in it.
+(j) _____ is many years since I saw him last.
+Today cannot recognize him.
+
+49. Complete the sentences with suitable phrases/ words given in the box below:
+(a) You look exhausted. You ____ take rest
+to refresh yourself.
+(b) He does not like hustle and bustle. He
+_____ stay alone than join the gathering.
+(c) ____ was a time when every child used
+to relish home-made food.
+(d) The man who wears a crown ____ bear
+the burden of responsibility.
+(e) He is the descendant of a royal family.
+He _____ with silver spoon in his mouth.
+(f) ____ is said that a stitch in time saves
+nine.
+(g) They cannot afford to buy a bike, ___ a
+car.
+(h) Have you ever seen a kingfisher? ____
+a kingfisher ______?
+(i) ____ I heard the news, I informed you.
+(j) I have never travelled by air. ___ a plane
+Journey _____?
+
+50. Complete the sentences with suitable phrases/ words given in the box below:
+(a) I have never walked five miles at a
+stretch, ____ ten miles. The idea of walking
+so much distance frightens me.
+(b) I have never visited Kuakata, ___
+visiting this place in the coming summer
+vacation?
+(c) People do not like his way of behaviour.
+He always behaves ____ he were a great
+leader.
+(d) The price of mango is high in our
+country. ____ we turn this land into a
+mango orchard?
+(e) The criminal ran away _____ he saw the
+police. He was afraid of being arrested.
+(f) Smoking tells upon the smoker's health
+greatly. You ____ give up this bad habit.
+(g) Once ___ lived a king named Solomon.
+He was very wise.
+(h) Shimul ____ work hard than beg. He is
+very industrious and painstaking.
+(i) Tapan is somewhat backward in his
+preparation for the coming HSC Exam. He
+_____ study hard to get completely
+prepared before the exam.
+(j) Albert Einstein was a great scientist of
+physics. He ____ in 1879 and breathed his
+last in 1955.
+
+51. Complete the sentences with suitable phrases/ words given in the box below:
+(a) We ___ not go out today. A riot has
+broken out in our locality.
+(b) ___ is a good idea to walk in the
+morning. One can take it as an important
+form of physical exercise, because it
+refreshes both the body and mind.
+(c) Do you often ____ travel on business?
+You are always seen travelling abroad.
+HSC Examination-2022 (Dinajpur Board)
+HSC Examination-2019 (Dinajpur Board)
+HSC Examination-2017 (Dinajpur Board)
+19  English 2nd Paper – special use
+(d) Long ago, ____ lived a very pious man.
+His name was Hatem Tai and he was very
+kind hearted.
+(e) ___ does a clown _____? You've seen a
+clown in the circus many a time.
+(f) ____ I see my father coming my heart
+fills up with joy. I am very much fond of
+my father.
+(g) I go a job at a bar. But I hate working at
+a bar. I _____ be a waiter than a barman.
+(h) Kazi Nazrul Islam ____ in an
+impoverished family. He had to earn even
+when he was a small boy.
+(i) The economic condition of Robi is very
+poor. He cannot afford one meal per day
+_____ square meals.
+(j) After the final match of the FIFA World
+Cup 2014, Messi looked _____ he were
+completely routed. His cherished dream
+had been shattered.
+
+52. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Motin's father is a low paid service
+holder. He has no ability to buy a bi-cycle
+for his son, ____ a motor bike.
+(b) I've never travelled by air, ____ in the
+sky?
+(c) Let's go to the cinema, ____ is not worth
+waiting any longer.
+(d) I am tired. I ____ stay at home than go
+outside.
+(e) You look very anxious. And you cannot
+continue your study any longer You _____
+take rest.
+(f) I am surprised to hear his speeches. He
+speaks ____ he knew the ins and outs of the
+incident.
+(g) Salam feels pain in his chest. He ____
+go back to the hospital for a scan next week.
+(h) Tagore ____ in 1861. He was awarded
+the Nobel Prize for literature in 1913.
+(i) _____ is no fish here. It is a swimming
+pool.
+(j) I went there to meet with him. ____ I saw
+him, I rushed to talk to him.
+
+53. Complete the sentences with suitable phrases/ words given in the box below:
+(a) The man is still alive. We ____
+hospitalize him soon to save his life.
+(b) ____ is only early in the morning when
+we get fresh air.
+(c) My cousin ____ in Singapore and raised
+in America. Now, he has a dual citizenship.
+(d) You ____ start your journey at this
+moment. The river is calm now and the
+weather is also good.
+(e) Kamrul: ____ the university admission
+test____ ?
+Anis: It's not easy. It's really hard and
+competitive.
+(f) My father is very rigid, He can't tolerate
+any type of corruption. He ____ resign the
+post than compromise with corruption.
+(g) This is a swimming pool. So. ____ is no
+fish here.
+(h) Teacher: Learners, ____ the national
+flowers of Bangladesh ____ ?
+Students: It looks a bit like the lotus.
+(i) His mentality is so mean. He doesn't
+deserve to be my enemy, ____ my friend.
+(j) Mr. Arif took a loan from a bank before
+starting the business. He repaid the loan
+____ he made some profit from the
+business.
+
+54. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Begging is quite disgraceful. I think he
+knows it very well. He _____ starve than do
+no.
+(b) We _____ stop cutting down trees.
+Deforestation is detrimental to
+environment.
+(c) _____ he_____ ? He is friendly and he
+can help you.
+(d) _____ is difficult to regain lost health.
+So, we should always take care of health.
+(f) _____ flows a river beside our village.
+The river is useful to us in many ways.
+(e) Have you seen a camel? ____ it ____ ?
+(g) He cannot express his ideas in Bangla.
+_____ in English.
+(h) I _____ take coffee in lieu of tea. But I
+like both of them.
+(i) We informed the police _____ the
+incident took place.
+(j) Robert Herrick was a poet and a
+clergyman. He _____ in London
+
+55. Complete the sentences with suitable phrases/ words given in the box below:
+(a) Jolly is my friend, she _____ sing in a
+choir, but she gave it up for some
+unavoidable reasons.
+(b) The word economy is passing through a
+great crisis due to war situation. The world
+leaders. ______ concentrate on the
+economy and security of the common
+people.
+(c) We went to John's office yesterday. He
+behaved _____ he had not known us
+(d) _____ a dinosaur _____? Have you ever
+seen it?
+(e) We are waiting outside. ______ you
+finish you dinner, don't delay to join us.
+(f) He is so honest that he ______ die than
+cheat.
+(g) ______ the ice had cracked? You would
+have disappeared into the icy water.
+(h) You told me about a French novel.
+______ the novel ______?
+(i) I am very thirsty. I _____ having a nice
+cool glass of lemonade.
+(j) _____ exists no life in the Mars.
+
+56. Complete the sentences with suitable phrases/ words given in the box below:
+(a) I can't remember the name of the Story
+details about the different characters. I read
+the story many years ago.
+(b) I am too tired to talk. I can no longer
+give you company. You _____ leave me
+and let me take rest.
+(c) By working hard, he had reached the
+highest peak of success. You can also reach
+your goal _____ you work hard.
+(d) I think something is wrong between
+Tanni and Munni. They are cating ____
+they did not know each other.
+(e) _____ watching the film with me? I am
+afraid that there may have some horrors in
+the film.
+(f) Take emergency medicine with
+you.____ you fall ill during your journey?
+(g) Khaled ______ resign his job than
+tolerate injustice. He has moral courage to
+raise voice against injustice.
+(h) ______ it stops raining, I will go to play
+football.
+(i) Student: Sir, _____ a wild cat ______?
+(j) He is my friend for the last five years.
+But I did never ask him where he______
+
+57. Complete the sentences with suitable phrases/ words given in the box below:
+(a) We ____ hire a rickshaw. It's already too
+late. We have to reach the exam hall in time.
+(b) I can't remember the name of the story,
+____ the details about the different
+characters. I read the story many years ago.
+(c) Nobody likes Suborna at all. She talks
+____ she knew everthing in the world.
+(d) Rabindranath Tagore is one of the
+greatest poets in world literature. He ____
+into the famous Tagore family
+(e) ____ does a leopard _____?
+(f) The cricket match restarted _____ the
+third umpire declared the decision. It was a
+great relief for the spectators.
+(g) It was a terrible ship. ____ was no crew
+in that ship of death.
+(h) In ancient time, people ____ fight
+against dangerous wild animals. Is it same
+in the present days?
+(i) In our country, rainy season is very
+different. During this season ____ rains
+heavily without any gap.
+(j) Tarek ____ sleep than watch such type
+of hilm. It's really boring.
+
+58. Complete the sentences with suitable phrases/ words given in the box below:
+(a) I met him ten years ago. I can hardly
+recall his name, _____ his address.
+(b) _____ has been many years since I saw
+him. So, I cannot recognize him.
+(c) Don't behave ___ you knew everything.
+Remember all others here are senior to you.
+(d) You ____ build your own house than
+live in a rented house. House rent has
+increased mauch nowadays.
+(e) Give him the good news ____ you meet
+him.
+(f) ____ are many rivers in Bangladesh. The
+rivers abound with plenty of fishes.
+(g) ____ I had a typewriter, I would type
+well.
+(h) You ______ consult with a doctor. The
+condition of your health may deteriorate.
+(i) ____ he _____? He is friendly and he can
+help you.
+(j) Times is over. I ______ go now.
+
+59. Complete the sentences with suitable phrases/ words given in the box below:
+(a) ____ is really unfortunate for a boy like
+him to fail in the exam.
+(b) He cannot score a goal, ____ a hat-trick.
+(c) His mother being sick, he need to go
+home ____ possible.
+(d) The manager says alone. It seems ____
+other had nothing to say.
+(e) No one is happy with her result. She
+____ understand it.
+(f) ____ you lose your pen?
+(g) ____ lived a very clever fox in a jungle.
+(h) The poor will continue to suffer ___
+they are illiterate,
+(i) Zahir Raihan _____ on 19 August, 1935
+in Feni.
+(j) We ____ educate all and work to
+develop our country.
+
+60. Complete the sentences with suitable phrases/ words given in the box below:
+(Dhaka, Dinajpur, Jashore, Sylhet Board)
+(a) We ____ pay a visit Cox's Bazar than
+the Sundarbans. We have already visited
+the Sundarbans.
+(b) The storm was raging violently. We got
+out ____ it abated.
+(c) Fardin is always boastful of his uncles.
+He talks ____ they were the most powerful
+men in the country.
+(d) My college is far away from our house.
+I ____ walk a long way to go to my college.
+(e) Jasim Uddin is a rural poet. He _____ in
+1903 in a village named Tambulkhana in
+Faridpur.
+(f) ____ is very hot today, Load-shedding is
+aggravating the situation.
+(g) Marful cannot earn 50 marks, _____ 80
+marks. He is student of average standard.
+(h) _____ are many mango trees around our
+home. They give us very sweet mangoes.
+(i) Faiaz seems to be weak. Не ____ consult
+an experienced doctor.
+(j) The river is calm. _____ we swim in the
+river? To swim in the river is a nice
+experience.
+
+61. Complete the sentences with suitable phrases/ words given in the box below:
+(a) He acts _____ he were rich. So, nobody
+likes him.
+(b) ____ eating sea-fish? I think you will
+enjoy a lot.
+(c) Aloka can't afford to buy a cell phone,
+_____ a laptop. Actually, she is very poor.
+(d) It may rain today. You ______ leave
+earlier.
+(e) Sometimes, we become speechless
+remembering our childhood memories. We
+______ swim in the river.
+(f) ____ is many years since we first met.
+How time does fly?
+(g) His mother being sick, he needs to go
+_____ home possible.
+(h) We ____ develop our humanity than
+observe hartal and strike. Let us change our
+destructive culture.
+(i) There started a heavy storm when I was
+about to go out. ____ I had been out there?
+(j) He took a part time job ____ he could
+earn some money. He was very sincere.
+`;
+
+            const demoAnswers = `1. (a) had better; (b) let alone; (c) as
+soon as; (d) would rather; (e) have to; (f) It;
+(g) There; (h) What does .... look like; (i)
+was born; (j) What's .... like
+
+2. (a) as if (b) what does... look like
+(c) as soon as (d) what’s it like (e) what if
+(f) had better (g) was born (h) would rather
+(i) have to (j) let alone
+
+3. (a) have to; (b) would rather; (c)
+there; (d) What's it like; (e) had better, (f)
+What does ........ look like; (g) was born;
+(h) It; (i) let alone, (j) As soon as.
+
+4. (a) let alone, (b) would rather, (c)
+It, (d) What does.... look like; (e) was born
+(f) There; (g) As soon as; (h) What's.... like;
+(i) had better, (j) have to.
+
+5. (a) It is high time; (b) Would you
+mind, (c) as if, (d) was born; (e) Unless; (f)
+would rather; (g) What does....look like, (h)
+as soon as, (i) have to; (j) There.
+
+6. (a) have to; (b) would rather, (c)
+What if; (d) What's it like; (e) As soon as;
+(f) It; (g) let alone; (h) was born; (i) had
+better; (j) what does... look like.
+
+7. (a) The older... the more; (b) There,
+(c) Neither will; (d) as fast as; (e) let alone;
+(f) Would you mind; (g) It; (h) had better,
+(i) unless; (j) as if
+
+8. (a) as soon as; (b) there; (c) It; (d) had
+better; (e) had to; (f) What does ..... look
+like; (g) What's .... like; (h) let alone; (i) was
+born; (j) would rather
+
+9. (a) was born: (b) What does....
+look like; (c) As soon as; (d) It: (e) What's...
+like: (f) There; (g) had better: (h) let alone;
+(1) would rather: (1) has to.
+
+10. (a) has to; (b) There; (c) would
+rather (d) What's it like; (e) As soon as; (f)
+What does ...... look like; (g) let alone; (h)
+It, (i) had better, (j) was born.
+
+11. (a) have to; (b) was born; (c) let
+alone, (d) had better; (e) as soon as; (f)
+What does... look like; (g) There; (h) would
+rather, (i) What's.... like; (j) It.
+
+12. (a) in order to; (b) unless; (c) No
+sooner had; (d) as if; (e) let alone; (f) What
+if, (g) there, (h) there; (i) It; (j) was born.
+
+13. (a) was born; (b) there; (c) What's
+it like; (d) would rather; (e) has to; (f) let
+alone; (g) as soon as; (h) as if (i) what if, (j)
+what does.... look like.
+
+14. (a) let alone; (b) have to; (c) What
+look like; (d) would rather; (e) As soon as;
+(f) was born; (g) as if, (h) had better; (1)
+There; (1) Would you mind.
+
+15. (a) was born; (b) as soon as; (c) let
+alone; (d) would rather; (e) had better; (f)
+has to; (g) What's .... like; (h) It; (i) there;
+(j) what does .... look like
+
+16. (a) had better (b) lest (c) no sooner
+had ... than (d) it (e) since (f) as soon as (g)
+too ... to (h) would that (i) let alone (j) as if
+
+17. (a) would rather; (b) was born; (c)
+let alone; (d) It; (e) There; (f) has to; (g)
+what's like; (h) had better, (i) as soon as; (j)
+what does ... look like.
+
+18. (a) would rather; (b) what's.....
+like; (c) was born; (d) let alone; (e) had
+better; (f) as soon as; (g) has to; (h) What
+does....look; (i) There; (j) It.
+
+19. (a) It, what does .... look like; (c)
+had better; (d) would rather; (e) There; (f)
+Would you mind; (g) was born, (h) as if (i)
+As soon as (f) let alone.
+
+20. (a) No sooner had; (b) was born;
+(c) as if, (d) What if, (e) would rather, (f)
+lest; (g) let alone; (h) what does.... look like;
+(i) there; (j) have to.
+
+21. (a) whenever; (b) in order to; (c)
+as soon as; (d) let alone, (e) There; (f) had
+better, (g) would rather, (h) was born; (i) as
+if, (j) has to.
+
+22. (a) had better; (b) would rather;
+(c) was born; (d) as soon as; (e) let alone;
+(f) There; (g) What's .... like; (h) It; (i) have
+to; (j) What does .... look like
+
+23. (a) let alone (b) had better (c) it
+(d) as soon as (e) would rather (f) was born
+(g) there (h) has to (i) what does... look like
+(j) what’s... like
+
+24. (a) would rather, (b) let alone; (c)
+what's...like; (d) as soon as; (e) had better;
+(f) It; (g) There; (h) have to; (i) was born;
+(j) what does... look like.
+
+25. (a) had better, (b) have to; (c)
+There, (d) would rather, (e) let alone; (f) It;
+(g) As soon as; (h) was born; (i) what does...
+look like; (j) not only.... but also.
+
+26. (a) has to; (b) was born; (c) as
+soon as; (d) there; (e) had better; (f) would
+rather; (g) let alone; (h) What's ... like; (i)
+It; (j) What does ... look like
+
+27. (a) it (b) have to (c) was born (d)
+what's... like (e) had better (f) would rather
+(g) there (h) what does... look like (i) let
+alone (j) as soon as
+
+28. (a) as soon as; (b) have to; (c) it;
+(d) was born; (e) there; (f) would rather, (g)
+had better; (h) what's ...... like; (i) What
+does ..... look like; (j) it.
+
+29. (a) would rather, (b) let alone; (c)
+as soon as; (d) have to; (e) What does
+....look like; (f) What's....like; (g) There; (h)
+had better, (i) It; (j) was born.
+
+30. (a) let alone; (b) was born; (c) how
+to; (d) had to; (e) lest; (f) what does.... look
+like, (g) in order that; (h) It is high time; (i)
+What's it like; (j) unless.
+
+31. (a) Would you mind; (b) in case;
+(c) have to; (d) as though; (e) as long as; (f)
+It is high time; (g) lest; (h) used to; (i)
+unless; (j) No sooner had.
+
+32. (a) have to; (b) had better, (c) as
+if, (d) There; (e) would rather; (f) let alone;
+(g) It; (h) As soon as; (i) was born; (j) what
+does... look like.
+
+33. (a) have to; (b) had better; (c) let
+alone; (d) It; (e) What does .... look like; (f)
+was born; (g) as soon as; (h) What's .... like;
+(i) would rather; (j) There
+
+34. (a) let alone; (b) had better; (c) It,
+(d) as soon as; (e) have to; (f) There; (g) was
+born; (h) what's it like; (i) would rather, (j)
+what does look.... like.
+
+35. (a) Would you mind; (b) had
+better; (c) let alone, (d) There; (e) It, (f) was
+born, (f) was born, (g) What does... look
+like; (h) as if (i) as soon as; (j) would rather.
+
+36. (a) would rather, (b) as far as; (c)
+needn't have; (d) It is high time; (e) when it
+comes to; (f) is used to (g) blow your own
+trumpet, (h) as if; (i) feel like (j) had better.
+
+
+37. (a) Would you mind; (b) had
+better, (c) let alone; (d) There; (e) It; (f) was
+born, (g) What does... look like; (h) as if; (i)
+as soon as; (j) would rather.
+
+38. (a) What's.... like; (b) had better;
+(c) would rather, (d) There; (e) as if, (f) as
+soon as; (g) let alone; (h) lt; (i) was born;
+(j) What if
+
+39. (a) let alone; (b) No sooner had;
+(c) It; (d) what does .... look like; (e) had
+better; (f) would rather; (g) There; (h)
+Would you mind; (i) was born; (j) enough
+
+40. (a) as soon as (b) what’s... like (c)
+let alone (d) had better (e) what does... look
+like (f) was born (g) there (h) would rather
+(i) it (j) have to
+
+41. (a) have to; (b) had better; (c) let
+alone; (d) lt; (e) what does... look like; (f)
+was born; (g) as soon as; (h) What's....like;
+(i) would rather; (j) There
+
+42. (a) let alone; (b) There; (c) had
+better; (d) have to; (e) would rather; (f)
+What's.... like; (g) as soon as; (h) was born;
+(i) what does... look like; (j) It.
+
+43. (a) Would you mind; (b) There;
+(c) was born; (d) have to; (e) let alone; (f)
+What does... look like; (g) would rather; (h)
+as soon as; (i) had better; (j) as if
+
+44. (a) there; (b) let alone; (c) as if; (d)
+What's it like; (e) What does... look like; (f)
+had better; (g) as soon as; (h) would rather;
+(i) was born; (j) have to.
+
+45. (a) was born; (b) No sooner had;
+(c) had better; (d) used to; (e) What's the
+matter; (f) But for, (g) What do you mean;
+(h) as if; (i) It, (j) has to.
+
+46. (a) It; (b) What's .... like; (c) had
+better; (d) would rather; (e) There; (f) what
+does .... look like; (g) was born; (h) has to;
+(i) As soon as; (j) let alone
+
+47. (a) would rather (b) What's ... like
+(c) has to (d) let alone (e) It (f) was born (g)
+What does ... look like (h) As soon as (i)
+There (j) had better
+
+48. (a) have to; (b) would rather, (c)
+let alone; (d) had better; (e) was born; (f) As
+soon as; (g) What does.... look like; (h)
+What's ...... like; (i) There; (j) It
+
+
+49. (a) had better, (b) would rather,
+(c) There; (d) has to; (e) was born; (f) It, (g)
+let alone; (h) what does... look like; (i) As
+soon as; (j) What's... like.
+
+50. (a) let alone; (b) What's it like; (c)
+as if; (d) What if; (e) as soon as; (f) have to;
+(g) there; (h) would rather, (i) had better; (j)
+was born.
+
+51. (a) had better; (b) It; (c) have to;
+(d) there; (e) What does... look like; (f) As
+soon as; (g) would rather; (h) was born; (i)
+let alone; (j) as if.
+
+52. (a) let alone; (b) what's it like; (c)
+it; (d) would rather, (e) have to; (f) as if; (g)
+had better; (h) was born; (i) There; (j) As
+soon as.
+
+53. (a) have to; (b) It; (c) was born;
+(d) had better; (e) What's ... like; (f) would
+rather; (g) there; (h) what does ... look like;
+(i) let alone; (j) as soon as
+
+54. (a) would rather, (b) have to; (c)
+What's... like: (d) It; (c) There, (f) What
+does... look like: (g) let alone: (h) had
+better: (1) as soon as; (f) was born.
+
+55. (a) used to; (b) had better; (c) as
+if, (d) what does....look like; (e) As soon as;
+(f) would rather; (g) What if; (h) What's
+like; (i) feel like; (j) There.
+
+56. (a) let alone; (b) had better; (c)
+provided that; (d) as if (e) Would you mind;
+(f) What if; (g) would rather, (h) as soon as,
+(i) what does... look like; (j) was born.
+
+57. (a) had better, (b) let alone; (c) as
+though; (d) was born; (e) what does.... look;
+(f) as soon as; (g) There, (h) had to; (i) It;,
+(j) would rather.
+
+58. (a) let alone; (b) It; (c) as if; (d)
+would rather; (e) as soon as; (f) There; (g)
+If, (h) had better; (i) What's.....like; (j) have
+to.
+
+59. (a) lt; (b) let alone, (c) as soon as;
+(d) as if; (e) had better, (f) What if; (g)
+There, (h) as long as; (i) was born; (j) have
+to
+
+60. (a) would rather; (b) as soon as,
+(c) as if; (d) have to (e) was born; (f) It; (g)
+let alone, (h) was born; (i) what does... look
+like; (j) not only... but also.
+
+61. (a) as if; (b) Would you mind; (c)
+let alone; (d) had better, (e) used to; (f) It,
+(g) as soon as; (h) would rather; (i) What if;
+(j) so that.`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function clean(s) {
