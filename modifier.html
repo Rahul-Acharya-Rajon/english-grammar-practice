@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Modifier Master - Print Ready</title>
+    <title>Modifier Practice Sheet</title>
     <style>
         :root {
             --p: #2563eb;
@@ -291,15 +291,23 @@
 <body>
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
     <div class="container">
-        <h2 style="text-align:center; color:var(--p);">HSC Modifier Practice Sheet</h2>
+        <h2 style="text-align:center; color:var(--p);">HSC Modifier Practice Sheet Generator</h2>
 
         <div id="setup-view" class="no-print">
-            <p>Enter Questions & Answers</p>
             <div class="setup-grid">
-                <textarea id="q-input" placeholder="Paste Questions (1. Read the following...)"></textarea>
-                <textarea id="a-input" placeholder="Paste Answers (1. (a) answer; (b) answer;)"></textarea>
+                <div>
+                    <label>1. Paste Questions:</label>
+                    <textarea id="q-input" placeholder="Paste Questions (1. Read the following...)"></textarea>
+                </div>
+                <div>
+                    <label>2. Paste Answers:</label>
+                    <textarea id="a-input" placeholder="Paste Answers (1. (a) answer; (b) answer;)"></textarea>
+                </div>
             </div>
-            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Generate Quiz</button>
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
+                Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -323,6 +331,438 @@
 
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `1. Read the following text and use modifiers as directed in the blank spaces.
+The necessity of learning English is the demand of today's world. But many people in (a) _____ (Pre-modify the noun with a possessive) country do not realize it. As we are living in a (b) ______ (Pre-modify the noun with an adjective) village, it has become essential (c) ______ (Post-modify the adjective with an infinitive phrase). So, if we know English (d) ______ (Postmodify the verb with an adverb), we can communicate with people all over the world. Surely, English has become an important element of our (e) ______ (Use an adjective to pre-modify the noun) development. This language ensures an (f) ______ (Use an adjective to pre-modify the noun) access to all the information in the world computers. (g) ______ (Use a participle phrase to pre-modify the clause), we can progress personally and professionally. If we fail to have a good command over the language, we will lag behind (h) _______ (Post modify the verb using an adverbial). With (i) ________ (Use a demonstrative to pre-modify the noun) language, we can get access to art, literature and culture from various countries. So, it is clear that English is (j) ______ (Use an adverb to pre-modify the verb) spoken all over the world.
+[Dhaka Board-2025]
+
+2. Read the following text and use modifiers in the blanks as directed.
+Bangladesh is criss-crossed with hundreds of rivers. (a) _____ (use a demonstrative to pre-modify the noun) rivers are the gifts of Almighty Allah. They play a very important role in our (b) _____ (pre-modify the noun) economy. There are hundreds of big and small rivers in (c) _____ (use possessive to pre-modify the noun) country. The big rivers flow (d) _____ (use adverbial phrase to post-modify the verb) but small ones flow only during the rainy season. Our rivers are of great use and important to us. They are (e) _____ (pre-modify the verb) related to our economy and prosperity of our country. These rivers are sources of communication, wealth and property, energy and fish. All the rivers play a (f) ______ (pre-modify the noun) role in our (g)_____ (use a noun adjective to premodify the noun) system. We use boats, launches, steamers (h) ______ (use infinitive to pre-modify the noun) goods through riverway which is cheaper and easier than carrying by land in our country. Moreover, people (i) ______ (use present participle to post-modify the noun) by the riverside can earn their livelihood by catching fish. The silt (j) ______ (use past participle to post-modify the noun) by the river water increases the fertility of our agricultural land.
+[Rajshahi Board-2025]
+
+3. Read the following text and use modifiers as directed in the blank spaces.
+ Al Mahmud, (a) ______ (use an appositive), was born in Brahmanbaria in 1936. He is renowned for (b) _____ (use participle to pre-modify the noun) rural life and culture. He emerged as a (c) ______ (pre-modify the noun) poet in the 1960s and played a (d) ______ (pre-modify the noun) role in modernizing Bengali poetry. His celebrated works, which include 'Lok Lokantor', 'Kaler Kolosh' and 'Sonali Kabin', show (e) _____ (post modify the verb) his mastery in vivid imagery and symbolism. (f) _____ (use possessive) poetry often explores themes of love and loss, struggle and socio-political conditions of Bangladesh. Despite a number of controversies for his political ideology, his literary contributions remained unparalleled. His influence on (g) ______ (use a noun adjective to pre-modify the noun) poetry continues (h) _____ (use an infinitive to post-modify the verb) the later generations of poets. This (i) _______ (pre Modifier modify the noun) genius passed away (j) ______ (use a prepositional phrase to postmodify the verb) of 82 in 2019. 
+[Mymensingh Board-2025]
+
+4. Read the following text and use modifiers as directed in the blank spaces.
+Long ago there lived (a) _____ (use article to pre-modify the noun) merchant. He used to deal in salt. He had a donkey to carry the load.. He used to sell (b) _____ (Use possessive to pre-modify the noun) salt loaded on the donkey. He had to cross a stream (c) _____ (Use an infinitive) to other village. Once his donkey fell (d) _____ (post modify the verb with prepositional phrase) and (e) ______ (Use quantifier to pre-modify the noun) of the salt was dissolved in water. The donkey (f) ______ (Use an adverb to pre-modify the verb) crossed the stream due to the light weight of salt (g) ______ (post modify the verb with prepositional phrase). The donkey was happy. The merchant next day loaded the donkey with a lot of cotton. The donkey once again repeated the (h) ______ (Use adjective to pre-modify the noun) trick. He fell into the stream. (i) _______ (Use a demonstrative to pre-modify the noun) time his load became very heavy. The donkey carried the heavy load. It was very tiring for him to move on. The donkey now realized his mistake. He stopped falling down into (j) ______ (Use determiner to pre-modify the noun) stream. The merchant had taught the donkey a good lesson.
+[Cumilla Board-2025]
+
+5. Read the following text and use modifiers as directed in the blanks spaces.
+A day in which it rains (a) _____ (post modify the verb) all day long, is called a rainy day. The sky remains overcast with (b) ____ (pre modify the noun) clouds. People cannot go out without (c) ____ (pre modify the noun with a determiner) umbrella. It affects our (d) _____ (pre modify the noun) activities. Even the school and colleges are shut down. But many people like (e) _____ (post modify the verb with an infinitive phrase) in the rain. They go to an (f) _____ (pre modify the noun) space and enjoy the rain. The working class people suffer a lot (g) _____ (post modify the verb). They do not work and spend (h) ____ (post modify the noun) day which brings misfortune to them. They cannot earn (i) ____ (post modify the verb with an infinitive) their family. So, a (j) _____ (pre modify the noun) day is a curse to the poor.
+[Jashore Board-2025]
+
+6. Read the following text and use modifiers as directed in the blank spaces.
+Weather affects our life (a) ____ (postmodify the verb). We put on (b) _______(pre-modify the noun) clothes when it is cold. We go out with an umbrella in the (c) _____ (pre-modify the noun) season. During the summer, we use fans (d) _____ (post-modify the verb with an infinitive phrase). However, sunshine and rain are (e) _______ (pre-modify the adjective with an intensifier) essential for us. Winter is also helpful for us. Vegetables grow (f) ________ (post-modify the verb with an adverbial phrase) in winter. (g) ______ (pre-modify the noun) (h) _______ (pre-modify the noun) advantages. And they have (i) ______ (pre-modify the noun with a determiner) great influence on the environment. But the weather pattern is changing (j) ________ (post modify the verb) because of global warming.
+[Sylhet Board-2025]
+
+7. Read the following text and use modifiers as directed in the blank spaces. 
+Once a wolf went to a stream to quench (a) ________ (use possessive to pre-modify the noun) thirst with water. While he was drinking water, he saw (b) _______ (use article to pre-modify the noun) lamb that was also drinking water over there. At the sight of the lamb, his mouth began (c) ______ (use an infinitive phrase to post modify the verb). He turned to the lamb and said, "How dare you make the water muddy? Can't you see that I am drinking water from the (d) ______ (use an adjective to pre-modify the noun) stream?" The lamb got so (e) ______ (use an adverb to premodify the adjective) frightened that it could not speak for a while. Then it replied, "Sir, I beg (f) _____ (use possessive to premodify the noun) pardon. The water is running down (g) _____ (post modify the verb with prepositional phrase) to me. How can I make it muddy?" The wolf said, "But you bleated me and called me names (h) _____ (post modify the verb with an adverb)." The lamb replied, "Sir, I was not even born then. How could I abuse you last year?" The wolf (i) ______ (use a relative pronoun to post modify the noun) was determined to eat (j) _____ (use a demonstrative to pre-modify the noun) poor lamb, said to it, "Then it must have been your father, or mother or brother. You must suffer for your race."
+[Chattogram Board-2025]
+
+8. Read the following text and use modifiers in the blanks as directed.
+It was a hot (a) ____ (use a noun adjective to pre-modify the noun) day. A (b) ____ (pre-modify the noun) crow flew all over the fields looking for water. For a long time, she could not find any water. She felt (c) _____ (use an intensifier to pre-modify the adjective) weak almost giving up hope. Suddenly, she saw a water jug below her. She flew (d) _____ (post modify the verb) to see if there was any water inside. Yes, she could see some water inside the jug. The crow tried (e) ______ (use an infinitive phrase to post modify the verb). Sadly, she found that the neck of the jug was too narrow. Then she tried to push the jug down for the water to flow out. But she found (f) ____ (use a demonstrative to pre-modify the noun) jug too heavy. The crow thought (g) _____ (use a phrase to post modify the verb) what to do (h) _____ (use a participle to pre-modify) she saw some pebbles nearly. She (i) _____ (pre-modify the verb) had a good idea. She started picking up the pebbles one by one, dropping each into the jug. As more and more pebbles filled in the jug, the water level kept rising. Soon it was high (j) _____ (post-modify the adjective) for the crow to drink. The crow quenched its thirst and flew away.
+[Dinajpur Board-2025]
+
+9. Read the following text and use modifiers as directed in the blank spaces.
+Yesterday a beggar came to our house. He stood at the gate wearing a (a) ______ (premodify the noun) dress. He was (b) ______ (pre-modify the adjective) weak and could not speak clearly. He told me that he bad been starving for two days and requested me (c) _____ (use an infinitive phrase to post-modify the verb). I felt pity for the (d) ______ (pre-modify the noun) man. I told him (e) ______ (use an infinitive phrase to post-modify the verb) and gave him (f) _______ (use a quantifier to pre-modify the noun) food. He began to eat instantly. He was eating (g) _______ (post-modify the verb with an adverbial phrase). I noticed that the clothes he wore, were not only dirty but also torn. So, I gave him some clothes too. He became extremely happy getting (h) _______ (pre-modify the noun with a demonstrative) clothes. He was (i) ________ (pre-modify the adjective with an intensifier) happy that tears of joy came out of his eyes. He then thanked me and blessed me (j) _______ (use a prepositional phrase).
+[Barishal Board-2025]
+
+10. Read the following text and use modifiers as directed in the blank spaces.
+Cricket is an (a) _____ (pre-modify the noun) game. It is not a game of (b) _____ (use possessive to pre-modify the noun) country. A (c) ______ (use a noun adjective to pre-modify the noun) match is played between two teams. (d) _____ (use a distributive pronoun to per-modify the noun) team consists of eleven players. A cricket field must be (e) ______ (postmodify the noun). It requires two wooden bats, a ball & two sets of stamps (f) ______ (use a numeral adjective to pre-modify the noun) umpires conduct the game. Sometimes, a third umpire is required (g) _______ (use an infinitive to post-modify the verb) an acute confusion. (h) _______ (use a participle to pre-modify the noun) the opportunity, the batter hits the ball away at a good distance and runs to the opposite wicket. If (i) _______ (use an indefinite pronoun to pre-modify the noun) batter is out, next batter comes in his place. Both teams try (j) _______ (use an adverbial phrase to post-modify) to out all batters of the opposite.
+
+11. Read the following text and use modifiers in the blanks as directed.
+Education, (a) ________ (use an appositive to post-modify the noun), is essential for development. We can improve (b) _______ (use a possessive to pre-modify the noun) mind. An (c) _______ (use an adjective to pre-modify the noun) person has the ability (d) ________ (use an infinitive phrase). One can refine one's sensibility (e) ________ (use a present participle phrase). Actually, the educated are able to bring about (f) ______ (pre-modify the noun) development. On the other hand, an (g) _______ (use an adjective to pre-modify the noun) person (h) ______ (use an adverb to pre-modify the verb) lags behind. So, the educated should come forward (i) _____ (use a prepositional phrase) educate all in the society to unload (j) ______ (use a determiner) owes the country.
+
+12. Read the following text and use modifiers as directed in the blank spaces.
+21 February, (a) ____________ (use an appositive to post-modify the noun), in our history is now observed as the International Mother Language Day all over the world. On this day, people of our country get up early in the morning (b) ______________ (use a participle phrase to post-modify the verb). They walk (c) __________ (postmodify the verb) to the Shaheed Minar. Most of them put on (d) ____________ (pre-modify the noun) badges on their shoulder. They go to the Shaheed Minar (e) _______ (use a participle) the most cherished song “Amar vaiyer rokte rangano .......” They pay homage and tribute to the memory of the martyrs. Offering the flowers, they pray for (f) ____________ (use a possessive to pre-modify the noun souls. They also gather in mosques, temples and other (g) ______ (pre-modify the noun) institutions and pray for the salvation of the martyrs' (h)_________ (pre-modify the noun) soul. Different social and cultural organizations arrange (i) _______ (premodify the noun) programmes on (j) _______ (use a demonstrative) day.
+
+13. Read the following text and use modifiers as directed in the blank spaces.
+Education gives us knowledge and a set of abilities to function (a) _____________ (post-modify the verb with an adverb) in life, such as (b) _______________ (premodify the noun with a determiner) ability to decide things rationally and make the (c) ________________ (pre-modify the noun with an adjective) choices. As we learn how to read, write and do the (d) ____________ (pre-modify the noun with an adjective) operations of arithmetic. we gain a degree of self-confidence. Education, (e) __________ (use an appositive to postmodify the noun). releases our potentials and our inner strength. It sharpens (f) _____ (pre-modify the noun with a pronominal adjective) intellect and develops our creativity. As we are taught to reason (g) _____ (post-modify the verb) and find solutions to (h) _____ (pre-modify the noun with a determiner) problems of life we become (i) _____ (pre-modify the noun with an adjective) members of society. Education by definition is progressive and liberal, teaching us to respect (j) ______ (pre-modify the noun with a nounadjective) diversity and cultural and religious differences.
+
+14. Read the following text and use modifiers as directed in the blanks spaces.
+I had gathered a peculiar experience (a) ___ (post-modify the verb) while travelling to St. Martin's Island. I visited the island along with my family. Zakir (b) _____ (postmodify the noun with an appositive) was my guide. On the way to the island, we watched (c) _______ (use a determiner to pre- modify the noun) sea gulls. The (d) ______ (pre-modify the noun) birds were flying (e) ______ (post- modify the verb) with the ship. They became (f) _____ (use an intensifier to pre-modify the adjective) dear and friendly to us. (g) _____ We entertained them with biscuits (use a present participle phrase to post-modify the verb). We became (h) ______ (use an intensifier to pre-modify the adjective) excited. We decided (i) ______ (use an infinitive to post-modify the verb) in the idyllic island for a couple of days. We can never forget (j) _____ (use a demonstrative to pre-modify the adjective phrase to postmodify the verb) lovely sea birds.
+
+15. Read the following text and use modifiers as directed in the blank spaces.
+A village doctor is a very (a) _____ (premodify the noun) person in the rural areas of Bangladesh. He is (b) ____ (pre-modify the verb) known as quack. A village doctor is not a (c) ______ (pre-modify the noun) doctor. He usually sits in a small dispensary (d) ______ (post modify the verb). He treats the patients (e) ______ fuse a participle phrase to post-modify the verb). A village doctor is not a (f) _____ (pre-modify the noun) man. His chamber is (g) ______ [premodify the verb) furnished. He cannot supply costly medicine to (h) ______ (premodify the noun) patients. In our country, the number of qualified doctors is (i) ______ (use an intensifier to pre-modify the adjective) few. So, a village doctor is a great friend to the (j) ________ (pre-modify the noun) villagers.
+
+16. Read the following text and use modifiers as directed in the blank spaces.
+Taking food is essential. We take food (a) ____ (use an infinitive phrase to postmodify the verb). We cannot survive on earth if we do not take food. In fact, (b) ___ (use a quantifier to pre-modify the noun phrase) living beings need to take food. But it is a matter of great regret that (c) ____ (use possessive to pre-modify the noun) food is being adulterated. (d) _____ (use a noun-adjective to pre- modify the noun) adulteration is increasing (e) _____ (use an intensifier to pre-modify the adverb) alarmingly that we cannot stop it. (f) _____ (use a determiner to pre-modify the noun phrase) dishonest businessmen use (g) ____ (pre-modify the noun) chemicals in food and fruits to make illegal and quick money. But they do not think about (h) _____ (use a possessive to pre-modify the noun) health. (i) ________ (use present participle) adulterated food, people get sick. They are often attacked with different fatal diseases. So, (j) _______ (use a gerund) food safety is a must today.
+
+17. Read the following text and use modifiers as directed in the blank spaces.
+Language plays a (a) _________ (premodify the adjective with an intensifier) important role in our life. We use language from the time we wake up (b) ___________ (post-modify the verb) till we go to bed at night. We use language not only in our (c) __________ (pre-modify the noun) hours, but also in our dreams. We use language (d) _________ (post-modify the verb with an Infinitive) what we feel and to say what we like or dislike. We also use language (e) __________ (post modify the verb with an infinitive) information. Language is (f) ___________ (pre-modify the adjective) present in our life. It is an (g) ______ (premodify the noun) part of our life. As an (h) _____ (pre-modify the noun) nation, we also have a language. But we had to struggle (i) ______ (use adverb to postmodify the verb) to establish the right to our language. Many (j) ______ (pre-modify the noun with an adjective) sons of our country sacrificed their lives for our mother tongue.
+
+18. Read the following text and use modifiers as directed in the blank spaces.
+An (a) _____ (pre-modify the noun) student is he, who has (b) _____ (use a quantifier to pre-modify the noun) good qualities. He studies (c) _____ (post-modify the verb). He knows that the (d) _____ (pre- modify the noun) duty of a student is to study. So, he never neglects (e) _____ (use a possessive) duty. He even makes the proper use of (f) _____ (use a determiner to premodify the noun) moment. Sabuj. (g) _____ (post-modify the noun with an appositive) of our class is an example of a good student. Sabuj is (h) _____ (pre-modify the adjective) helpful to us. I try (i) _____ (modify the verb with an infinitive) a boy like Sabuj. I want to be one of the (j) _____ (pre-modify the noun) stars in the class.
+
+19. Read the following text and use modifiers as directed in the blank spaces.
+Weather affects our life (a) ______ (postmodify the verb). We put on (b) ______ (pre-modify the noun) clothes when it is cold. We go out with an umbrella in the (c) ______ (pre-modify the noun) season. During the summer, we use fans (d) _____ (post-modify the verb with an infinitive phrase). However. sunshine and rain are (e) ______ (pre-modify the adjective with an intensifier) essential for us. Winter is also helpful for us. Vegetables grow (f) ______ (post-modify the verb with an adverbial phrase) in winter. (g) ______ (pre-modify the noun) rainfall helps to grow bumper crops. Al the seasons have. more or (h) ______ (pre-modify the noun) advantages. And they have (i) ______ (pre-modify the noun with a determiner) great influence on the environment. But the weather pattern is changing (j) ______ (post-modify the verb) because of global warming.
+
+20. Fill in the gaps with suitable modifiers as directed.
+Zainul Abedin, (a) ______ (post-modify, the noun with an appositive), was born in Kishoreganj in 1914. His father was a (b) ______ (use a noun-adjective to pre-modify the noun) officer. He grew up amidst a (c) ______ (pre-modify the noun with an adjective) surrounding dominated by the river Brahmaputra. The river and the open nature inspired him (d) ______ (use an adverb to post-modify the verb) from his early life. In 1938, he was awarded a (e) _____ (pre modify the noun with a noun adjective) medal in All India Art Exhibition. It was a (f) ______ (pre-modify the noun) recognition for him. And (g) _____ (pre-modify the noun with a demonstrative) recognition gave the confidence (h) ______ (use an infinitive phrase to post-modify the verb). Zainul preserved some of his works (i) ______ (post-modify the verb with a prepositional phrase). Also, he became involved in a movement (j) ______ (use infinitive phrase to post-modify the verb).
+
+21. Read the following text and use modifiers as directed in the blank spaces
+Rabindranath Tagore was a (a) _____ (premodify the noun) poet of Bengali literature. He was born in a (b) _____ (pre-modify the noun) family at Jarasanko, Kolkata. He went to school (c) _____ (post-modify the verb). He wrote his (d) _____ (pre-modify the noun) verse at the age of eight. At the age of seventeen, he went to London (e) _____ (post-modify the verb with an infinitive) school there. He was put up in a lodging house under the care of a (f) _____ (pre-modify the noun) coach. Mr. Scott. He was lucky (g) _____ (post-modify the adjective with an infinitive) an English family of Mr. Scott. He also visited the House of Parliament (h) _____ (postmodify the verb with an infinitive) to Gladstone and John Bright's debates on Irish rule. He wrote letters to Kolkata (i) _____ (post-modify the verb with a present participle) English society. At this, his family thought that they might lose their son (j) ______ (post-modify the verb). So. he was called back to Kolkata.
+
+22. Read the following text and use modifiers as directed in the blank spaces.
+Raja. (a) ______ (post-modify the noun with an appositive), is known to his classmates as a good student. He has (b) ______ (use a quantifier to pre-modify the noun) good qualities. He knows that the (c) ______ (use an adjective to pre-modify the noun) duty of a student is to study and he never neglects (d) _____ (use a demonstrative to pre-modify the noun) duty. He prepares (e) ______ (use possessive to pre-modify the noun) lessons regularly. He maintains discipline. He knows the value of time. He gets up (f) ______ (post-modify the verb with an adverb) so that he can get enough time to study. He goes to school (g) ______ (postmodify the verb with an adverb). He never wastes a (h) ______ (use determiner to premodify the noun) moment in vain. Raja is (i) _____ (pre-modify the adjective with an intensifier) gentle. He always obeys his parents and teachers. He never mixes with (j) ______ (pre-modify the noun) boys. A student like Raja is a great asset of a nation.
+
+23. Read the following text and use modifiers as directed in the blank spaces.
+Othello. (a) ______ (use an appositive to post-modify the noun) had risen to become a general. He had shown his bravery in many (b) _____ (use an adjective to premodify the noun) battles against the Turks. Everyone praised him (c) _____ (use an adverb to post-modify the verb) and the senate trusted and honoured him. Brabantio, a rich senator of Venice had a daughter named Desdemona (d) ______ (use a relative clause to post-modify the noun). Brabantio (e) ______ (use an adverb to pre-modify the verb) invited Othello to his house where he and his daughter listened in wonder to Othello as he spoke about his adventures. He told them of deserts, of caves and of mountains high (f) ______ (use an intensifier to pre-modify the adjective) to touch the sky. Desdemona had to weep (g) _____ (use a present participle to post-modify the verb phrase) and she never became tired of listening to it. She pitied Othello (h) _____ (use an adverb to post-modify the verb) for the misfortunes and hardships of his life. Her pity (i) _____ (use an adverb to post-modify the verb) turned to love. She refused all the young men (j) ______ (use an infinitive to postmodify the verb) because she loved Othello, a noble Muslim Moor from North Africa.
+
+24. Read the following text and use modifiers in the blank spaces.
+Mother is an (a) _____ (use an adjective phrase to pre-modify the noun blessing in the world. Mothers’ Day is a (b) ______ (use an intensifier to pre-modify the adjective) significant day observed as a (c) ______ (use an adjective to pre-modify the noun) occasion in honour of mothers. The day was for the first time, announced as a formal holiday in the United States of America. Mothers’ Day is now observed (d) _____ (use an adverbial phrase to premodify the verb) as elsewhere around the world. The sons and daughters (e) _______ (use an adverb to pre-modify the verb wait for this day. They buy some special presents for their (f) ______ (use a superlative degree to pre-modify the noun) mother. When they offer the presents, the mother becomes very happy. It brings a (g) ______ use an adjective to pre-modify the noun) happiness between a mother and (h) _______ (use a possessive to pre-modify the noun) children. The bond of relationship between mother and children becomes everlasting. The mother (i) _______ (use an adverb to pre-modify the verb) draws her children with her motherly affection. In this way, we pay a (j) _____ (use a present participle to pre-modify the noun) tribute to our dear mothers.
+
+25. Read the following text and use modifiers as directed in the blank spaces.
+The roads (a) _____ (use an adjective phrase to post-modify the noun) are beset with problems. (b) ______ (pre-modify the noun) driving is one of them. Most of the drivers are not (c) _______ (pre- modify the participle) trained. They are not well educated. They can (d) ______ (use an adverb to pre modify the verb) put their signature and read Bengali. They are indifferent to (e) ______ (use a noun adjective) life. They do not realize that life is (f) ______ (use a determiner) valuable than time. They drive (g) ______ (postmodify the verb). They do (h) ______ (use an adverb to pre-modify the verb) drive consciously. Even they themselves are not conscious of (i) ______ (use a possessive) own lives. They drive (j) _____ (use an adverb phrase to post-modify the verb) and try to overtake others.
+
+26. Read the following text and use modifiers as directed in the blanks spaces.
+The Tajmahal is one of the most (a) ______ (pre-modify the noun) buildings in the world. It is situated at Agra (b) ______ (post-modify the verb). Emperor Shahjahan built it (c) ______ (post-modify the verb with an infinitive phrase) for his wife. He built it as tomb for his wife. It is made of fine (d) _______ (pre-modify the noun) marble. It rests on a (e) _______ (premodify the noun), platform. It has eight sides and many (f) ______ (pre-modify the noun), arches. There is a (g) ______ (premodify the noun) dome above the centre of the building. Visitors come (h) ______ (post-modify the verb with an infinitive) this wonderful building at different times of the day. It assumes (i) ______ (pre-modify the noun) looks at different times. But most people like it on (j) _______ (pre-modify the noun) nights.
+
+27. Read the following text and use modifiers as directed in the blank spaces.
+Arsenic is a (a) _______ (pre-modify the noun) substance. It is (b) ______ (use an intensifier to pre-modify the adjective) dangerous for human health. (c) _______ (use a demonstrative to pre-modify the noun) substance is found in the water of the tube well. There are (d) ______ (use quantifier to pre-modify the noun) villages in (e) ______ (use possessive to pre-modify the noun) country. Most of our (f) ______ (use a noun adjective to pre-modify the noun) people drink tube well water. As a result, many of them are suffering from arsenic problem. This problem is (g) ______ (pre-modify the verb) found in North Bengal. We should take proper measures (h) _______ (post-modify the verb with an infinitive phrase). Government is trying to mark the tube wells having arsenic (i) _______ (use a participle to postmodify the verb) red colour. People should be refrained from drinking water of (j) ______ (use demonstrative to pre-modify the noun) tube wells. Otherwise, they will suffer from arsenicosis.
+
+28. Read the following text and use modifiers as directed in the blank spaces.
+It was a cold (a) ______ (use a nounadjective to pre-modify the noun) morning. A farmer was going to his field (b) _____ (post-modify the verb with an infinitive) seeds. On the way, he saw a snake (c) _____ (post-modify the noun with a present participle) on the ground. The farmer went near it (d) _______ (post-modify the verb with an infinitive) what happened to it. It was almost dead in cold. He took pity on the snake. He put it (e) ______ (post-modify the verb) in a box and brought it home. (f) ______ (pre-modify the verb with a present participle phrase) by the fire, he took care of it. Then he gave it (g) ______ (premodify the noun) milk, Soon the snake got well. It began (h) ______ (post- modify the verb with an infinitive) with the children of the farmer. But the snake showed its (i) ______ (pre-modify the noun) nature and bit one of the children. (j) ______ (premodify the verb with a present participle phrase), the farmer killed the snake.
+
+29. Read the following text and use modifiers in the blanks as directed.
+People around were just watching as the (a) ______ (pre-modify the noun) boy started (b) _______ (post- modify the verb) into the (c) _______ (pre-modify the noun) canal. Then the traffic constable came. (d) 9  English 2 nd Paper – Modifier _______ (pre-modify the noun with a present participle) no time, he jumped into the canal. The (e) ______ (pre-modify the noun with an adjective) constable did not think of his (f) ______ (pre-modify the noun) life. He was (g) _______ (use an intensifier to pre-modify the adjective) kind that he risked his life. People (h) ______ (post-modify the noun) by the canal praised him (i) _______ (post-modify the verb with an adverb). This type of person is a model (j) _______ (post-modify the noun).
+
+30. Read the following text and use modifiers as directed in the blank spaces.
+Deforestation means cutting down of trees (a) _______ (post-modify the verb). To meet up the basic needs of food and housing, trees are being cut in large scale and thus it causes (b) ______ (pre-modify the noun) imbalance. Besides, there are some dishonest people who cut trees in our forest (c) ______ (use an infinitive phrase to post-modify the verb). The (d) ______ (use a noun adjective to pre-modify the noun) level is rising and many parts of the world are going to be engulfed by the sea in near future. New areas of the world are (e) ______ (use a participle to pre-modify the verb) turned into desert as a result of deforestation. So, we must stop (f) ______ (use a participle to post-modify the verb) down trees unnecessarily. (g) _______ (use a participle to pre modify the noun) trees indiscriminately will be hazardous for our future existence. If we destroy trees (h) ______ (use an adverbial phrase to postmodify the verb) one day the country will turn into a great desert. The (i) ______ (use a participle to pre- modify the noun) temperature will cause green house effect. Necessary measures should be taken (j) ______ (use an infinitive phrase to postmodify the verb).
+
+31. Fill in the gaps with the suitable modifiers as directed.
+We can't think of our existence without language. It plays a (a) ______ (use an intensifier) important role in our life. We use language from the time we wake up (b) ______ (post-modify the verb) till we go to bed at night. We use language not only in our (c) ______ (pre-modify the noun) hours but also in our dreams. We use language (d) ______ (use an infinitive) what we feel and to say what we like or dislike. We also use language (e) ______ (post-modify the verb with an infinitive) information. Language is (f) ______ (pre-modify the adjective) present in our life. It is an (g) _____ (premodify the noun) part of our life. As an (h) ______ (pre-modify the noun) nation, we also have a language. But we had to struggle (i) _____ (use an infinitive) the right of our language. Many (j) _______ (pre-modify the noun) sons sacrificed their lives for the language.
+
+32. Read the following text and use modifiers in the blank spaces as directed within the brackets.
+The purpose of education is to bring about (a) ______ (use an adjective to pre-modify the noun) changes in (b) ______ (use a possessive to pre-modify the noun) behaviour. It also brings changes in our lives and society (c) _______ (use a relative clause to post-modify the noun). If it fails to do so, it can't be called education. Education is not only receiving certificates and getting grades. It is (d) _______ (use an intensifier to pre-modify the adjective) more than that, we can apply our (e) ______ (use a past participle to pre-modify the noun) knowledge in our engagement with the world that lies (f) _____ (use an adverb to post-modify the verb). We can do that in (g) _____ (use an adjective to pre-modify the noun) ways. One way is civic engagement which is (h) _____ (use an adverb to pre- modify the verb 'appreciated') appreciated all over the world. Civic engagement means working to make difference in civic life (i) ______ (use a prepositional phrase to post-modify the noun 'life'). A person (j) _______ (use a past participle to post-modify the noun) civically is concerned about civic issues like injustice, discrimination and other forms of social ills.
+
+33. Read the following text and use modifiers as directed:
+Kazi Nazrul Islam is called the Shelley of Bangla literature. He was a (a) _____ (premodify the noun) poet. He wrote (b) _____ (post-modify the verb) in almost all branches of Bangla literature. Nazrul, (c) ______ (post-modify the noun with appositive), won the attention of everybody in his early childhood. He wrote ceaselessly until the death of (d) ______ (use possessive to pre-modify the noun) poetic flair. He composed (e) ______ (pre-modify the noun) songs (f) ______ (post-modify the noun with an adjective clause). His literary works have enriched (g) ______ (pre-modify the noun with noun- adjective) literature. His poems and songs played a great role (h) _______ (post-modify the verb with an infinitive phrase) in our War of Liberation. He (i) ________ (pre-modify the verb) sang the songs of equality in his poetry. He is (j) ________ (pre-modify the noun with determiner) pride, no doubt.
+
+34. Read the following text and use modifiers as directed in the blank spaces.
+A sparrow is a small bird (a) ______ (use a clause to post-modify the noun). There are many different species of sparrows. Sparrows are (b) ______ (use an adverb to pre-modify the preposition) about four to six inches in length. Many people appreciate their beautiful song. Sparrows prefer to build their nests (c) _______ (use an adverbial phrase to post-modify the verb) usually on the ground, clumps (d) _______ (use an adjective phrase to postmodify the noun), low trees and low bushes. In cities they build their nests in building nooks or holes. They (e) ______ (use an adverb to pre-modify the verb) build their nests in high places. They build their nests out of twigs, grasses and plant fibers. (f) ______ (use a determiner to pre-modify the noun) nests are usually small and wellbuilt structures. The sparrows are some of the few birds that engage in dust bathing. Sparrows first scratch a hole (g) ______ (use an adverbial phrase to post-modify the noun) with their feet, then lie in it and fling dirt or sand over their bodies with flicks of their winds. They (h) _____ (use an adverb to pre-modify the verb) bath in water, or in dry or melting snow. Water bathing is similar to dust bathing, with the sparrow standing in (i) ______ (use an attributive to pre-modify the noun) water and flicking water over its back with its wings, also ducking its head under the water. Both activities are social, with up to a hundred birds participating (j) ______ (use an adverbial phrase to post-modify the verb), and is followed by preening and sometimes group singing.
+
+35. Read the following text and use modifiers as directed in the blank spaces.
+A library is a (a) _____ (pre-modify the noun) of knowledge. The students (b) _____ (use a participle) to all classes visit it in their library periods. Our college library is housed in two rooms. (c) ______ (premodify the noun) almirahs are placed in one room. The other room is the (d) ______ (use a participle to modify the noun) room where magazines, Journals and newspapers are placed. There are about five thousand books in our library which are arranged (e) _____ (post-modify the verb). Any type of book can be traced in no time. The books cater to the needs and interests (f) ______ (use a prepositional phrase). There are two separate sections in the library. One of them contains reference books like (g) _____ (use nouns) etc. The other section contains books (h) ________ (use prepositional phrase). Every student has a library (i) _______ (use a noun). The reading room is always crowded (j) _______ (post-modify the verb) in the afternoon.
+
+36. Read the following text and use modifiers as directed in the blank spaces.
+Drug addiction among the young generation has become a (a) _______ (premodify the noun) concern. Drug is usually used as medicine (b) ______ (use an infinitive) diseases and an excess of taking drugs for no disease is called drug addiction. It has grasped the young generation (c) _______ (post- modify the verb). They take drugs to forget (d) ______ (use possessive to pre-modify the noun) sadness. (e) ________ (pre-modify the noun) people take various drugs (f) ______ (post-modify the noun with a prepositional phrase). Drug addiction causes (g) ______ (use a quantifier to pre-modify the noun) harms to human body. (h) ______ (use a participle phrase), we can remove this curse from our society. All concerned should take initiatives (i) ______ (use an infinitive phrase). The criminals (j) _______ (use a relative clause to post-modify the noun) should strictly be punished.
+
+37. Read the following text and use modifiers as directed in the blank spaces.
+Air and water are the most (a) ______ (premodify the noun with an adjective) elements of the environment. But we are polluting them (b) ______ (post-modify the verb with an adverb). Mills and factories use fuel (c) ______ (post-modify the verb with an infinitive) their products. The burning of this fuel creates smoke (d) ______ (post-modify the verb with an adverbial). Motor vehicles also pollute the air, (e) ______ (use an appositive). Water is polluted by (f) ______ (pre-modify the noun with a quantifier) kinds of waste and filth. We also contaminate water (g) ______ (post-modify the verb with a present participle phrase) into it. Farmers use, (h) ______ (pre-modify the noun with an adjective) fertilizers and insecticides and pollute water. (i) ______ (pre-modify the noun with a past participle) water is (j) ______ (pre-modify the adjective with an intensifier) harmful to health.
+
+38. Read the following text and use modifiers as directed in the blank spaces.
+Books are (a) ______ (use intensifier) essential for us. They help us (b) _____ (post-modify the verb with an infinitive phrase) knowledge. (c) ______ (pre-modify the verb with present participle) books. we can know everything. They show us the (d) _____ (pre-modify the noun) way. Books can be our (e) ______ (pre-modify the noun) friends. They help us (f) ______ (post-modify the verb with infinitive our mind. They improve our (g) ______ (premodify the noun) power. They give us solace to our (h) ______ (pre-modify the noun) mind. Besides reading (i) ______ (pre-modify the noun) books. students should read other books. If they read other books, they will be able to know everything (j) ______ (use a present participle phrase)
+
+39. Read the following text and use modifiers in the blank spaces as directed.
+We know that (a) _______ (use quantifier to pre-modify the noun) species are important for maintaining (b) ______ (premodify the noun) balance. If one is lost, the whole natural environment changes (c) ______ (post-modify the verb). In order to protect the environment from being spoilt, we should protect (d) ______ (use possessive to pre-modify the noun) wildlife. (e) ______ (use determiner to premodify the noun phrase) good news is that many countries are taking action (f) ______ (use infinitive phrase to post-modify the verb). George Lay Cock. (g) ______ (use appositive to post-modify the noun) writes, "Mankind must develop a concern for wild creatures and determine that (h) ______ (use demonstrative to pre-modify the noun) wild species will not perish (i) ______ (use prepositional phrase as post-modifier). We have to save wild animals (j) _______ (use relative clause as post- modifier).
+
+40. Read the following text and use modifiers as directed in the blank space.
+A balanced diet is a good mixture of (a) _____ (pre-modify the noun) foods. It is essential for us (b) ______ (post-modify the adjective with an infinitive) a healthy life. There are many benefits of eating (c) ______ (pre-modify the noun) diet because it prevents (d) ______ (use determiner to 12  English 2 nd Paper – Modifier pre- modify the noun) diseases. As a result, we do not get sick (e) ______ (post-modify the verb with an adverb). We should not select (f) ______ (pre-modify the noun with possessive) diet according to our needs. We should not eat the (g) ______ (use an adjective to pre-modify the noun) foods for the whole week. We can keep fit (h) _______ (use a participle) a balanced diet. But it is not easy (i) _______ (post- modify the adjective with an infinitive) a balanced diet. Here (j) _______ (use a determiner) nutritionist can help us
+
+41 Read the following text and use modifiers as directed in the blank spaces.
+Amerigo. (a) ______ (use noun in apposition) lives alone. His parents now live separate and none of them wants (b) _______ (use infinitive to post-modify the verb) his responsibility. (c) _______ (use possessive to pre-modify the noun) mother told him to go away because she is married to another man. (d) ______ (use determiner to pre-modify the noun) streets are now his home. He wanted (e) ________ (use adjective to pre-modify the noun) money from his father to buy a (f) _______ (use noun-adjective to pre-modify the noun) ticket. But his father did not answer. He earns his living by working hard. (g) _______ (use adverbial to pre-modify the verb) he finds work. Some of (h) ______ (use demonstrative to pre-modify the noun) works are very risky for him. Once he sold ice-cream (i) _____ (use prepositional phrase to post-modify the verb). But he got (j) _______ (use quantifier to pre-modify the noun) money in return from the owner of the ice-cream shop.
+
+42. Read the following text and use modifiers as directed in the blank spaces.
+Newspaper plays a very (a) ______ (premodify the noun) role in modern civilization. It publishes news and views of home and abroad. Only (b) ______ (premodify the noun) knowledge is not enough in this competitive world. A newspaper helps a man (c) _______ (post-modify the verb with infinitive) his general knowledge. Besides academic books, one should read newspapers (d) ______ (post- modify the verb). Newspaper helps one (e) ______ (post-modify the verb with an infinitive) the facts of the world. (f) _______ (pre-modify the verb with a participle phrase) regularly. One can be aware of everything. There are (g) _______ (pre-modify the noun) kinds of newspapers. One should select the newspaper (h) _______ (post-modify the verb). One should choose the (i) _______ (pre-modify the noun) newspaper because many newspapers present news partially. Whatever the paper is, it (j) ______ (premodify the verb) helps a man.
+
+43. Fill in the gaps with suitable modifiers as directed
+It is difficult (a) ______ (post-modify the adjective with an infinitive) in Bangladesh if you don't have any experience of driving here. Drivers change lanes (b) ______ (post-modify the verb). As a foreigner, you may find lane (c) _____ (post-modify the noun) without signals quite distressing. Many drivers are not at all aware of (d) ______ (pre-modify the noun using a noun adjective) signals. Auto- rickshaws and rickshaws move in and out in a (e) ______ (pre-modify the noun) way. They try (f) ______ (post-modify the verb with an infinitive phrase) whenever they find some space. Sometimes. drivers drive (g) ______ (post-modify the verb) to reach their destinations. This often causes serious (h) ______ (pre-modify the noun with a nounadjective) accidents. (i) _______ (use a present participle phrase to pre-modify the pronoun), you may find it difficult to move with your car here. If you want to move (j) ______ (post-modify the verb), you have to practice driving for some days.
+`;
+
+            const demoAnswers = `1. (a) our; (b) global; (c) to learn
+English/for us to learn English; (d)
+well;
+(e)national/personal/professional
+; (f) easy; (g) Learning English well;
+(h) in all respects
+/nationally/culturally; (i) this; (j)
+widely
+2. (a) These; (b) national; (c) our; (d)
+all the year round; (e)
+greatly/deeply/significantly/closely: 
+(f) vital/great/significant; (g)
+transport/communication; (h) to
+transport/ to carry; (i) living; (j)
+deposited/ brought/carried.
+3. (a) a celebrated writer/a famous
+poet; (b)
+depicting/picturing/portraying;
+(c) renowned/famous; (d)
+pivotal/vital; (e) clearly; (f) His; (g)
+Bangla; (h) to motivate/to inspire;
+(i) great; (j) at the age.
+(Mymensingh Board 2025)
+4. (a) a; (b) his; (c) to go/to get; (d)
+into the stream; (e) most/much; (f)
+easily/comfortably; (g) on his
+back; (h) same; (i) fis: (j) the.
+5. (a) continuously/incessantly; (b)
+black/thick; (c) an; (d)
+daily/normal; (e) to get wet; (f)
+open; (g) on such a day/on a
+rainy day; (h) lazy; (i) to support/to
+feed/to maintain; (j) rainy
+6. (a) greatly; (b) warm; (c) rainy; (d)
+to cool ourselves; (e) very; (f) in
+plenty/in abundance; (g) Timely
+/Adequate/ Moderate; (h) less; (i)
+a; (j) rapidly/noticeably.
+7. (a) his; (b) a; (c) to water with
+greed; (d) up/clear; (e)
+much/terribly; -(f) your; (g) from
+upstream/from your end; (h)
+rudely/last year; (i) that/which; (j)
+that.
+8. (a) summer; (b) thirsty; (c) very; (d)
+quickly; (e) to drink water; (f) that:
+(g) for a while; (h) Looking around,
+(i) instantly/then; (j) enough.
+9. (a) dirty/torn/ragged; (b) very; (c)
+to give him some food; (d)
+poor/helpless/hungry; (e) to stay
+at | the door/to wait outside for a
+little time; (f) some; (g) in a
+hurry/very noisily and greedily; (h)
+those; (i) so; (j) from the core of his
+heart.
+10.(a) interesting/international (b)
+our (c) cricket (d) Each (e) ovalshaped (f) Two (g) to resolve/to
+remove (h) Having/Taking/
+Getting (i) any (j) heart and soul/
+hard enough
+11.(a) the backbone of a nation: (b)
+our; (c) educated: (d) to
+distinguish between the right and
+the wrong: (e) receiving proper
+education; (f) rapid/proper; (g)
+illiterate/uneducated; (h) always;
+(i) in order to: (j) the
+12. a) a red-letter day/the Language
+Martyrs' Day; (b) remembering the
+memory of the martyrs; (c)
+barefooted; (d) black; (e) singing;
+(f) their; (g) sanctified/ religious;
+(h) departed; (i) various; (j) this.
+13.(a) properly: (b) the; (c) best/
+right; (d) basic/complex/
+complicated; (e) the most
+powerful weapon: f) our: (g)well/
+carefully/sensibly;(h)the/many:(i)
+productive/good/valued:(j)
+human.
+14.(a) unexpectedly/yesterday/last
+week/last month; (b) a local boy;
+(c) many; (d) beautiful: (e)
+elegantly: (f) very: (g) crunching/
+munching/chewing happily; (h)
+very; (i) to stay: (j) those.
+15.(a) familiar/common/popular (b)
+usually/ generally (c) qualified/
+registered (d) everyday/ regularly
+(e) taking small fees/some money
+(f) rich/wealthy/solvent (g) poorly
+(h) his/poor (i) very/really (j) poor/
+helpless/needy
+16.(a) to survive/to live (b) all (c) our
+(d) Food (e) so (f) Some (g)
+harmful (h) our (i) Taking/Eating (j)
+ensuring
+17.(a) very (b) early in the morning
+(c) waking (d) to express (e) to
+collect/to share (f) consistently/
+always/ever (g) integral (h)
+independent (i) persistently/
+hard/enormously/a lot (j)
+brave/valiant
+18.(a) ideal (b) many (c) regularly (d)
+main (e) his (f) every (g) a student
+(h) very (i) to be (j) brightest
+19.a) greatly; (b) warm; (c) rainy: (d)
+to cool ourselves; (e) very; (f)
+plentifully/abundantly: (g)Timely/
+Adequate/Moderate; (h) less; (i)
+a; (j) rapidly/noticeably.
+20.(a) a renowned Bangladeshi
+painter/the founder of the institute
+of Bangladesh Arts and Crafts; (b)
+police/government; (c) natural;
+(d) greatly/ tremendously; (e)
+gold; (f) great/ tremendous/
+significant: (g) this; (h) to create
+his own visual style of painting; (i)
+at Folk Museum at Sonargaon,
+Narayanganj/a gallery in
+Mymensingh; (j) to re-establish the
+Bengali identity.
+21.(a) famous/great/renowned (b)
+rich/solvent/noble (c) early (d) first
+(e) to attend (f) professional (g) to
+get/to have/to find (h) to listen to
+(i) praising/admiring (j)
+ultimately/eventually/forever
+22.(a) a school boy (b) many/some
+(c) prime/first/chief (d) this (e) his
+(f) early (g) regularly/daily (h)
+single (i) very (j) bad/naughty
+23.(a) a noble Muslim Moor (b) fierce
+(c) highly (d) who was very
+beautiful and intelligent (e)
+often/sometimes (f) enough (g)
+hearing his adventure (h) much/
+greatly(i)finally/soon/ultimately (j)
+to marry
+24.(a) eternally divine; (b) very; (c)
+memorable/glorious/special; (d)
+in Bangladesh/in our country (e)
+eagerly/enthusiastically; (f) most
+beloved/dearest; (g) divine/
+heavenly/boundless; (h) her (i)
+always: (j) glowing.
+25.(a) constructed in our country; (b)
+Reckless/Careless; (c)
+well/properly/adequately; (d)
+hardly/ nearly/merely; (e) public/
+human; (f) more; (g) carelessly/
+indifferently/ recklessly; (h)
+not/never/ hardly: (i) their; (j) in a
+wilful manner/in a whimsical
+way/at random/carelessly.
+26.(a) beautiful; (b) in India; (c) to
+show his love; (d) white; (e) strong;
+(f) open; (g) large; (h) to see: (i)
+different: (j) moonlit.
+27.(a) poisonous/harmful/
+detrimental (b) very/extremely (c)
+This (d) many/several/some/a lot
+of (e) our (f) village/common
+village (g) mostly/unexpectedly
+/usually/nowadays (h) to remain
+safe/to be saved/to remove this
+problem/to purify the water (i)
+painting (j) those/these
+28.(a) winter; (b) to sow; (c) lying; (d)
+to see; (e) carefully; (f) Sitting the
+whole night: (g) warm/some; (h)
+to play: (i) true/intrinsic/real; (j)
+Seeing its ungratefulness/
+ingratitude/Being angry.
+29.(a) small (b) drowning (c)
+roadside (d) Wasting/Sparing (e)
+brave/selfless (f) own (g) so (h)
+standing/ sitting (i) highly/greatly/
+cheerfully/a lot (j) for the society/
+of dedication and sacrifice
+30.(a) indiscriminately/at random/
+recklessly/whimsically (b)
+ecological/environmental (c) to
+fulfil their own interest/to make
+profit/to earn money illegally (d)
+sea/water (e) being/getting (f)
+cutting/burning (g) Cutting/
+Felling/Destroying (h) in an
+indiscriminate manner/at random
+(i) increasing/rising (j) to stop
+deforestation
+31.(a) very (b) in the morning (c)
+waking (d) to express (e) to
+get/convey/exchange (f)
+ever/always (g) essential/
+inseparable/integral (h)
+independent (i) hard (j)
+valiant/heroic/brave
+32.(a) meaningful (b) our (c) in which
+we live (d) much (e) acquired (f)
+beyond/around (g) many (h)
+greatly/mostly (i) through active
+participation and contribution (j)
+engaged
+33.(a)great/famous/rebel/
+revolutionary (b) profusely/
+effectively/hugely/relentlessly/
+successfully /tirelessly, (c) a
+literary/prodigy/a great literary
+talent; (d) his; (e) many: (f) which
+are loved/ appreciated by all, (g)
+Bangla; (h) to encourage people;
+(i) always: (j) our.
+34.(a) which is found all over the
+world; (b) nearly/only; (c) in low
+places; (d) of grass; (e) never/
+hardly/rarely (f) The; (g) in the
+ground; (h) also/usually; (i)
+shallow; (j) at once.
+35.(a) store-house (b) belonging (c)
+Several/Some (d) reading (e)
+systematically (f) of the students
+and teachers (g) dictionaries,
+encyclopedias (h) of academic
+categories/on várious subjects (i)
+card (j) mainly/generally/
+particularly
+36.(a) great/on-going/major (b) to
+cure (c) alarmingly/severely/
+tightly (d) their (e) Some (f)
+regularly/recreationally/
+frequently (g) serious (h) Making
+(i) to remove/to prevent (j) iron
+37.(a) essential/vital/important (b)
+indiscriminately/unwisely (c) to
+manufacture (d) on a large
+scale/hugely/profusely (e) an
+important element of our
+environment (f) all/various/
+different (g) throwing waste (h)
+chemical (i) Polluted/
+Contaminated (j) very
+38.(a) very; (b) to enrich/gain; (c)
+Reading; (d) true/right; (e) best; (f)
+to develop/to enlighten; (g)
+thinking/ rational; (h) weary; (i)
+text/prescribed/academic; (j)
+enriching their mind/expanding
+the horizon of their knowledge/
+broadening their perspectives.
+39.(a) all (b) ecological (c)
+drastically/ automatically (d) our
+(e) A/The (f) to protect wildlife (g)
+an eminent film maker (h) this (i)
+from the world (j) so that we can
+save ourselves.
+40.(a) nutritious/good/healthy/
+various (b) to lead (c) balanced
+(d) many/some/few (e)
+easily/frequently (f) our (g) same
+(h) eating/taking (i) to make/
+select/combine/prepare (j) a/any
+41.(a) a street child (b) to take (c) His
+(d) The (e) some (f) bus (g)
+Sometimes (h) those (i) on the
+beach (j) no
+42.(a) significant/important (b)
+bookish/academic (c) to
+increase/to enrich (d) everyday/
+regularly (e) to know (f) Reading
+newspaper (g) different/various
+(h) properly/rightly/justly/wisely/
+prudently (i) impartial/unbiased (j)
+always/really/actually/truly/
+certainly/ definitely
+43.(a) to drive; (b) frequently/often;
+(c) changing; (d) traffic; (e)
+zigzag; (f) to move forward/to
+push through; (g) fast/recklessly;
+(h) road; (i) Being a foreigner/
+Getting stuck in traffic congestion;
+(j) safely.
+`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function cleanString(str) {
