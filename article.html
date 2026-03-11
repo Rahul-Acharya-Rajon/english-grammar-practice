@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article Practice Master - Pro HSC Tool</title>
+    <title>Article Practice Sheet</title>
     <style>
         :root {
             /* Light Mode Colors */
@@ -338,7 +338,7 @@
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
 
     <div class="container">
-        <h2>HSC Article Mastery</h2>
+        <h2>HSC Article Practice Sheet Generator</h2>
         <p style="text-align: center; color: var(--text-sub);">Fill up these blanks with appropriate articles. For no
             article, keep blank.</p>
 
@@ -354,6 +354,7 @@
                 </div>
             </div>
             <button class="btn btn-start" onclick="processData()">Build Practice Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions & Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -389,6 +390,407 @@
             } else {
                 document.documentElement.setAttribute("data-theme", "dark");
             }
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `1. Article
+(a) ___ parliament house of Bangladesh is (b) ___ exquisitely designed building. In fact, it is (c) ___ wonder of modern architecture and technology. It is one of (d) ___ largest and most spectacular parliament buildings in (e) ___ world. It is (f) ___ highly expensive building. (g) ___ maintenance cost of the parliament house is about 50 million taka per year. An American architect (h) ___ Louis I Kahn designed this (i) ___ building. Every day many (j) ___  visitor comes to visit the building.
+[Dhaka Board-2019]
+
+2. Article
+The national flag represents (a)_____ independence of (b)_____ country. Ours is (c)_____ independent country. Hence, we have a national flag symbolizing our independence. (d)_____ cloth of a national flag is made of (e)_____ cotton, silk or linen. Our flag is rectangular in shape maintaining (f)_____ ratio of its length and breadth 10: 6, There are different sizes of national flag. The background of our flag is green which symbolizes our life and energy. In the middle point of the flag there is (g)_____ blood-red circle representing our hard struggle and bloodshed. (h)_____ red circle also represents the heroic blood-shed of (i)_____ martyrs. The national flag plays (j)_____ vital role in the life of a nation.
+[Rajshahi Board-2019]
+
+3. Article
+Childhood or boyhood is (a)_____ man's formative period. During this period (b)_____ child receives training from its mother. (c)_____ mother's tender heart always looks to (d)_____ welfare and well-being of (e)_____ child. If during this period (f)_____ mother tries to bring (g)_____ child up carefully and according to her (h)_____ best ideas (i)_____ child is sure to grow with its superiors, parents and teachers and love (j)_____ all irrespective of caste, creed and color.
+[Dinajpur Board-2019]
+
+4. Article 
+The industry is (a)_____ key to success in our life. (b)_____ industrious can prosper in life. (c)_____ man who does not undertake (d)_____ hard work can never go (e)_____ long way in (f)_____ world. Many (g)_____ man is not aware of (h)_____ significance of (i)_____ diligence for which. they cannot reap (j)_____ benefit of success.
+[Jashore Board-2019]
+
+5. Article
+An honest man is true to his (a) _____ words. He does not deviate from (b)_____ path of honesty. He knows that true happiness consists of (c)_____ honesty. He does not fall victim to (d) _____ greed. He does not hanker after (e) _____ worldly property.  (f)_____ honest man abstains from corruption. He does not mix with (g) _____ corrupted people. He is (h) _____ man who tries to get pleasure from good deeds. (i) _____ greed for wealth does not touch him. People should follow the path of (j) _____ honest people of the society
+[Cumilla Board-2019]
+
+6. Article
+What is patriotism? It is (a)_____ noble virtue. It inspires (b)_____ man to dedicate his life to the freedom and development of his (c)_____ country. (d)_____ man without patriotism is no better than (e)_____ beast. A true patriot is honored by (f)_____ his countrymen. He thinks for (g)_____ betterment of his country. On (h)_____ contrary, (i)_____ unpatriotic man thinks only of his interest. Those who die for (j)_____ country are true patriots.
+[Chattogram Board-2019; Dhaka Board2017]
+
+7. Article
+I have (a)_____ uncle who has just retired from (b)_____ army. He used to be (c)_____ ABI agent, and everybody says he has been an honest man all his life. As a child, I loved him for his stories. He once told me that he met (d)_____ one-eyed alien from (e)_____ space.  (f)_____ alien did not need any oxygen. And it did not have (g)_____ nose. I now understand that it was (h)_____ hard story to believe. I am not sure he was telling me (i)_____ truth. Maybe he is not so (j)_____ honest, after all.
+[Sylhet Board-2019]
+
+8. Article
+Mr. Bright is (a)_____ European. As he is (b)_____ Englishman, he knows (c)_____ English well. He is (d)_____ honourable to everyone though he is (e)_____ one-eyed man. One day having (f)_____ SOS, he went to (g)_____ USA. His brother, Johnson living there joined (h)_____ Army last year. He is (i)_____ younger of the two brothers. When Mr. Bright met his brother, he could not but shed (j)_____ tears.
+[Barishal Board-2019]
+
+9. Article
+Bangladesh is (a)_____ independent country. We won freedom on (b)_____ December 16, 1971. This freedom was won as (c)_____ result of great sacrifice. (d)_____ great many people laid down their lives for (e)_____ freedom of the country. (f)_____ man who loves his country is (g)_____ patriot. (h)_____ real patriot loves his country more than his life. Being patriots, we all should try to make (i)_____ effort for the welfare and (j)_____ progress of our motherland.
+[HSC Examination-2018(Ka set)]
+
+10. Article
+William Shakespeare was born on April 23, 1564 in (a)_____ village of Stratfordon-Avon in (b)_____ country of Warwickshire. His father John Shakespeare was (c)_____ farmer's son who came (d)_____ Stratford about 1531 and began to prosper as (e)_____ trader in corn, wheat, leather and agricultural products. His mother Mary Arden was (f)_____ daughter of (g)_____ prosperous farmer, descended from (h)_____ old family of mixed AngloSaxon and Norman blood. It is generally believed that neither (i)_____ poet's mother nor his father could read or write. In 1582, Shakespeare married Anne Hathaway, the daughter of (j)_____ peasant family. She was eight years older than Shakespeare.
+[HSC Examination-2018(Kha set)]
+
+11. Article
+Truthfulness is (a)_____ greatest of all (b)_____ virtues which make (c)_____ man really great. If we do not cultivate the habit of speaking (d)_____ truth, we cannot command (e)_____ confidence of others. (f)_____ might succeed once or twice by telling (g)_____ lie but it never brings a good result. (h)_____lie never lies hidden. Today or tomorrow it comes to light. Then (i)_____ real character of (j)_____ liar is revealed and nobody believes him.
+[Rajshahi Board-2017; Barishal Board2017]
+
+12. Article
+'Rifle Roti Aurat' is (a)_____ first Bengali novel on (b)_____ Liberation War of Bangladesh. This unique novel is written by Anwar Pasha, (c)_____professor of Bangla department at Dhaka University. He wrote this (d) _____ novel between April and June in 1971. The main characters in this novel is Sudipta Shaheen who shares his dream of (e)_____ new country. Professor Anwar Pasha was picked up from his Dhaka University residence two days before (f)_____victory. Sensing imminent defeat, the member of (g)_____ notorious killing squad Al-Badr picked up (h)_____ novelist Anwar Pasha and many other intellectuals and brutally killed them. According to. (i)_____ Banglapedia, around 991 academics, 13 journalists, 49 physicians, 42 lawyers, and 16 other intellectuals were killed during (j)_____Liberation War of Bangladesh.
+[Chattogram Board-2017]
+
+13. Article
+In (a)_____ last 25 years (b)_____ world has lost one-third of its natural wealth, according to (c)_____ international conservation organisation world wild fund. (d)_____ earth's forest, wetlands, seas and coasts are in (e) _____ worse state today than they were before. Forests are cut down. Moreover, they are being burnt indiscriminately resulting in (f) ____ increase in carbon dioxide and ultimately in (g) ____ water level rising as a consequence of global warming. It is anticipated that (h) _____ new century will face (i) _____ overwhelming environmental (j) _____ catastrophe.
+[Cumilla Board-2017]
+
+14. Article
+Robi is (a) — indigent boy. He comes of (b) — needy family. But he is diligent and upright. He has (c) — unique vision for life. He believes that honesty is (d) — key to success. Moreover, he has (e) — deep sense of patriotism. Being imbued with these ideals, he shapes (f) — dream of his life. From (g) — dawn to dusk, he works hard. He never squanders time, wastes money and dissipates (h) — energy. His only aim is to reach (i) — apex of success. We need (j) — ideal boy like Robi.
+[Sylhet Board-2017]
+
+15. Article
+The process of learning may very well be compared to (a) — undertaking of a journey. The learner or the student is (b) — journey taker or traveller. Just as a traveller has to undergo all (c) — botheration of buying his ticket, booking his baggage, showing up his ticket, taking core of things, boarding a train or a bus and suffering every other item of (d) — tedious journey to reach his (e) — destination, so a learner has to mange his learning affair himself. It is (f) — laborious process and no one can do (g) — labour for him and no one else can undertake (h) — journey for another. There is no trick or magic in it. It cannot be enquired at second hand. Just as a traveller, he can enquire here and there in case of doubt and difficulty. However, the journey is (i) — passenger’s own concern. In (j) — same way, learning is entirely the concern of the student or the learner.
+[Jashore Board-2017]
+
+16. Article
+What (a) — surprise it was! Robin got (b) — first prize in (c) — competition. I was really (d) — amazed at his success. Of course he was trained by (e) — expert coach for (f) — time. He always obeyed (g) — instructions given by (h) — coach. Even he was not found outside (i) — camp during practice session. (j) — boy like him is always appreciated by people.
+[Dinajpur Board-2017]
+
+17. Article
+My mother is (a) — ideal housewife. She is (b) — affectionate lady. She manages (c) — family very nicely. She hopes to see me happy at (d) — cost of her own life. She does not enjoy (e) — wink of sleep if I fall sick. She is very kind to (f) — poor. She is also (g) — very religious lady. She advises us to follow (h) — path of truth and honesty. (i) — woman like her is very rare. She bears a good moral (j) — character.
+[Cumilla Board-2016]
+
+18. Article
+There is a saying that sincerity is (a) — key to success. (b) — person can prosper in life by doing hard work. The man who does not follow (c) — rules of sincerity can never go (d) — long way in (e) — world. Many (f) — man is not conscious of (g) — importance of (h) — sincerity for which they don’t have (i) — benefit of (j) — success. However, we should be sincere to our work if we want to achieve anything notable.
+[Chattogram Board-2016]
+
+19. Article
+(a) — morning walk is a good habit for all classes of people. It is (b) — simple exercise and good for health and (c) — mentality. In the morning (d) — air is fresh and free from any kind of noise and pollution. This pure (e) — environment makes an effect on (f) — walker’s health and mind when (g) — man enjoys (h) — beauties and solemnity of (i) — nature in (j) — morning.
+[Dinajpur Board-2016]
+
+20. Article
+Every student wants to do better in (a) — examination. But it is not (b) — easy work. (c) — student has to do something for this. From (d) — very beginning he must be serious. He should read (e) — texts again and again. He must not memorize (f) — answer without knowing the meaning. He must not make notes from (g) — common source. He should have a good (h) — command over English. By doing all these things (i) — student can hope to make a good (j) — result.
+[Rajshahi Board-2016]
+
+21. Article
+Michael Madhusudan Dutt was (a) — popular 19th century Bengali poet and dramatist. He was born in (b) — Sagardari on (c) — bank of (d) — Kopotaksho river, (e) — village in Keshobpur Upazilla under Jessore district. From (f) — early age, Dutt aspired to be (g) — Englishman in form and manner. Though he was born in (h) — sophisticated Hindu family, he took Christianity arousing (i) — anger of his family. He contributed much to (j) — development of Bengali literature.
+[Dhaka Board-2016]
+
+22. Article
+Once there lived (a) — poor cobbler. He had (b) — rich neighbour. (c) — neighbour possessed (d) — ill-health. So, he was (e) — angry man. He was always (f) — unhappy man. Once he used to think (g) — richest men to be (h) — happiest men in (i) — world. But his (j) — idea was wrong.
+[Barishal Board-2016]
+
+23. Article
+Literacy as (a) — skill was first institutionalized in Mesopotamia, Syria, Egypt and China soon after (b) — art of writing was invented. Then education was not for (c) — general people but (d) — privilege for (e) — chosen (f) — few who took on strategic roles in (g) — running of (h) — state and in religion. In Greece, education became more widespread in about the 5th century BC. (i) — Greeks, however, sent only their (j) — male children to school.
+[Jashore Board-2016]
+
+24. Article
+Kamal is (a) — HSC examinee this year. He is not (b) — attentive to his lessons. He is very weak in (c) — English. Moreover he is (d) — lazy. So his preparation in English is not good. (e) — month ago before his examination he managed (f) — short suggestion and learnt it. On (g) — day of examination he started for the examination hall (h) — bit earlier. He entered (i) — examination hall with (j) — trembling heart.
+[Sylhet Board-2016]
+
+25. Article
+(a) ___ ideal student is (b) ___ asset for a country. He is different from (c) ___ idle student. (d) ____ industrious work hard. On the other hand, (e) — idle waste away their time. They do not know that (f) ____ time is (g) — most valuable thing. If anyone wants to shine in life, he should make (h) ____ best use of his time. Otherwise, he will suffer in (i) ____ long run. He will have to drag a very miserable (j) — life. 
+
+26. Article
+(a) ___ angry man is not liked even by (b) ___ idiot. There is difference between (c) ___ educated and (d) ___ uneducated. Again, there is difference between (e) ___ rich and (f) ___ poor. (g) ___ educated man should come forward to educate (h) ___ uneducated man. On the other hand, (i) ___ rich man should have sympathy for (j) ___ poor man.
+
+27. Article
+(a) ___ life is full of unfavorable circumstances. (b) ___ great men in (c) ___ world bravely faced (d) ___ adverse situations. These situations bring out (e) ___ man's latent qualities. (f) ___ people in such circumstances learn many virtues like fortitude and bravery. Only (g) ___ virtuous and brave men can conquer (h) ___ obstacles of life. (i) ___ adverse situations have glorified (j) ___ mind and character of great men.
+
+28. Article
+(a) ___ infant sometimes asks such (b) ___ uncommon questions that even (c) ___ aged man fails to answer (d) ___ uncommon question. (e) ___ intelligent man has to think over (f) ___ question, it is not an easy matter to satisfy (g) ___ inquisitive infant. Sometimes (h) ___ aged man also grows angry with (i) ___ inquisitive boy or girl who always wants to know more. We must not be (j) ___ impatient with the infant.
+
+29. Article
+(a) ___ ant is (b) ___ industrious insect. No other insect is as industrious as (c) ___ ant. If we open (d) ___ pages of history we shall see that (e) ___ men who have become great were (f) ___ industrious. (g) ___ industrious are liked by all. On (h) ___ other hand (i) ___ idle are hated by all. So industry is (j) ___ must prosper in life.
+
+30. Article
+Have you ever seen (a) ___ penguin? (b) ___ penguins are very interesting creatures. They are birds but they cannot fly. Millions of years ago, they had wings. (c) ___ wings changed as (d) ___ birds adapted to their environment. Their principal food was (e) ___ fish. They needed to be able to swim to find their food. So, eventually their wings evolved into flippers that enabled them to swim through (f) ___ icy water of the ocean with speed and ease. They spend most of the part of their life in (g) ___ water. However, they lay their eggs on (h) ___ land. Their natural habitat is in Polar Regions. So, ice is (i) ___ part and parcel of their life. Now, we can see them in most major zoos in (j) ___ world.
+
+31. Article
+A true friend is (a) ___ asset. He stands by his (b) ___ friend in time of danger. He is not (c) ___ greedy man. He always wishes for (d) ___ welfare of his friend. But it is (e) ___ matter of (f) ___ fact that (g) ___ ideal friend is very rare today. (h) ___ selfish man cannot be (i) ___ true friend. He thinks only of his own (j) ___ interest.
+
+32. Article
+A library is (a) ___ part and parcel of (b) ___ educational institution. It is (c) ___ place where we can find (d) ___ books on almost all subjects. A library enables many (e) ___ person to read books. It creates (f) ___ passion for learning. Students should pay (g) ___ visit to a library regularly. There should be libraries in every educational institution. But it is (h) ___ matter of regret that all educational institution don't have libraries. Setting up libraries is (i) ___ must to build up (j) ___ educated nation.
+
+33. Article
+Punctuality is of great value to (a) ___ student. (b) ___ unpunctual boy who is late in (c) ___ class will miss (d) ___ part of his lesson and falls (e) ___ behind other students. But (f) ___ punctual student will learn his lesson in (g) ___ time and will do well in (h) ___ examination. Punctuality is (i) ___ key to success in life. We all should be (j) ___ punctual in our activities.
+
+34. Article
+Unfair means in the examination is (a) ___ offence. It degrades (b) ___ standard of education. If the students of (c) ___ country do not acquire true (d) ___ education, there will be no development for (e) ___ country. (f) ___ examinee should read seriously so that he can cut (g) ___ good figure in the examination. To acquire true education should be the only aim in life of all (h) ___ students. (i) ___ educated man cannot support (j) ___ unfair means in the examination at all.
+
+35. Article
+Putting men on Mars has been (a) ___ idea in science fiction for quite (b) ___ while. However, when man first walked on the Moon, walking on Mars suddenly seemed feasible. (c) ___ manned mission to Mars would be a huge milestone in space exploration. It would allow (d) ___ more indepth study of (e) ___ Red Planet, and many have argued that building a new permanent base on Mars is much more practical than building one on the moon. A mission to Mars would be similar to the Moon landings, but much more difficult. (f) ___ trip is about (g) ___ hundred times longer, and there are new (h) ___ problems such as the Martian weather which must be considered. NASA currently has plans to have a man on Mars sometime in (i) ___ 2030s, while (j) ___ ESA plans to do so also around the same time. Russia has plans to launch a manned Mars mission by 2020.
+
+36. Article
+The process of globalisation obviously requires (a) ___ common language for international (b) ___ communication. For many different reasons, English has achieved (c) ___ prestige of being that (d) ___ language because it is (e) ___ international language. It is no longer (f) ___ unique possession of the British or the Americans or other native-speakers, but (g) ___ language that belongs to (h) ___ world's people. This phenomenon has led to (i) ___ bewildering variety of (j) ___ English around us.
+
+37. Article
+Bangladesh is (a) ___ world's most densely populated country. Our development efforts are frustrated because of (b) ___ great size of our population. (c) ___ population explosion is (d) ___ constant threat to our environment and (e) ___ society. Her population is growing at such (f) ___ high rate that (g) ___ environment may soon fail to supply (h) ___ people with their minimum necessities. It is indeed (i) ___ alarming situation. Something should be done to change (j) ___ situation.
+
+38. Article
+Life is nothing but (a) ___ sum total of some moments. The span of (b) ___ human life is very short. But man has got many things to do during this limited period. Every moment is (c) ___ very precious. Success in life depends on (d) ___ best use of time. If we make (e) ___ proper division of our (f) ___ time and do our duties accordingly, we are sure that we would be able to march in (g) ___ life and reach (h) ___ cherished goal of our life. Our efforts will be crowned with success. If we do not make (i) ___ right use of our time, we are sure to repent when it is too late and we have to drag (j) ___ miserable existence in our day-to-day life.
+
+39. Article
+Bangladesh is (a) ___ overpopulated country. Population problem is (b) ___ burning question of Bangladesh. Though (c) ___ population of (d) ___ country is (e) ___ asset, it has already become (f) ___ great problem in our country because (g) ___ country cannot afford to give (h) ___ people the basic necessaries of (i) ___ life equally to all. So, we should try to make the equity among all by controlling (j) ___ population.
+
+40. Article
+(a) ___ teacher is compared with (b) ___ architect. He is called (c) ___ architect of a nation. He teaches (d) ___ illiterate. He is (e) ___ light in deep (f) ___ darkness. Now (g) ___ teacher is (h) ___ ill-paid employee. He cannot lead (i) ___ better life. He lives in (j) ___ midst of wants. Yet he keeps the light of education burning.
+
+41. Article
+The mobile phone is (a) ___ great invention of modern science. (b) ___ consumers of mobile phones are increasing day by day. (c) ___ people are getting benefits. But it is unfortunate that mobile phones sometimes become (d) ___ cause of health hazard, especially (e) ___ children are affected much. (f) ___ scientists believe that mobile phones cause brain tumours, genetic damage, and many other (g) ___ incurable disease. They believe that invisible uncontrolled radioactivity of (h) ___ mobile phones cause irreparable damage to (i) ___ human body. They say that (j) ___ governments should control radioactive sources.
+
+42. Article
+(a) ___ discipline is seen even in (b) ___ nature. Every morning (c) ___ sun rises in (d) ___ east. Day follows (e) ___ night, birds sing and (f) ___ plants blossom. Everywhere in (g) ___ nature, there is (h) ___ harmony. If there was no discipline in (i) ___ nature, there would have been (j) ___ chaos everywhere. 
+
+43. Article
+A newspaper plays (a) ___ important role in our society. It is (b) ___ most useful thing in our modern life. We cannot think of (c) ___ day without it. To read a newspaper is (d) ___ good habit. (e) ___ more we read a newspaper (f) ___ more we can acquire knowledge. If we don't read it, we shall be (g) ___ frogs in (h) ___ dark well. It is (i) ___ looking glass of (j) ___ modern world.
+
+44. Article
+(a) ___ ant is (b) ___ industrious insect. Bees are also (c) ___ industrious insects. If we observe the life of (d) ___ successful man, we will find that he is also (e) ___ industrious. (f) ___ industrious are appreciated by all. On the other hand, (g) ___ idle are disliked by all. So, industry is (h) ___ must to prosper in (i) ___ life. We all know that industry is the key to success and laziness leads us to (j) ___ misfortune.
+
+45. Article
+When (a) ___ great poet, Ferdousi, began to write (b) ___ Shahanama, the Sultan promised him (c) ___ piece of gold for each (d) ___ verse. When (e) ___ epic was finished, it contained sixty thousand (f) ___ verses. Instead of giving gold coins, he offered the poet only sixty thousand silver (g) ___ coins. The poet refused to take the silver coins and left the court with (h) ___ broken heart. He was (i) ___ aggrieved man. Later on, the Sultan realised that he had made (j) ___ blunder.
+
+46. Article
+To become (a) ___ educated person is probably the most significant change in one's life. (b) ___ education is (c) ___ locomotive that drives much of the economic development throughout (d) ___ world. It works as a vehicle for (e) ___ personal success. (f) ___ illiterate person can't be successful in his life. He can't even contribute to (g) ___ development of the society. He is (h) ___ burden to the society. He has no honour, no power or no status. On the other hand, (i) ___ literate person is (j) ___ honorable man because he can contribute to the progress of the society.
+
+47. Article
+(a) ___ 16th December is (b) ___ redletter day in the history of Bangladesh. On this day, we achieved (c) ___ freedom at the cost of (d) ___ bloody battle and Bangladesh came into (e) ___ being and made a place in (f) ___ world map as (g) ___ independent country. Every year this day is celebrated in (h) ___ enthusiastic atmosphere. We remember (i) ___ great sacrifice of our heroic sons who died for this country. We also pay (j) ___ great tribute to them.
+
+48. Article
+(a) ___ idle man and (b) ___ active man cannot be equal. We know (c) ___ story of (d) ___ ant and (e) ___ grasshopper. (f) ___ ant was industrious. On the other hand the grasshopper was really (g) ___ lazy. The ant knew that (h) ___ industrious shine. On (i) ___ contrary, (j) ___ lazy suffer in life.
+
+49. Article
+(a) ___ unique haor system contributes to (b) ___ beauty of (c) ___ landscape both during (d) ___ monsoon and (e) ___ dry season. In the monsoon, its unique scenic beauty makes it (f) ___ huge natural bowl of water and in (g) ___ dry season it becomes (h) ___ vast green grass land with (i) ___ pockets of beels serving as (j) ___ resting places for migratory birds.
+
+50. Article
+A village market is (a) ___ place in (b) ___ village where (c) ___ villagers go to buy and sell various things. It usually sits on (d) ___ bank of (e) ___ river or a canal or by (f) ___ side of highways. In a village market, the villagers buy and sell (g) ___ different kinds of daily necessaries and (h) ___ other commodities. It is, in fact, (i) ___ primary centre to meet people's need. It is again a meeting place of (j) ___ villagers.
+
+51. Article
+"A most important truth, which we are apt to forget, is that (a) ___ teacher can never truly teach unless he is still learning himself. (b) ___ lamp can never light another (c) ___ lamp unless it continues to burn its own flame. The teacher who has come to (d) ___ end of his subject, who has no living traffic with his (e) ___ knowledge, but merely repeats his lessons to his (f) ___ students, can only load their minds; he cannot quicken them. (g) ___ truth must not only inform but also inspire. If (h) ___ inspiration dies out and (i) ___ information only accumulates, then (j) ___ truth loses its infinity."
+
+52. Article
+Education is (a) ___ process by which our mind develops through formal learning at (b) ___ institution like a school, college, or (c) ___ university. It is (d) ___ mental and intellectual training which provides (e) ___ opportunities of growth and helps to overcome (f) ___ obstacles to progress. Again, the purpose of education is to enlighten (g) ___ individuals and develop their capacity to (h) ___ limit. It is also the business of education to train (i) ___ individuals to make (j) ___ choices to go ahead. It ennobles our mind and refines our sensibility. It also broadens our outlook and helps us become aware of our rights and responsibilities.
+
+53. Article
+Mosquito menace is one of (a) ___ most talked topics. (b) ___ fear and nuisance of mosquito is called (c) ___ mosquito menace. For (d) ___ city dwellers it is (e) ___ constant nuisance. Particularly at (f) ___ night, it becomes more when thousands of mosquitoes start singing around (g) ___ us. Even during day times, we are not free from (h) ___ attack of mosquitoes. To prevent (i) ___ nuisance caused by mosquitoes, we have to be alert and work in (j) ___ assorted efforts.
+
+54. Article
+(a) ___ Mount Everest is in (b) ___ Himalayas. It is situated in (c) ___ north of India, (d) ___ Tibet and Nepal. It is (e) ___ highest mountain in (f) ___ world. It was named after George Everest who was (g) ___ first man to survey (h) ___ Himalayas where (i) ___ Mount Everest is located. It is very difficult and dangerous to climb mountains like (j) ___ Everest.
+
+55. Article
+There is (a) ___ saying that sincerity is the key to success. (b) ___ people who have prospered in life without, undergoing hardship are rarely seen. A person who does not follow (c) ___ rules of sincerity, can never go (d) ___ long way in (e) ___ world of competition. (f) ___ Unfortunately, many man is not conscious of (g) ___ value of (h) ___ sincerity. For that reason, they don't have (i) ___ benefit of (j) ___ success. However, we should try to be more sincere to achieve every success in life.
+
+56. Article
+You must have heard (a) ___ name of Kazi Nazrul Islam. He is our national poet. He is known as (b) ___ rebel poet. He was born in (c) ___ poor family. He passed his boyhood in great hardship. When (d) ___ First World War broke out, he joined (e) ___ army. After (f) ___ war, he began to write poems. He wrote specially for (g) ___ oppressed and downtrodden people. He is (h) ___ called Shelley of Bengali literature. His poems and songs inspired (i) ___ Bangalees in (j) ___ War of Liberation.
+
+57. Article
+Today women are playing (a) ___ important role in all spheres of (b) ___ life. They are no longer confined within (c) ___ four walls of the kitchens. They have come out of their cocoons and are working hand in hand with (d) ___ men. They are joining (e) ___ wide range of professions and making a great (f) ___ contribution to the economy. Now, we realise that it is not possible to develop (g) ___ country keeping women, (h) ___ large section of (i) ___ population, in (j) ___ dark.
+
+58. Article
+We know (a) ___ man is (b) ___ rational creature. It is (c) ___ rationality in him which makes him (d) __ different species. He can differentiate between (e) ___ right and (f) ___ wrong. This is why (g) ___ man is considered (h) ___ best creation of (i) ___ Creator of (j) ___ universe.
+
+59. Article
+William Shakespeare was (a) ___ English poet, playwright and actor, widely regarded as (b) ___ greatest writer in (c) ___ English language and (d) ___ world's pre-eminent dramatist. He is often called (e) ___ England's national poet and (f) ___ "Bard of Avon". His extant works, including some collaborations, consist of about 38 plays, 154 sonnets, two long narrative poems, and (g) ___ few other verses, (h) ___ authorship of some of which is (i) ___ uncertain. His plays have been translated into every major living language and are performed more often than (j) ___ those of any other playwright.
+
+60. Article
+James Norman Hall was (a) ___ American writer. He wrote (b) ___ story about (c) ___ wonderful piece of business that took place between him and a farmer. While in (d) ___ Tahiti, he was short of (e) ___ money and rented (f) ___ one-room house about 22 kilometres from (g) ___ town. He was doing (h) ___ interesting writing there. To save money he wanted to make (i) ___ vegetable garden in front of his house. But (j) ___ land was full of ants and land-crabs. They foiled all his attempts.
+
+61. Article
+Emperor Shah Jahan of Delhi built (a) ___ Taj Mahal as (b) ___ tomb for his wife in (c) ___ Agra. Architecturally, it is still one of (d) ___ most wonderful buildings in the world. (e) ___ building is made of fine white marbles. It is surrounded by (f) ___ beautiful garden and (g) ___ long pool in front of the building. People go to (h) ___ India to visit this wonderful building. It is also (i) ___ symbol of (j) ___ love and affection.
+`;
+
+            const demoAnswers = `1.
+(a) The; (b) an; (c) a; (d) the; (e) the; (f) a;
+(g) The; (h) ×; (i) ×; (j) a.
+2.
+(a) the; (b) a; (c) an; (d) The; (e) ×; (f) the;
+(g) a; (h) The; (i) the; (j) a.
+3.
+(a) a; (b) a; (c) A; (d) the; (e) the/a: (f) the:
+(g) the; (h) ×; (i) the: (j) ×.
+4.
+(a) the; (b) The; (c) The; (d) ×; (e) a; (f) the;
+(g) a; (h) the; (i) ×; (j) the.
+5. (a) ×; (b) the; (c) ×; (d) ×; (e) ×; (f) An;
+(g) ×; (h) a/the; (i) ×; (j) the.
+6.
+(a) a; (b) a; (c) ×; (d) A; (e) a; (f) ×; (g) the;
+(h) the; (i) an; (j) the
+7.
+(a) an; (b) the; (c) an; (d) a; (e) ×; (f) The;
+(g) a; (h) a: (i) the; (j) ×.
+8.
+(a) a; (b) an; (c) ×; (d) ×; (e) a; (f) an; (g)
+the; (h) the; (i) the; (j) ×.
+9.
+(a) an; (b) ×; (c) a; (d) A; (e) the; (f) The/a;
+(g) a; (h) A; (i) an; (j) ×.
+10.
+(a) the; (b) the; (c) a; (d) ×; (e) a; (f) the; (g)
+a; (h) an; (i) the; (j) a.
+11.
+(a) the; (b) ×; (c) a; (d) the; (e) the; (f) The;
+(g) a; (h) A; (i) the; (j) a/the.
+12.
+(a) the; (b) the; (c) a; (d) ×; (e) a; (f) the: (g)
+the; (h) the; (i) ×; (j) the.
+
+13.
+(a) the; (b) the; (c) the/an; (d) The; (e) a; (f)
+an; (g) the; (h) the; (i) an; (j) ×.
+14.
+(a) an; (b) a; (c) a; (d) the; (e) a; (f) the; (g)
+×; (h) ×; (i) the; (j) an.
+15.
+(a) the (b) a; (c) the; (d) a; (e) ×; (f) a; (g)
+the; (h) the; (i) a/the; (j) the.
+16.
+(a) a; (b) the; (c) the; (d) ×; (e) an; (f) the;
+(g) the; (h) the; (i) the; (j) A.
+17.
+(a) an; (b) an; (c) the; (d) the; (e) a; (f) the:
+(g) a: (h) the; (i) A: (j) ×.
+18.
+(a) the; (b) A; (c) the; (d) a; (e) the; (f) a (g)
+the; (h) ×; (i) the; (j) ×.
+19.
+(a) ×; (b) a; (c) ×; (d) the; (e) ×; (f) the; (g)
+a; (h) the; (i) ×; (j) the
+20.
+(a) the; (b) an; (c) A; (d) the; (e) the; (f) the;
+(g) a: (h) ×; (i) a; (j) ×.
+21.
+(a) a; (b) ×; (c) the; (d) the; (e) a: (f) an; (g)
+an; (h) a; (i) the; (j) the.
+22.
+(a) a; (b) a; (c) The; (d) ×; (e) an; (f) an; (g)
+the; (h) the; (i) the; (j) ×.
+23.
+(a) a; (b) the (c) the; (d) a; (e) the; (f) ×; (g)
+the; (h) the; (i) The; (j) ×.
+24.
+(a) an; (b) ×; (c) ×; (d) ×; (e) A; (f) a; (g)
+the; (h) a; (i) the; (j) a.
+25.
+(a) An; (b) an; (c) an; (d) The; (e) the; (f) ×;
+(g) the; (h) the; (i) the; (j) ×.
+26.
+(a) An; (b) an; (c) the; (d) the; (e) the; (f)
+the; (g) An; (h) an; (i) a; (j) a.
+27.
+(a) ×; (b) ×; (c) the; (d) ×; (e) ×/a: (f) ×; (g)
+×; (h) the; (i) ×; (j) the.
+28.
+(a) An; (b) ×; (c) an; (d) the; (e) An; (f) the;
+(g) the; (h) the; (i) the; (j) ×.
+29.
+(a) An; (b) an; (c) an; (d) the; (e) ×; (f) ×;
+(g) The; (h) the; (i) the: (j) a.
+30.
+(a) a; (b) ×/The; (c) The; (d) the; (e) ×; (f)
+the; (g) ×; (h) ×; (i) ×; (j) the.
+31.
+(a) an; (b) ×; (c) a; (d) the; (e) a; (f) ×; (g)
+an; (h) A; (i) a; (j) .
+32.
+(a) ×; (b) an; (c) a; (d) ×; (e) a; (f) a; (g) a;
+(h) a; (i) a; (j) an.
+33.
+(a) a; (b) An; (c) the; (d) a; (e) ×; (f) a; (g)
+×; (h) the; (i) the; (j) ×.
+34.
+(a) an; (b) the; (c) a; (d) ×; (e) the; (f) An;
+(g) a; (h) ×; (i) An; (j) ×.
+35.
+(a) an; (b) a; (c) A; (d) a; (e) the; (f) The;
+(g) a; (h) ×; (i) the; (j) .
+36.
+(a) a; (b) ×; (c) the; (d) ×; (e) an; (f) the; (g)
+a; (h) the; (i) a; (j) ×.
+
+37.
+(a) the; (b) the; (c) ×; (d) a; (e) ×; (f) a; (g)
+the; (h) the; (i) an; (j) the.
+38.
+(a) the; (b) ×; (c) ×; (d) the; (e) a; (f) ×; (g)
+×; (h) the; (i) the; (j) a.
+39.
+(a) an; (b) a; (c) the; (d) a; (e) an; (f) a; (g)
+the; (h) the; (i) ×; (j) the.
+40.
+(a) A; (b) an; (c) the; (d) the; (e) a; (f) ×; (g)
+a; (h) an; (i) a; (j) the.
+41.
+(a) a; (b) ×; (c) ×; (d) a; (e) ×; (f) ×; (g) ×;
+(h) ×; (i) the; (j) ×.
+42.
+(a) ×; (b) ×; (c) the; (d) the; (e) ×; (f) ×; (g)
+×; (h) ×; (i) ×; (j) ×.
+43.
+(a) an; (b) the; (c) a; (d) a; (e) The; (f) the:
+(g) ×; (h) a; (i) a/the; (j) the.
+44.
+(a) An/The; (b) an; (c) the; (d) a; (e) ×; (f)
+The; (g) the; (h) a; (i) ×; (j) ×.
+45.
+(a) the; (b) the; (c) a; (d) ×; (e) the; (f) ×; (g)
+×; (h) a; (i) an; (j) a.
+46.
+(a) an; (b) ×; (c) a; (d) the; (e) ×; (f) An; (g)
+the; (h) a; (i) a; (j) an.
+47.
+(a) The; (b) a; (c) ×; (d) a; (e) ×; (f) the; (g)
+an; (h) an; (i) the; (j) a.
+48.
+(a) An; (b) an; (c) the; (d) an/the; (e) a/the;
+(f) The; (g) ×; (h) the; (i) the; (j) the.
+49.
+(a) A; (b) the; (c) the; (d) the; (e) the; (f) a;
+(g) the; (h) a; (i) the; (j) ×.
+50.
+(a) a; (b) a; (c) ×; (d) the; (e) a; (f) the; (g)
+×; (h) ×; (i) a; (j) the.
+51.
+(a) a; (b) A; (c) ×; (d) the; (e) ×; (f) ×; (g) ×;
+(h) the; (i) the; (j) ×.
+52.
+(a) the; (b) an; (c) ×; (d) ×; (e) ×; (f) the; (g)
+×; (h) the; (i) ×; (j) the.
+53.
+(a) the; (b) The; (c) ×; (d) the; (e) a; (f) ×;
+(g) ×; (h) the; (i) the; (j) ×.
+54.
+(a) ×; (b) the; (c) the; (d) ×; (e) the; (f) the;
+(g) the; (h) the; (i) ×; (j) ×.
+55.
+(a) a; (b) × : (c) the; (d) a; (e) the; (f) a: (g)
+the; (h) × (i) the; (j) the
+56.
+(a) the; (b) the (c) a (d) the; (e) the; (f) the:
+(g) the: (h) the: (i) the; (j) the
+57.
+(a) an; (b) ×; (c) the; (d) ×; (e) a: (f) ×; (g)
+the: (h) a; (i) the; (j) .
+58.
+(a) ×; (b) a; (c) the; (d) a (e) ×/the; (f) ×/the:
+(g) ×; (h) the; (i) the; (j) the.
+59.
+(a) an; (b) the (c) the (d) the; (e) ×; (f) the;
+(g) a; (h) the; (i) ×; (j) ×.
+60.
+(a) an; (b) a; (c) a (d) ×; (e) ×; (f) a; (g)
+×/the: (h) an; (i) a: (j) the.
+
+61.
+(a) the; (b) a; (c) ×; (d) the; (e) The; (f) a;
+(g) a: (h) ×: (i) a: (j) ×.
+`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function cleanVal(val) {
