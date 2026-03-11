@@ -189,70 +189,85 @@
         }
 
         @media print {
-            @page {
-                margin: 0.5cm;
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Hide interactive elements */
+            .no-print,
+            .pagination-controls,
+            .theme-toggle,
+            .btn {
+                display: none !important;
             }
 
             body {
-                background: white !important;
-                color: black !important;
-                padding: 0;
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
                 margin: 0;
+                padding: 10mm;
             }
 
-            .no-print {
-                display: none !important;
-            }
-
-            .container {
-                box-shadow: none;
-                border: none;
-                width: 100%;
-                max-width: 100%;
-                padding: 0;
-                background: white !important;
-                margin: 0;
-            }
-
+            .container,
             .quiz-card {
+                background: var(--card-bg) !important;
+                box-shadow: none !important;
+                border: 1px solid var(--border) !important;
+                margin-bottom: 40px !important;
                 page-break-inside: avoid;
-                border: 1px solid #ccc;
-                margin-bottom: 15px;
                 padding: 15px;
-                background: white !important;
-            }
-
-            .gap-input {
-                border-bottom: 1px solid #000;
-                background: transparent !important;
-                min-width: 80px;
-                font-size: 14px;
-                color: black;
-            }
-
-            .feedback-area {
-                display: block !important;
-                margin-top: 10px;
-                padding: 10px;
-                font-size: 13px;
-                background: #f8f8f8 !important;
-            }
-
-            #page-total-score {
-                display: block !important;
-                background: #f0f0f0 !important;
-                border-left: 5px solid #2563eb;
-            }
-
-            /* শুধু বর্তমান পেজের কার্ড দেখাবে */
-            .quiz-card:not([data-print-visible="true"]) {
-                display: none !important;
             }
 
             h2,
             h3 {
-                margin: 5px 0;
-                color: black !important;
+                color: var(--p) !important;
+            }
+
+            .gap-input {
+                background: var(--input-bg) !important;
+                color: var(--text-main) !important;
+                border-bottom: 3px solid var(--p) !important;
+            }
+
+            /* Make correct/wrong more visible in print */
+            .feedback-area {
+                display: block !important;
+                border: 1px solid var(--border) !important;
+            }
+
+            .correct-box {
+                background-color: rgba(22, 163, 74, 0.12) !important;
+                border-left: 8px solid var(--s) !important;
+                color: var(--s) !important;
+            }
+
+            .wrong-box {
+                background-color: rgba(220, 38, 38, 0.12) !important;
+                border-left: 8px solid var(--d) !important;
+                color: var(--d) !important;
+            }
+
+            .ans-tag {
+                background: var(--bg) !important;
+                border: 1px solid var(--border) !important;
+                color: var(--text-main) !important;
+            }
+
+            /* Ensure colored inputs stay visible */
+            input[style*="color: var(--s)"] {
+                color: var(--s) !important;
+                border-bottom-color: var(--s) !important;
+            }
+
+            input[style*="color: var(--d)"] {
+                color: var(--d) !important;
+                border-bottom-color: var(--d) !important;
+            }
+
+            /* Better spacing for print */
+            .quiz-card {
+                margin-bottom: 2cm !important;
             }
         }
     </style>
