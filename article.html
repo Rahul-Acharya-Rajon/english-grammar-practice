@@ -19,7 +19,7 @@
             --border: #cbd5e1;
         }
 
-        /* Dark Mode Colors - Fixed Visibility */
+        /* Dark Mode Colors */
         [data-theme="dark"] {
             --bg: #0f172a;
             --card-bg: #1e293b;
@@ -198,7 +198,7 @@
 
         [data-theme="dark"] .gap-input {
             background: #2d3748;
-            color: #ffffff !important;
+            color: #ffffff;
         }
 
         .gap-input:focus {
@@ -246,16 +246,15 @@
         }
 
         /* ──────────────────────────────────────────────── */
-        /*          COLOR PRINTING SUPPORT ADDED            */
+        /* PRINT STYLES - Respect current theme + better readability */
         /* ──────────────────────────────────────────────── */
         @media print {
-
-            /* Very important: tell browser to print background colors */
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
 
+            /* Hide interactive elements */
             .no-print,
             .pagination-controls,
             .theme-toggle,
@@ -264,68 +263,71 @@
             }
 
             body {
-                background: white !important;
-                color: black !important;
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
+                margin: 0;
+                padding: 10mm;
             }
 
             .container,
             .quiz-card {
-                background: white !important;
+                background: var(--card-bg) !important;
                 box-shadow: none !important;
-                border: 1px solid #999 !important;
+                border: 1px solid var(--border) !important;
                 margin-bottom: 40px !important;
                 page-break-inside: avoid;
-                page-break-after: always;
+                padding: 15px;
             }
 
             h2,
             h3 {
-                color: #1e40af !important;
+                color: var(--p) !important;
             }
 
             .gap-input {
-                background: #f8fafc !important;
-                color: black !important;
-                border-bottom: 3px solid #2563eb !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background: var(--input-bg) !important;
+                color: var(--text-main) !important;
+                border-bottom: 3px solid var(--p) !important;
             }
 
-            /* Preserve correct/wrong colors in print */
-            input.gap-input[style*="color: var(--s)"] {
-                color: #16a34a !important;
-                border-bottom-color: #16a34a !important;
-            }
-
-            input.gap-input[style*="color: var(--d)"] {
-                color: #dc2626 !important;
-                border-bottom-color: #dc2626 !important;
+            /* Make correct/wrong more visible in print */
+            .feedback-area {
+                display: block !important;
+                border: 1px solid var(--border) !important;
             }
 
             .correct-box {
-                background-color: #f0fdf4 !important;
-                border-left: 8px solid #16a34a !important;
-                color: #166534 !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background-color: rgba(22, 163, 74, 0.12) !important;
+                border-left: 8px solid var(--s) !important;
+                color: var(--s) !important;
             }
 
             .wrong-box {
-                background-color: #fef2f2 !important;
-                border-left: 8px solid #dc2626 !important;
-                color: #991b1b !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background-color: rgba(220, 38, 38, 0.12) !important;
+                border-left: 8px solid var(--d) !important;
+                color: var(--d) !important;
             }
 
             .ans-tag {
-                background: #f1f5f9 !important;
-                border: 1px solid #cbd5e1 !important;
-                color: #1e293b !important;
+                background: var(--bg) !important;
+                border: 1px solid var(--border) !important;
+                color: var(--text-main) !important;
             }
 
-            .feedback-area {
-                display: block !important;
+            /* Ensure colored inputs stay visible */
+            input[style*="color: var(--s)"] {
+                color: var(--s) !important;
+                border-bottom-color: var(--s) !important;
+            }
+
+            input[style*="color: var(--d)"] {
+                color: var(--d) !important;
+                border-bottom-color: var(--d) !important;
+            }
+
+            /* Better spacing for print */
+            .quiz-card {
+                margin-bottom: 2cm !important;
             }
         }
     </style>
