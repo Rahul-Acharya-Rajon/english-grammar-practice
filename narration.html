@@ -215,53 +215,85 @@
         }
 
         @media print {
-            @page {
-                margin: 0.6cm;
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
-            body {
-                background: white !important;
-                color: black !important;
-                padding: 0 !important;
-            }
-
+            /* Hide interactive elements */
             .no-print,
+            .pagination-controls,
             .theme-toggle,
-            .user-input-box,
-            .btn,
-            h2 {
+            .btn {
                 display: none !important;
             }
 
-            .container {
-                box-shadow: none;
-                background: white;
-                padding: 0;
+            body {
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
                 margin: 0;
-                width: 100%;
+                padding: 10mm;
             }
 
+            .container,
             .quiz-card {
+                background: var(--card-bg) !important;
+                box-shadow: none !important;
+                border: 1px solid var(--border) !important;
+                margin-bottom: 40px !important;
                 page-break-inside: avoid;
-                border: 1px solid #000;
-                margin-bottom: 12px;
-                padding: 12px;
+                padding: 15px;
             }
 
-            .q-display {
-                background: #f8f8f8 !important;
-                border-left: 4px solid #2563eb;
+            h2,
+            h3 {
+                color: var(--p) !important;
             }
 
+            .gap-input {
+                background: var(--input-bg) !important;
+                color: var(--text-main) !important;
+                border-bottom: 3px solid var(--p) !important;
+            }
+
+            /* Make correct/wrong more visible in print */
             .feedback-area {
                 display: block !important;
-                padding: 0;
+                border: 1px solid var(--border) !important;
             }
 
-            .diff-view {
-                border: none;
-                background: transparent;
-                padding: 0;
+            .correct-box {
+                background-color: rgba(22, 163, 74, 0.12) !important;
+                border-left: 8px solid var(--s) !important;
+                color: var(--s) !important;
+            }
+
+            .wrong-box {
+                background-color: rgba(220, 38, 38, 0.12) !important;
+                border-left: 8px solid var(--d) !important;
+                color: var(--d) !important;
+            }
+
+            .ans-tag {
+                background: var(--bg) !important;
+                border: 1px solid var(--border) !important;
+                color: var(--text-main) !important;
+            }
+
+            /* Ensure colored inputs stay visible */
+            input[style*="color: var(--s)"] {
+                color: var(--s) !important;
+                border-bottom-color: var(--s) !important;
+            }
+
+            input[style*="color: var(--d)"] {
+                color: var(--d) !important;
+                border-bottom-color: var(--d) !important;
+            }
+
+            /* Better spacing for print */
+            .quiz-card {
+                margin-bottom: 2cm !important;
             }
         }
     </style>
@@ -269,22 +301,30 @@
 
 <body>
 
-    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓</div>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
 
     <div class="container">
-        <h2 style="text-align:center; color:var(--p);" class="no-print">Narration Change Practice<br>(Direct → Indirect
+        <h2 style="text-align:center; color:var(--p);" class="no-print">HSC Narration Practice Sheet
+            Generator<br>(Direct → Indirect
             Speech)</h2>
 
         <div id="setup-view" class="no-print">
-            <p>Paste questions (direct speech) and model answers (indirect speech) below — one item per block, starting
-                with number or just new line separation.</p>
             <div class="setup-grid">
-                <textarea id="q-input"
-                    placeholder="Questions (direct speech passages)&#10;e.g.&#10;1. A hawker said, “Will you buy any paper?...”&#10;2. My friend said to me, ..."></textarea>
-                <textarea id="a-input"
-                    placeholder="Model answers (indirect speech)&#10;e.g.&#10;1. A hawker asked Sushmita if she would buy...&#10;2. My friend asked me why I was sitting..."></textarea>
+                <div>
+                    <label>1. Paste Questions:</label>
+                    <textarea id="q-input"
+                        placeholder="Questions (direct speech passages)&#10;e.g.&#10;1. A hawker said, “Will you buy any paper?...”&#10;2. My friend said to me, ..."></textarea>
+                </div>
+                <div>
+                    <label>2. Paste Answers:</label>
+                    <textarea id="a-input"
+                        placeholder="Model answers (indirect speech)&#10;e.g.&#10;1. A hawker asked Sushmita if she would buy...&#10;2. My friend asked me why I was sitting..."></textarea>
+                </div>
             </div>
-            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Start Practice</button>
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
+                Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -308,6 +348,711 @@
             document.documentElement.hasAttribute("data-theme")
                 ? document.documentElement.removeAttribute("data-theme")
                 : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `1. Change the form of narrative style by using indirect speeches:
+"A hawker said, “Will you buy any paper? I have all types of Newspapers and Magazines. Please take one from me.” “I buy books but now I need a weekly. Don’t you have any Weekly Magazine?” said Sushmita.
+
+2. Change the form of narrative style by using indirect speeches:
+My friend said to me, "Why are you sitting alone here? I have been looking for you. Let us go for a walk in the open field." "Leave me alone," said I. "Don't disturb me please."
+
+3. Change the form of narrative style by using indirect speeches:
+The teacher said to Kamal, "Why are you talking in the class? You should behave yourself." Kamal replied, "Sir, I am sorry. I am asking Rahim to lend me his pen. My pen has run out." The teacher said, "Be attentive and listen to my lecture."
+
+4. Change the form of narrative style by using indirect speeches:
+Rahim said to Hamid, "How are you? I went to your hostel yesterday, but did not find you. Where did you go?" "I went to the station," said Hamid, "I had to receive my maternal uncle there."
+
+5. Change the form of narrative style by using indirect speeches:
+"You look a little bit like my mother," he said, "especially in the dark by the the fire." "But you were only four, Jerry, when you came here. You have remembered how she looked all these years?" "My mother lives in Mannville," he said.
+
+6. Change the form of narrative style by using indirect speeches:
+"Where is my son?" said the grocer. "A crow carried your son away," said the fruit seller. "You liar. How can a crow carry away such a big boy?" "Just the same way as mice can eat away the balance and weights."
+
+7. Change the form of narrative style by using indirect speeches:
+"Stop writing now. The time is over." "Sir, please wait a few more minutes. I came late," the student said. "That can't be an excuse. The college is not responsible for your delay," said the teacher. "Sorry, sir."
+
+8. Change the form of narrative style by using indirect speeches:
+"Where are you from?" said the teacher. "I am from Nepal," said the student. "How did you find Dhaka when you first arrived?" said the teacher. "Well, I like it. I think the city is very beautiful," said the student.
+
+9. Change the form of narrative style by using indirect speeches:
+"Stop! You're eating all our bread," shouted the two rats. "I'm doing my best but I've told you that it's difficult," said the monkey. "Give us that little piece," said the rats. "This is my piece. Haven't I laboured a lot for you?" replied the monkey. "How foolish we are believing you!" said the rats.
+
+10. Change the form of narrative style by using indirect speeches:
+The stranger said to the boy. "Will you tell me the way to the nearest hotel?" "Yes, I will. Do you want a residential one in which you can spend the night?" the boy said, "I do not want to stay here, but I only want a meal," the stranger replied. The boy said, "Follow me."
+
+11. Change the form of narrative style byusing indirect speeches:
+Once I asked a little girl, "What is your mother's name?" She replied cleverly, "I know my mother's name but I won't tell you that. "Why?" "Because I don't know you." I said, "What a clever girl you are! May you prosper in life."
+
+12. Change the form of narrative style byusing indirect speeches:
+The teacher said to the boy, "Do you think that honesty is the best policy?" The boy said, "Yes, sir, I think so." "Then, learn to be honest from your boyhood," said the teacher. "Thank you, sir," said the boy. "May Allah grant you a long life," said the teacher to the boy.
+
+13. Change the form of narrative style by using indirect speeches:
+"Will you come to my house tomorrow?" I asked the boy. "We can discuss terms and conditions then." I said. "I shall be very happy to meet you at your house. Thank you so much," he replied.
+
+14. Change the form of narrative style by using indirect speeches:
+"Why were you absent?" said the teacher. "The Headmaster is very angry with you. Go to him at once." "I was seriously ill," said Aslam. "Let me show my medical certificate, sir."
+
+15. Change the form of narrative style by using indirect speeches:
+"Excuse me, sir." "May I talk to you now?" Nazrul said. "How can I help you?" said the police officer. "Last night while I was going home by CNG, two snatchers rode into my car," said Nazrul. The police officer said, "Did they take anything from you?" "Yes, they snatched away my mobile phone and five thousand taka." "Let me record your complaint." "Thank you very much."
+
+16. Change the form of narrative style by using indirect speeches:
+"Coffee?" I said. "Yes, just an ice cream and coffee," she answered. "You know, there's one thing I thoroughly believe in," she said, as she ate the ice cream. "One should always get up from a meal feeling one could eat a little more." "Are you still hungry?" I asked faintly.
+
+17. Change the form of narrative style by using indirect speeches:
+"I never drink anything for luncheon," she said. "Neither do I," I answered promptly. "Except white wine," she proceeded as though I had not spoken. "These French white wines are so light. They are wonderful for the digestion."
+
+18. Change the form of narrative style by using indirect speeches:
+The boy said, "I've to go for supper now. I can come again tomorrow evening." I said, "I'll pay now for what you've done. Thinking I probably have to insist on an older boy. "Ten cents an hour?" "Anything is alright."
+
+19. Change the form of narrative style by using indirect speeches:
+"Where are you going?" said the merchant. "I was coming to see you." "What do you want?" "To earn my bread by the labour of my hands." "Do you really want work?" said the merchant. "Yes, if you have any." "Then follow me and carry a box from a shop to my house." "I do not see how I can do that," said the youth.
+
+20. Change the form of narrative style by using indirect speeches:
+"The three witches stood amidst the swirling mist. "When shall we three meet again?" asked the first witch. "When the hurly-burly is done; when the battle is lost and won," replied the second witch. "Where is the place?" inquired the third with her impatient tone. "Upon the health," answered the first.
+
+21. Change the form of narrative style by using indirect speeches:
+"Have you killed the rats?" said the Mayor. "Yes, I have," replied the piper. "Give me the promised money." "How funny you are!" said the Mayor. "Take only fifty." "I was supposed to be given fifty thousand guilders," said the piper. "What have you done? The work you have done is very simple," said the Mayor.
+
+22. Change the form of narrative style by using indirect speeches:
+"Why are you putting up the food in your pocket, Sir? Why don't you eat?" asked the noble man. "I am doing the right thing. My dress deserves these rich dishes," replied Sheikh Saadi. "I don't understand what you mean to say," said the noble man. "And I'm sorry."
+
+23. Change the form of narrative style by using indirect speeches:
+"I will pay for it," he said. "I broke it. I brought the axe down careless." "But no one hits accurately every time," I told him. "The fault was in the wood of the handle. I will see the man from whom I bought it." "Thanks," he said.
+
+24. Change the form of narrative style by using indirect speeches:
+"What kind of stories did Aesop tell?" asked Anwar. “Fables,” replied Mrs Amin. "Do you know what fables are?" "No," replied Anwar. "Well," said Mrs Amin. "Fables are stories with a moral. And Aesop entertained people by telling these stories." said Mrs Amin.
+
+25. Change the form of narrative style by using indirect speeches:
+"Oh, my Lord, do not kill the child," said the woman. "Let her have it." The king said, "Now everything is clear to me". Pointing to the woman, he said to the servant, "Give her the child. She is the mother of the child."
+
+26. Change the form of narrative style by using indirect speeches:
+"Have you seen your mother, Jerry?" "I see her in every summer. She sends for me." The authoress wanted to cry out. "Why are you not with her? How can she let you go away again?" He said, "She comes up here from Mannville whenever she can. She does not have a job now."
+
+27. Change the form of narrative style by using indirect speeches:
+After telling the story of a sinking ship, the teacher asked the students, "What do you think the drowning woman told to her husband?" According to most of the students the woman said, "Please, save my life." From the back bench a boy said, "I believe, she would have told- take care of our child." Being surprised the teacher asked him, "Have you heard the story before?" "No, sir. Actually these were also my mom's last words to my dad before she died from a serious disease."
+
+28. Change the form of narrative style by using indirect speeches:
+"Oh, my Lord! Please do not kill the child," cried the woman, "Let her have the child." The king said, "Now everything is clear to me." Pointing to the woman, the king again said to the servant, "Give her the child. She is the real mother."
+
+29. Change the form of narrative style by using indirect speeches:
+The class teacher said to the students. "do you like to go for study tour?" "Yes," said all the students. Then he said, "Take permission of your parents." "One of the students said, "Let us go to Cox's Bazar." The Principal said, "May your journey be safe and sound."
+
+30. Change the form of narrative style by using indirect speeches:
+The old man said, "Can you give me some food? I have been starving form two days." The maid said, "Why do you beg? Can't you work?" "No, I'm unable to work," said the man. The maid again said, "Don't you have anyone to look after you?" "No, I have none on this earth who can take care of me", said the old man.
+
+31. Change the form of narrative style by using indirect speeches:
+"Porter, you may go," said the mistress of the house, laughing. "You have gained your freedom." "By Allah," he replied, "I will not leave this house until I have heard the stories of my companions."
+
+32. Change the form of narrative style by using indirect speeches:
+"Why are your children crying, my daughter?" "They have been starving." said the woman. "Have you none else in the world?" "My husband died some months ago. He left them neither money nor any property. So, they are in great distress. They have to starve sometimes." "What a pity it is!" said the Caliph.
+
+33. Change the form of narrative style by using indirect speeches:
+"Are you ready to order, sir?" said the waiter. "I would like to have a plain vegetable soup for starter. Then grilled chicken, boiled potatoes and garlic bread for main course.", replied the customer. "Anything for dessert?", asked the waiter. "Just a scoop of ice cream, please.", said the customer.
+
+34. Change the form of narrative style by using indirect speeches:
+The king said to the astrologer, "How long do you want to live? For you will be hanged very soon." Looking at the sky the astrologer said, "My Lord, the positions of the stars declare that I'll die only a week before your Majesty. Good bye." The king turned pale and ordered his courtiers. "Drive this wretch away and never allow him to come for disturbing peace."
+
+35. Change the form of narrative style by using indirect speeches:
+A man, lost in a forest, saw another man and rushed to him and said, "Oh! How happy I am to meet you! Unfortunately I have been lost in this forest for four days. Can you help me get out of this forest?" "No, Actually you don't need to be so happy, my 5  English 2nd Paper – Narration friend", replied the another man, "I myself have been lost here for a week."
+
+36. Change the form of narrative style by using indirect speeches:
+"Where will you get admission after your HSC Examination? Do you have any choice?" said the teacher to Susmita. "I'm not yet sure what I have to do because everything depends on my result." "You should have a choice. Be positive and optimistic."
+
+37. Change the form of narrative style by using indirect speeches:
+"I can chop some wood today," said Jerry. "But I have a boy coming from the orphanage." "I am the boy." "You? But you are small." Size does not matter, chopping wood," said Jerry. "Some of the big boys don't chop good. I've been chopping wood for a long time." said Jerry to the writer.
+
+38. Change the form of narrative style by using indirect speeches:
+“I have won a lottery and got 10 lakh taka,” said Samira. “Congratulations!” I said. “What do you intend to do with the large amount of money?” “I want to serve my poor village people. So. I have made up my mind to establish a hospital in our rural area.” Samira replied. “Thank you.” I said. “I shall also help you in this respect.”
+
+39. Change the form of narrative style by using indirect speeches:
+“What’s a puppet show?” Mita said to her father. Father said. “Let’s go inside and you can see yourself.” Inside the tent Mita said, “How strange! A doll is dancing and talking. Father said, “A man behind the screen is moving the doll. Do you understand who is talking?”
+
+40. Change the form of narrative style by using indirect speeches:
+"What's your dream? Do you have any dream?" Said Zayed. "Yes, I have a dream. My dream is a full plate of rice." Said Robi. "Come with me. I am going to materialize your dream." "How kind you are!" Said Robi.
+
+41. Change the form of narrative style by using indirect speeches:
+Mr. Kalam said to the bank manager, "May I get in, sir?" "Yes, come in," said the bank manager. Mr. Kalam said, "I want to open a bank account." The manager said. "What type of account will you open?" I want to open a savings account," said Mr. Kalam. "Please go to the front desk. The officer will help you." "Thank you very much." Mr. Kalam said.
+
+42. Change the form of narrative style by using indirect speeches:
+"How is your mother. Habib?," said Fahim. "She is better today," said Habib. "Did you take her to any doctor?" "Yes, and the doctor has x-rayed her." "Now, take a good care of her and ensure all medications as prescribed," said Fahim. "Of course, thank you a lot," said Habib.
+
+43. Change the form of narrative style by using indirect speeches:
+"Why do you stop me?" asked Rubel. "Have I done any wrong?" "You are driving so fast. It is not the rule," said the traffic sergeant. "Sorry Sir. My mother is in the hospital. So, I am in a hurry," said Rubel. 
+
+44. Change the form of narrative style by using indirect speeches:
+"What kind of stories did Aesop tell?" asked Anwar. "Fables," replied Mr. Rahman. "Do you know what fables are?" "No." replied Anwar. "Well," continued Mr. Rahman, "Fables are stories with a moral. And Aesop entertained people by telling these stories."
+
+45. Change the form of narrative style by using indirect speeches:
+"Follow my example," she said as we shook hands." and never eat more than one thing for luncheon." "I'll do better than that," I retorted. "I'll eat, nothing for dinner tonight." "Humorist! you're quite a humorist." she cried gaily, jumping into a cab.
+
+46. Change the form of narrative style by using indirect speeches:
+"What happened to you, Tareq?" said Rashed. "I was sick with the flu. Have you heard anything about our exam?" said Tareq. "It is on 23 October. You need to collect the admit card of the exam," said Rashed. "From where can I get it?" said Tareq. "It is in the office room," said Rashed.
+
+47. Change the form of narrative style by using indirect speeches:
+"Why are you crying? Do you have any problem?" asked the passer-by. "I am crying because I have none to look after me," said the street child. "Are you hungry?" "Yes, I am," said the boy.
+
+48. Change the form of narrative style by using indirect speeches:
+"Stop. Didn't I tell you to stop? You cannot go there," said the sergeant. "Oh! very well, it is hard thing to be very poor. All the world is against the poor," said the man. 
+
+49. Change the form of narrative style by using indirect speeches:
+He said, "I can chop some wood today." "You? But you're small." "Size don't matter, chopping wood." Jerry said. "Some of the big boys don't chop good. I've been chopping wood at the orphanage for a longtime."
+
+50. Change the form of narrative style by using indirect speeches:
+"Could I help you, Sir?" said the receptionist. The man replied, "Sure, I want to meet the Managing Director of the company." The receptionist said, "Do you have an appointment?" "Yes, I have," he said. "Wait for a while," said the receptionist.
+
+51. Change the form of narrative style by using indirect speeches:
+"Oh, my Lord, please do not kill the child," said the woman. "Let her have him." The king said, "Now everything is clear to me." Pointing to the woman, he said to the servant. "Give her the child. She is the mother of the baby."
+
+52. Change the form of narrative style by using indirect speeches:
+"Where is the cattle which these people graze and where are the fields they plough, uncle?" he asked. turning to Daya Ram. "They have no cattle and no fields here," said the chaprasi, pushing his neck back to stiff uprightness. "It is only the rustics in the villages who graze cattle and plough the land." he said.
+
+53. Change the form of narrative style by using indirect speeches:
+Jerry said, "I can chop some wood today." "But I have a boy coming from the orphanage." "I'm the boy." "You? But you are small." "Size does not matter, chopping wood." Jerry said, "Some of the big boys don't chop good. I've been chopping wood at the orphanage for a long time."
+
+54. Change the form of narrative style by using indirect speeches:
+"Where do you like to go, sir?" asked the ticket seller. 'Cox's Bazar,' replied the stranger. "How many tickets do you need?" "I will buy five tickets." "Take these tickets. They will cost three thousand taka," said the ticket seller.
+
+55. Change the form of narrative style by using indirect speeches:
+"How much do you want?" said the Mayor. "A thousand guilders", said the pied piper. "All right", said the Mayor. "We'll pay you a thousand guilders. When will you set to work?" "Now", said the pied piper.
+
+56. Change the form of narrative style by using indirect speeches:
+"Will you buy my hair?" asked Della. "I buy hair," said Madame. "Take your hat off and let's have a sight at the looks of it." "Twenty dollars," said Madame, lifting the mass with a practiced hand. "Give it to me quick," said Della.
+
+57. Change the form of narrative style by using indirect speeches:
+"Where do you come from?" I asked him. "From San Carlos," he said, and smiled. "I was taking care of animals." "Oh," I said, not quite understanding. "Yes," he said, "I stayed, you see, taking care of animals. I was the last one to leave the town of San Carlos."
+`;
+
+            const demoAnswers = `1. A hawker asked Sushmita if she would
+buy any paper and said that he had all types
+of newspapers and magazines. He (h)
+requested her to take one from him. Then
+Sushmita said that she bought books but
+then she needed a weekly. She (S) asked the
+hawker if he did not have any weekly
+magazine.
+2. My friend asked me why I was sitting
+alone there. He further said that he had been
+looking for me and proposed me that we
+should go out for a walk in the open field. I
+told him to leave me alone. I also requested
+him not to disturb me.
+3. The teacher asked Kamal why he was
+talking in the class and warned him that he
+should behave himself. Kamal respectfully
+replied that he was sorry and added that he
+was asking Rahim to lend him his (R) pen
+as his pen had run out. The teacher advised
+him (K) to be attentive and listen to his
+lecture.
+4. Rahim' asked Hamid how he was. He (R)
+said that he (R) had gone to his (H) hostel
+the previous day/the day before, but had not
+found him (H). He (R) also asked him (H)
+where he (H) had gone. Hamid replied that
+he (H) had gone to the station. He (H) added
+that he had to receive his maternal uncle
+there.
+5. Jerry told the writer/the authoress that
+she looked a little bit like his mother
+especially in the dark by the fire. Not
+believing the writer/the authoress told Jerry
+that he had been only four when he had
+gone there. Being surprised she asked him
+if he had remembered how she had looked
+all those years. At last Jerry replied that his
+mother lived in Mannville.
+6. The grocer asked the fruit seller where
+his son was. The fruit seller replied that a
+crow had carried away his son. The grocer
+called him a liar, and asked him how a crow
+could carry away such a big boy. The fruit
+seller replied that it could carry away just in
+the same way as mice could eat away
+balance and weights.
+7. The teacher ordered the student to stop
+writing then and told him that the time was
+over. The student respectfully requested the
+teacher to wait a few minutes more. He (s)
+also told him (T) that he (s) had come late.
+Then the teacher told him that that could not
+be an excuse and added that the-college was
+not responsible for his delay. The student
+respectfully said that he was sorry.
+8. The teacher asked the student where he
+was from. The student replied that he was
+from Nepal. The teacher again asked him
+how he (s) had found Dhaka when he had
+first arrived. The student then told the
+teacher with admiration that he (s) liked it
+very much and added that he (s) thought the
+city was very beautiful.
+9. The two rats shouted and told the
+monkey to stop and also said that he (m)
+was eating all their bread. The monkey
+replied that he was doing his best but he had
+told them that it was difficult, The rats
+requested him (m) to give them that little
+piece. The monkey replied that that was his
+piece and asked if he had not laboured a lot
+for them. The rats exclaimed with despair
+that they were very foolish believing him.
+10. The stranger asked/enquired of the boy
+if/whether he would tell him the way to the
+nearest hotel. The boy replied that he would
+but asked him if he wanted a residential one
+in which he could spend the night. The
+stranger replied that he did not want to stay
+there, but he only wanted a meal. The boy
+told/requested him to follow him (b).
+11. Once I asked a little girl to tell me what
+her mother's name was. She replied cleverly
+that she knew her mother's name but she
+would not tell me that. I asked her why she
+would not tell me. She replied that because
+she didn't know me. I exclaimed with
+wonder that she was a very clever girl. I
+wished that she might prosper in life.
+12. The teacher asked the boy if he thought
+that honesty is the best policy. The boy
+respectfully replied in the affirmative and
+said that he thought so. Then the teacher
+advised the boy to learn to be honest from
+his boyhood. The boy respectfully thanked
+his teacher. The teacher prayed that Allah
+might grant him (boy) a long life.
+13. I asked the boy if/whether he would go
+to my house the next day. I told him that we
+could discuss terms and conditions then. He
+replied that he would be very happy to meet
+me at my house and thanked me so much.
+14. The teacher asked Aslam why he (A)
+had been absent and said that the
+Headmaster was very angry with him (A).
+Then he (T) ordered him (A) to go to him
+(H) immediately. Aslam said that he (A)
+had been seriously ill. Then he (A)
+respectfully told the teacher that he (A)
+might be allowed to show his (A) medical
+certificate.
+15. Drawing the attention of the police
+officer, Nazrul asked him politely if he
+might talk to him (P) then. The police
+officer asked him (N) how he (P) could help
+him (N). Nazrul replied that the previous
+night while (N) he had been going home by
+CNG, two snatchers had ridden into his (N)
+car. The police officer again asked him (N)
+if they had taken anything from him (N)..
+Nazrul replied that they had snatched away
+his (N) mobile phone and five thousand
+taka. The police officer said that he (P)
+might record his (N) complaint. Nazrul
+thanked him (P) very much.
+16. I asked her if she would like to have
+coffee. She replied that she would and said
+that she wanted Just an ice cream and
+coffee. As she ate the ice cream, she told me
+by way of conversation that I knew that
+there was one thing she thoroughly believed
+in. She added that one should always get up
+from a meal feeling one could eat a little
+more. I asked her faintly if she was still
+hungry.
+17. She told me that she never drank
+anything for luncheon. I answered promptly
+that I also never drank anything for
+luncheon. She proceeded as though I had
+not spoken saying that she never drank
+anything for luncheon except white wine.
+She added that those French white wines
+were so light. She also added that they were
+wonderful for the digestion.
+18. The boy told me that he had to go for
+supper then and added that he could come
+again the next/the following evening.
+Thinking I'probably had to insist on an
+older boy. I told him that I would pay then
+for what he had done. I asked him if ten
+cents an hour would do. The boy replied
+that anything was alright.
+19. The merchant asked the youth where he
+(y) was going. The youth replied that he
+was going to see him (m). At that, the
+merchant again asked the youth what he (y)
+wanted. In reply, the youth told the
+merchant that he (y) wanted to earn his
+bread by the labour of his hands. The
+merchant further asked him if he (y) really
+wanted work. The youth promptly replied
+that he did if he (m) had any. The merchant
+then ordered him (y) to follow him (m) and
+carry a box from a shop to his (m) house. At
+that, the youth told the merchant that he (y)
+did not see how he could do that.
+20. Standing amidst the swirling mist, the
+first one of the three witches asked the other
+two when they would meet again. The
+second witch replied that they would meet
+again when the hurly-burly was done and
+when the battle was lost and won. Then the
+third witch with her impatient tone inquired
+where the meeting place was/would be. The
+first one answered that their meeting place
+would be upon the heath.
+21. The Mayor asked the piper if he (p) had
+killed the rats. The piper replied in the
+affirmative that he (p) had killed the rats.
+He (p) then requested/told the Mayor to
+give him (p) the promised money. The
+Mayor exclaimed with wonder that he (p)
+was very, funny and told the piper to take
+only fifty. The piper said that he (p) had
+been supposed to be given five thousand
+guilders. Being angry, the Mayor asked him
+(p) what he (p) had done. He (M) added that
+the work he (p) had done was very simple.
+22. Addressing Sheikh Saadi as sir, the
+nobleman asked him (S) why he (S) was
+putting up the food in his pocket and why
+he (S) did not eat. Sheikh Saadi replied that
+he (S) was doing the right thing because his
+(S) dress deserved those rich dishes.
+Expressing his (n) sorrow, the nobleman
+said that he (n) did not understand what he
+(S) meant to say.
+23. He said that he would pay for it because
+he had broken it. He added that he had
+brought the axe down carelessly. I,
+however, told him that no one hits
+accurately every time. Also, I emphasized
+that the fault had been in the wood of the
+handle. I further added that I would see the
+man from whom I had bought it. Then he
+thanked me.
+24. Anwar asked Mrs. Amin what kind of
+stories Aesop had told. Mrs. Amin replied
+that they were fables. She asked him if he
+knew what fables are. Anwar replied in the
+negative. Considering the fact. Mrs. Amin
+continued saying that fables are stories with
+a message or a moral. Anwar again asked
+Mrs. Amin who Aesop was and where he
+(Aesop) lived. In reply. Mrs. Amin said that
+Aesop had entertained people by telling
+stories.
+25. Addressing the king as her Lord, the
+woman earnestly requested him not to kill
+the child and told the king that she (the
+other woman) might be allowed to have the
+child. Hearing this plea of the woman, the
+king said that everything was clear to him
+then. Pointing to the woman, the king
+ordered the servant to give her the child
+because she was the mother of the child.
+26. The authoress asked Jerry if he had
+seen his mother. Jerry replied that he saw
+her every summer and added that she sent
+for him. The authoress wanted to cry out
+and asked him why he (J) was not with her
+(m) and how she (m) could let him (J) go
+away again. Jerry replied that she (m) came
+up there from Mannville whenever she
+could. He (J) also said that she (m) did not
+have a job then.
+27. After telling the story of a sinking ship,
+the teacher asked the students what they
+thought the drowning woman had told her
+husband. According to most of the students,
+the woman requested her husband to save
+her life. From the back bench a boy said that
+he believed she would have told to take care
+of their child. Being surprised, the teacher
+asked him if he had heard the story before.
+The boy respectfully replied in the negative
+and added that actually those had also been
+his mom's last words to his dad before she
+had died of a serious disease.
+28. The woman addressed the king as her
+lord and told him (king) not to kill the child.
+Then the king ordered his servant to let her
+(the woman) have the child. Again the king
+said that everything was clear to him (king)
+then. Pointing to the woman, the king again
+ordered his servant to give her the child.
+The king also said that she was the real
+mother.
+29. The class teacher asked the students if/
+whether they liked to go for study tour. All
+the students replied in the affirmative. Then
+the teacher told them (S) to take permission
+of their parents. One of the students
+proposed that they should/might go to Cox's
+Bazar. The Principal prayed/wished that
+their journey might be safe and sound.
+30. The old man asked the maid if she
+could give him (old man) some food and
+added that he had been starving for two
+days. The maid asked him why he begged
+and also asked him whether he couldn't
+work. The man replied in the negative and
+added that he was unable to work. The maid
+again asked if he didn't have anyone to look
+after him. The old man replied in the
+negative and added that he had none on this
+earth who could take care of him
+31. The mistress of the house, laughing,
+told the porter that he might go and added
+that he had gained his freedom. Swearing
+by Allah, he replied that he would not leave
+that house until he had heard the stories of
+his companions.
+32. Addressing the woman as his daughter
+the Caliph asked why her children were
+crying. The woman replied that they had
+been starving. The Caliph again asked if she
+had none else in the world. The woman
+replied that her husband had died some
+months ago. She added that he (h) had left
+them neither money nor any property. So,
+they were in great distress. She also said
+that they had to starve sometimes. The
+Caliph exclaimed with sorrow that it was a
+great pity.
+33. The waiter respectfully asked the
+customer if/whether he was ready to order.
+The customer replied that he would like to
+have a plain vegetable soup for starter.
+Then he added that he would like to have
+grilled chicken, boiled potatoes and garlic
+bread for main course. The waiter again
+asked if he wanted anything for dessert. The
+customer replied politely that he wanted
+just a scoop of ice cream.
+34. The king asked the astrologer how long
+he (A) wanted to live as he would be hanged
+very soon. Addressing as his lord, the
+astrologer replied looking at the sky that the
+positions of the stars declared that he would
+die only a week before his Majesty. Then
+he (A) bade him (k) good bye. The king
+turned pale and ordered his courtiers to
+drive that wretch away and never allow him
+to come for disturbing peace.
+35. A man, lost in a forest, saw another man
+and rushed to him and exclaimed that he
+was very happy to meet him. He also added
+that unfortunately he had been lost in that
+forest for four days. He again asked if
+he(another man) could help him get out of
+that forest. The other man replied in the
+negative and added that he himself had been
+lost there for a week.
+36. The teacher asked Susmita where she
+would get admission after her HSC
+Examination and if she had any choice.
+Susmita replied that she was not sure yet
+about what she had to do because
+everything depended on her result. The
+teacher encouraged her to have a choice and
+to remain positive and optimistic.
+37. Jerry told the writer that he (J) could
+chop some wood that day. But the writer
+said that he/she (W) had a boy coming from
+the orphanage. Then Jerry replied that he (J)
+was the boy. Being astonished the writer
+asked him if he (J) was the boy and
+commented that he (J) was small. At this
+Jerry assured him/her (W) that size didn't
+matter chopping wood. He added that some
+of the big boys didn't choop good. He
+further added that he had been chopping
+wood for a long time.
+38. Samira told me that she had won a
+lottery and got 10 lakh taka. I congratulated
+her (S) and asked what she intended to do
+with the large amount of money. She (S)
+replied that she wanted to serve her poor
+village people and so she (S) had made up
+his mind to establish a hospital in their rural
+area. I thanked her and added that I would
+also help her (S) in that respect.
+39. Mita asked her father what a puppet
+show was. Father proposed that they could
+go inside and she could see herself. Inside
+the tent, Mita exclaimed that it was very
+strange and added that a doll was dancing
+and talking. Her father said that a man
+behind the screen was moving the doll.
+Then he asked Mita if she understood who
+was talking.
+40. Zayed asked Robi what his dream was.
+He further asked him if he had any dream.
+Robi replied in the affirmative and said that
+he (R) had a dream. He (R) added that his
+(R) dream was a full plate of rice. Hearing
+this, Zayed told Robi to go with him and
+added that he (R) was going to materialize
+his (R) dream. At this, Robi exclaimed with
+gratitude that he (Z) was very kind.
+41. Mr. Kalam respectfully requested the
+bank. manager if he might get in. The bank
+manager replied in the affirmative and
+permitted him to go in. Mr. Kalam said that
+he wanted to open a bank account. The
+manager asked him what type of account he
+(K) would open. Mr. Kalam replied that he
+(k) wanted to open a savings account. Then
+the manager suggested him (k) to go to the
+front desk and added that the officer would
+help him (k). Mr. Kalam thanked hiın
+(manager) very much.
+42. Fahim asked Habib how was his (H)
+mother. Habib replied that she was better
+that day. Fahim asked again whether he (H)
+had taken her to any doctor. Habib replied
+affirmatively and told that the doctor had x-
+rayed her. Fahim then suggested Habib to
+take a good care of her and ensure all
+medications that had been prescribed.
+Habib assured him and thanked him a lot.
+43. Rubel asked the traffic sergeant why he
+(T) stopped him (R). He also asked
+whether/if he (R) had done any wrong. The
+traffic sergeant replied that he (R) was
+driving so fast and said that it was not the
+rule. Rubel apologized respectfully and told
+him (T) that his (R) mother was in the
+hospital. He further said that he was in a
+hurry for this reason.
+44. Anwar asked Mr. Rahman what kind of
+stories Aesop had told. Mr. Rahman replied
+that they were fables. Mr. Rahman asked
+Anwar if he knew what fables were. Anwar
+admitted not knowing what fables were.
+Mr. Rahman then explained that fables
+were stories with a moral and that Aesop
+had entertained people by telling those
+stories.
+45. As we shook hands, she suggested me
+to follow her example and never eat more
+than one thing for luncheon. Than I retorted
+that I would do better than that and added
+that I would eat nothing for dinner that
+night. Hearing this, she exclaimed with
+wonder that I was a humorist and cried
+gaily said that I was quite a humorist,
+jumping into a cab.
+46. Rashed asked Tareq what had
+happened to him. Tareq replied that he had
+been sick with the flu. Then he asked
+Rashed whether he had heard anything
+about their exam. Rashed told that that was
+on 23 October. He added that he (T) needed
+to collect the admit card of the exam. Tareq
+asked from where he could get it. Rashed
+told that that was in the office room.
+47. The passer-by asked the street child
+why he was crying. He also asked the boy
+if he had any problem. The street child
+replied that he was crying because he had
+none to look after him. The passer-by again
+asked the boy whether he was hungry. The
+boy replied in the affirmative and said that
+he was hungry.
+48. The sergeant ordered the man to stop.
+He then asked him (M) if he (S) had not told
+him (M) to stop. He (S) further said that he
+(M) could not go there. Then accepting the
+idea with astonishment, the man said that it
+was hard thing to be very poor. He further
+added that all the world was against the
+poor.
+49. Jerry told me that he could chop some
+wood that day. Being astonished/hesitated I
+asked him if he was small. At this he
+assured me that size did not matter
+chopping wood. He added that some of the
+big boys didn't chop good. He further told
+that he had been chopping wood at the
+orphanage for a long time.
+50. Addressing the man as sir the
+receptionist asked him if she (R) could have
+helped him. The man replied with
+assurance and said that he wanted to meet
+the Managing Director of the company.
+Then the receptionist asked if he had an
+appointment. He replied in the affirmative
+and said that he had. At this the receptionist
+told him to wait for a while.
+51. Addressing the king as her lord the
+woman requested him not to kill the child
+and said that she might be allowed to have
+him. The king said that then everything was
+clear to him. And then pointing to the
+woman he asked the servant to give her the
+child. He added that she was the mother of
+the baby.
+52. Turning to Daya Ram and addressing
+him as his uncle he asked him where the
+cattle was which those people grazed and
+where the fields were they ploughed.
+Pushing his neck back to stiff uprightness
+the chaprashi replied that they had no cattle
+and no fields there. He (C) added that it was
+only the rustics in the villages who grazed
+cattle and ploughed the land.
+53. Jerry told me that he could chop some
+wood that day. But I said that I had a boy
+coming from the orphanage. He said that he
+was the boy. Being astonished, I asked him
+if he was the boy and said with hesitation
+that he was small. At this he assured me that
+size didn't matter chopping wood. and
+added that some of the big boys did not
+chop good. He further added that he had
+been chopping wood at the orphanage for a
+long time.
+54. The ticket seller respectfully asked the
+stranger where he liked to go. The stranger
+replied that he liked to go to Cox's Bazar.
+The ticket seller again asked the stranger
+how many tickets he (s) needed. The
+stranger told the ticket seller that he (s)
+would buy five tickets. The ticket seller
+asked the stranger to take those tickets and
+told him (s) that the tickets would cost three
+thousand taka.
+55. The Mayor asked the pied piper how
+much he (pied piper) wanted. The pied
+piper replied that he (pied piper) wanted a
+thousand guilders. The Mayor agreed and
+said that they would pay him (pied piper) a
+thousand guilders. He (M) also asked him
+(pied piper) when he (pied piper) would set
+to work. The pied piper replied that he (pied
+piper) would set to work then.
+56. Della asked Madame whether she (M)
+would buy her (D) hair. In reply Madame
+told her (D) that she buys hair and told her
+(D) to take her (D) hat off and proposed that
+they should have a sight at the looks of it.
+Lifting the mass with a practiced hand,
+Madame offered her (D) twenty dollars.
+Della told her to give it to her (D) quick.
+57. I asked him where he came from. He
+replied with a smile that he came from San
+Carlos. He added that he had been taking
+care of animals. Not quite understanding I
+said that it might be. He assured me that he
+had stayed, taking care of animals. He
+added that he had been the last one to leave
+the town of San Carlos.
+`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function clean(str) {
