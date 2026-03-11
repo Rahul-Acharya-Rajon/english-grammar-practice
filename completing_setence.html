@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completing Sentence Practice Sheet</title>
+    <style>
+        :root {
+            --p: #2563eb;
+            --s: #16a34a;
+            --d: #dc2626;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --input-bg: #fffbeb;
+            --border: #cbd5e1;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-sub: #cbd5e1;
+            --input-bg: #334155;
+            --border: #475569;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg);
+            padding: 20px;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--p);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 320px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-family: 'Courier New', monospace;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 13px 28px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s;
+            margin: 10px 6px;
+        }
+
+        .btn-start {
+            background: var(--p);
+            width: 100%;
+            font-size: 19px;
+        }
+
+        .btn-submit {
+            background: var(--s);
+            width: 240px;
+        }
+
+        .btn-reset {
+            background: #64748b;
+            width: 160px;
+        }
+
+        .btn-export {
+            background: #9333ea;
+            width: 240px;
+            display: none;
+        }
+
+        .quiz-card {
+            border: 1px solid var(--border);
+            padding: 28px;
+            margin-bottom: 35px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .gap-input {
+            width: 65%;
+            padding: 9px 12px;
+            border: none;
+            border-bottom: 3px solid var(--p);
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: bold;
+            outline: none;
+            margin: 6px 0;
+            border-radius: 6px 6px 0 0;
+            font-size: 1.05em;
+        }
+
+        .correct-answer {
+            display: none;
+            margin-left: 15px;
+            color: var(--s);
+            font-weight: bold;
+            background: rgba(22, 163, 74, 0.08);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .feedback-area {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 12px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .correct-box {
+            background: rgba(22, 163, 74, 0.12);
+            border-left: 6px solid var(--s);
+        }
+
+        .wrong-box {
+            background: rgba(220, 38, 38, 0.12);
+            border-left: 6px solid var(--d);
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .btn-nav {
+            background: #475569;
+            padding: 11px 22px;
+            font-size: 1.05em;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--p);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.2em;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
+
+    <div class="container">
+        <h2>HSC Completing Sentence Practice Sheet Generator</h2>
+
+        <div id="setup-view" class="no-print">
+            <div class="setup-grid">
+                <div>
+                    <label>1. Paste Questions:</label>
+                    <textarea id="q-input" placeholder="2. (a) I bought a fiction... ____."></textarea>
+                </div>
+                <div>
+                    <label>2. Paste Model Answers:</label>
+                    <textarea id="a-input"
+                        placeholder="2. (a) I bought a fiction of the Harry Potter series. The book was so captivating..."></textarea>
+                </div>
+            </div>
+            <button class="btn btn-start" onclick="processPracticeData()">Build Practice Sheet</button>
+        </div>
+
+        <div id="quiz-view" class="hidden">
+            <div id="summary-stat" style="text-align:center; margin:25px; font-size:24px; font-weight:bold;"></div>
+
+            <div class="pagination-controls no-print">
+                <button id="prev-btn" class="btn btn-nav" onclick="changePage(-1)">← Previous</button>
+                <span id="page-info" style="align-self:center; font-weight:bold; font-size:1.1em;"></span>
+                <button id="next-btn" class="btn btn-nav" onclick="changePage(1)">Next →</button>
+            </div>
+
+            <div id="quiz-container"></div>
+
+            <div style="text-align:center; margin-top:30px;" class="no-print">
+                <button class="btn btn-submit" onclick="evaluateExam()">Evaluate Answers</button>
+                <button id="export-btn" class="btn btn-export" onclick="window.print()">Print / Export</button>
+                <button class="btn btn-reset" onclick="location.reload()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let practiceItems = [];
+        let currentPage = 0;
+        const itemsPerPage = 5;
+
+        function toggleTheme() {
+            document.documentElement.hasAttribute("data-theme")
+                ? document.documentElement.removeAttribute("data-theme")
+                : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function cleanText(text) {
+            return text.replace(/\s+/g, ' ').trim();
+        }
+
+        function processPracticeData() {
+            const qRaw = document.getElementById('q-input').value.trim();
+            const aRaw = document.getElementById('a-input').value.trim();
+
+            if (!qRaw || !aRaw) {
+                alert("Please paste both questions and answers!");
+                return;
+            }
+
+            const qSets = qRaw.split(/\n(?=\d+\.)/).filter(x => x.trim());
+            const aSets = aRaw.split(/\n(?=\d+\.)/).filter(x => x.trim());
+
+            practiceItems = qSets.map((qSet, idx) => {
+                let aSet = aSets[idx] || "";
+
+                // গ্যাপের পরের অংশগুলো বের করার জন্য প্রশ্নকে স্প্লিট করা
+                const partsAfterGap = qSet.split(/_{2,}|-{2,}|\.{3,}/).slice(1).map(p => cleanText(p.split(/\([a-j]\)/)[0]));
+
+                const subQs = qSet.split(/\([a-j]\)/);
+                const subAs = aSet.split(/\([a-j]\)/);
+                subQs.shift();
+                subAs.shift();
+
+                let missingAnswers = [];
+                let subIdx = 0;
+
+                let html = qSet.replace(/(\([a-j]\).*?)(_{2,}|-{2,}|\.{3,})/gs, (match, beforeGap) => {
+                    let fullAnswerPart = cleanText(subAs[subIdx] || "");
+                    let questionPrefix = cleanText(beforeGap.replace(/\([a-j]\)/, ''));
+                    let nextContext = partsAfterGap[subIdx] || "";
+
+                    let exactAnswer = fullAnswerPart;
+
+                    // ১. প্রশ্নের আগের অংশ বাদ দেওয়া
+                    if (exactAnswer.includes(questionPrefix)) {
+                        exactAnswer = exactAnswer.split(questionPrefix).pop();
+                    }
+
+                    // ২. প্রশ্নের পরের অংশ (Context) বাদ দেওয়া
+                    if (nextContext && exactAnswer.includes(nextContext)) {
+                        exactAnswer = exactAnswer.split(nextContext)[0];
+                    }
+
+                    exactAnswer = exactAnswer.trim().replace(/[.,:;?]+$/, "");
+
+                    // ৩. একাধিক উত্তর (/) হ্যান্ডেল করা
+                    let multipleOptions = exactAnswer.split('/').map(opt => opt.trim().toLowerCase());
+
+                    missingAnswers.push({
+                        display: exactAnswer,
+                        options: multipleOptions
+                    });
+
+                    subIdx++;
+                    return `${beforeGap}<input type="text" class="gap-input" data-ans-idx="${subIdx - 1}"><span class="correct-answer"></span>`;
+                });
+
+                return {
+                    html: html,
+                    model: aSet,
+                    missingAnswers: missingAnswers
+                };
+            });
+
+            renderPage();
+        }
+
+        function renderPage() {
+            document.getElementById('setup-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+
+            const container = document.getElementById('quiz-container');
+            const start = currentPage * itemsPerPage;
+            const end = Math.min(start + itemsPerPage, practiceItems.length);
+
+            container.innerHTML = practiceItems.slice(start, end).map((item, i) => {
+                let id = start + i;
+                return `
+                    <div class="quiz-card" id="card-${id}">
+                        <h3>Set ${id + 1}</h3>
+                        <div style="line-height:2.6; white-space: pre-wrap; font-size: 1.1em;">${item.html}</div>
+                        <div id="feedback-${id}" class="feedback-area"></div>
+                    </div>`;
+            }).join("");
+
+            const totalPages = Math.ceil(practiceItems.length / itemsPerPage);
+            document.getElementById('page-info').innerText = `Page ${currentPage + 1} of ${totalPages}`;
+            document.getElementById('prev-btn').disabled = currentPage === 0;
+            document.getElementById('next-btn').disabled = currentPage >= totalPages - 1;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changePage(dir) {
+            currentPage += dir;
+            renderPage();
+        }
+
+        function evaluateExam() {
+            const start = currentPage * itemsPerPage;
+            const end = Math.min(start + itemsPerPage, practiceItems.length);
+            let totalCorrect = 0;
+            let totalPossible = 0;
+
+            for (let i = start; i < end; i++) {
+                let card = document.getElementById(`card-${i}`);
+                let inputs = card.querySelectorAll(".gap-input");
+                let spans = card.querySelectorAll(".correct-answer");
+                let feedback = document.getElementById(`feedback-${i}`);
+                let setCorrect = 0;
+
+                inputs.forEach((input, idx) => {
+                    totalPossible++;
+                    let userVal = input.value.trim().toLowerCase().replace(/[.,:;?]+$/, "");
+                    let ansData = practiceItems[i].missingAnswers[idx];
+
+                    // বিকল্প উত্তরের সাথে তুলনা
+                    let isCorrect = ansData.options.some(opt => opt === userVal && userVal !== "");
+
+                    if (isCorrect) {
+                        input.style.color = "var(--s)";
+                        input.style.borderBottomColor = "var(--s)";
+                        setCorrect++;
+                        totalCorrect++;
+                    } else {
+                        input.style.color = "var(--d)";
+                        input.style.borderBottomColor = "var(--d)";
+                    }
+
+                    spans[idx].textContent = " ✓ " + ansData.display;
+                    spans[idx].style.display = "inline-block";
+                });
+
+                feedback.style.display = "block";
+                feedback.className = `feedback-area ${setCorrect === inputs.length ? 'correct-box' : 'wrong-box'}`;
+                feedback.innerHTML = `<strong>Set Score: ${setCorrect}/${inputs.length}</strong><br><strong>Full Answer:</strong><br>${practiceItems[i].model.replace(/\n/g, '<br>')}`;
+            }
+
+            document.getElementById("summary-stat").innerText = `Total Score: ${totalCorrect}/${totalPossible}`;
+            document.getElementById("export-btn").style.display = "inline-block";
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
