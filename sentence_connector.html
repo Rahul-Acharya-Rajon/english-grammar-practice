@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSC Connector Master - Final Print Fix</title>
+    <title>Sentence Connector Practice Sheet</title>
     <style>
         :root {
             --p: #2563eb;
@@ -246,16 +246,23 @@
 <body>
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
     <div class="container">
-        <h2 style="text-align:center; color:var(--p);">HSC Sentence Connectors Practice</h2>
+        <h2 style="text-align:center; color:var(--p);">HSC Sentence Connector Practice Sheet Generator</h2>
 
         <div id="setup-view" class="no-print">
-            <p>Enter Questions & Answers</p>
             <div class="setup-grid">
-                <textarea id="q-input" placeholder="Paste Questions..."></textarea>
-                <textarea id="a-input" placeholder="Paste Answers..."></textarea>
+                <div>
+                    <label>1. Paste Questions:</label>
+                    <textarea id="q-input" placeholder="Paste Questions..."></textarea>
+                </div>
+                <div>
+                    <label>2. Paste Answers:</label>
+                    <textarea id="a-input" placeholder="Paste Answers..."></textarea>
+                </div>
             </div>
-            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Generate Practice
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
                 Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -278,6 +285,940 @@
             document.documentElement.hasAttribute("data-theme")
                 ? document.documentElement.removeAttribute("data-theme")
                 : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `01. Use appropriate sentence connectors in the blank spaces of the following passage. 
+A thing of beauty is a joy forever. (a) _____ , a flower is a symbol of beauty and purity. (b) _____ flower cultivation was rare in our country. (c) _______ the scenario has been changed. (d) _______ people cultivate flowers not only for enjoying their beauty but also for earning money. (e) ______ , in big cities and towns, many flower shops have flourished and different types of flowers are sold there. (f) _______ , the demand of flowers is increasing day by day. (g) _______ , they are of great use to us. (h) _______ flowers play an important role in making our mood cheerful and happy. (i) ______ ,they are used for decorating homes. (j) _______ , flowers are regarded as a symbol of mourning and tribute to someone. (k) _______ , in many popular and social events, flowers are needed for stage or spot decoration. (l) _______ we express our love and affection towards anyone with flowers. (m) _______ , flowers are a great source of honey, perfume, medicine and even food. (n) _______ ,the use of flowers in our daily life has become wide in different ways.
+
+02. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Teaching is a noble profession. (a) ____ to be a teacher, one must possess some noble qualities too. (b) ____, he should be a student. (c) ____ teaching is related to knowledge, he can't acquire knowledge (d) ____ he is a student. (e) ____ a teacher thinks (f) ____ he knows everything, he can't be a good teacher. (g) ____ thirst for knowledge is the second best quality of a teacher. (h) ____, a teacher should be a psychologist. Different students have different ways of learning. (i) ____ the teacher needs to teach his students by studying their psychology. Fourthly, a teacher should have good delivery power. (j) ____ his voice should be clear (k) ____ artistic. (l) ____ a teacher should an actor (m) ____ he needs to behave according to the classroom situation. And (n) ____. a teacher must be a good human being.
+
+03. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Happiness is a relative term. (a)____, it depends upon some factors. (b)____, contentment is the key to happiness. (c) ____, contentment varies from person to person. (d)____, a beggar may be contented with only ten taka. (e)____, a wealthy person may be dissatisfied even after getting one million taka. (f)____, it is said that contentment brings happiness. (g)____, we must learn to be contented with what we have. (h)____, this learning is the simplest way to remain happy. (i)____, we must remember that our life is short. (j)____, in this short life we can not get everything (k)____ we want. (l)____, we want everything, we will not get happiness. (m)____, we will get frustrated and we will plunge into the world of sadness. (n)____, it is always better to be contented with what we have than to live in eternal sadness.
+
+04. Use appropriate sentence connectors in the blank spaces of the following passage.
+Once there lived a grasshopper and an ant. The ant was hard-working. (a)____ lazy. (b)____, he idled away his time dancing and sleeping. (c)____, he sometimes advised the ant not to work so hard. (d)____, the ant paid no heed to the grasshopper. (e)____ he continued to work hard gathering food for the coming winter. (f)____ winter came, covering everything with snow. The surface of the earth went under the snow-cover. (g)____, the grasshopper could not find any food. (h)____, he had nothing in stock. (i)____, he went to the ant for help. The ant gave him some food for the day. (j)____, the long winter was ahead, and the grasshopper was really worried about his survival.
+
+05. Use appropriate sentence connectors in the blank spaces of the following passage. 
+A lion was drinking water from a brook. (a)____ a lamb was also drinking water from the downstream of the same brook. The lion saw the lamb and decided to devour it. (b)____ he was thinking about how to accomplish his evil design. (c)____ he hit upon a plan. (d)____ the lion complained that the lamb was disturbing him by muddying water. But the lamb said that he was drinking water from downstream. (e)____ the questions of muddying water on his part did not arise here. (f)____ the lamb argued that was muddying the water for him as he was drinking water upstream. (g)____ the lion retorted that the lamb spoke ill of him a years ago. (h)____ the lamb said that he was not born a year ago. The lion grew into a rage. (i)____ he said that perhaps his father spoke ill of him last year. (j)____ the lion had the right to take revenge and kill the lamb.
+
+06. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Everybody wants to be happy in life. Happiness is a relative term. (a) ____ it depends upon some factors. (b) ____, contentment is the key to happiness. (c) ____ contentment varies from person to person. (d)____, a beggar may be contented with only ten taka. (e) ____ a wealthy person may be dissatisfied even after getting one million taka. (f) ____ , it is said that contentment brings happiness. (g) ____ , we must learn to be contented with what we have. (h) ____ this learning is the simplest way to remain happy. (i) ____ , we must remember that our life is short. (j) ____ in this short life we cannot get everything (k) ____ we want. (l) ____ we want everything, we will not get happiness. (m) ____ we will get frustrated and we will plunge into the world of sadness. (n) ___, it is always better to be contented with what we have than to live in eternal sadness.
+
+07. Use appropriate sentence connectors in the blank spaces of the following passage.
+Self-confidence is essential to attain success in life. (a) ____ a person having self-confidence has won half of the battle. Self-confidence enables a man to prosper by creating some other virtues requisite for success. (b) ____ when a self-confident man fails to attain success, he becomes determined to reach his goal. This determination gives rise to some other virtues in him. (c) ____, he becomes diligent. He does not yield to failure. (d) ____ he endeavours more in the process. (e) ____ he becomes more sincere in his work. (f) ____ he becomes successful. (g) ____ a man devoid of self-confidence stumbles at every step, (h) ____ he loses vitality to go ahead. (i) ____ he does not try once more. (j) ____ he is heard to curse his fortune (k) ____ the brave who have self-confidence can have their names enlisted in the list of the greatest men on earth. (l) ____ this process has been going on since prehistoric time. (m) ____ we must follow the track of the greatest we must follow the track of the greatest people. (n) ____ we have to be failure in life and lament.
+
+08. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Early rising is one of the best habits (a)____ a man can possess. (b)____, the benefits of early rising we can take some exercises or a are many. (c)____, if we get up early, we get enough time to work. (d)____, we can enjoy the fresh air of the morning which refreshes our body and mind. (e)____ we can take some exercises or a walk. (f)____, in the morning nature smiles with colourful flowers and chirping of birds. (g) ____ early rising takes us to close contact with wonderful world of nature. (h)____, if we do not get up early in the morning, we will suffer a lot. (i)____ we do not have enough time to do our work. (j)____ we cannot finish our work in time. (k)____, late rising from bed tells upon our health. (l)____, we can never enjoy the freshness of nature. (m)____, early rising keeps us safe and sound both physically mentally. (n)____, we should make a habit of early rising.
+
+09. Use appropriate sentence connectors in the blank spaces of the following passage. 
+We want success (a)____ prosperity in life. (b)____ we do not do what are needed in achieving these. we have to be (c)____ to we want to make our life glorious, we must follow some rules, (d)____, we have to be industrious. (e)____ without hard work, success in life is impossible. (f)____ we should sincere in our activities. Some people think that good luck is at the root of all achievements in life. (g)____ to them nothing is further from truth than it. (h)____ every success in life depends totally on our activities. (i)____ we spend time in idleness, we must suffer. (j)____ we should be honest in life because this virtue helps us greatly to gain our goal.
+
+10. Use appropriate sentence connectors in the blank spaces of the following passage. 
+We must aware of the changers of smoking. It is harmful to us in various ways. It causes various disease (a)____ blood pressure, heart attack, bronchitis, cancer, etc. (b)____ it pollutes air (c)____ smoking causes harm to (d)____ the smokers (e)____ the nonsmokers who remain by them. (f)____ we should give up smoking. (g)____ it is (h)____ great an addiction to get rid of. (i)____ nothing is impossible for us. (j)____. we are determined to give up it, we can certainly do it.
+
+11. Use appropriate sentence connectors in the blank spaces of the following passage.
+Rangpur town hall is a place of cultural activities. (a)____ in 1971 it became a torture cell used by the Pakistani army. (b)____ the army brought here innocent Bangalees. After that they started to bring Bangalee women here. Among them Mansura Begum was one who was the wife of a freedom fighter. (c)____ she was young and beautiful. she drew the attention of local collaborators. (d)____ they informed the Pakistani army. (e)____ the Pakistani army abducted Mansura. On the day of occurrence Pakistani soldiers surrounded her house. (f)____ they searched her husband who joined the Mukti Bahini. (g)____ they found her father-inlaw. They started to beat hi m mercilessly. The old man got unconscious. (h)____ the barbarous soldiers did not stop beati ng him. Mansura rushed to her father-in law, grabbed his bleeding body and begged the military not to kill him. (i)____ they did not listen to her. They picked up the old man on the military truck. (j)____, they pulled and dragged Mansura on to the truck.
+
+12. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Bangladesh is many an agricultural country. (a)____ her economy and prosperity depend on agriculture. (b)____, our agriculture depends on the mercy of nature. (c)____, if there is sufficient rain, people can plough their lands and show seeds in time. (d)____, they can reap a good harvest. (e)____, if it does not rain in time, the farmers cannot grow the crops easily and they do not have good harvest. (f) ____, without water our agriculture is lifeless. The rain is not always beneficial to our agriculture. (g)____, sometimes it rains so much that it causes floods. (h)____, our crop go under water and most often, they are totally destroyed. (i)____, the farmers who constitute the most part of our professional people, loss everything. (j) ____ we can safely conclude that our economy depends on rain.
+
+13. Use appropriate sentence connectors in the blank spaces of the following passage. 
+There is a proverb (a) _____ every man is for himself. (b) _____ it does not mean that he will be selfish. (c) _____ only works for himself destroying the rights of others. (d)_____ it means that he will protect his own right, without harming others. He will show love and respect (e) _____ for his relatives (f) _______ for other fellow beings. (g) ______ sometimes we find some people (h) ______ think of themselves only (i) _____ snatch away other's part. (j) ______ educational institutions don't mould our children's mind with moral lessons. (k) _____ they are busy with how they can produce huge number of citizens with certificates. (l) _____ these men are in their professions, they start thinking of them merely (m) _______ indulge in personal gaining. (n) ______ our education needs to make us learn how to be a man for men.
+
+14. Use appropriate sentence connectors in the blank spaces of the following passage.
+Mobile phone is a miracle of modern science. It has brought about a revolutionary development in the arena of communication. (a) ____ It has eliminated distance (b) ____ promoted human relationship. (c) ____ it helps to promote business. (d) ____ gearing the pace of business, it ensures the smooth growth of economy. (e) ____ it can solve many problems of mathematics. (f) ____ it has become a daily necessity. (g) ____ it is not free from demerits. (h) ____ it becomes detrimental to the reckless users. (i) ____ the use of mobile phone by the teenagers has to be regulated. (j) ____ they will go to ruin. (k) ____ if we want to save our young generation, we have to be more vigilant. (l) ____ parents, teachers and neighbors can play positive role in this regard. (m) ____ the people who are addicted to wanton use of mobile phone have to be more cautious. (n) ____ they maintain abstinence, it will positively influence their offspring.
+
+15. Use appropriate sentence connectors in the blank spaces of the following passage. 
+The greatness of a book depends (a)____ on the acceptability among the readers. (b)____ we read a book (c)____ once, we can discover many things in it. (d)____ basing on one reading, we cannot judge the standard of a book. (e)____ a book is praised (f)____ we have no doubt about the greatness of the book. (g)____ the first reading, we may not understand a book. But if it is read more than once, we will see (h)____ it was read (i)____ praised. So, the great books are those (j)____ have passed the test of time. (k)____ the appeal of a great book doesn't decrease. (l)____ the greatness of the book is newly felt (m)____ time passes. (n)____ a great book is widely read and reread by people all over the world.
+
+16. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Air is an important element of our environment. (a)____ clean air is essential for our life. (b)____, air is polluted in many ways. (c)____, one thing that pollutes air is smoke is produced is produced from different sources. (d)____, we make fire to cook food and it creates smoke (e)____, buses and trucks plying in the roads emit smoke. (f)____ the burning of coal in the railway engine also produces smoke. (g)____, the mills and factories also produce a huge amount of smoke. (h)____, we melt tar for road constructions which produces black smoke. (i)____, all these smokes mis with the air and pollute it. (j)____ smoke from different sources is causing serious harm to our environment.
+
+17. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Man is a social being. (a)____, man cannot live alone. (b)____, man has been living together from time immemorial. Living in society is not an easy task. We have to follow certain rules and regulations of that society. (c)____, we should be cooperative. (d)____, we must help others when they need it. (e)____, we have to be careful not to hurt others by our words or activities. (f)____, we must control our emotions and behave well with others. (g)____, we should not think and live only for us. (h)____, we should always think and work for the betterment of the society. (i)____, we should remain prepared to sacrifice our lives for the greater invest of the society. (j)____, sacrificing our lives for others can make us immortal.
+
+18. Use appropriate sentence connectors in the blank spaces of the following passage.
+(a)____ I was walking along the road the other day, I happened to notice a small brown leather purse lying on the pavement. I picked it up and opened it to see (b)____ I could find out the owner's name. There was nothing inside. It (c)____ some small change and a rather old photograph picture of a woman and a young girl about twelve years old who looked like the women's daughter. I put the photograph back (d)____ took the purse to the police station. (e)____ I handed it to the sergeant-incharge. Before I left, the sergeant made a note of my name and address in case the owner of the purse wanted to write and thank me. That evening I went to have dinner with an uncle and aunt of mine. They had also invited another person, a young women. (f)____ there would be four people at table. The young women's face was familiar (g)____ I could not remember where I had seen it. I was quiet sure (h)____ we had not met before. (i)____ Conversation, however, young women happened to mark that she had lost her purse that afternoon. I at once remembered where I had seen her face. She was the young women in the photograph (j)____ she was now much older.
+
+19. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Mobile phone has added a new dimension to our daily life. It has brought the world closer to us. (a) _____ , it has made the worldwide communication easier. (b) ______, we can talk to others, chat with friends and send e-mails. (c) _______ , using social media has become handy with this device. (d) ______ , we can capture our special moments. (e) ________, many other apps help us learn new things. (f) ______ , mobile phone can show us the whole world through the internet. (g) _______ , it has been a part and parcel in our life. We cannot go for a single day without using it. (h) _______, it is not free from defects. It has some negative sides also. (i) _______ , excessive use of mobile phone may damage our hearing power. (j) ______, it is a means of wasting time. (k) _______, many crimes are being done with the use of mobiles. (l) _____ , harmful radiation from it may cause cancer to the users. (m) ______, we are not aware of these bad effects. (n) _______ , we will fall in health hazard.
+
+20. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Honesty is a noble virtue. The man (a) ____ possesses this uncommon quality is the happiest man in the world. Truly speaking, a man should have trustworthiness (b) ____ nobody believes a liar. A liar may prosper for the time being. (c) ____ ultimately he goes to the dogs. (d) ____ we should be honest in our life. It is believed that honesty is the best policy. (e) ____ dishonesty is the sign of down fall. God helps those who are honest. (f) ____ dishonest people are cursed. Childhood is the best time (g) ____ children should be taught honesty. It is seen that children follow their parents. (h) ____ parents should be honest (i) ____ they should be allowed to mix with those friends who are really honest. (j) ____ parents should tell stories of honest people to children. (k) ____, they can tell the story of honest people from history. (l) ____ parents should teach children how to distinguish between the right and the wrong. (m) ____. children build up their character. (n) ____ parents can show the path of honesty to children.
+
+21. Use appropriate sentence connectors in the blank spaces of the following passage.
+Time, by its very nature, is fleeting. (a) ____ time once gone forever. (b)____ the sincere people realize the value of time. (c)____, not everyone is aware of the value of time. (d)____ it is seen that many of us waste time. (e)____, we realize the significance of lost time when it is too late. (f)____, we suffer in life (g)____, all of us should make the best use of time. (h)____ proper time management is the key to success in student life. (i)____, we find thatan ideal student is the one who makes the best use of time. (j)____ a lazy student fails to make the grade as he kills time. (k)____, the teachers advise their students not to waste time. (1)____, they warn the students against their addiction to social networking sites and gaming. (m)____, students should follow the advice of their teachers. (n)____, they will -suffer in the long run
+
+22. Use appropriate sentence connectors in the blank spaces of the following passage. 
+The old sailor spoke so strangely (a)____ the guest stood still. The feast began (b)____ the guest could hear the music and laughter, (c)____ for some reasons he could not join the others. The old man told him about his last journey on the sea. They had sailed away to the south (d)____ they had arrived in the cold grey sea. (e)____ the sea was frozen. (f)____ the ice was all around them. The big sails opened wide (g)____ the strong wind blew them quickly through the icy waters. The weather was very cold. (h)____ there were no birds and animals in that snow covered country. But one day the sailors saw an albatross flying towards the ship. All men were very pleased to see it and they gave it food and water. It came to the ship everyday (i)____ they called it. (j)____ one day, the old sailor killed the bird and after that everyone had to undergo terrible sufferings.
+
+23. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Unemployment is a great curse. (a) ______ all the countries of the world suffer from the curse. (b) ______ nowhere in the world this problem is so acute as in our country. (c) _____ there are many reasons behind it. (d) _____ , our country is industrially backward. (e) _____ our traditional education system is not service-oriented. (f) _____ our students and youths have false sense of dignity. (g) _____ they run after job only. (h) _____ , unemployment problem should be removed at any cost. (i) ____ we want to remove it truly. Our education system should be changed. (j) _____ more mills and factories should be established. (k) _____ the educated youth should change their attitude to life. (l) _____ they can work in agriculture field, cultivate fish, grow vegetables etc. (m) ______ they can start small business. (n) ____ self employment is a possible solution to this great problem.
+
+24. Use appropriate sentence connectors in the blank spaces of the following passage.
+Junk food is very popular nowadays. (a) ____ the children are very much fond of junk food. (b) ____ do we know what junk food actually is? Junk food is such kind of processed food (c) ____ has been produced for its pungent taste rather than for its health value. (d) ____ it contains high calories, salt, added sugar, saturated fat, etc. (e) ____ its nutritional value is very low. (f) ____ its appearance is very appealing and mouthwatering. (g) ____ it can attract anybody. (h) ____ it is harmful for health. (i) ____ It consists of harmful substances, it may lead to a higher risk of obesity. cardiovascular diseases and other chronic health problems. (j) ____ it can also affect brain. (k) ____ addiction to it may even result in the rejection of healthier foods such as fruits, vegetables, salads, etc. (l)____, the sugar used in junk food can damage our teeth and skin. (m) ____, we should avoid having junk food. (n) ____, we should remember that health is the root of all happiness.
+
+25. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Heath (a)____ is the root of the all happiness, can be enjoyed taking adequate care of body and mind. People (b)____ are always under mental stress and suffer from anxieties cannot enjoy a good health (c)____ to enjoy good health, it is also necessary to keep our mind sound. They are doctor (d)____ say that simple and carefree life is more conductive to health. Many people, (e)____ are not aware of health rules. They (f)____ take physical exercise (g)____ take proper food. (h)____, a have number of people of our country live below poverty line. (i)____ they cannot afford to cat good food. (j)____ cannot enjoy good health. (k)____ awareness. about health rules (l)____ following them are very important in maintaining good health. (m)____ only healthy people can contribute to the national development. (n)____ we must be careful of our health.
+
+26. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Mobile phones are one of the most commonly used gadgets in today's world (a)____, mobile phones have made our life easy and convenient. (b)____ they are a blessing till we use them judiciously. (c)____, they are very beneficial; they have some disadvantages. (d)____, excessive use of the device acts as a barrier to quality communication. (e)____, mobile phones waste a lot time (f)____, they are the causes of many ailments such as weak eyesight, strain on brain, headaches, dry eyes sleeplessness and more (g)____, they have created a lack of privacy in people's lives. (h)____, we see how the device is both a boon and a bane. (i)____ we must not let mobile phones control our lives. (j)____ we must know when to draw the line.
+
+27. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Unemployment is a great curse (a)____ all the countries of the world suffer from the curse. (b)____ nowhere in the world, this problem is so acute as in our country. (c)____ our traditional education system is not services-oriented. (f)____, our students and youths have false sense of dignity. (g)____, they run after jobs only, (h)____, unemployment problem should be removed at my cost. (i)____ our education system should be changed. (j)____ more mills and factories should be established.
+
+28. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Mobile phone has become an essential for everybody (a)____ it has become every popular. (b)____ it has created a number of problems. It has (c)____ advantages (d)____ disadvantages. (e)____ it helps to connect people. (f)____ it helps to exchange information. (g)____ it can be used for various purposes. (h)____ it has a few disadvantages (i)____ can cause a lot of troubles. (j)____ its advantages are more than its disadvantages.
+
+29. Use appropriate sentence connectors in the blank spaces of the following passage.
+In life we want to be perfect. (a) _______, to attain perfection is impossible (b) ______ man is basically imperfect. (c) ______, we should try to be great. (d) _______ it is not easy to be great because we have to attain certain virtues. (e) _______, we should be truthful (f) _______ truthfulness gives rise to many other virtues. (g) _______ we have to be honest (h) _______ honest people are valued everywhere. (i) _______ dishonest people are hated by all. (j) _______we can conclude that to be great is more important than to be perfect. (k) ______ the idea of perfection varies from person to person. (l) ______ , one's idea of perfection changes, (m) _______ learning how to be perfect is basically a lifelong deal. (n) ________, the road to perfection is something that we learn and understand along this journey of life.
+
+30. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Bangladesh is a free and sovereign country. (a)____ it was a part of Pakistan from 1947 to 1971. In 1971 it became independent (b)____ started its journey as a free nation. (c)____ the journey was not smooth at all. On 7 March, 1971 (d)____ Bangabandhu delivered his speech, the common mass got united (e)____ started their preparation for a war. The Pakistani forces started mass killing (f)____ killed about 30 lakh innocent people. They thought (g)____ they could suppress the Bangalees within a few days. (h)____ the brave sons of our land proved them wrong. (i)____ the freedom fighters didn't have modem weapons in their hand, they were the real patriots and courageous. (j)____ after few months they became successful in their mission. (k)____ the long waited date came (l)____ the Bangalees got their victory on 16 December, 1971. (m)____ we are the citizens of a free land (n)____ marching forward to the way of lasting development very quickly.
+
+31. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Education is essential in our life. (a)____ we are not properly educated, we cannot life an honorable life in society. It teaches us (b)____ how to earn but also how to spend. (c)____ it teaches (d)____ to live in amity with others in society (e)____, we must get proper education. (f)____ we should bear in mind (g)____ education is not only what we learn at educational institutions but also (h)____ we learn outside these institutions. (i)____, education is a lifelong process, It begins but after our birth (j)____ ends only in death.
+
+32. Use appropriate sentence connectors in the blank spaces of the following passage.
+Honesty is a noble virtue. The man possessing this invaluable quality is the happiest man on earth, (a)____. To be honest, a man should have trustworthiness, (b)____, nobody trusts a liar. A lair may prosper for the time being. (c)____, he goes to the dogs. (d)____ we should be honest. It is said that honesty is the best policy. (e)____ dishonesty is the sign of downfall. God helps those who are honest. (f)____, dishonest people are cursed. (g)____, children should be taught honesty from childhood. It is widely observed that children follow their parents. (h)____, parents should be honest and upright in their business of life. (i)____, children should be allowed to mis with those friends who are honest. (j)____ they can build their characters.
+
+33. Use appropriate sentence connectors in the blank spaces of the following passage. 
+The gifts of science are uncountable. (a)____ we cast our eyes, we see the wonders of science. Satellite TV channels are the means through (b)____ we can see and hear the events (c)____ are happening all over the world. (d)____, today we have specialized satellite channels on almost every interest. (e)____, people now have more choice and more freedom about television programmes. Satellite channels help us a lot by reporting on climatic conditions of different parts of the helping us to a great extent to enrich our own culture and tradition. (h)____ satellite channels are playing a favorable role, it is (i)____ doing harm to our young and new generation (j)____ still we cannot deny the immense benefits we are getting from satellite channels.
+
+34. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Most of the people of Bangladesh are not able to realise the importance of water. (a) ____ millions of liters are wasted every year. (b) ____ facing pure water crisis, (c) _____ Government campaign may help to reduce unnecessary water consumption. (d) _____ water is a very important resource for various reasons. (e) _____ we need to drink clean water to survive. (f) _____ we need to keep ourselves clean, (g) _____ without water, we cannot grow crops. (h) _____ we cannot provide animals with food. (i) _____ Government should do more to make people recognize this. (j) _____ the human population is growing, the climate is changing too. (k) ____ there may not be enough water for everyone in future. (l) _____ water treatment processes cost a lot and use a large amount of electricity. (m) _____ reduced water consumption would save money and electricity for the future. It will reduce green house gas emissions. (n) ____ we should encourage people to change wasteful habits now before it is too late.
+
+35. Use appropriate sentence connectors in the blank spaces of the following passage. 
+The Internet has transformed the way we live. (a) ____, it has become an integral part of our life. On the one hand, this technology has brought us many benefits. (b) ____, it has many negative sides. (c) ____ the Internet, our communication systems have become much faster and more efficient. (d) ____, we can make bank transactions and pay our bills from home now. (e) ____, the Internet allows us to access health information easily and, (f)____, saves many lives. (g)____, our learning opportunities have greatly increased, thanks to digital technologies. (h)____, the Internet is not an unmixed blessing. (i)____, its harmful effects far outweigh its benefits. (j) ____, we should take precautions about using this technology. (k) ____, we must be careful not to become addicted to Internet browsing. Second, we should keep an eye on our younger family members, (1) ____ there are potential dangers in the virtual world. (m) ____, online gambling and cyberbullying are very common on the Internet nowadays. (n) ____, it can be said that the Internet technology is doing us more harm than good.
+
+36. Use appropriate sentence connectors in the blank spaces of the following passage.
+Leisure is the moment (a)____ a man is totally free from his work. In Leisure a man is (b)____ free from work but also from worries and tension. (c)____ it is a time. (d)____ a man is his own master and the mind is relaxed (e)____ the body is at rest. (f)____ our life is full of duties. By performing our duties one after another; it seems (g)____ our life is an exhausting business. Theis is the tragedy of life that we cannot avoid our work and worries. (h)____; leisure helps us to break this the chain and enable us to refresh ourselves and revive our spirt. Leisure breaks the monotony of existence with a touch of variety. (i)____ we look into developed countries; we will see that people love to spend their leisure in different ways. (j)____; they never idle away their leisure time. (k)____; it is seen that some people love to go for travelling; some enjoy sightseeing in different places. (l)____; some people spend their free time playing different types of games. (m)____ leisure is always a source of joy. (n)____ everybody should try to find leisure to enjoy it to make the life happy and peaceful.
+
+37. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Drug addiction is a great curse of the present world. (a)____, a few things were used as drugs (b)____, the number of drugs has increased. (c)____, cocain etc. marijunana, opium, heroine, morphine etc. (d)____ offer another world to the addicted ones. (e)____ they do not know that this addiction destroys the inner part of the body of addicted persons. (f)____, why do many people take drugs? The reasons are many. (g)____, some people are tempted by their so-called friends to have a taste of a drug. (h)____, they are trapped forever. (i)____, some people take drugs to forget the frustration of their life. (j)____, those who become drug addicts, cannot live a normal life.
+
+38. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Happiness is a relative term. (a) ____ it depends upon some factors. (b) ____, contentment is the key to happiness. (c) ____ contentment varies from person to person. (d)____, a beggar may be contented with only ten taka. (e) ____ a wealthy person may be dissatisfied even after getting one million taka. (f) ____ , it is said that contentment brings happiness. (g) ____ , we must learn to be contented with what we have. (h) ____ this learning is the simpliest way to remain happy. (i) ____ , we must remember that our life is short. (j) ____ in this short life we cannot get everything (k) ____ we want. (l) ____ we want everything, we will not get happiness. (m) ____ we will get frustrated and we will plunge into the world of sadness. (n) ___, it is always better to be contented with what we have than to live in eternal sadness.
+
+39. Use appropriate sentence connectors in the blank spaces of the following passage.
+My name is Amerigo. I am 13 years old (a) ____ live on the street alone. My mother does not live with me. (b) ____, she does not want me. (c) ____, she told me to go away. (d) ____, my mother is separated from my father. (e) ____ she is married to another man. Probably she is happy with him. (f) ____ my father lives very far away. (g) ____, I cannot go there. (h) ____ I want to go to him, he doesn't take me either. I begged him to send me some money (i)____ I could buy a bus ticket. I am still waiting (j) ____ he hasn't answered. (k) ____, the streets are now my home. I used to do some works (l) ____, collecting trash, selling ice-cream of a owner, etc. I sold icecream of the owner but he gave me nothing in return. (m) ____, I had to starve sometimes, (n) ____, my life is very hard without my parents. 
+
+40. Use appropriate sentence connectors in the blank spaces of the following passage. 
+A Cyclone is a devastating storm in Bangladesh that moves at a high speed. (a)____ it causes immense harm to people and property. (b)____ the inhabitants of coastal regions are the main victims of cyclone. (c)____ the cyclone of Bangladesh originates from the Bay of Bengal. (d)____ it is accompanied by thunders and heavy showers. (e)____ unbearable heat is felt a few days. (f)____ one day the sky becomes terribly dark and strong winds begin to blow. (g)____ a terrible situation is created that lasts for hours. (h)____ it causes a great havoc causing death to people and other animals. (i)____ dwelling houses are blown away. (j)____ the cyclone is followed by scarcity of food and outbreak of various diseases. (k)____ the great loss caused by cyclone can be reduced. (l)____ prior warming can be given to people using modern technology of weather forecast. (m)____ people and domestic animals of the cyclone-prone areas can be shifted to cyclone shelters. (n)____ a quick relief work and medical facilities should be ensured.
+
+41. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Luna looks intelligent. (a)____, she works hard. on her studies. (b)____, she seems to have poor test taking skills. (c)____, she often does badly in the exam. (d)____, she repeatedly makes some strategic mistakes during a written test. (e)____, she starts off really slowly. This initial slowness forces her to write too hurriedly towards the end resulting in spelling and other mistakes. (f)____, her answers are often too long. (g)____, she sometimes has to leave some questions unanswered because of time constraint. (h)____, she never starts with the easier questions as other students do. (i)____, she answers questions sequentially beginning from the first one. (j)____, these impractical habits of hers lead to poor time management during the exam
+
+42. Use appropriate sentence connectors in the blank spaces of the following passage.
+We cannot walk on a road in the darkness without light. (a)____, we cannot step forward in our life without education. (b)____, throughout the ages, education has always been compared to light and (c)____ ignorance has been compared to darkness. (d)____ the light of education which helps us to. (e)____ it broadens our mind and widens our outlook. (f)____, it is education which helps us to become good citizens. (g)____, education creation creates good citizens and ensures the smooth development of a country. (h)____ ignorance stands on the way of development of an individual. (i)____ ignorance has detrimental effect on the overall development of a nation (j)____, we should come forward to educate every single person of our country and thereby, ensure the development of our country.
+
+43. Use appropriate sentence connectors in the blank spaces of the following passage. 
+It was the night before my math exam in the 2nd semester. I could not do better in the math exam of 1 semester. (a)____, I was really serious about the exam. (b)____, I was careful enough not to spend a single moment in vain. But the night did not pass smoothly at all. (c)____, it was full of mishaps. (d)____, the electricity went out. I 1 waited for it for about an hour, however, there was no sign of its coming. (e)____ I lighted a candle and began to study again. The flickering light of the candle was creating problems for me. Soon, I began to feel a bad headache. I really wanted to get rid of it. (f)____, I left my reading room and stood in the balcony for some time. I began to feel better, but could not stay there for long. (g)____, I left the place. (h)____, I went to my reading room again. (i)____, to add to my gladness the electricity came. I could finish my study within two hours. (j)____, I went to bed with a happy mind.
+
+44. Use appropriate sentence connectors in the blank spaces of the following passage. 
+A journey is always a source of pleasure. (a) _______ a journey by boat is more interesting than any other journey. (b) ______ Bangladesh is a land of rivers, it is very easy to enjoy a journey by boat here. During last autumn, our college was closed. (c) ______ , it was a suitable time for me to make a journey by boat. (d) ______ I proposed to some of my friends to join me and they at once accepted my proposal. (e) _____ , we made a plan. (f) ______ , we hired a boat and started journey at 11 am. We were very fortunate indeed as the boatman was very expert. (g) _______, the weather was calm and quiet. (h)_______ , gentle breeze was slightly pushing the sail. (i) _______ , we had no trouble during the journey. (j) _______ , we had a lot of enjoyment. (k) _______ , the boat was dancing on the small waves and it thrilled us a lot. (l) _______ , we also enjoyed a 'Bhatiali song sung by the boatman. (m) ______ ,we were delighted at the sights on either bank of the river. (n) ______, when the sun was setting, the scene enchanted us very much.
+
+45. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Time and tide wait for none. (a) ____, no one can stop the onward march of time. (b) ____, it is very important to value our time. (c) ____, if time once has gone, we cannot regain it. (d) ____, we should not waste a single moment in vain. (e) ____, we should make proper use of every single moment of our life. (f) ____, the students should understand the value of time. (g) ____, it is a matter of great regret that some of the students pass away their valuable time in Facebook. (h) ____, they kill their time, (i) ____ they cannot prepare their lessons well. (j) ____, they always have a poor preparation for the examination. (k) ____ they cannot do well in the examination. (l) ____, they do not stop wasting time. (m) ____, they continue to waste their time using different social media sites (n) ____ is too late for them.
+
+46. Use appropriate sentence connectors in the blank spaces of the following passage.
+Scientists have always wondered (a)____ there is life anywhere out in the space. They have joined together in a major project 14  English 2nd Paper – Connectors called the communication with Extra Terrestrial Intelligence (b)____ seeks to establish contact with any other living beings in the universe. (c)____, they are beaming out radio signals into the space. It was thought (d)____ there exists life on Mars. (e)____ two Viking spacecrafts (f)____ landed on March in 1976 did not provide much evidence of life there. The pictures sent by them showed (g)____ the Mars has a sky, (h)____, the sky is red instead of a blue one like ours. Its gravity is about half (i)____ strong (j)____ that of Earth. (k)____, the atmosphere is also much thinner than our planet It has deserts, high mountains, canals, volcanoes, craters etc. as well as summer (l)____ winter. (m)____, there are no tress, (n)____ life forms.
+
+47. Use appropriate sentence connectors in the blank spaces of the following passage. 
+We should always keep in mind (a)____ all kind of physical exercise are not suitable for all. (b)____ different people have different capacities. (c)____, harder exercise (d)____ _wrestling and gymnastic are suitable for young people (e)____ they have energy to perform them. Weaker and old people should take the milder exercise (f)____ walking, jogging and free hand exercise. Over exercise never does good (g)____ it breaks down the health. (h)____, we should always take those exercise (i)____ would suit us. Physical exercise in important for the preservation of good health. It (j)____ builds our character.
+
+48. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Water is a vital element of the environment (a)____ this element is polluted in many ways. (b)____, farmers use chemical fertilizers and insecticides in their fields. (c)____ rain and flood awash ways these chemicals they get mixed with water in rivers, canals and ponds (d)____ polluted it. (e)____, mills and factories throw their poisonous chemicals and waste product into water. (f)____, water vehicles also pollute water by dumping food waste and human waste into it. (g)____, insanitary latrines and unsafe drains also contribute to water pollution. Water is called life. (h)____, we cannot allow this pollution to continue. We have to raise an awareness about it. (i)____, laws should be enforced strictly. (j)____ we fail to check water pollution; we will suffer.
+
+49. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Time is a special resource that you cannot store or save for future use. (a)____ it is managed properly to gain success. The skills of managing time properly are called time management skills (b)____ these skills are necessary for job hunting and career success. (c)____ it is essential to improve these skills. (d)____ there are several useful strategies that can be used to improve your time management skills. (e)____ have clear goal in mind. (f)____ set up your priorities. (g)____ block out time for your high priority activities first and protect that time from interruptions. (h)____ set a deadline to do them and try your best to stick to it. (i)____ your skills will help you avoid stress in completing any work successfully. (j)____ reward yourself when the job is done.
+
+50. Use appropriate sentence connectors in the blank spaces of the following passage.
+These are a vital part of our environment. (a)____, they bear a great impact on the climate. (b)____, we are not kind and careful about them. (c)____, we destroy tress at random. (d)____, one day the country will bear the consequence of greenhouse effect. (e)____ ours is an agricultural country, our economy depends on agriculture. (f)____, trees play a vital role on our climate. (g)____, tress keep the soil strong and protect it. (h)____, trees save us from flood and many natural calamities. (i)____, trees provide us timber which is of great use specially in construction works and for making furniture. (j)____, trees are our best friends.
+
+51. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Unemployment is a great problem in our country. (a)____, it is the burning question of the day. (b)____ almost all the countries of the world suffer from the curse of unemployment problem. (c)____ Bangladesh is the worst sufferer of this So called problem. (d)____ nowhere in the world this problem is so acute as in our country. (e)____, there are many reasons behind it. (f)____ our country is industrially backward. (g)____ our system of education fails to give a students an independent start of life. (h)____, it has little provision for vocational training. (i)____, our students and youths have false sense of dignity. (j)____, they run after jobs blindly.
+
+52. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Honesty is a noble virtue. The man (a)____ possesses this uncommon quality, is the happiest man in the world. Truly speaking, a man should have trustworthiness (b)____ nobody believes a liar. A liar may prosper for the time being, (c)____ ultimately he goes to the dogs. (d)____ we should be honest in our life It is believed that honesty is the best policy (e)____ dishonesty is the sign of downfall. God helps those who are honest. (f)____ dishonest people are cursed. Childhood is the best time (g)____ children should be taught honesty. It is seen that children follow their parents, (h)____ parents should be honest (i)____, they should be allowed to mix with those friends who are really honest. (j)____, they build up their character.
+
+53. Use appropriate sentence connectors in the blank spaces of the following passage. 
+Many people think that money can everything in life. (a)____ it is a must for our life, it is not the thing that necessarily brings happiness. (b)____, happiness is absolutely a psychological matter. The person who is contented with what he gets and (c)____ he has is really happy money can do something with happiness (d)____ it cannot give us happiness (e) ____. we can see that the richest men of our society are not the happiest men. (f)____, they lead a life burdened with cares and anxieties (g)____ pass sleepless nights. (h)____ there are a large number of poor men (i)____ are happy and enjoy a sound sleep. (j)____, money cannot ensure happiness.
+
+54. Use appropriate sentence connectors in the blank spaces of the following passage.
+Time and tide wait for none. (a)____, no one can stop the onward march of time. (b)____, we should not waste a single moment in vain. (c)____, we should make the proper use of every single moment of our life. (d)____, the students should understand the value of time. It is a matter of great regret that some of the students pass away their valuable time in Facebook. (e)____, they kill their time (f)____, they cannot prepare their lessons well. (g)____, they always have a poor preparation for the examination. (h)____, they cannot do well in the exam. (i)____, they don't stop wasting time. (j)____, they continue to waste their time using cell phone and facebook till it is too late for them.
+
+55. Use appropriate sentence connectors in the blank spaces of the following passage. 
+HSC Examination (Barishal Board-2022, Dhaka Board-2017)
+Mobile phone has added a new dimension in our communication system. It has make the world closer to us. (a)____ it has made worldwide communication easier. We use it for our days single day communication. (b)____, it has been part and parcel in our life as we cannot go for a single day without using it. We use it for rapid communication. (c)____, mobile phone is not free from defect It has some negative sides as well. (d)____, excessive use of mobile phone may damage our hearing power. (e)____, it is a means of money wastage. (f)____, it is seen that many under world cause are being done with the use of mobile network. (g)____, the radiation from mobile phone may cause cancer to users. (h)____, we are aware of these harmful effects. (i)____, we are not aware of using the mobile phone. (j)____, we must have to be conscious of the negative impact of mobile phone. 
+`;
+
+            const demoAnswers = `01. Answer: (a) As a matter of fact
+/Likewise; (b) Once/Previously/In the past;
+(c) At present/But; (d) Many/Now;  (e)
+Recently/For this reason; (f) As a result; (g)
+Actually/Truly speaking; (h) For
+example/To begin ' with/Firstly; (i)
+Traditionally/Usually/ Secondly; (j)
+Moreover/Besides/Thirdly; (k) In addition/
+_ Fourthly/Even; (1) Besides/Also; (m)
+Most importantly/Finally/Undoubtedly; (n)
+Thus/So/ .Therefore.
+
+02. Answer: (a) So/In order/Therefore: (b)
+At first/First of all/Firstly; (c) As/Since: (d)
+unless; (e) If/In case; (f) that: (g)
+Secondly/Again: (h) Thirdly: (i)
+Therefore/So. (j) So/For this/In others
+words/That is to say/Furthermore: (k) and:
+(l) Besides/Moreover/Also/Fifthly: (m)
+and/as/since/because; (n) above all/after
+all/finally.
+
+03. Answer: (a) As; (b) Moreover/
+Furthermore /Also; (c) However; (d) For
+example / for instance; (e) Meanwhile/ On
+the other hand; (f) Consequently/As a
+result; (g) Therefore; (h) Actually; (i)
+Additionally; (j) However; (k) even if; (1)
+If, (m) Rather, (n) Therefore
+
+04. Answer: (a) One the other hand; (b) So;
+(c) Moreover; (d) However; (e) Instead; (f)
+Naturally; (g) For this reason; (h)
+Moreover; (i) Then; (j) Finally.
+
+05. Answer: (a) By the way; (b) So; (c)
+Then; (d) At first; (e) So; (f) Instead; (g)
+Then; (h) Again; (i) Therefore; (j) So
+
+06. Answer: (a) In fact/As a matter of
+fact/Actually;(b) First of all/Firstly/Mainly;
+(c) However / but (d) for example/For
+instance; (e) On the other hand/On the
+contrary: (f) Hence / That's why/ for this
+reason; (g) Therefore/So; (h) In fact; (i)
+Additionally /Moreover / Besides; (j)
+and/but; (k) that/ which; (l) If; (m) Rather:
+(n) Therefore/So.
+
+07. Answer: (a) Indeed/Actually/In fact:
+(b) For instance/For example: (c)
+Consequently/Firstly: (d) Moreover/
+Instead/Rather; (e) Furthermore/In addition
+/Secondly/Consequently: (f) As a result/
+Eventually: (g) On the other hand/On the
+contrary; (h) So/And/As a result/Therefore:
+(i) Therefore/Consequently: (j) Instead/
+Rather: (k) But/However/In contrast/On the
+other hand/In fact/Actually: (l) Indeed/
+Actually/Moreover: (m) Therefore/So
+/Thus: (n) Otherwise.
+
+08. Answer: (a) that; (b) Indeed; (c) Firstly;
+(d) Secondly; (e) Furthermore; (f)
+Moreover; (g) Hence; (h) However; (i) As
+a result; (j) Consequently; (k) Additionally;
+(1) Therefore; (m) Ultimately; (n) Thus
+
+09. Answer: (a) and; (b) But/However; (c)
+If; (d) For example/For instance; (e) In fact;
+(f) So; (g) In Contrary/on the other hand;
+(h) But; (i) If; (j) So/Hence
+
+10. Answer: (a) such as/like; (b) At the
+same time; (c) Besides/Moreover; (d) both/
+not only; (e) and/but also; (f) So; (g)
+However/such/so; (h) but; (i) But; (j) If
+
+11. Answer: a) But; (b) At that time; (c)
+As/Since; (d) So; (e) Then/After that; (f)
+Afterwards; (g) When; (h) But; (i) but; (j)
+Finally/Lastly/At the end/At last.
+
+12. Answer: (a) So; (b) However/But; (c)
+Hence; (d) As a result; (e) But/ On the other
+hand; (f) In fact; (g) For example/For
+instance; (h) That's why/ As a result; (i)
+Consequently; (j) Therefore
+
+13. Answer: (a) that; (b) However/But; (c)
+and; (d) Actually/In fact/Rather; (e) not
+only/both; (f) but also/and; (g)
+Yet/However/But; (h) who; (i) and: (j) At
+present/Now; (k) Rather/Contrarily; (1)
+When; (m) and; (n) So/Therefore/Thus.
+
+14. Answer: (a) Firstly/Obviously/
+Certainly: (b) and/as well as: (c)
+Secondly/Besides/Moreover: (d) Apart
+from/With a view to/Besides; (e) On top of
+this/Additionally/Besides/Also; (f)
+Thus/So/As a result/Therefore/
+Consequently: (g) But/ However; (h)
+Basically/Certainly: (i) So/That is why: (j)
+Or/Otherwise/Therefore; (k) Hence/
+So/And; (l) Especially/Particularly; (m) At
+the same time/Moreover/Besides/In
+addition: (n) If
+
+15. Answer: (a) only/mainly/actually/
+generally; (a) If/When; (c) just /only/for;
+(d) But /if/When; (e) If /When; (f) highly;
+(g) Only through/During; (h) why; (i) and;
+(j) which; (k) In fact; (1) Rather; (m) when;
+(n) Therefore/So
+
+16. Answer: (a) In fact; (b) However; (c)
+Mainly/Primarily; (d) firstly; (e)Secondly;
+(f) Moreover; (g) Furthermore; (h) Finally;
+(i) Unfortunately; (j) Thus
+
+17. Answer: (a) So; (b) In fact; (c) firstly;
+(d) That is to say/In other words; (e)
+Secondly; (f) Besides/So; (g) Thirdly; (h)
+Rather/Instead; (i) Finally; (j) In fact/Thus
+
+18. Answer: (a) While; (b) whether/if; (c)
+had; (d) and; (e) Then/ There; (f) and; (g)
+but; (h) that; (i) During; (j) but
+
+19. Answer: (a) In fact; (b) As a
+result/So/Besides; (c) Nowadays/At present
+/Moreover; (d) In other words; (e) In
+addition/Furthermore; (f) Thus/In this way;
+(g) So/Therefore/Hence; (h) However
+/Nevertheless; : _* (i) For example/Firstly;
+(j) Secondly/Next; (k) Again/Thirdly; (1)
+Finally; (m) However/Yet (n)
+Consequently/As a result
+
+20. Answer: (a) who; (b) because/as/since;
+(c) but; (d) So/This is why/Therefore; (e)
+On the other hand/On the contrary; (f) But:
+(g) when: (h) For this reason/So/This is
+why: (i) and; (j) Moreover/Besides: (k) For example: (l) Besides/Also: (m)
+Accordingly: (n) Thus.
+
+21. Answer: (a) That's why/Because; (b)
+Only; (c) But/However; (d) Sometimes/
+Often; (e) Unfortunately; (f) As a
+result/Therefore; (g) So; (h) In fact/
+Undoubtedly; (i) For example/ For
+instance; (j) On the other hand/ Meanwhile;
+(k) So/As a result/ That's why; (1)
+Besides/Moreover; (m) Therefore/Hence;
+(n) Otherwise
+
+22. Answer: (a) that; (b) when; (c) but; (d)
+and; (e) Initially; (f) In fact; (g) and; (h) As
+a result; (i) whenever; (j) But.
+
+23. Answer: (a) At present/Now/In fact; (b)
+But/Truly speaking: (c) Obviously; (d)
+Firstly/First; (e) Secondly; : (f) Thirdly; (g)
+So/Therefore; (h) However / Anyway: (i)
+If; (j) And/Moreover; (k) At the same time;
+a (1) And/For instance; (m) Moreover; (n)
+Above all/Finally.
+
+24. Answer: (a) Especially/In fact/Truly
+speaking/Usually/Normally/Generally; (b)
+But/However; (c) that/which; (d) In
+fact/Besides/Actually; (e) And/On the other
+hand: (f) But/Rather: (g) So/Thus/This is
+why/As a result: (h) However/Bul/
+Actually/Undoubtedly; (i) Since/As; (j)
+Moreover/Furthermore/Again/Besides/Eve
+n; (k) Besides/Additionally/Again/
+furthermore: (l) Moreover/Furthermore/
+Besides/Again; (m) So/ Therefore: (n)
+Finally/Above all/At the same time.
+
+25. Answer: (a) which; (b) who; (c) So; (d)
+who; (e) however; (f) neither; (g) nor; (h) In
+fact; (i) Therefore; (j) As a result; (k) For
+this reason (1) and; (m) Because; (n)
+Hence/So
+
+26. Answer: (a) Actually; (b) But/
+However; (c) Though; (d) For example; (e)
+Also / In addition; (f) Moreover; (g)
+Furthermore; (h) Thus; (i) So; (j)
+importantly
+
+27. Answer: (a) At present/Now/In fact, (b)
+But, (c) Obviously (d) Firstly/ First, (e)
+Secondly, (f) Thirdly, (g) So/Therefore, (h)
+However/ Anyway, (i) With this end in
+view/ For this (j) Moreover/Besides/ In
+addition/Along with.
+
+28. Answer: (a) as; (b) But; (c) both; (d)
+and; (e) Firstly; (f) Secondly; (g)
+Furthermore; (h) However; (i) which; (j)
+Yet
+
+29. Answer: (a) But; (b) as; (c)
+However/Rather/Nevertheless; (d) As a
+matter of fact/In fact/But; (e) First /Firstly;
+(f) as/because; (g) Second/Secondly; (h)
+because; (i) On the other hand/On the
+contrary; (j) At last/ Finally; (k) As a matter
+of fact; (1) Again; (m) because; (n) Yet.
+
+30. Answer: (a) Previously; (b) and; (c)
+But; (d) when; (e) and; (f) and; (g) that; (h)
+But/Fortunately; (i) Though/Although; (j)
+As a result; (k) At last/ Finally/Eventually;
+(1) and; (m) At present/Now; (n) and
+
+31. Answer: (a) If; (b) not only; (c) In fact;
+(d) how; (e) So; (f) On the other hand; (g)
+that; (h) what; (i) In fact/ In brief; (j) and.
+
+32. Answer: (a) indeed/no doubt; (b)
+because; (c) Consequently/ As a; (d)
+So/Therefore; (e) On the other hand/
+Whereas (f) On the contrary; (g)
+So/Therefore; (h) In this connection/As a
+matter of fact/Hence; (i) Besides/
+Moreover/ In addition; (j) Thus/ In this way
+
+33. Answer: (a) Wherever; (b) which; (c)
+that; (d) In fact/Really; (e) Therefore; (f)
+Thus; (g) In addition/Moreover/ Besides;
+(h) Although /Though; (i) also; (j)
+But/However
+
+34. Answer: (a) So/Therefore; (b) only; (c)
+Actually; (d) For example; (e) Again/Also;
+(f) Moreover/Besides/ Finally; (g)
+So/Therefore; (h) Consequently/As a result;
+(i) Moreover/However; (j) So/This is why/
+In fact/Actually.
+
+35. Answer: (a) Now/In fact/Actually/As a
+result/At present/Nowadays: (b) But/On the
+other hand/On the contrary/Moreover/
+However; (c) For/Because of/Owing
+to/Duc to/On account of/Through/By way
+of; (d) For example/As a result/Firstly/
+Besides/For example/Likely/Likewise/At
+first; (e) Besides/Moreover/Secondly/At
+the same time/In the same manner/In
+addition;(f) thus/hence/again/consequently/
+definitely/even/moreover; (g) Moreover/
+Also/Furthermore/Thirdly/In addition/In
+conclusion/In short/In fine: (h) But/
+
+However/Nevertheless/Nonetheless/Howe
+ver/Even then/On the other hand; (i)
+Unfortunately/Sometimes/As a result/In
+fact/Really/Sadly/Even/Rather/Furthermor
+e; (j) So/That's why/Consequently/
+Therefore/ Eventually /As a result/
+Ultimately/For this/Because of this; (k)
+So/Firstly/First/Furthermore; (l) as/since/
+because/for: (m) For example/Thirdly
+/Besides/For instance/Such as/In other
+words; (n) So/At last/In fine/In short /To
+sum up /In conclusion/Finally/ Lastly.
+
+36. Answer: (a) when; (b) not only; (c)
+Basically; (d) when; (e) as well as; (f)
+However; (g) that; (h) Hence/So/ In this
+regard; (i) If, (j) Moreover/ In fact; (k) For
+example /Often; (l) Besides; (m)
+Undoubtedly; (n) So
+
+37. Answer: (a) Previously; (b) Recently;
+(c) For example; (d) All these; (e)
+Unfortunately; (f) Now; (g) Often; (h) But;
+(i) Moreover; (j) In short
+
+38. Answer: (a) So/Because/In fact; (b)
+But; (c) For example; (d) But/On the other
+hand; (e) that; ' (f) So/Therefore; (g) what;
+(h) At the same time/Moreover; (i) At this
+/Consequently/ Rather; (j) So/Therefore;
+(k) Besides/In addition; (1) but/rather/in
+reverse; (m) Thus; (n) if/when.
+
+39. Answer: (a) and; (b)
+Moreover/Besides/Also/At present; (c) So/
+Therefore/Moreover/Rather: (d) In fact/
+Actually/Unfortunately; (e) Now/At
+present/In addition; (f) On the other
+hand/On the contrary; (g) So/Therefore
+/That's why; (h) Though/ Although/Even
+though: (i) so that in order that: (f) but/yet:
+(k) However/ So/Therefore/In fact: (l) such
+as/for example/for instance; (m) As a result/
+Consequently/Therefore: (n) Finally/ Thus/
+So/In fact.
+
+40. Answer: (a) Moreover; (b) Specifically
+Specially; (c) Actually/Mainly; (d)
+Moreover/Also; (e) Beforehand; (f)
+Suddenly/Later (g) Then/Ultimately; (h)
+Eventually; (i) As a result; (j)
+Subsequently; (k) However; (1) Firstly/For
+example; (m) Secondly/ Besides /
+additionally; (n) Finally
+
+41. Answer: (a) In fact; (b) However; (c)
+Consequently; (d) For example; (e) Firstly;
+(f) Moreover; (g) As a result; (h) Besides;
+(i) Rather; (j)In short/ Thus
+
+42. Answer: (a) Similarly/ Likewise/ In the
+same way; (b) So; (c) On the other hand/On
+the contrary; (d) True that/In fact; (e)
+Besides/Moreover; (f) In fact/Surely/
+Again; (g) Thus/Therefore; (h) On the
+contrary; (i) Moreover/Besides; (j)
+Therefore/So
+
+43. Answer: (a) So/therefore/Hence; (b)
+Besides/Moreover; (c) Actually/ Truly
+speaking; (d) Suddenly/All on a sudden; (e)
+Then; (f) So; (g) Soon/Instantly; (h)
+However; (i) At that time/ At this moment;
+(j) At last/Finally
+
+44. Answer: (a) In fact; (b) Since; (c)
+So/Therefore/That's why; (d) Then; (e)
+Then/Accordingly; (f), Next/First; - (g)
+Fortunately/Also; (h) And then/In addition;
+
+(i) So/Therefore; (j) As a result/So; (k) At
+that time/Eventually; (l) At the same time;
+(m) Moreover; (n) Finally
+
+45. Answer: (a) Therefore: (b) So: (c)
+Besides/Moreover: (d) So; (e) Rather; (f)
+Especially/Furthermore; (g) However/But/
+Unfortunately; (h) In this way/Thus; (i)
+and: (j) So; (k) And; (l) Nevertheless;
+(m) Rather: (n) until.
+
+46. Answer: (a) whether/if; (b) which; (c)
+So; (d) that; (e) But; (f) that which; (g) that;
+(h) however; (i) as; (j) as; (k) Besides; (1)
+and; (m) Moreover; (n) let alone
+
+47. Answer: (a) that; (b) Because; (c) For
+example/For instance; (d) like; (e) as/ since/
+because; (f) such as; (g) rather; (h) So; (i)
+which/that; (j) also
+
+48. Answer: (a) but; (b) Firstly/At first; (c)
+When/As, (d) and; (e) Secondly; (f)
+Thirdly; (g) In addition/ Besides/Moreover;
+(h) That's way/So/ Therefore; (i) In this
+respect/Above all; (j) If.
+
+49. Answer: (a) Rather; (b) And; (c) So/
+Therefore / Nowadays; (d) However; (e)
+Firstly; (f) Secondly; (g) Thirdly; (h)
+Fourthly/ Finally; (i) Then; (j) Finally.
+
+50. Answer: (a) Actually/In fact; (b)
+Yet/Still/But; (c) Rather; (d) As a
+result/Consequently; (e) As/Since; (f) In
+addition/Besides; (g) For example/Firstly;
+(h) Secondly/ Besides; (i) Finally/Again/
+Moreover; (j) Thus/Therefore.
+
+51. Answer: (a) In fact/actually/ Really (b)
+At present/Now; (c) But/However; (d) It is
+true that/ Truly; (e) Obviously; (f)
+Firstly/At first; (g) secondly; (h) Thirdly; (i)
+In addition/Moreover/Besides; (j) This is
+why/ That is why/Hence/So
+
+52. Answer:(a) who; (b) because/ as/ since;
+(c) but; (d) so; (e) whereas; (f) On the
+contrary; (g) when; (h) Hence/so/therefore;
+(i) And; (j) Thus
+
+53. Answer: (a) Though; (b) Actually/In
+fact/Indeed; (c) what; (d) but; (e)
+So/Therefore; (f) Instead/ Rather; (g) and/
+as well as; (h) on the other hand; (i) who; (j)
+So/Therefore
+
+54. Answer: (a) That is why; (b) So; (c)
+Rather; (d) Specially; (e) As a matter of
+fact/ In fact; (f) Consequently; (g)
+Therefore; (h) As a result/Consequently; (i)
+Yet; (j) Rather
+
+55. Answer: (a) Moreover/Besides; (b) In
+fact; (c) But; (d) For instance/ For example;
+(e) Moreover; (f) Sometimes/often; (g)
+Further more; (h) However; (i) But; (j) So
+ 
+Answers:
+01. (a) As a matter of fact
+/Likewise; (b) Once/Previously/In the past;
+(c) At present/But; (d} Many/Now; . (e)
+Recently/For this reason; (f) As a result; (g)
+Actually/Truly speaking; (h) For
+example/To begin ' with/Firstly; (i)
+Traditionally/Usually/ Secondly; (j)
+Moreover/Besides/Thirdly; (k) In addition/
+Fourthly/Even; (1) Besides/Also; (m)
+Most importantly/Finally/Undoubtedly; (n)
+Thus/So/ .Therefore.
+02. (a) So/In order/Therefore: (b)
+At first/First of all/Firstly; (c) As/Since: (d)
+unless; (e) If/In case; (f) that: (g)
+Secondly/Again: (h) Thirdly: (i)
+Therefore/So. (j) So/For this/In others
+words/That is to say/Furthermore: (k) and:
+(l) Besides/Moreover/Also/Fifthly: (m)
+and/as/since/because; (n) above all/after
+all/finally.
+03. (a) As; (b) Moreover/
+Furthermore /Also; (c) However; (d) For
+example / for instance; (e) Meanwhile/ On
+the other hand; (f) Consequently/As a
+result; (g) Therefore; (h) Actually; (i)
+Additionally; (j) However; (k) even if; (1)
+If, (m) Rather, (n) Therefore
+04. (a) One the other hand; (b) So;
+(c) Moreover; (d) However; (e) Instead; (f)
+Naturally; (g) For this reason; (h)
+Moreover; (i) Then; (j) Finally.
+05. (a) By the way; (b) So; (c)
+Then; (d) At first; (e) So; (f) Instead; (g)
+Then; (h) Again; (i) Therefore; (j) So
+06. (a) In fact/As a matter of
+fact/Actually;(b) First of all/Firstly/Mainly;
+(c) However / but (d) for example/For
+instance; (e) On the other hand/On the
+contrary: (f) Hence / That's why/ for this
+reason; (g) Therefore/So; (h) In fact; (i)
+Additionally /Moreover / Besides; (j)
+and/but; (k) that/ which; (l) If; (m) Rather:
+(n) Therefore/So.
+07. (a) Indeed/Actually/In fact:
+(b) For instance/For example: (c)
+Consequently/Firstly: (d) Moreover/
+Instead/Rather; (e) Furthermore/In addition
+/Secondly/Consequently: (f) As a result/
+Eventually: (g) On the other hand/On the
+contrary; (h) So/And/As a result/Therefore:
+(i) Therefore/Consequently: (j) Instead/
+Rather: (k) But/However/In contrast/On the
+other hand/In fact/Actually: (l) Indeed/
+Actually/Moreover: (m) Therefore/So
+/Thus: (n) Otherwise.
+08. (a) that; (b) Indeed; (c) Firstly;
+(d) Secondly; (e) Furthermore; (f)
+Moreover; (g) Hence; (h) However; (i) As
+a result; (j) Consequently; (k) Additionally;
+(1) Therefore; (m) Ultimately; (n) Thus
+09. (a) and; (b) But/However; (c)
+If; (d) For example/For instance; (e) In fact;
+(f) So; (g) In Contrary/on the other hand;
+(h) But; (i) If; (j) So/Hence
+10. (a) such as/like; (b) At the
+same time; (c) Besides/Moreover; (d) both/
+not only; (e) and/but also; (f) So; (g)
+However/such/so; (h) but; (i) But; (j) If
+11. a) But; (b) At that time; (c)
+As/Since; (d) So; (e) Then/After that; (f)
+Afterwards; (g) When; (h) But; (i) but; (j)
+Finally/Lastly/At the end/At last.
+12. (a) So; (b) However/But; (c)
+Hence; (d) As a result; (e) But/ On the other
+hand; (f) In fact; (g) For example/For
+instance; (h) That's why/ As a result; (i)
+Consequently; (j) Therefore
+13. (a) that; (b) However/But; (c)
+and; (d) Actually/In fact/Rather; (e) not
+only/both; (f) but also/and; (g)
+Yet/However/But; (h) who; (i) and: (j) At
+present/Now; (k) Rather/Contrarily; (1)
+When; (m) and; (n) So/Therefore/Thus.
+14. (a) Firstly/Obviously/
+Certainly: (b) and/as well as: (c)
+Secondly/Besides/Moreover: (d) Apart
+from/With a view to/Besides; (e) On top of
+this/Additionally/Besides/Also; (f)
+Thus/So/As a result/Therefore/
+Consequently: (g) But/ However; (h)
+Basically/Certainly: (i) So/That is why: (j)
+Or/Otherwise/Therefore; (k) Hence/
+So/And; (l) Especially/Particularly; (m) At
+the same time/Moreover/Besides/In
+addition: (n) If
+15. (a) only/mainly/actually/
+generally; (a) If/When; (c) just /only/for;
+(d) But /if/When; (e) If /When; (f) highly;
+(g) Only through/During; (h) why; (i) and;
+(j) which; (k) In fact; (1) Rather; (m) when;
+(n) Therefore/So
+16. (a) In fact; (b) However; (c)
+Mainly/Primarily; (d) firstly; (e)Secondly;
+(f) Moreover; (g) Furthermore; (h) Finally;
+(i) Unfortunately; (j) Thus
+17. (a) So; (b) In fact; (c) firstly;
+(d) That is to say/In other words; (e)
+Secondly; (f) Besides/So; (g) Thirdly; (h)
+Rather/Instead; (i) Finally; (j) In fact/Thus
+18. (a) While; (b) whether/if; (c)
+had; (d) and; (e) Then/ There; (f) and; (g)
+but; (h) that; (i) During; (j) but
+19. (a) In fact; (b) As a
+result/So/Besides; (c) Nowadays/At present
+/Moreover; (d) In other words; (e) In
+addition/Furthermore; (f) Thus/In this way;
+(g) So/Therefore/Hence; (h) However
+/Nevertheless; : _* (i) For example/Firstly;
+(j) Secondly/Next; (k) Again/Thirdly; (1)
+Finally; (m) However/Yet (n)
+Consequently/As a result
+20. (a) who; (b) because/as/since;
+(c) but; (d) So/This is why/Therefore; (e)
+On the other hand/On the contrary; (f) But:
+(g) when: (h) For this reason/So/This is
+why: (i) and; (j) Moreover/Besides: (k) For
+example: (l) Besides/Also: (m)
+Accordingly: (n) Thus.
+21. (a) That's why/Because; (b)
+Only; (c) But/However; (d) Sometimes/
+Often; (e) Unfortunately; (f) As a
+result/Therefore; (g) So; (h) In fact/
+Undoubtedly; (i) For example/ For
+instance; (j) On the other hand/ Meanwhile;
+(k) So/As a result/ That's why; (1)
+Besides/Moreover; (m) Therefore/Hence;
+(n) Otherwise
+22. (a) that; (b) when; (c) but; (d)
+and; (e) Initially; (f) In fact; (g) and; (h) As
+a result; (i) whenever; (j) But.
+23. (a) At present/Now/In fact; (b)
+But/Truly speaking: (c) Obviously; (d)
+Firstly/First; (e) Secondly; : (f) Thirdly; (g)
+So/Therefore; (h) However / Anyway: (i)
+If; (j) And/Moreover; (k) At the same time;
+a (1) And/For instance; (m) Moreover; (n)
+Above all/Finally.
+24. (a) Especially/In fact/Truly
+speaking/Usually/Normally/Generally; (b)
+But/However; (c) that/which; (d) In
+fact/Besides/Actually; (e) And/On the other
+hand: (f) But/Rather: (g) So/Thus/This is
+why/As a result: (h) However/Bul/
+Actually/Undoubtedly; (i) Since/As; (j)
+Moreover/Furthermore/Again/Besides/Eve
+n; (k) Besides/Additionally/Again/
+furthermore: (l) Moreover/Furthermore/
+Besides/Again; (m) So/ Therefore: (n)
+Finally/Above all/At the same time.
+25. (a) which; (b) who; (c) So; (d)
+who; (e) however; (f) neither; (g) nor; (h) In
+fact; (i) Therefore; (j) As a result; (k) For
+this reason (1) and; (m) Because; (n)
+Hence/So
+26. (a) Actually; (b) But/
+However; (c) Though; (d) For example; (e)
+Also / In addition; (f) Moreover; (g)
+Furthermore; (h) Thus; (i) So; (j)
+importantly
+27. (a) At present/Now/In fact, (b)
+But, (c) Obviously (d) Firstly/ First, (e)
+Secondly, (f) Thirdly, (g) So/Therefore, (h)
+However/ Anyway, (i) With this end in
+view/ For this (j) Moreover/Besides/ In
+addition/Along with.
+28. (a) as; (b) But; (c) both; (d)
+and; (e) Firstly; (f) Secondly; (g)
+Furthermore; (h) However; (i) which; (j)
+Yet
+29. (a) But; (b) as; (c)
+However/Rather/Nevertheless; (d) As a
+matter of fact/In fact/But; (e) First /Firstly;
+(f) as/because; (g) Second/Secondly; (h)
+because; (i) On the other hand/On the
+contrary; (j) At last/ Finally; (k) As a matter
+of fact; (1) Again; (m) because; (n) Yet.
+30. (a) Previously; (b) and; (c)
+But; (d) when; (e) and; (f) and; (g) that; (h)
+But/Fortunately; (i) Though/Although; (j)
+As a result; (k) At last/ Finally/Eventually;
+(1) and; (m) At present/Now; (n) and
+31. (a) If; (b) not only; (c) In fact;
+(d) how; (e) So; (f) On the other hand; (g)
+that; (h) what; (i) In fact/ In brief; (j) and.
+32. (a) indeed/no doubt; (b)
+because; (c) Consequently/ As a; (d)
+So/Therefore; (e) On the other hand/
+Whereas (f) On the contrary; (g)
+So/Therefore; (h) In this connection/As a
+matter of fact/Hence; (i) Besides/
+Moreover/ In addition; (j) Thus/ In this way
+33. (a) Wherever; (b) which; (c)
+that; (d) In fact/Really; (e) Therefore; (f)
+Thus; (g) In addition/Moreover/ Besides;
+(h) Although /Though; (i) also; (j)
+But/However
+34. (a) So/Therefore; (b) only; (c)
+Actually; (d) For example; (e) Again/Also;
+(f) Moreover/Besides/ Finally; (g)
+So/Therefore; (h) Consequently/As a result;
+(i) Moreover/However; (j) So/This is why/
+In fact/Actually.
+35. (a) Now/In fact/Actually/As a
+result/At present/Nowadays: (b) But/On the
+other hand/On the contrary/Moreover/
+However; (c) For/Because of/Owing
+to/Duc to/On account of/Through/By way
+of; (d) For example/As a result/Firstly/
+Besides/For example/Likely/Likewise/At
+first; (e) Besides/Moreover/Secondly/At
+the same time/In the same manner/In
+addition;(f) thus/hence/again/consequently/
+definitely/even/moreover; (g) Moreover/
+Also/Furthermore/Thirdly/In addition/In
+conclusion/In short/In fine: (h) But/
+However/Nevertheless/Nonetheless/Howe
+ver/Even then/On the other hand; (i)
+Unfortunately/Sometimes/As a result/In
+fact/Really/Sadly/Even/Rather/Furthermor
+e; (j) So/That's why/Consequently/
+Therefore/ Eventually /As a result/
+Ultimately/For this/Because of this; (k)
+So/Firstly/First/Furthermore; (l) as/since/
+because/for: (m) For example/Thirdly
+/Besides/For instance/Such as/In other
+words; (n) So/At last/In fine/In short /To
+sum up /In conclusion/Finally/ Lastly.
+36. (a) when; (b) not only; (c)
+Basically; (d) when; (e) as well as; (f)
+However; (g) that; (h) Hence/So/ In this
+regard; (i) If, (j) Moreover/ In fact; (k) For
+example /Often; (l) Besides; (m)
+Undoubtedly; (n) So
+37. (a) Previously; (b) Recently;
+(c) For example; (d) All these; (e)
+Unfortunately; (f) Now; (g) Often; (h) But;
+(i) Moreover; (j) In short
+38. (a) So/Because/In fact; (b)
+But; (c) For example; (d) But/On the other
+hand; (e) that; ' (f) So/Therefore; (g) what;
+(h) At the same time/Moreover; (i) At this
+/Consequently/ Rather; (j) So/Therefore;
+(k) Besides/In addition; (1) but/rather/in
+reverse; (m) Thus; (n) if/when.
+39. (a) and; (b)
+Moreover/Besides/Also/At present; (c) So/
+Therefore/Moreover/Rather: (d) In fact/
+Actually/Unfortunately; (e) Now/At
+present/In addition; (f) On the other
+hand/On the contrary; (g) So/Therefore
+/That's why; (h) Though/ Although/Even
+though: (i) so that in order that: (f) but/yet: 
+(k) However/ So/Therefore/In fact: (l) such
+as/for example/for instance; (m) As a result/
+Consequently/Therefore: (n) Finally/ Thus/
+So/In fact.
+40. (a) Moreover; (b) Specifically
+Specially; (c) Actually/Mainly; (d)
+Moreover/Also; (e) Beforehand; (f)
+Suddenly/Later (g) Then/Ultimately; (h)
+Eventually; (i) As a result; (j)
+Subsequently; (k) However; (1) Firstly/For
+example; (m) Secondly/ Besides /
+additionally; (n) Finally
+41. (a) In fact; (b) However; (c)
+Consequently; (d) For example; (e) Firstly;
+(f) Moreover; (g) As a result; (h) Besides;
+(i) Rather; (j)In short/ Thus
+42. (a) Similarly/ Likewise/ In the
+same way; (b) So; (c) On the other hand/On
+the contrary; (d) True that/In fact; (e)
+Besides/Moreover; (f) In fact/Surely/
+Again; (g) Thus/Therefore; (h) On the
+contrary; (i) Moreover/Besides; (j)
+Therefore/So
+43. (a) So/therefore/Hence; (b)
+Besides/Moreover; (c) Actually/ Truly
+speaking; (d) Suddenly/All on a sudden; (e)
+Then; (f) So; (g) Soon/Instantly; (h)
+However; (i) At that time/ At this moment;
+(j) At last/Finally
+44. (a) In fact; (b) Since; (c)
+So/Therefore/That's why; (d) Then; (e)
+Then/Accordingly; (f), Next/First; - (g)
+Fortunately/Also; (h) And then/In addition;
+(i) So/Therefore; (j) As a result/So; (k) At
+that time/Eventually; (l) At the same time;
+(m) Moreover; (n) Finally
+45. (a) Therefore: (b) So: (c)
+Besides/Moreover: (d) So; (e) Rather; (f)
+Especially/Furthermore; (g) However/But/
+Unfortunately; (h) In this way/Thus; (i)
+and: (j) So; (k) And; (l) Nevertheless;
+(m) Rather: (n) until.
+46. (a) whether/if; (b) which; (c)
+So; (d) that; (e) But; (f) that which; (g) that;
+(h) however; (i) as; (j) as; (k) Besides; (1)
+and; (m) Moreover; (n) let alone
+47. (a) that; (b) Because; (c) For
+example/For instance; (d) like; (e) as/ since/
+because; (f) such as; (g) rather; (h) So; (i)
+which/that; (j) also
+48. (a) but; (b) Firstly/At first; (c)
+When/As, (d) and; (e) Secondly; (f)
+Thirdly; (g) In addition/ Besides/Moreover;
+(h) That's way/So/ Therefore; (i) In this
+respect/Above all; (j) If.
+49. (a) Rather; (b) And; (c) So/
+Therefore / Nowadays; (d) However; (e)
+Firstly; (f) Secondly; (g) Thirdly; (h)
+Fourthly/ Finally; (i) Then; (j) Finally.
+50. (a) Actually/In fact; (b)
+Yet/Still/But; (c) Rather; (d) As a
+result/Consequently; (e) As/Since; (f) In 
+addition/Besides; (g) For example/Firstly;
+(h) Secondly/ Besides; (i) Finally/Again/
+Moreover; (j) Thus/Therefore.
+51. (a) In fact/actually/ Really (b)
+At present/Now; (c) But/However; (d) It is
+true that/ Truly; (e) Obviously; (f)
+Firstly/At first; (g) secondly; (h) Thirdly; (i)
+In addition/Moreover/Besides; (j) This is
+why/ That is why/Hence/So
+52. Answer:(a) who; (b) because/ as/ since;
+(c) but; (d) so; (e) whereas; (f) On the
+contrary; (g) when; (h) Hence/so/therefore;
+(i) And; (j) Thus
+53. (a) Though; (b) Actually/In
+fact/Indeed; (c) what; (d) but; (e)
+So/Therefore; (f) Instead/ Rather; (g) and/
+as well as; (h) on the other hand; (i) who; (j)
+So/Therefore
+54. (a) That is why; (b) So; (c)
+Rather; (d) Specially; (e) As a matter of
+fact/ In fact; (f) Consequently; (g)
+Therefore; (h) As a result/Consequently; (i)
+Yet; (j) Rather
+55. (a) Moreover/Besides; (b) In
+fact; (c) But; (d) For instance/ For example;
+(e) Moreover; (f) Sometimes/often; (g)
+Futher more; (h) However; (i) But; (j) So
+`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function cleanString(str) {
