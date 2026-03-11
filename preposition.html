@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preposition Mastery - Board Practice</title>
+    <title>Preposition Practice Sheet</title>
     <style>
         :root {
             --p: #2563eb;
@@ -332,23 +332,24 @@
 
 <body>
 
-    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Toggle Mode</div>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
 
     <div class="container">
-        <h2 id="top-heading">HSC Preposition Practice Board</h2>
+        <h2 id="top-heading">HSC Preposition Practice Sheet Generator</h2>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
                 <div>
-                    <label>1. Paste Questions (Format: 01. Text...):</label>
+                    <label>1. Paste Questions</label>
                     <textarea id="q-input" placeholder="01. A good boy is... (a) ___ hard work."></textarea>
                 </div>
                 <div>
-                    <label>2. Paste Answers (Format: 01. (a) ans;):</label>
+                    <label>2. Paste Answers</label>
                     <textarea id="a-input" placeholder="01. (a) to; (b) of/about;"></textarea>
                 </div>
             </div>
-            <button class="btn btn-start" onclick="processData()">Build Practice Set</button>
+            <button class="btn btn-start" onclick="processData()">Build Practice Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions & Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -377,6 +378,426 @@
         function toggleTheme() {
             const current = document.documentElement.getAttribute("data-theme");
             current === "dark" ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `01. 
+A good boy is accustomed (a) ___ hard work. Не is not addicted (b) ___ any bad thing. He is not averse (c) ___ any hard work. He clings (d) ___ his determination. Since he is used (e) ___ hard work, he is not doubtful (f) ___ his success. He is very much conscious (g) ___ his duties. He is not boastful (h) ___ his talent s. He behaves well (i) ___ all. He attends (j) ___ his studies.
+
+02. 
+Charity is a noble virtue. A person should be endowed (a) ____ this virtue. It makes people think favourably (b) ____ their fellowmen and do them good. It is also the cheerful giving of one's possession to someone (c) ____ need. This quality brings happiness (d) ____ earth and strengthens the ties of relationship (e) ____ men. It should not be measured (f) _____ terms of money. Rather, it should be measured (g) ____ the sacrifice that one makes. In fact, it is a form (h) ____ self-sacrifice (i) ____ which our society cannot progress. So, everybody should practise this habit (j) ____ childhood.
+
+03. 
+We learn etiquette and manners (a) ___ our parents and various institutions such as schools, colleges or professional bodies. There are rules (b) ___ behaviour (c) ___ all kinds (d) ___ social occasions and it is important to learn them and practise them (e) ___ everyday life. The manners that are correct (f) ___ a wedding reception will not do (g) ___ a debating club. Therefore, we have to be careful (h) ___ etiquette and manners. We know how Important it is to say ‘please’ and ‘thank you’ (i) ___ everyday life. A few more polite expressions such (j) ___ 'Pardon me', ‘Excuse me’, ‘May I’ are bound to make your day smooth and pleasant.
+
+04. 
+Camels are one of the few animals that can live in a desert. Camels have humps (a) ___ their backs. They store fat (b) ___ these humps. The fat gives them energy. Because camels do not store water, fat helps produce water when camel move (c) ___ the dry desert. They can go (d) ___ several months without water. Camels eat grass to get moisture. The camels are as useful (e) ___ the people of the desert as the buffalo are (f) ___ the grasslands. The meat of the camel is good to eat. People make cloth (g) ___ of camel hair. Shoes are made (h) ___ the hides. The camels are also good (i) ___ travel in the desert. Some people travel the desert (j) ___ camels to make a living.
+
+05. 
+Mr. Reza works (a) ___ a clerk in a local school. He is poor but honest. His honesty is known (b) ___ everyone in his locality. He often suffers (c) ___ hunger. He is deprived (d) ___ comfort and many other things. Nevertheless, he does not long (e) ___ wealth. He never hankers (f) ___ name and fame. He leads his life (g) ___ honest means. He is satisfied (h) ___ what he has. But sometimes he runs into debt and poverty is responsible (i) ___ this debt. However, he does not like to depend (j) ___ others.
+
+06. 
+The environment plays an important role (a) ___ our life. (b) ___ short, what we have (c) ___ us including people, houses, air, water, etc. is called environment. These are the main elements (d) ___ our environment. (e) ___ ensuring sound life the balance (f) ___ the natural elements is very significant. Sometimes (g) ___ lack of knowledge, we don't realize the importance (h) ___ it. As a result, we are polluting our environment unknowingly. living (i) ___ a polluted environment is undoubtedly a matter (j) ___ great regret.
+
+07. 
+A good stock (a) ___ words is necessary (b) ___ anybody who wants to use a language. Vocabulary is an essential component (c) ___ successful communication. It is an integral part (d) ___ reading skill. While grammar is important, a lack (e) ___ vocabulary may result (f) ___ complete failure to convey a message. Vocabulary includes conceptual knowledge (g) ___ words that go well (h) ___ an ordinary dictionary meaning. Student's vocabulary knowledge is a building process that occurs (i) ___ times.
+
+08. 
+The vast number (a) ____ plant species underwater forms a beautiful ecosystem. The plants which stay underwater depend (b) ____ the light coming (c) ____ the sun (d) ____ their growth. They also draw the atmospheric carbon dioxide (e) ____ the air above and convert them, (f) ____ oxygen. The flora (g) ____ the surface (h) ____ the water adds (i) ____ the aesthetic beauty. These plants sometimes span vast lengths below the surface (j) ____ the ocean.
+
+09. 
+Life of common people is beset (a) ___ a number of troubles. Price spiral has added new sufferings (b) ___ our life. Indeed, price of daily commodities has gone (c) ___ the ability of the common people. Lack (d) ___ supervision is responsible (e) ___ it. Some dishonest businessmen devoid (f) ___ morality hoard goods (g) ___ quick profit. The Government should take punitive action (h) ___ those people. People from all walks (i) ___ life should also cooperate (j) ___ the Government.
+
+10. 
+Corruption is a curse (a) ___ a nation. It is a great hindrance (b) ___ the development. (c) ___ corrupt, a nation will surely sink (d) ___ oblivion. Corrupt people are hated by all. The common people have no respect (e) ___ them. They are devoid (f) ___ honesty. They stick (g) ___ their evil activities. They do not abide (h) ___ the social rules. Morality does not have any effect (i) ___ them. They bring nothing for the nation. it is high time we stood (j) ___ them.
+
+11.  
+Email has brought (a) ___ a revolution (b) ___ modern communication. Messages can be transmitted (c) ___ one country to another (d) ___ seconds. It is far cheaper than telephone call. Trade and commerce has become greatly dependent (e) ___ this speedy mode (f) ___ communication. It has, however, not reached everyone, especially (g) ___ developing countries (h) ___ ours, as most people cannot afford (i) ___ have a personal computer. But even here, people have started using commercially operated email facilities (j) ___ important purposes.
+
+12. 
+What are the qualities of a good student? A good student is always attentive (a) ___ his studies. He is never indifferent (b) ___ his studies. He does not learn things (c) ___ rote. He is always curious and innovative. He does not hunt only (d) ___ traditional guide-books. His thirst (e) ___ knowledge knows no bounds. He does not confine himself (f) ___ the traditional studies. He is aware (g) ___ the current affairs (h) ___ the world. He listens (i) ___ his teachers and abides (j) ___ their advice.
+
+13. 
+Syed Shamsul Haq, a legendary litterateur, was born in Kurigram (a) ___ 1935. He received the Bangla Academy Award (b) ___ the age of twenty-nine. It is noteworthy that he was the youngest (c) ___ all who got the Bangla Academy Award. He was awarded the Swadhinata Padak in 2000 (d) ___ his contributions (e) ___ Bangla literature. His literary works are included (f) ___ the curricula of secondary, higher secondary and graduation level (g) ___ Bangladesh. Syed Shamsul Haq was married (h) ___ Anwara Syed Haq who is a member (i) ___ the Royal College of Psychiatrists in London. This renowned intellactual passed away (j) ___ 27 September in 2016 at the age of 81.
+
+14. 
+Flowers are the excellent gift of nature. They have existed (a) ___ the earth (b) ___ prehistoric -time. Since then they have been treated (c) ___ the symbol of beauty. It is an undeniable fact that flowers are used (d) ___ various spheres (e) ___ our life. It is used mostly (f) ___ decoration. People (g) ___ all walks of life use flowers usually (h) ___ national occasion and (i) ___ wedding. Everyone prefers flowers (j) ___ expressing their love and devotion.
+
+15. 
+It is known (a) ____ all that one day all will pass away (b) ____ this earth. So, we have no escape (c) ____ death. One day, everyone will lie (d) ____ the icy lap of death because death is common (e) ____ all. So, we should not mourn (f) ____ the dead. Death is inevitable. But those who die (g) ____ the country are immortal. Their memory does not sink (h) ____ oblivion. There is no medicine that can save a man (i) ____ death. Therefore, we should always be ready (j) ____ death.
+
+16. 
+Education is instrumental (a) ___ bringing (b) ___ socio-economic development. A man devoid (c) ___ education cannot contribute (d) ___ the society. On the other hand, an educated man plays a pivotal role (e) ___ enhancing the pace (f) ___ socioeconomic development. A country should put much emphasis (g) ___ educating its citizens. The citizens have to be provided (h) ___ ample opportunities so that they feel keen interest (i) ___ getting themselves educated. The educated people are to be treated (j) ___ much respect. 
+
+17.  
+But at last God took pity (a) ___ him. One day the sailor was watching the watersnakes swimming (b) ___ the ship. Their colours were so beautiful and he was filled (c) ___ such a strange wonder that he felt a great love (d) ___ them and blessed them (e) ___ his heart. At once, the dead albatross fell (f) ___ his neck (g) ___ the sea. A gentle breeze began to blow (h) ___ the south and the old man fell (i) ___ a deep sleep. When he woke up, it was raining and he felt fresh again. Thus, the old man was relieved (j) ___ his sufferings.
+
+18. 
+Shilpi married Rashid (a) ___ the age of fifteen. Marrying (b) ___ daughters (c) ___ an early age is a standard practice (d) ___ many families living in rural Bangladesh. (e) ___ her wedding, Shilpi joined a local empowerment group that helps her (f) ___ the tools needed to gradually change cultural practices, particularly those pertaining (g) ___ early marriage and pregnancy. The group's activities include discussions (h) ___ how to change behaviour related (i) ___ reproductive healty as well as one-on-one counseling. Like Shilpi, many of the girls got assistance (j) ___ this empowerment group.
+
+19. 
+When the sun was setting (a) ___ the treetops, the jailor came (b)___ the room of Socrates to bid him prepare (c) ___ death, In those days, people were sentenced to death by giving a cup (d) ___ poison to Athens. Socrates knew this and the nodded (e) ___ the jailor. Bursting (f) ___ tears the jailor went out of the room and returned (g) ___ a cup of hemlock. Socrates lifted the cup to his lips. His pupils tried to keep back their tears but soon the room was filled (h) ___ the sound of weeping. With the cup of poison (i) ___ hand, Socrates said, "What is the strange sound? I have heard that a man should die (j) ___ peace. So, be silent and have patience.
+
+20. 
+Ours is a riverine country. Rivers are everywhere (a) ___ our life literature, economy and culture. But are the rivers (b) ___ good shape? Unfortunately they are not. A few are already dead and several are going (c) ___ the pangs of death. The river Buriganga is an example (d) ___ a dying river. A report published in 'The Daily Sun' describes what has happend (e) ___ the river Buriganga and why. Its water is polluted and a perpetual stench fills the air (f) ___ it. The report says that the river had a glorious past. Once it was tributary (g) ___ the Ganges and flowed (h) ___ the Bay of Bengal (i) ___ the river Dhaleshwari. Gradually, it lost its link (j) ___ the Ganges and got the name Buriganga.
+
+21. 
+Once an English and a Bengalee gentleman were travelling (a) ___ the same train and they were in the same compartment. The Englishman was very proud (b) ___ himself because he was an Englishman. He looked (c) ___ upon the Bengalee gentleman who, however, took no notice (d) ___ it and went to sleep (e) ___ peace. As soon as the Bengalee gentleman was asleep, the Englishman picked (f) ___ the gentleman's shoes and threw them (g) ___ the window and went to sleep. When the Bengalee gentleman woke up, he looked for his shoes and understood it. Then he took the Englishman's long coat (h) ___ the wall and threw it outside the window and returned (i) ___ bed laughingly. Next morning the Englishman became started and shouted, "Where's my coat gone?" "Your coat has gone to fetch my shoes," and the gentleman (j) ___ a smile. The Bengalee gentleman was Sir Ashutosh Mukherjee.
+
+22. 
+Gen Z refers (a) ____ the group of people born after 1996. They are called so because they are digital natives who have grown (b) ____ with technology like smartphones and the Internet. Normally, Gen Z kids are fond (c) ____ using digital devices and gadgets daily. They are also very good (d) ____ using online apps and looking (e) ____ information whenever they need. This generation is absorbed (f) ____ important issues like politics, social inequality and even environmental concerns. Gen Z is different (g) ____ other generations because they are always connected (h) ____ social media and other online platforms. They enjoy learning (i) ____ new things (j) ____ videos and websites.
+
+23. 
+Ours is a reverine country. Rivers are everywhere (a) ___ our life literature, economy and culture. But are the rivers (b) ___ good shape? Unfortunately, they are not. Though rivers are part and parcel (c) ___our life, we ourselves are cruel (d) ___ them. A few rivers are already dead and several are going (e) ___ the pangs of death. Some river-grabbers grab riverbanks and build buildings (f) ___ trade and commerce. Rivers are also getting silted (g) ___ deforestation. So, rivers cannot flow (h) ___ sufficient water during the rainy season. As a result, floods occur and rivers cannot flow (h) ___ people's sufferings go (i) ___ description. Then rivers become source of sufferings instead (j) ___ blessings.
+
+24. 
+The orphange is high (a) ___ the Carolina - mountains. The writer was there (b) ___ the Autumn. She preferred peaceful environment to pen some troublesome writing. She wanted the mountain air to blow (c) ___ the Malaria from too long a time (d) ___ the subtropics. She was homesick (e) ___ the flaming (f) ___ maples (g) ___ October and for many other things. She found them all living (h) ___ a cabin belonging (i) ___ the orphanage, half a mile (j) ___ orphanage farm.
+
+25. 
+Love for motherland is inherent (a) ____ man. A man who is devoid (b) ____ love for his motherland is not a true patriot. A genuine patriot loves his motherland (c) ____ the core of his heart. He dedicates his whole life (d) ____ the service of his own country. He is prepared to lay (e) ____ his life for the greatest interest of his motherland. Our freedom fighters are the proud sons of our country. They took pride (f) ____ fighting for the country (g) ____ our enemy. They never retreated (h) ____ the battlefield rather swooped (i) ____ the enemy valiantly. Their sacrifice will end (j) ____ vain if we fail to build our own country.
+
+26. 
+Social network is a network for virtual social interaction (a) ___ Internet users across the world. Actually, this is an age (b) ___ globalisation. This is also an age of information and technology. People all over the world are virtually connected (c) ___one another (d) ___ the borders. Hence, the necessity of social networks has emerged. But the young generations are getting addicted (e) ___ social networks (f) ___ Facebook. Twitter. Instagram, etc. The lifestyle of the young before and after getting used (g) ___ a social network has a noticeable change. In fact, the students who were used to studying at the table before, nowadays pass their valuable time by chatting (h) ___ the, social media. As a result, they are now lagging (i) ___. So, they should be kept aloof (j) ___ using Internet excessively and unnecessarily.
+
+27. 
+A craftwork is an applied form (a) ___ art, a social and cultural product reflecting the inclusive nature (b) ___ folk imagination. A craftwork, which usually doesn't bear the signature of its maker, retains a personal touch. When we look (c) ___ a thirty years old Nakshi Kantha, we wonder (d) ___ its motif and designs that point (e) ___ the artistic ingenuity and the presence of the maker (f) ___ it. The fact that we do not know her name or any other details (g) ___ her does not take anything (h) ___ from our appreciation (i) ___ the artist. Indeed, the intimate nature (j) ___ the Kantha and the tactile feeling it generates the work and make it very inviting.
+
+28. 
+Books are really our best friends as we can rely (a) ___ them when we are bored, upset, depressed, lonely or annoyed. They share (b) ___ us information and knowledge any time we need. They enable us to have a glimpse (c) ___ cultures, traditions, arts, history, geography, health, psychology and many other subjects and aspects of life. Good books always guide us (d) ___ the right path (e) ___ life. Reading good books helps us understand the world (f) ___ us better. While reading books we build new and creative thoughts, images and opinions (g) ___ our mind. This habit helps us explore life (h) ___ different perspectives. In -other words, it has several positive effects (i) ___ our body, mind and soul. In fact, the habit of reading is one (j) ___ the best qualities that a person can possess.
+
+29. 
+Preposition connects all types (a) ___ words together and supports them make better sense (b) ___ the readers. They help us to understand the relationship (c) ___ objects. (d) ___ example, the book and the table are (e) ___ the kitchen. This ensures you a basic understanding. If we add another preposition, it makes it even clearer. This book is (f) ___ top of the table (g) ___ the kitchen. We have a clear picture (h) ___ our mind (i) ___ the relation of those two objects and their relationship (j) ___ each other.
+
+30. 
+We got our freedom (a) ___ the sacrifice of hundreds and thousands of (b) ___ lives. The patriots (c) ___ our land thought (d) ___ the oppression of the west Pakistani rulers. Finally, the oppressors were bound to surrender (e) ___our freedom fighters. But a great number (f) ___ the sons of the land died (g) ___the war. Soon (h) ___ the war, the government (i) ___ Bangladesh founded the National Memorial (j) ___ memory of the martyrs.
+
+31. 
+A good student is never indifferent (a) ___ his studies. He always adheres (b) ___ his studies. He does not learn things (c) ___ rote. He does not hunt (d) ___ traditional guide books. Moreover, he has great thirst (e) ___ knowledge. For this, he does not confine himself (f) ___ the traditional studies. He is always aware (g) ___ the current affairs (h) ___ the world. He abides (i) ___ his teacher's advice and jots (j) ___ their lectures.
+
+32. 
+Robert Hayden was born (a) ____ a poor family (b) ____ Detriot in the USA in 1913 and had a difficult childhood beset (c) ____ eyesight problems. He was raised (d) ____ part (e) ____ foster parents and missed a father's caring love. But in the sonnet, which is (f) ____ a childhood memory. he writes (g) ____ a father probably his won who is harsh and often angry, but does love his son (h) ____ his own way. Hayden, a Black American, wrote (i) ____ black experiences and history. He died (j) ____ 1980.
+
+33. 
+Corruption is a curse (a) ___ a nation. It is a great hindrance (b) ___ the development. (c) ___ corrupted people, a nation will surely suffer (d) ___ the long run. Corrupted people are hated (e) ___ all The common mass have no good feeling (f) ___ them. They are devoid (g) ___ honesty and purity. They don't abide (h) ___ the social rules. Morality doesn't have any impact (i) ___ these criminals. They bring no sweet fruit for their land and so it is high time we stood (j) ___ them unitedly.
+
+34. 
+The moon is a very familiar figure (a) ___ all of us. She awakens a feeling (b) ___ love and tenderness (c) ___ our hearts. Even infants in arms stretches (d) ___ their hands to grasp the beautiful thing. Nor is her appeal confined only (e) ___ children. Ever since the string of the poetic faculty in man, she has furnished a theme (f) ___ poets and artists. The moon has no light (g) ___ her own. The soft silvery brightness which forms her principal charms to us, is borrowed solely (h) ___ the light of the sun. If we go out on a clear night, we can look (i) ___ the magic of moon light. It is often difficult (j) ___ us to realize that the moon is shining in borrowed feathers.
+
+35. 
+Luna's cat was missing. So she started looking around (a) ___ it. She opened her closet and looked (b) ___. Then she went to the bedroom crawling (c) ___ the floor to look (d) ___ the bed. The cat was not there. In fact, it was nowhere inside the house. Therefore, Luna decided to go (e) ___ to look for it. Just as she was (f) ___ to open the door, the doorbell rang. It was her neighbour, Mrs. Haq. "Look, Luna! Your cat is (g) ___ the sunshade!" said Mrs. Haq pointing (h) ___ a tall building opposite (i) ___ her house. She smiled and thanked her friendly neighbour, saying that (j) ___ her help she would not be able to find out her cat.
+
+36. 
+I caught sight (a) ___ him while crossing the road. I tried to talk (b) ___ him. But he was (c) ___ a hurry. He was one (d) ___ my best friends. Both of us studied (e) ___ the same school. I had an intimacy (f) ___ him. Both of us got separated (g) ___ each other after the completion (h) ___ SSC Examination. Though my heart bleeds (i) ___ him. I hardly meet (j) ___ him. This is the go of the world.
+
+37. 
+The science fair held (a) ___ our college paved a new way for us to gather practical knowledge. Many of our friends took part (b) ___ the fair (c) ___ their projects. We showed genuine interest (d) ___ them. Most of the projects were made (e) ___ consistent (f) ___ the prevailing world situation. They were intended (g) ___ acquaint us (h) ___ the solutions (i) ___ some common problems we are facing specially in regard to the environment we live in. We were sanguine (j) ___ achieving success and we really achieved it.
+
+38. 
+The old man told him (a) ____ his last journey (b) ____ the sea. They had sailed away (c) ____ the south, he said, until they arrived (d) ____ cold grey seas. Even the sea was frozen, and ice was all (e) ___ them. (f) ____ those days there were no steamships, and the big white sails (g) ___ their ship opened wide as the strong wind blew them quickly (h) ____ the icy waters. The weather was very cold and there were no birds or animals (i) ____ that snow covered country, but one day the sailors saw an albatross flying (j) ____ the ship.
+
+39. 
+In Bangladesh, the legal age (a) ___ marriage (b) ___ girls is 18. However, 33% of our girls get married before they are 15 and 60% (c) ___ them become mothers (d) ___ the time they reach 19. When an adolescent girl gets married, she usually drops (e) ___ of school and thus loses her mobility. She gets confined (f) ___ fulltime work (g) ___ her in-law's household. She loses social status and all the opportunities (h) ___ economic independence. (i) ___ her in-law's house, she gets marginalized. She becomes vulnerable (j) ___ all sorts of abuse, including dowry-related violence.
+
+40. 
+Books are really our best friends as we can rely (a) ___ them when we are bored, upset, depressed, lonely or annoyed. They share (b) ___ us information and knowledge whenever we need. They enable us to have a glimpse (c) ___ cultures, traditions, arts, history, geography, health, psychology and many other subject and aspects of life. Good book always guides us (d) ___ the right path (e) ___ life. Reading good books helps us understand the world (f) ___ us better. While reading books, we build new and creative thoughts, images and opinions (g) ___ our mind. This habit helps us explore life (h) ___ different perspectives. In other words, it has several positive effects (i) ___ our body, mind and sour. In fact, the habit of reading is one (j) ___ the best qualities that a person can possess.
+
+41. 
+The ceremony began (a) ___ 10 a.m. Our principal Mr. Rahman presided (b) ___ the function and Member of Parliament Mr. Reza was the chief guest. The function started (c) ___ the recitation from the holy Quran. One (d) ___ our senior teachers read (e) ___ the annual report. The honorable chief guest delivered a brief but inspiring speech (f) ___ education. He advised the students to be regular (g) ___ the class and attentive (h) ___ studies and take part (i) ___ the movement (j) ___ illiteracy.
+
+42. 
+Patriotism is the quality inherent (a) ___ a man. This is why, he feels a natural attachment (b) ___ his native land. Love (c) ___ motherland is necessary for the betterment of a nature. The people who are patriotic are noted (d) ___ their patriotism. They are different (e) ___ other people. Their contribution does not sink (f) ___oblivion. They are worthy (g) ___ praise. They lay down their lives for the good of the country. They are not unaware (h) ___ their status in the society. They are celebrated (i) ___ their patriotism. They should not be looked down (j) ___ in any way.
+
+43. 
+It would be impossible (a) ___ us to continue living in thus world if each of us knew exactly what fate had (b) ___ store for us. So Allah in His merey conceals the future (c) ___ all His creatures. and reveals only the present. He hides from the animals what men know and He hides from men what the angels know. For example, if a lamb had reason (d) ___ a man, it could not gambol happily knowing it was destined to be killed (e) ___ human food But being quite ignorant (f) ___ its fate, it is happy to the last moment of its short life contentedly grazing (g) ___ the flowery meadow and even in its innocence licks the hands (h) ___ the butcher who is about to slaughter it. What a blessing it is that we are ignorant (i) ___ the future! Allah, to whom the death of a sparrow is of equal importance with the death of a hero, has, in His mercy, thus limited our knowledge so that we might fulfill our duty in the sphere (j) ___ which He has appointed us.
+
+44. 
+Many people do not get enough nutrition (a) ____ what they eat. Many children become blind because they do not get necessary nutrition. Diarrhoea is a common disease. This is because many do not drink clean water or they eat dirty food. So, they often suffer (b) ____ diarrhoea. The condition (c) ____ our villages is very serious. The best way to keep in good health is to follow the rules (d) ____ cleanliness. A large number (e) ____ people do not follow the rules (f) ___ health. It is a great problem (g) ____ our country. So, (h) ___ order to keep in sound health, all must be strict (i) ___ the rules (j) ___ health.
+
+45. 
+It is known (a) ___ all that one day all will pass away (b) ___ this earth. So, we have no escape (c) ___ death One day, we all will roll down (d) ___ the icy lap of death. Because death is common (e) ___ all. So, we should not mourn (f) ___ the dead. But those who die (g) ___ the country are immortal. Their memories do not sink (h) ___ oblivion. There is no medicine that can save a man (i) ___ death. So, we should always be ready (j) ___ death.
+
+46. 
+Drug addiction has become a serious problem (a) ___ modern society. Many young men and women are falling victims (b) ___ this. There are many reasons (c) ___ drug addiction. Drugs are expensive. So, to manage money, the addicts often go (d) ___ stealing, killing or all sorts of misdeeds. Drugs are smuggled (e) ___ a country and the smugglers carry (f) ___ drug business freely. Bangladesh is not free (g) ___ the curse of drugs. But we cannot allow this (h) ___ our country. The first thing to do is to highlight its dangerous effects (i) ___ people. The government and mass media can play an effective role (j) ___ this respect.
+
+47. 
+Japan is an island country (a) ___ the east coast of Asia. It has more than 100 islands which were mostly formed (b) ___ earthquakes and volcanoes. Most Japanese people live (c) ___ the four largest islands. These islands are Honshu, Hokkaido, Shikohu and Kyushu. The name of Japan comes (d) ___ a Chinese phrase meaning "land of the rising sun". Japan has borrowed other things from the Chinese (e) ___ its name. The Japanese written language, for example, is based (f) ___ the Chinese system (g) ___ picture writing. Japan has to buy almost all its raw materials (h) ___ other countries. Trade is very important (i) ___ the island nation of Japan. (j) ___ the resources it buys. Japan makes products to sell all over the world.
+
+48. 
+A craftwork is an applied form (a) ___ art, a social and cultural product reflecting the inclusive nature (b) ___ folk imagination. A craftwork, which usually doesn't bear the signature of its maker, retains a personal touch. When we look (c) ___ a thirty-year old Nakshikantha, we wonder (d) ___ its motifs and designs that point (e) ___ the artistic ingenuity and the presence of the maker (f) ___ it. The fact that we don't know her name or any other details (g) ___ her doesn't take anything away (h) ___ our appreciation (i) ___ the artist. Indeed, the intimate nature (j) ___ the Kantha and the tactile feeling in it generates animate the work and make it very inviting.
+
+49. 
+Badal lived (a) ___ a village of Bangladesh. He was a school boy. There was a canal (b) ___ his way (c) ___ school. An old bridge was (d) ___ the canal. It was useful to one and all of the villagers. Yet none cared (e) ___ its repair. So one day it broke (f) ___ and caused a good deal (g) ___ hardship to the villagers. They were (h) ___ difficulty. They could not go to the town (i) ___ the other side of the canal to sell their fruits and vegetables profitably. They sold their production (j) ___ local market at a nominal price.
+
+50. 
+Greenhouse effect is the gradual warming (a) ___ the air surrounding the earth as a result of heat being trapped (b) ___ environment pollution. This is exemplified (c) ___ the destruction and burning (d) ___ of tropical rain forests. (e) ___ traffic that clogs (f) ___ city streets. (g) ___ the rapid growth of industry, the use of chloroflourocarbons (CFCs) (h) ___ packaging and manufacturing commercial products, the use of detergents like washing (i) ___ liquids and so (j) ___.
+
+51. 
+Man is the best creation (a) ____ Almighty. Actually, he is the most intelligent living being (b) ____ earth. That is why man is regarded (c) ____ a rational animal. But man becomes the worst animal when he is devoid (d) ____ sense and rationality. Man is endowed (e) ____ such qualities as are different (f) ____ other animals. So: to build (g) ____ civilization and to beautify the Earth is possible only (h) ____ man (i) ____ his thinking power, hard work and inventions. However, man is also responsible (j) ____ mass destruction of human civilization.
+
+52. 
+If you want to derive the best (a) ___ your education, you must be fully aware (b) ___ some basic things. You should never be indifferent (c) ___ your study. In fact, fostering a kind of passion (d) ___ learning appears to be very important for achieving your goal. Again, you should never try to learn anything (e) ___ context. You should also not run (f) ___ substandard traditional guidebooks. As a matter of fact, confining yourself (g) ___ poor quality notebooks discourages you to learn something deeply. But (h) ___ learning a thing very deeply, you cannot achieve the required mastery (i) ___ the learnt thing. Thus, you may fail to get the desired benefits (j) ___ your learning.
+
+53. 
+Speaking ill (a) ___ others is a very bad human tendency. It develops a negative inclination (b) ___ one's mind. This habit tempts one (c) ___ indulge (d) ___ a negative approach out of his unsound mind. It leaves bad effects (e) ___ human individuals and society. It also hampers the happy and smooth run (f) ___ the society. People very often burst (g) ___ tears (h) ___this heinous act. We all should be aware (i) ___ it and give (j) ___ this bad habit.
+
+54. 
+Traffic problem is a major problem (a) ___ our day-to-day life. Mainly the city dwellers suffer (b) ___ it. The drivers do not abide (c) ___ the traffic rules. Most often traffic problems occur (d) ___ the congested areas where the roads are very narrow in proportion (e) ___ our population. There are many unlicensed vehicles which should be brought (f) ___ control. Strict rules must be introduced (g) ___ this regard. We should raise consciousness (h) ___ the people of our country (i) ___ a view to ensuring a good traffic system (j) ___ the safety of the people.
+
+55. 
+The old grey bearded sailor sat (a) ___ a stone (b) ___ the church. The sailor watched the people walking (c) ___ him. The marriage guest listened (d) ___ him. He had a strange mad look (e) ___ his eyes. The old man told him (f) ___ his last journey (g) ___ the sea. They had sailed away (h) ___ the south (i) ___ they arrived (j) ___ cold grey seas.
+
+56. 
+I am glad to receive your letter. You have wanted to know (a) ___ the picnic that we made. I am now writing (b) ___ you about it. It was winter vacation. Our college was closed. I (c) ___ some my friends arranged a picnic. We selected Sonargaon (d) ___ the picnic spot. It is some twenty miles from Dhaka. We got (e) ___ the bus (f) ___about 9 am (g) ___ all necessary utensils and materials (h) ___ reaching Sonargaon, we finished our breakfast (i) ___ about 9.30 am. We did not take any cook (j) ___ us.
+
+57. 
+During holidays when my mother went to sleep (a) ___ noon, we went to the railway line. There along with other children I watched how the trains passed (b) ___ innumerable unknown facts. My father got an appointment (c) ___ a town school and he moved (d) ___ the town immediate with all the members of the family. I was admitted (e) ___ my father's school. I felt that my school follows had no feeling (f) ___ one another as we had in the village. However, I have gradually adjusted myself (g) ___ town life. I am happy with my new friends but my heart aches (h) ___ the happy childhood days. Childhood is free (i) ___ worries and has infinite capacity (j) ___ enjoyment.
+
+58. 
+A teacher is an architect (a) ___ a nation. He plays in important role (b) ___ building up an educated nation. He dispels the darkness (c) ___ ignorance (d) ___ the lot of a nation. He is an actor, so to speak. He has to suit his act according (e) ___ the need of his audience which is his class. He is a clear speaker (f) ___ good, strong and pleasing voice which is (g) ___ his control. He does not sit motionless (h) ___ his class. Everybody has something valuable (i) ___ him. A good teacher discovers the treasure hidden inside each student. He also wants the students happy and for this he keeps them busy. A good teacher never hankers (j) ___ money.
+
+59. 
+Trees are very useful (a) ___ man. They are highly essential (b) ___ our existence. They protect the rich top soil (c) ___ getting washed away (d) ___ rainwater and floods. We can see trees being grown along the mountain slopes (e) ___ the roadsides and (f) ___ the parks and gardens. They add beauty (g) ___ our lives. They provide us (h) ___ food, wood, shade, shelter and so on. They take (i) ___ carbon dioxide and produce oxygen. So, we should take care (j) ___ trees.
+
+60.  
+Do you have any idea (a) ___ a cybercafe? It is a place teeming (b) ___ information. It is a network (c) ___ all networks. It is a place (d) ___ computers (e) ___ which customers can use the internet and send emails and so on. A cybercafe is closely associated (f) ___ Internet communication system. A customer sitting (g) ___ the cafe can communicate (h) ___ people (i) ___ the world. In fact, a cybercafe is not prejudicial (j) ___ our development.
+`;
+
+            const demoAnswers = `01. (a) to; (b) to; (c) to; (d) to; (e)
+to; (f) about; (g) of; (h) of; (i) with; (j) to.
+
+02. (a) with; (b) of/about; (c) in;
+(d) on; (e) among/with; (f) in; (g) by/with;
+(h) of; (i) without; (j) from.
+
+03. (a) from: (b) of; (c) for; (d) of;
+(e) in: (f) in/for/at; (g) in/for: (h) about/of:
+(i) in: (j) as.
+
+04. (a) on; (b) in; (c) around; (d)
+through/upto; (e) to; (f) to; (g) out; (h) from;
+(i) for, (j) by.
+
+05. (a) as; (b) to; (c) from; (d) of;
+(e) for; (f) after; (g) by; (h) with; (i) for; (j)
+on.
+
+06. (a) in; (b) In; (c) around; (d)
+of, (e) For; (f) of/among; (g) for; (h) of; (i)
+in; (j) of.
+
+07. (a) of; (b) for; (c) of; (d) of; (e)
+of; (f) in; (g) of; (h) with; (i) with; (j) with.
+
+08.. (a) of; (b) on; (c) from; (d)
+for; (e) from; (f) into/to; (g) on; (h) of; (i)
+to; (j) of.
+
+09. (a) with; (b) to/in: (c)
+beyond/out of/above; (d) of; (e) for: (f) of:
+(g) for: (h) against: (i) of: (j) with.
+
+10. (a) for; (b) to; (c) If; (d) into;
+(e) for; (f) of; (g) to; (h) by; (i) on; (j)
+against.
+
+11. (a) about; (b) in; (c) from; (d)
+within; (e) on; (f) of; (g) in; (h) as; (i) to; (j)
+for.
+
+12. (a) to; (b) to; (c) by; (d) for;
+(e) for; (f) to; (g) of; (h) of; (i) to; (j) by.
+
+13. (a) in; (b) at; (c) of; (d) for; (e)
+in/to; (f) in; (g) of; (h) to; (i) of; (j) on.
+
+14. (a) on; (b) from; (c) as; (d) in;
+(e) of; (f) for; (g) from; (h) on; (i) in; (j) for.
+
+15. (a) to; (b) from; (c) from; (d)
+on/in; (e) to; (f) for; (g) for; (h) into; (i)
+from; (j) for.
+
+16. (a) in: (6) about: (c) of: (d) to:
+(e) in: (f) of/in: (g) on: (h) with: (i) in: (j)
+with.
+
+17. (a) on; (b) around; (c) with; (d)
+for; (e) from; (f) from; (g) into; (h) from; (i)
+into; (j) of.
+
+18. (a) at; (b) off; (c) at; (d) in; (e)
+after; (f) with; (g) to; (h) on; (i) to; (j) from.
+
+19. (a) behind/under/over; (b)
+into/inside/to; (c) for; (d) of; (e) to/at; (f)
+into; (g) with; (h) with; (i) in; (j) in.
+
+20. (a) in; (b) in; (c) through;
+(d) of, (e) to; (f) around; (g) of; (h) into; (i)
+through; (j) with.
+
+21. (a) by; (b) of, (c) down; (d) of;
+(e) in; (f) up; (g) through/ outside; (h) from;
+(i) to; (j) with
+
+22. (a) to; (b) up; (c) of; (d) at; (e)
+for; (f) in; (g) from; (h) with/to; (i) about;
+(j) through/from.
+
+23. (a) in; (b) in: (c) of; (d) to: (e)
+through: (f) for: (g) for/from: (h) with: (i)
+beyond: (j) of.
+
+24. (a) in; (b) in; (c) out; (d) in; (e)
+for; (f) of; (g) in; (h) in; (i) to; (j) beyond.
+
+25. (a) in; (b) of; (c) from; (d)
+to/for; (e) down; (f) in; (g) against; (h)
+from; (i) on/upon; (j) in.
+
+26. (a) among/of/for; (b) of; (c)
+with/to: (d) beyond/across/out of; (e) to; (1)
+like/as/such as: (g) to; (h) on/in: (i) behind:
+(j) from.
+
+27. (a) of; (b) of; (c) at; (d) at; (e)
+to; (f) in; (g) about; (h) away; (i) for; (j) of.
+
+28. (a) on; (b) with; (c) of; (d)
+to/through; (e) of; (f) around; (g) in; (h)
+from; (i) on; (j) of.
+
+29. (a) of; (b) to/for; (c)
+among/with; (d) For; (e) in/inside; (f) on;
+(g) in; (h) in; (i) of/about; (j) with.
+
+30. (a) at/through; (b) no
+preposition is needed; (c) of; (d) against; (e)
+to; (f) of; (g) in/during; (h) after; (i) of; (j)
+in.
+
+31. (a) to; (b) to; (c) by; (d) for;
+(e) for; (f) to; (g) of; (h) of; (i) by; (j) down.
+
+32. (a) in/into; (b) in/at; (c) by; (d)
+in; (e) by; (f) about; (g) about; (h) in; (i)
+about; (j) in.
+
+33. (a) for; (b) to; (c) For; (d) in;
+(e) by; (f) for; (g) of; (h) by; (i) on; (j)
+against.
+
+34. (a) to; (b) of; (c) in; (d) out; (e)
+within/to; (f) for; (g) of; (h) from; (i) for; (j)
+for.
+
+35. (a) for; (b) in/into; (c) on; (d)
+under; (e) out/around; (f) about; (g)
+under/on; (h) to/at/towards; (i) to; (j)
+without.
+
+36. (a) of; (b) with/to; (c) in; (d)
+of; (e) in/at; (f) with; (g) from; (h) of; (i) for;
+(j) with.
+
+37. (a) in/at; (b) in; (c) with; (d)
+in; (e) in; (f) with; (g) to; (h) with; (i) of; (j)
+about.
+
+38. (a) about; (b) on; (c)
+to/towards; (d) in/at; (e) around; (f) In; (g)
+of; (h) through; (i) in; (j) towards.
+
+39. (a) of; (b) for; (c) of; (d) by;
+(e) out; (f) to; (g) in; (h) of; (i) In: (j) to.
+
+40. (a) on; (b) with; (c) of; (d) on;
+
+(e) in; (f) around; (g) in; (h) from; (i) on; (j)
+of.
+
+41. (a) at; (b) over; (c) with; (d)
+of; (e) out; (f) about/on; (g) in; (h) to; (i) in;
+(j) against.
+
+42. (a) in; (b) to; (c) for; (d) for;
+(e) from; (f) into; (g) of; (h) of; (i) for; (j)
+on/upon.
+
+43. (a) for; (b) in; (c) of from; (d)
+like/ for/as; (e) for, (f) of, (g) in/at; (h) of;
+(i) of; (j) to/ in.
+
+44. (a) from; (b) from; (c) of; (d)
+of; (e) of; (f) of; (g) of/in; (h) in; (i) about;
+(j) of.
+
+45. (a) to; (b) from: (c) from; (d)
+on; (e) to; (f) for; (g) for; (h) into; (i) from;
+(j) for.
+
+46. (a) in; (b) to; (c) for/behind;
+(d) for; (e) into; (f) on/out; (g) from; (h) in;
+(i) to; (j) in.
+
+47. (a) on; (b) by; (c) in; (d) from;
+(e) besides; (f) on; (g) of; (h) from; (i) for;
+(j) with.
+
+48. (a) of; (b) of; (c) at; (d) at; (e)
+to; (f) in/of; (g) about; (h) from; (i) of; (j) of
+
+49. (a) in/at; (b) on; (c) to; (d)
+over; (e) for/about; (f) down; (g) of; (h) in;
+(i) on; (j) in/at.
+
+50. (a) of; (b) by; (c) by; (d) down;
+(e) by; (f) up; (g) by; (h) in; (i) up; (j) on.
+
+51. (a) of; (b) on; (c) as; (d) of;
+(e) with; (f) from; (g) up; (h) for; (i)
+through/with; (j) for.
+
+52. (a) from: (b) of/about; (c) to;
+(d) for; (e) without: (f) after: (g) to/within:
+(h) without; (i) over/of: (j) of/from.
+
+53. (a) of; (b) to; (c) to; (d) in; (e)
+on; (f) of; (g) into; (h) at; (i) of; (j) up.
+
+54. (a) in; (b) from; (c) by; (d) in;
+(e) to; (f) under; (g) in; (h) among; (i) with;
+(j) for.
+
+55. (a) on; (b) outside/ near/
+behind/by/beside; (c) past/by; (d) to; (e) in;
+(f) about/of; (g) on; (h) to/towards; (i) until;
+(j) in/at.
+
+56. (a) about; (b) to; (c) with; (d)
+for; (e) into; (f) at; (g) with; (h) On After;
+(i) at, (j) with.
+
+57. (a) at; (b) with; (c) in; (d) to;
+(e) to/into; (f) for; (g) to; (h) for; (i) from;
+(j) for.
+
+58. (a) of; (b) in; (c) of; (d) from;
+(e) to; (f) with; (g) under; (h) before; (i) in;
+(j) after.
+
+59. (a) to; (b) for; (c) from; (d)
+by/with; (e) by; (f) in; (g) to; (h) with; (i) in;
+(j) of.
+
+60. (a) of/about; (b) with; (c) of;
+(d) with; (e) by/through; (f) with; (g) in/at;
+(h) with; (i) around/across/of; (j) to/against.
+`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function cleanVal(val) {
