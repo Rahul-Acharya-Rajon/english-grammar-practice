@@ -220,6 +220,9 @@
                 </div>
             </div>
             <button class="btn btn-start" onclick="processPracticeData()">Build Practice Sheet</button>
+            <button class="btn btn-start" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo
+                Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -250,6 +253,1094 @@
             document.documentElement.hasAttribute("data-theme")
                 ? document.documentElement.removeAttribute("data-theme")
                 : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `1. 
+(a) Whenever I go to visit the factory, I ____ . He must account for his absence.
+(b) You are now sick. Call me in case ____.
+(c) She confessed that ___. So, he pardoned her.
+(d) It was very cold. They had to put on warm clothes so that ____ .
+(e) The market is not far away from here. It will take them ten minutes ____ .
+(f) The man tried heart and soul to get the job but could not. Had he got the job, ____.
+(g) Though we were thirsty, ____ . The water of the bottle was not pure.
+(h) They had to postpone their journey because of ____ .
+(i) Man is a social being. So, he cannot always do whatever ____ .
+(j) United we stand, ____.
+[DB ’25]
+
+2. 
+(a) I bought a fiction of the Harry Potter series. The book was so captivating that ____.
+(b) He was too old ____. Yet, he did not listen to the warnings.
+(c) I met some of my school friends at the reunion. It was nearly ten years since ____.
+(d) Rupa has gained weight. It is high time she ____. Otherwise, she will become bulky.
+(e) The girl was all alone in the room. When I entered, she looked at me as though ____.
+(f) Cinderella suffered the cruelty of her step sisters. Had she had the courage to speak her mind, ____.
+(g) The woman bought some antique glasses. She carried them carefully lest they ____.
+(h) Our farmers are very hard-working. They work hard so that ____.
+(i) During exams, Article 144 is imposed in and around the exam hall. You cannot enter the exam hall unless ____.
+(j) Many of the politicians are corrupt. People hate them because ____.
+[MB ’25]
+
+3. 
+(a) I think you are not punctual in studies.
+Be punctual lest ____. (b) The film ended fantastically. If you had enjoyed the film ____.
+(c) Though it is uncertain, ____.
+(d) Fahim could not get A+ in English provided ____.
+(e) Scarcely had we reached the station ____.
+(f) What is lotted ____.
+(g) Food adulteration is a crime. It is high time ____.
+(h) ____ as if she were a mad girl.
+(i) Mahin is going to build ____. I must help him.
+(j) I saw that ____. So, I didn't disturb him.
+[RB ’25]
+
+4. 
+(a) It is swimming ____. It makes us strong.
+(b) Though early rising is difficult, ____. Everybody should rise early.
+(c) A barking dog ____. Do you know it?
+(d) You are very tired. You would better ____.
+(e) The novel written by Milton is very interesting. I read it when ____.
+(f) Truthfulness is a great virtue because ____ .
+(g) Corrupt persons are not only dishonest but also criminals. Now, it is high time we ____.
+(h) A library is a place where ____. So, every educational institution should have a library.
+(i) I worked hard though ____.
+(j) I closed the door of my room so that ____.
+[DiB ’25]
+
+5. 
+(a) He walks fast lest ____.
+(b) A pen which was bought ____.
+(c) I closed the door of my room so that ____.
+(d) The poem is too hard ____.
+(c) Unless you came ____.
+(d) The poem is too hard ____.
+(e) Unless you came ____.
+(f) If I were a rich man, _____.
+(g) I wanted to learn English instead of ____.
+(h) Inspite of his being poor, ____.
+(i) Because of her being small ____.
+(j) Learn English properly till ____.
+[JB ’25]
+
+6. 
+(a) Your HSC Examination is knocking at the door. You have to study attentively so that ____.
+(b) Time flies very fast. Five years have passed since ____ .
+(c) I got a scholarship when ____. Everybody was happy.
+(d) I was very busy with my examination. If I ____, I would have joined your birthday celebration.
+(e) A village market is a place where ____. This place is full of hue and cry.
+(f) Their salary is so high. The government should assist him lest ____.
+(g) Early rising gives a man enough free time. Had I been an early riser, ____.
+(h) There is nobody ____. Hence happiness is a relative term.
+(i) I worked hard although ____.
+(j) The crown is a symbol of a king. Uneasy lies the head ____.
+[CB ’25]
+
+7. 
+(a) I think you are irregular in studies. Be attentive lest ____.
+(b) There are many obstacles in our way to success. We must work hard so that ____.
+(c) Jamil had an accident yesterday while he ____.
+(d) There goes a proverb that ____. So, we should make friendship with a gentleman.
+(e) Corruption is a bottleneck to our national development. It is high time ____.
+(f) He, who ____ makes a glorious result in the examination.
+(g) Whenever he speaks in English, ____. In fact, we learn through mistakes.
+(h) We are a free nation now. 1971 is the year ____.
+(i) Man proposes, ____.
+(j) Danger comes where ____. So, we have to be careful in our life.
+[CtgB’25]
+
+8. 
+(a) Rudaba could not recognize me at first. It was many years since we ____ .
+(b) Student politics, nowadays, has become a serious issue. It is high time we ____.
+(c) A newspaper is a storehouse of knowledge. A man can be benefited in many ways ____.
+(d) Traffic jam in Dhaka has been unbearable these days. Had I got a Helicopter, ____ .
+(e) A book fair is an attraction for the citydwellers. Book-lovers gather in the fair so that ____.
+(f) Our college has the best teachers of the country. The teachers are not only highly educated ____.
+(g) Human body needs a balanced diet. If we take a balanced diet, it ____.
+(h) Rahim Mia is a quack. He behaves as if ____.
+(i) Success depends on the proper use of time. You will surely succeed provided that ____.
+(j) Time plays a very crucial role in human life. We cannot prosper in life unless ____.
+[SB ’25]
+
+9. 
+(a) Everyone appreciates Mitu for her intelligence. She is so intelligent that ____.
+(b) His only daughter lives in Canada. It is many years since ____.
+(c) To tell a lie is a bad habit. The cowboy was used to ____.
+(d) Don't waste time. Do hurry lest ____.
+(e) I have bought a lottery ticket. If I win the lottery, ____.
+(f) There goes a proverb that ____. So, we must make the proper use of time.
+(g) It is my dream to establish a hospital for the poor. Had I been a millionaire, ____.
+(h) Eve-teasing is a heinous crime. It is high time we ____.
+(i) My brother had no job then. He went to Dhaka with a view to ____.
+(j) English is an international language. If you do not learn English, ____.
+[BB ’25]
+
+10. 
+(a) Trees are essential for our existence. So, ____.
+(b) The rats are now thinking who will tie the bell on cat? Finally, they realize is easy to say ____.
+(c) Wait until ____. You should not go out alone.
+(d) Love is divine. You can't find others to love you unless ____.
+(e) Punctuality is a great virtue. So, try ____.
+(f) The patient was so serious and we were looking for a doctor. Alas! The patient had die before ____ .
+(g) Sharing is ____ . So, teach your children how to share.
+(h) Everybody must be conscious of health because ____.
+(i) The train will start at 10 a.m. Now it is 09:55 a.m. So, walk fast lest ____.
+(j) Corruption is a hindrance to national development. It is high time ____.
+[DB ’24]
+
+11. 
+(a) Patriotism is a noble virtue. It is high time ____.
+(b) Hasan got GPA 4.50. Had he studied seriously he ____.
+(c) Time is valuable. Those who waste time ____.
+(d) This ceiling is not so high. He is not tall enough ____.
+(e) Lock the door and keep the key in a safe place lest ____.
+(f) You cannot understand everything clearly unless ____.
+(g) A lot of passengers were waiting at the bus stop. A bus came. But, the bus was so small that ____.
+(h) In spite of facing so many drawbacks in life, he ____ ultimately.
+(i) Ayesha is a bright student. She studies hard so that ____.
+(j) Freedom is man's birthright. He is born free but everywhere ____.
+[MB ’24]
+
+12. 
+(a) Had you sought my help, ____.
+(b) A man leading an indolent life ____.
+(c) Strike the rod ____.
+(d) The men, who love their country, ____.
+(e) Be punctual in your studies ____.
+(f) Food adulteration is a crime. It is high time ____.
+(g) Childhood is the golden period of life. I wish ____.
+(h) Scarcely had we got out of home ____.
+(i) I know the man ____.
+(j) He feigns as though ____.
+[RB ’24]
+
+13. 
+(a) There goes a proverb, "Grasp all, ____ ." If you want to get everything at a time, you may end up in losing everything.
+(b) The first and foremost duty of a student is to study. Without ____, you can never expect a good result.
+(c) You never speak the truth. I will not accompany you unless you ____.
+(d) Early rising is good for health. You should rise early so that ____.
+(e) Self-help is the best help and Allah helps those who ____.
+(f) Don't be tensed for my return. ____ after I shall have finished my work.
+(g) You ought to read your texts again and again with a view to ____.
+(h) You should remember that if you do not work hard, you will have a chance to fail in the exam. Work hard lest ____.
+(i) It is 10 o'clock now. Our train will start exactly at 11 o'clock. It is high time we ____ .
+(j) My childhood was full of happiness. Would that ____.
+[DiB ’24]
+
+14. 
+(a) The poor man knocked at the door. He came to me with a view to ____.
+(b) Many illiterate people do not have any knowledge of health. If they were educated
+____.
+(c) Scarcely had the teacher gone out of the room ____.
+(d) My grandmother lives in a village. It is many years since ____.
+(e) Trees are very important for our existence on earth. It is high time ____.
+(f) Despite the fact that he worked very hard ____. He was rather disappointed.
+(g) You should finish your work today. A stitch in time ____.
+(h) You are making a long journey. Keep your phone turned on in case ____.
+(i) My friend is going to the USA. I wish ____.
+(j) Time is so valuable that ____.
+[JB ’24]
+
+15. 
+(a) I'm so tired that ____. Please, take a rickshaw right now.
+(b) Though Bangladesh is a small country, ____. We are proud of our World Heritage Sites.
+(c) I can't recall his name. It is long since ____.
+(d) She came to my room while ____. She didn't wake me up.
+(e) It is true that most of the parents of our country are not interested enough to ____. They think educating their daughters is nothing but a wastage of time and money.
+(f) There are many helpless people around us. I wish ____.
+(g) He likes photography very much. But unfortunately, he has lost his camera. If he had the camera, ____.
+(h) Be punctual lest ____.
+(i) Our job market is getting very competitive. Unless you study well, ____.
+(j) It is too hot inside the room. Would you mind ____?
+[CB ’24]
+
+16. 
+(a) I miss my maternal grandmother a lot. 15 years have passed since ____.
+(b) Zillur and Ashraf were lucky. No sooner had they ____.
+(c) In our country, there are many people ____. Poverty is a curse for any society.
+(d) Corruption is an obstacle to our national development. It is high time ____.
+(e) Study sincerely lest ____.
+(f) Nurjahan studies medicine so that ____.
+(g) Once there was an old man who had three sons. They were so lazy that ____.
+(h) Rezwan tried his best to get the job but he couldn't get it. Had he got the job, he would ____.
+(i) The man cannot maintain a sound health. ____.
+(j) Florence Nightingale wanted to be a nurse with a view to ____.
+[CtgB ’24]
+
+17. 
+(a) It is too late. Now I _____ go to lunch.
+(b) It is a long time since _____ .
+(c) Had I earned enough money, _____.
+(d) He is a quack but he talks to parents as if he _____.
+(e) The girl returned home before evening lest she _____.
+(f) Mira sings very well. If she gets opportunity, _____.
+(g) The poem is too difficult for _____.
+(h) In spite of having all facilities, the boy _____.
+(i) Patriotism is a noble virtue. It is high time _____ .
+(j) He studied hard so that ____.
+[BB ’24]
+
+18. 
+(a) Honesty is the best policy. If you maintain honesty, _____.
+(b) English is an international language. I wish _____.
+(c) It is a long time since _____.
+(d) He talks too much while doing his work. I don't like people who _____.
+(e) The beggar was very hungry. No sooner had he got a piece of loaf on the road than _____.
+(f) The old man is very weak. He is walking slowly _____.
+(g) A student should not memorize any answer blindly. If he memorizes the answer without knowing the meaning, ___.
+(h) Corruption is the main hindrance to the development of our country. It is high time _____.
+(i) Had I earned enough money _____.
+(j) My brother will come to Rajshahi from Dhaka. So I have to go to station with a view to _____.
+[DB ‘23]
+
+19. 
+(a) The martyrs laid down their lives in 1971. They did it so that _____.
+(b) It's too late. _____, we would not have missed the train.
+(c) The poem is too difficult for _____.
+(d) Danger comes where _____. So, we have to be careful in our life.
+(e) She spoke as if ____. She was actually a quack.
+(f) The thief was afraid of police. He ran away lest ____ arrested.
+(g) Despite ____, he helps his relatives.
+(h) He took Logic ____ History. History seems to be difficult to him.
+(i) If I had been hungry, ____ But I am not hungry at all.
+(j) Corruption is a curse. It is high time the government _____.
+[RB ‘23]
+
+20. 
+(a) Florence Nightingale wanted to be a nurse with a view to _____.
+(b) If I had the wings of a bird, I _____.
+(c) Unity is strength. United we stand _____.
+(d) Time plays a very crucial role in human life. We cannot prosper in life unless _____.
+(e) Whenever my uncle comes to our house, he _____. I have never seen him coming to our house empty-handed.
+(f) It is high time you _____. It is detrimental to health.
+(g) The box is very heavy. Are you strong enough _____?
+(h) John is fond of reading. Whenever he goes to the book fair, _____.
+(i) Rima is a good singer. She sings so well that _____.
+(j) Since Bangladesh is an agricultural country, _____. We should put emphasis on our agricultural sectors.
+[JB ‘23]
+
+21. 
+(a) There is a wise saying that united we stand, ____. So, we must be united to reach our expected goal.
+(b) Industry is the key to success. We work hard so that ____.
+(c) My younger brother is very fond of me. Whenever I go out, ____.
+(d) Bangladesh is my motherland. It is blessed with rivers. In spite of that, we do not get water during dry season because ____.
+(e) If we lose the morning hours of life, ____.
+(f) I can't recall his name. It is long since____.
+(g) The poem is too difficult ____. The teacher told us to listen to him very carefully.
+(h) My childhood was full of joys and happiness. Would that ____.
+(i) We met the strange person while ____.
+(j) Would you mind ____? I am very thirsty.
+[CB ‘23]
+
+22. 
+(a) We take physical exercise so that ____.
+(b) Air is polluted in many ways. It is high time____.
+(c) Prosperity does not come in one's life automatically. If ____, you can't prosper in life.
+(d) Time is very important in our life. You can't succeed in life unless ______.
+(e) He wrote very quickly. He had finished the exam before the _____.
+(f) A village doctor is a person who ____.
+(g) We all are attracted to gold. But ____ is not gold.
+(h) I am fond of cricket. I wish ____.
+(i) He walks slowly lest _____.
+(j) He is dull headed. The poem is too difficult _____.
+[CtgB ‘23]
+ 
+23. 
+(a) Most of the rivers are getting polluted day by day. It is high time _____.
+(b) Milk is rich in food values. We should take milk everyday so that ______.
+(c) Mr. John is very interested in tourism. He wants to visit Bangladesh with a view to _____.
+(d) I like to play cricket in my leisure time. When I get a chance, ______.
+(e) No nation can develop without education. So, it is rightly said that ______.
+(f) Mina really sings well. If she gets opportunity, ______.
+(g) He was a petty clerk. But he behaved as though _______.
+(h) The weather of that night was very rough. I would have met you provided ______.
+(i) Bangladesh is a small country. Though it has a small area, ______.
+(j) English is an international language. There is not a country in the world where ______.
+[SB ‘23]
+
+24. 
+(a) Patriotism is a noble virtue. We all should have patriotism _____.
+(b) Our freedom fighters risked their lives in the war of liberation so that ______.
+(c) He was not hungry at all. Had he been hungry, ______.
+(d) They continued to walk until ______.
+(e) She can't ride a bicycle, let alone_____.
+(f) Corruption is rampant in the country. It is high time the government______.
+(g) 21st February is a red-letter day in our national history, because ______.
+(h) There goes a proverb _____.
+(i) Mira has not been able to recall where ____.
+(j) No sooner had she crossed the main gate __.
+[BB ‘23]
+ 
+25. 
+(a) Honesty is the best policy. The people who are honest ____.
+(b) Because of greenhouse effect, the climate _____.
+(c) You cannot shine in life _____.
+(d) Overeating is harmful to health. It is high time _____.
+(e) There goes a proverb that morning _____.
+(f) I work hard although ____.
+(g) No sooner had I reached the college _____.
+(h) There are so many poor people in our country. I wish _____.
+(i) In spite of having all facilities, the boy ____.
+(j) The old man ____ is my grandfather.
+[DjB ‘23]
+ 
+26. 
+(a) There was a little rain yesterday. If it had rained heavily, ______.
+(b) Though junk foods look appetizing, _____. We should avoid them.
+(c) Opportunity does not always come. You would have succeeded in life provided that _____.
+(d) The old man is very weak. He walks very slowly lest _____.
+(e) The amount of waste is growing rapidly all over the world and polluting the environment. It is high time _______.
+(f) I wish I _____. I would express my feelings in my poems.
+(g) English is an international language. We need to learn it as ______.
+(h) Kiran got a foreign scholarship. She was so happy that _____.
+(i) It was my first lecture. I was too nervous __.
+(j) Manners define a man. We always appreciate a person _____.
+[MB ‘23]
+ 
+27. 
+(a) I could not recognize you at first. It was many years since we _____.
+(b) Water is polluted in different ways. It is high time we _____.
+(c) I think you are not regular in studies. Be attentive lest_____.
+(d) Birds fly in the sky freely. Had I the wings of a bird____.
+(e) There are many obstacles in our way to success. We must work hard so that ____.
+[DB ‘22]
+ 
+28. 
+(a) If I had a camera, _____. I like photography very much.
+(b) Though he was brilliant, _____. He was very irregular in his college.
+(c) Jamil had an accident yesterday while he _______.
+(d) I am not a rich man. The car is too expensive _____.
+(e) There goes a proverb that ______. So, we should make friendship
+[RB ‘22]
+ 
+29. 
+(a) Sabbir Khan is a quack. He behaves as though _____.
+(b) A proverb goes that _____.
+(c) I found a box in the room. The box was too heavy for _____.
+(d) Corruption is an obscene to our national development. It is high time _____.
+(e) It is love that _____.
+[JB ‘22]
+
+30. 
+(a) Had he been a poet____.
+(b) Honesty is a great virtue. We should not like those_____.
+(c) A rainy day is the day when_____.
+(d) All of us should try our best____.
+(e) It is very cold. They have to put on warm clothes that ____.
+[CB ‘22]
+ 
+31. 
+(a) ______ is lost forever. So, we should utilize time properly.
+(b) All around us are not friends. In fact, friends ______ are real friends.
+(c) For higher education, we should learn English. So, it is high time______.
+(d) Neighbours are those persons who live adjacent to us. As man cannot live alone, ____.
+(e) Birds fly in the sky. I wish_____.
+[CtgB ‘22]
+
+32. 
+(a) A good student must possess____.
+(b) The student _____ is a good student.
+(c) He must be honest in thought, active in habit and obedient to_____.
+(d) ______health is another quality of an ideal student.
+(e) He, Who ______ makes a glorious result in the examination.
+[SB ‘22]
+ 
+33. 
+(a) I can't recall his name. It is long since ____.
+(b) A village doctor is a person who ______. He is the best friend to the villagers.
+(c) Our country is beset with many problems. We all should come forward in order to _____.
+(d) Whenever he speaks in English, _____. In fact, we learn through mistakes.
+(e) A student has to be punctual. He has to study regularly lest _____.
+[BB ‘22]
+
+34. 
+(a) I am waiting for the chairman. Can you tell me when______?
+(b) Development of a country depends on the active participation of every citizen. Bangladesh expects that _____.
+(c) Give me your address. I will send the documents _____.
+(d) Her son died in an accident. She was so grief-stricken that she even could not cry. She had to cry, or _____.
+(e) There is a job vacancy announced on BD.Job.Com. Anyone who wants to apply
+______.
+[DjB ‘22]
+
+35. 
+(a) Florence Nightingale wanted to be a nurse with a view to ______.
+(b) We are a free nation now. 1971 is the year when______.
+(c) I don't have enough money. Had I been a rich man, _____.
+(d) My final examination is going on. I studied hard lest I ____.
+(e) Man proposes, _____.
+[MB ‘22]
+
+36. 
+(a) We are late. The class will start soon. Walk fast lest ______.
+(b) There goes a proverb that_____. So, we must make proper use of time.
+(c) The condition of Mitu's father was not well. If I knew his mobile number, ______.
+(d) Though Bangladesh is a small country, _____. We are proud of our world heritage sites.
+(e) We are a free nation now. 1971 is the year when_____.
+(f) English is an international language. _____, you cannot get a good job.
+(g) I found a box in the room. The box was too heavy for ______.
+(h) I was really in a great danger. He came here with a view to ______.
+(i) I can't recall his name. It is long since _____.
+(j) Time will decide everything. Do your best_____.
+[DB ‘19]
+
+37. 
+(a) Industry is the_____.
+(b) A man cannot succeed in life_____.
+(c) _____ of the world are industrious.
+(d) The man _____ can maintain a sound health.
+(e) We should not like those persons____.
+(f) I always _____.
+(g) 1 know the story of an industrious person _____.
+(h) That man always inspires me, _____.
+(i) I have a poor uncle. He could be rich____.
+(j) He has become poor _____ of his idleness.
+[Combined Board '18]
+
+38. 
+(a) John is fond of reading. Whenever he goes to the book fair, ______. He has a good collection of books now.
+(b) Smoking is detrimental to health. It is high time you _____.
+(c) The students saw the teacher. No sooner had the teacher entered the classroom than ____.
+(d) Birds fly in the sky. I wish I ____.
+(e) My mother was a philanthropist. She loved to live among the poor villagers so that ____.
+(f) Samia is good at all of her subjects except English. She cannot compete with her classmates because of _____.
+(g) We had to walk through a jungle. We saw a snake while we _____.
+(h) I don't have enough money. Had I been a rich man, ______.
+(i) Death is inevitable. There is nobody who _____.
+(j) Boys, I'm going to discuss an important topic today. Be attentive to my lecture, otherwise _____.
+
+39. 
+(a) Trees are essential for our existence. So, we should _____.
+(b) English is an international language. ______ you cannot get a good job.
+(c) Corruption is an obstacle to our national development. It is high time_____.
+(d) My childhood was full of joys and happiness. I wish ______.
+(e) Mobile phone is a wonder of modern science. But ______.
+(f) He cannot run the business. So, he should ______.
+(g) He confessed that _______. So, I forgave him.
+(h) The students could not memorise the poem. It was too difficult______.
+(i) Since there was no more question to discuss, ______.
+(j) Female education is a crying need for our country. It is a good sign that nowadays _____.
+
+40. 
+(a) Physical exercise keeps us healthy and strong. If you take regular physical exercise ____.
+(b) They came to you with a view to ______, but you scolded them without any reason.
+(c) Please wait here until _____. I have a serious matter to discuss with you.
+(d) I was not hungry at all. If I had been hungry, _____.
+(e) Trees are essential for our existence. So, we should plant_____.
+(f) There goes a proverb that ______. So, we must make proper use of time.
+(g) We should drink pure water. Since the water of this bottle is not pure, _____.
+(h) The two brothers are not on good terms. Yesterday when we went to their house, _____.
+(i) Air is polluted in many ways. It is high time ____.
+(j) The martyrs laid down their lives in 1971. They did it so that _____.
+
+41. 
+(a) Florence Nightingale wanted to be a nurse with a view to _____.
+(b) She was thirty years old when _____.
+(c) If a man sows good seeds, ______.
+(d) I got up late today. Let's take a taxi so that ______.
+(e) A village doctor is a person who______. He is the best friend to the villagers.
+(f) She said, "It is high time we_____."
+(g) I wish I could fly in the sky. If I had the wings of a bird, I _____.
+(h) I don't know why you go there, most probably, _____.
+(i) But all sorts of attempts to solve food problem will fail unless ____.
+(j) He who follows two hares _____.
+
+42. 
+(a) 21st February is a red-letter day in our life because ______. It is our Mother Language Day.
+(b) Once there was a farmer who had three sons. They were so lazy that ______.
+(c) I have to meet Raihan. Do you know where _____?
+(d) It is high time you_____. It is detrimental to health.
+(e) English is an international language. If you want to go abroad for higher studies _____.
+(f) The bee is one of the busiest insects. It flies from flower to flower to _____.
+(g) My friend lived in New Zealand. It is many years since _____.
+(h) We must grow the habit of getting up early in the morning. The sooner we get up_____.
+(i) There goes the proverb. 'United we stand, divided we fall'. Unless we are united_____.
+(j) Our country is beset with many problems. We all should come forward with a view to ____.
+
+43. 
+(a) Industry is the key to success. If you work hard, _____.
+(b) Corruption is the main hindrance to development. It is high time _____.
+(c) Abdul is an HSC candidate. He is studying hard lest_____.
+(d) There are a good number of reasons why _____. That English is a foreign language is the main reason.
+(e) Birds fly in the sky. I wish____.
+(f) No sooner had we reached there than _____. Unless we went there earlier, we would miss the beginning of the progamme.
+(g) It is not good ______. A man is known by the company he keeps.
+(h) Dulal Sheikh is a quack. He behaves as if_____.
+(i) It is very cold outside. You had better _____.
+(j) My childhood was full of joys and happiness. Would that _____.
+
+44. 
+(a) We cannot buy a car if______. It costs a lot of money.
+(b) You are now very helpless. Call me whenever_____.
+(c) The man was so weak that ______. He should consult with a doctor.
+(d) Since it was raining heavily, ______. We stayed at home.
+(e) Though he is dull of hearing, _____. He can make a good result.
+(f) Danger comes when _____. So, we have to be careful in our life. 
+(g) When I was a child, _____. I was fond of playing cricket.
+(h) Hardly had we seen the police when _____. Thus we were saved.
+(i) Speak the truth or______. A truthful man is always honoured everywhere.
+(j) He took biology in lieu of _____. Biology is difficult for him.
+[JB ‘19]
+
+45. 
+(a) Last night I did not have a sound sleep. I feel sleepy______TV.
+(b) You cannot handle such a ______ if you don't have prior experience in teaching.
+(c) If the driver had been more careful, _____ the fatal accident.
+(d) We were supposed to start our journey the next day. But, it was so hot that _____.
+(e) A village market is one of the many attractions of country life. It is a public place where_____.
+(f) The box is very heavy. Are you strong enough______?
+(g) Begging is not a profession. It is most disreputable. We must not ______.
+(h) Whenever he speaks in English ______. But it is natural that we learn through mistakes.
+(i) The station is not far away from here, will take you five minutes ______.
+(j) One should bear in mind that forming bad habit is easy to do but ______.
+
+46. 
+(a) Geometry is very much confusing to Zillur. He practices geometry a lot so that _____.
+(b) I could not recognize you at first. It was five years since we _____.
+(c) Sanjida was writing quite well in the exam when suddenly she _____. As a result she could not finish the exam with satisfaction.
+(d) Don't worry. I _____ after I have finished my study.
+(e) Fateen was really in a great danger. He came to you with a view to ______ from you, but you disappointed him.
+(f) Sujon was very weak, but he had to carry a big box. The box was too heavy for _____.
+(g) The farmers of our country are very poor, but they can work hard. If the bank gives them loan on easy term, they _____.
+(h) Load-shedding occurs because we cannot produce adequate electricity. It is high time we______.
+(i) I requested him to join me in playing cricket. He joined me ______.
+(j) He tried his best to get the job but he could not get it. Had he got the job, he would_____.
+
+47. 
+(a) Samudra Haque is a great journalist. Do you know where_____?
+(b) Unity is power. Unless you are united, you_____.
+(c) Work carefully lest ______.
+(d) Shabbir Khan is a quack. He behaves as though ______.
+(e) It is very cold. I have to put on warm clothes so that _____.
+(f) Could you avoid______?
+(g) A proverb goes that morning ______.
+(h) Democratic Govt. will provide ______.
+(i) Let us play in the field, ______?
+(j) The bee is one of the busiest insects. We should follow the_____.
+[CB '19: Bangladesh College Teachers'
+Association, Barishal-2019]`;
+
+            const demoAnswers = `1.
+(a) Whenever I go to visit the factory, I find the supervisor absent. He must account for his absence.
+(b) You are now sick. Call me in case you need my help.
+(c) She confessed that she stole the money/she was guilty. So, he pardoned her.
+(d) It was very cold. They had to put on warm clothes so that they could work comfortably/they could protect themselves from cold.
+(e) The market is not far away from here. It will take them ten minutes if they go there on foot.
+(f) The man tried heart and soul to get the job but could not. Had he got the job, he could have maintained his family better.
+(g) Though we were thirsty, we did not drink the water of the bottle/we could not drink. The water of the bottle was not pure.
+(h) They had to postpone their journey because of heavy rain/deep fog/violent storm/torrential rain.
+(i) Man is a social being. So, he cannot always do whatever he likes.
+(j) United we stand, divided we fall.
+
+2.
+(a) I bought a fiction of the Harry Potter series. The book was so captivating that I could not leave it until I finished it.
+(b) He was too old to move. Yet, he did not listen to the warnings.
+(c) I met some of my school friends at the reunion. It was nearly ten years since I had met them last.
+(d) Rupa has gained weight. It is high time she controlled her diet. Otherwise, she will become bulky.
+(e) The girl was all alone in the room. When I entered, she looked at me as though she had seen a stranger.
+(f) Cinderella suffered the cruelty of her step sisters. Had she had the courage to speak her mind, her life could have been different.
+(g) The woman bought some antique glasses. She carried them carefully lest they should break.
+(h) Our farmers are very hard-working. They work hard so that they can grow more crops.
+(i) During exams, Article 144 is imposed in and around the exam hall. You cannot enter the exam hall unless you show your valid admit card at the entrance.
+(j) Many of the politicians are corrupt. People hate them because these politicians think of their personal gain.
+
+3.
+(a) I think you are not punctual in studies. Be punctual lest you should/might fail in the exam.
+(b) The film ended fantastically. If you had enjoyed the film, you could have realized its educative value.
+(c) Though it is uncertain, it generally happens.
+(d) Fahim could not get A+ in English provided he did not study seriously.
+(e) Scarcely had we reached the station when the train arrived.
+(f) What is lotted cannot be blotted.
+(g) Food adulteration is a crime. It is high time we stopped food adulteration.
+(h) She often behaves towards people as if she were a mad girl.
+(i) Mahin is going to build a home for the old/a country house. I must help him.
+(j) I saw that Shiplu was reading attentively. So, I didn't disturb him.
+
+4.
+(a) It is swimming which is a popular form of exercise. It makes us strong.
+(b) Though early rising is difficult, it is good for health. Everybody should rise early.
+(c) A barking dog seldom bites. Do you know it?
+(d) You are very tired. You would better take some rest.
+(e) The novel written by Milton is very interesting. I read it when I get free time.
+(f) Truthfulness is a great virtue because it strengthens relationships.
+(g) Corrupt persons are not only dishonest but also criminals. Now, It is high time we uprooted corruption from society.
+(h) A library is a place where people go for searching knowledge. So, every educational institution should have a library.
+(i) I worked hard though I was not physically strong.
+(j) I closed the door of my room so that I could keep away noise.
+
+5.
+(a) He walks fast lest he should miss the train.
+(b) A pen which was bought yesterday is not good at all./yesterday does not write well.
+(c) I closed the door of my room so that I could sleep peacefully/no one could disturb me.
+(d) The poem is too hard for me to understand.
+(e) Unless you came I would not attend the meeting.
+(f) If I were a rich man, I would help the poor.
+(g) I wanted to learn English instead of learning French.
+(h) In spite of his being poor, he is honest./he is happy.
+(i) Because of her being small she is often bullied/neglected.
+(j) Learn English properly till you have acquired proficiency in it./you are able to speak it fluently.
+
+6.
+(a) Your HSC Examination is knocking at the door. You have to study attentively so that you can do well/cut a good figure.
+(b) Time flies very fast. Five years have passed since I saw you last in Dhaka/we met in Dhaka.
+(c) I got a scholarship when I made a brilliant result in HSC level. Everybody was happy.
+(d) I was very busy with my examination. If I had not been so busy with my examination/had had no such business with my examination, I would have joined your birthday celebration.
+(e) A village market is a place where rural people buy and sell daily necessaries. This place is full of hue and cry.
+(f) Their salary is so high. The government should assist him lest he should fail in maintaining the company./he should be compelled to close the company.
+(g) Early rising gives a man enough free time. Had I been an early riser, I could have got adequate time to take body/physical exercise.
+(h) There is nobody who is fully happy on this earth./who can claim to be completely happy on this earth. Hence happiness is a relative term.
+(i) I worked hard although I could not pass in the examination./I was not physically sound then.
+(j) The crown is a symbol of a king. Uneasy lies the head that wears the crown.
+
+7.
+(a) I think you are irregular in studies. Be attentive lest you should fail in the examination.
+(b) There are many obstacles in our way to success. We must work hard so that we can easily overcome the obstacles.
+(c) Jamil had an accident yesterday while he was driving his new car.
+(d) There goes a proverb that a man is known by the company he keeps. So, we should make friendship with a gentleman.
+(e) Corruption is a bottleneck to our national development. It is high time we stopped corruption.
+(f) He, who is always sincere in his studies makes a glorious result in the examination.
+(g) Whenever he speaks in English, he makes mistakes. In fact, we learn through mistakes.
+(h) We are a free nation now. 1971 is the year when we achieved our independence.
+(i) Man proposes, God disposes.
+(j) Danger comes where danger is feared. So, we have to be careful in our life.
+
+8.
+(a) Rudaba could not recognize me at first. It was many years since we had met last.
+(b) Student politics, nowadays, has become a serious issue. It is high time we changed it.
+(c) A newspaper is a storehouse of knowledge. A man can be benefited in many ways by reading newspapers.
+(d) Traffic jam in Dhaka has been unbearable these days. Had I got a Helicopter, I could have flown with it.
+(e) A book fair is an attraction for the citydwellers. Book-lovers gather in the fair so that they can buy their favourite books.
+(f) Our college has the best teachers of the country. The teachers are not only highly educated but also very sincere in teaching the students.
+(g) Human body needs a balanced diet. If we take a balanced diet, it will keep us fit.
+(h) Rahim Mia is a quack. He behaves as if he were an expert physician.
+(i) Success depends on the proper use of time. You will surely succeed provided that you make the best use of time.
+(j) Time plays a very crucial role in human life. We cannot prosper in life unless we utilize our time properly.
+
+9.
+(a) Everyone appreciates Mitu for her intelligence. She is so intelligent that she can do everything perfectly.
+(b) His only daughter lives in Canada. It is many years since he met her last.
+(c) To tell a lie is a bad habit. The cowboy was used to lying for nothing.
+(d) Don't waste time. Do hurry lest you should regret in the future.
+(e) I have bought a lottery ticket. If I win the lottery, I will set up a charitable dispensary.
+(f) There goes a proverb that time and tide wait for none. So, we must make the proper use of time.
+(g) It is my dream to establish a hospital for the poor. Had I been a millionaire, I would have established a hospital.
+(h) Eve-teasing is a heinous crime. It is high time we stood against this social malady.
+(i) My brother had no job then. He went to Dhaka with a view to getting a suitable job.
+(j) English is an international language. If you do not learn English, you will not get a job of international standard.
+
+10.
+(a) Trees are essential for our existence. So, we should plant trees more and more.
+(b) The rats are now thinking who will tie the bell on cat. Finally, they realize it is easy to say but difficult to do.
+(c) Wait until I come back. You should not go out alone.
+(d) Love is divine. You can't find others to love you unless you love them.
+(e) Punctuality is a great virtue. So, try to be punctual in your everyday life.
+(f) The patient was so serious and we were looking for a doctor. Alas! The patient had died before the doctor came.
+(g) Sharing is always better for learning always good for us. So, teach your children how to share.
+(h) Everybody must be conscious of health because health is wealth/health is the root of all happiness.
+(i) The train will start at 10 a.m. Now it is 09:55 a.m. So, walk fast lest you should/might miss the train.
+(j) Corruption is a hindrance to national development. It is high time we started an anti-corruption movement/we took steps against corruption.
+
+11.
+(a) Patriotism is a noble virtue. It is high time we developed it/we possessed this noble virtue.
+(b) Hasan got GPA 4.50. Had he studied seriously he would have got a GPA of 5.00.
+(c) Time is valuable. Those who waste time suffer in the long run.
+(d) This ceiling is not so high. He is not tall enough to touch the ceiling.
+(e) Lock the door and keep the key in a safe place lest you should/might lose the key.
+(f) You cannot understand everything clearly unless you study thoroughly.
+(g) A lot of passengers were waiting at the bus stop. A bus came. But, the bus was so small that it could not take all the passengers.
+(h) In spite of facing so many drawbacks in life, he became successful ultimately.
+(i) Ayesha is a bright student. She studies hard so that she can cut a good figure in the examination.
+(j) Freedom is man's birthright. He is born free but everywhere he is in chain.
+
+12.
+(a) Had you sought my help, I would have rescued you from such a danger/you could have got out of the danger easily.
+(b) A man leading an indolent life can never prosper in life/will suffer in the long run.
+(c) Strike the rod while it is hot.
+(d) The men, who love their country, are called patriots.
+(e) Be punctual in your studies or you can cut a good figure in the exam/you will fail.
+(f) Food adulteration is a crime. It is high time we took steps against food adulteration.
+(g) Childhood is the golden period of life. I wish I were a child again.
+(h) Scarcely had we got out of home when the rain came/when the rain started.
+(i) I know the man who wrote this book.
+(j) He feigns as though he were sick.
+
+13.
+(a) There goes a proverb, "Grasp all, lose all." If you want to get everything at a time, you may end up in losing everything.
+(b) The first and foremost duty of a student is to study. Without studying properly/regularly, you can never expect a good result. 
+(c) You never speak the truth. I will not accompany you unless you give up the habit of telling lie./promise to speak the truth from now on.
+(d) Early rising is good for health. You should rise early so that you can be healthy and strong.
+(e) Self-help is the best help and Allah helps those who help themselves/try themselves. 
+(f) Don't be tensed for my return. I shall come back immediately after I shall have finished my work.
+(g) You ought to read your texts again and again with a view to understanding them properly/answering the creative questions to the point/having a clear idea about them.
+(h) You should remember that if you do not work hard, you will have a chance to fail in the exam. Work hard lest you should cut a sorry figure in the exam.
+(i) It is 10 O'clock now. Our train will start exactly at 11 O'clock. It is high time we started for the train station.
+(j) My childhood was full of happiness. Would that I could get back to my childhood.
+
+14.
+(a) The poor man knocked at the door. He came to me with a view to getting help.
+(b) Many illiterate people do not have any knowledge of health. If they were educated, they could lead a healthy life.
+(c) Scarcely had the teacher gone out of the room, when the students made a noise.
+(d) My grandmother lives in a village. It is many years since I saw her there/she moved there.
+(e) Trees are very important for our existence on earth. It is high time we planted more trees.
+(f) Despite the fact that he worked very hard he failed in the examination. He was rather disappointed.
+(g) You should finish your work today. A stitch in time saves nine.
+(h) You are making a long journey. Keep your phone turned on in case I need to contact you.
+(i) My friend is going to the USA. I wish him a safe and happy journey.
+(j) Time is so valuable that we should not waste it.
+
+15.
+(a) I'm so tired that I cannot walk any longer. Please, take a rickshaw right now.
+(b) Though Bangladesh is a small country, she has some/three World Heritage Sites. We are proud of our World Heritage Sites.
+(c) I can't recall his name. It is long since I saw him last.
+(d) She came to my room while I was sleeping. She didn't wake me up.
+(e) It is true that most of the parents of our country are not interested enough to educate their daughters. They think educating their daughters is nothing but a wastage of time and money.
+(f) There are many helpless people around us. I wish I could help them.
+(g) He likes photography very much. But unfortunately, he has lost his camera. If he had the camera, he could take many pictures.
+(h) Be punctual lest you should/might fail in the exam.
+(i) Our job market is getting competitive. Unless you study well, you will not get a good job.
+(j) It is too hot inside the room. Would you mind opening the window so that air can get in?
+
+16.
+(a) I miss my maternal grandmother a lot. 15 years have passed since I met her last.
+(b) Zillur and Ashraf were lucky. No sooner had they arrived at the station than the train the train arrived/arrived at college than rain started.
+(c) In our country, there are many people who live below the poverty line.
+(d) Corruption is a obstacle to our national development. It is high time we should against this social malady.
+(e) Study sincerely lest you should fail in the examination.
+(f) Nurjahan studies medicine so that she can be a medicine specialist/she can become a doctor.
+(g) Once there was an old man who had three sons. They were so lazy that they could not do any work.
+(h) Rezwan tried his best to get the job but he could not get it. Had he got the job, he would have led a better life.
+(i) The man who follows the rules of health can maintain a sound health.
+(j) Florence Nightingale wanted to be a nurse with a view to serving the sick people.
+
+17.
+(a) It is too late. Now I had better/have to go to lunch.
+(b) It is a long time since we met last.
+(c) Had I earned enough money, I could have helped the poor.
+(d) He is a quack but he talks to the patients as if he were an expert doctor/knew everything about medical science.
+(e) The girl returned home before evening lest she should fall into trouble/should fall into danger.
+(f) Mira sings very well. If she gets opportunity, she can become a famous singer.
+(g) The poem is too difficult for him to understand it fully.
+(h) In spite of having all facilities, the boy failed to succeed.
+(i) Patriotism is a noble virtue. It is high time we showed patriotism to protect the independence and sovereignty of the country/we showed respect to the patriots.
+(j) He studied hard so that he could succeed in life.
+
+18.
+(a) Honesty is the best policy. If you maintain honesty, everybody will respect you.
+(b) English is an international language. I wish I could speak English fluently.
+(c) It is a long time since we met last.
+(d) He talks too much while doing his work. I don't like people who are talkative.
+(e) The beggar was very hungry. No sooner had he got a piece of loaf on the road than he ate it.
+(f) The old man is very weak. He is walking slowly lest he should fall down.
+(g) A student should not memorize any answer blindly. If he memorizes the answer without knowing the meaning, he will not be able to acquire his learning outcome.
+(h) Corruption is the main hindrance to the development of our country. It is high time we stood against corruption.
+(i) Had I earned enough money I could have helped the poor.
+(j) My brother will come to Rajshahi from Dhaka. So I have to go to station with a view to receiving him.
+
+19.
+(a) The martyrs laid down their lives in 1971. They did it so that we could get an independent country.
+(b) It's too late. If we had reached the station a little bit earlier, we would not have missed the train.
+(c) The poem is too difficult for me to understand.
+(d) Danger comes where danger is feared. So, we have to be careful in our life.
+(e) She spoke as if she had been an MBBS. She was actually a quack.
+(f) The thief was afraid of police. He ran away lest he should be arrested.
+(g) Despite his hardship/inability, he helps his relatives.
+(h) He took Logic instead of history. History seems to be difficult to him.
+(i) If I had been hungry, I would have eaten something.
+(1) Corruption is a curse. It is high time the government took action against corruption.
+
+20.
+a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing people.
+(b) If I had the wings of a bird, I would fly freely in the sky.
+(c) Unity is strength. United we stand, divided we fall.
+(d) Time plays a very crucial role in human life. We cannot prosper in life unless we use our time properly.
+(e) Whenever my uncle comes to our house, he brings something with him for us. I have never seen him coming to our house empty-handed.
+(f) It is high time you gave up eating junk food. It is detrimental to health.
+(g) The box is very heavy. Are you strong enough to carry the box?
+(h) John is fond of reading. Whenever he goes to the book fair, he buys some books.
+(i) Rima is a good singer. She sings so well that it captivates everyone's attention.
+(j) Since Bangladesh is an agricultural country, its economy largely depends on agriculture. We should put emphasis on our agricultural sectors.
+
+21.
+(a) There is a wise saying that united we stand, divided we fall. So, we must be united to reach our expected goal.
+(b) Industry is the key to success. We work hard so that we can be successful in life.
+(c) My younger brother is very fond of me. Whenever I go out, he wants to go with me/he waits eagerly for my return.
+(d) Bangladesh is my motherland. It is blessed with rivers. In spite of that, we do not get water during dry season because of reduced rainfall, upstream water diversion and changing weather patterns.
+(e) If we lose the morning hours of life, we cannot hope for success.
+(f) I can't recall his name. It is long since we met last.
+(g) The poem is too difficult for me to understand. The teacher told us to listen to him very carefully.
+(h) My childhood was full of joys and happiness. Would that every stage of life were the same/I could be a child again.
+(i) We met the strange person while walking on the road.
+(j) Would you mind giving me a glass of water? I am very thirsty.
+
+22.
+(a) We take physical exercise so that we may keep fit.
+(b) Air is polluted in many ways. It is high time the government took stern initiative against this.
+(c) Prosperity does not come in one's life automatically. If you don't try hard, you can't prosper in life.
+(d) Time is very important in our life. You can't succeed in life unless you can make the proper use of time.
+(e) He wrote very quickly. He had finished the exam before the time was over.
+(f) A village doctor is a person who gives medical service to the common villagers.
+(g) We all are attracted to gold. But all that glitters is not gold.
+(h) I am fond of cricket. I wish I could be an international cricketer.
+(i) He walks slowly lest he should stumble down.
+(j) He is dull headed. The poem is too difficult for him to memorize.
+
+23.
+(a) Most of the rivers are getting polluted day by day. It is high time we took initiatives against it.
+(b) Milk is rich in food values. We should take milk everyday so that we can lead a healthy life.
+(c) Mr. John is very interested in tourism. He wants to visit Bangladesh with a view to exploring its cultural heritage and its natural beauty.
+(d) I like to play cricket in my leisure time. When I get a chance, I play cricket with my friends.
+(e) No nation can develop without education. So, it is rightly said that education is the backbone of a nation.
+(f) Mina really sings well. If she gets opportunity, she will be a great singer.
+(g) He was a petty clerk. But he behaved as though he had possessed a managerial post.
+(h) The weather of that night was very rough. I would have met you provided it had improved.
+(i) Bangladesh is a small country. Though it has a small area, it has huge population.
+(j) English is an international language. There is not a country in the world where English is not used.
+
+24.
+(a) Patriotism is a noble virtue. We all should have patriotism to be a good citizen/if we want to be a good citizen.
+(b) Our freedom fighters risked their lives in the war of liberation so that we could get an independent country.
+(c) He was not hungry at all. Had he been hungry, he could have eaten the whole burger.
+(d) They continued to walk until they felt tired.
+(e) She can't ride a bicycle, let alone a car.
+(f) Corruption is rampant in the country. It is high time the government took steps against corruption.
+(g) 21st February is a red-letter day in our national history, because we shed blood on this day to get the rightful place of Bangla, our mother tongue.
+(h) There goes a proverb honesty is the best policy.
+(i) Mira has not been able to recall where she left her phone.
+(j) No sooner had she crossed the main gate than she saw her father.
+
+25.
+(a) Honesty is the best policy. The people who are honest always succeed in the long run.
+(b) Because of greenhouse effect, the climate is changing all over the world.
+(c) You cannot shine in life if you do not work hard/unless you work hard.
+(d) Overeating is harmful to health. It is high time we changed our food habit.
+(e) There goes a proverb that morning shows the day.
+(f) I work hard although I have limitations. /I am physically unfit.
+(g) No sooner had I reached the college than the class started.
+(h) There are so many poor people in our country. I wish I could help them.
+(i) In spite of having all facilities, the boy failed to succeed.
+(j) The old man who is sitting there is my grandfather.
+
+26.
+(a) There was a little rain yesterday. If it had rained heavily, the roads would have been submerged.
+(b) Though junk foods look appetizing, it can be detrimental to your health.We should avoid them.
+(c) Opportunity does not always come. You would have succeeded in life provided that you took them with both hands.
+(d) The old man is very weak. He walks very slowly lest he might fell down.
+(e) The amount of waste is growing rapidly all over the world and polluting the environment. It is high time we reduced the waste by recycling.
+(f) I wish I were a poet. I would express my feelings in my poems.
+(g) English is an international language. We need to learn it as it is the mostly widely used language in the world.
+(h) Kiran got a foreign scholarship. She was so happy that she threw a party.
+(i) It was my first lecture. I was too nervous to talk.
+(j) Manners define a man. We always appreciate a person who is good mannered.
+
+27.
+(a) I could not recognize you at first. It was many years since we had met each other.
+(b) Water is polluted in different ways. It is high time we took proper initiatives to stop water pollution.
+(c) I think you are not regular in studies. Be attentive lest you should cut a sorry figure in the examination.
+(d) Birds fly in the sky freely. Had I the wings of a bird I would fly up high in the sky!
+(e) There are many obstacles in our way to success. We must work hard so that we can overcome the obstacles to attain success in life.
+
+28.
+(a) If I had a camera, I would take some rare photographs. I like photography very much.
+(b) Though he was brilliant, he could not make good results. He was very irregular in his college.
+(c) Jamil had an accident yesterday while he was going to his village home.
+(d) I am not a rich man. The car is too expensive for me to buy.
+(e) There goes a proverb that a man is known by the company he keeps. So, we should make friendship with gentleman.
+
+29.
+(a) Sabbir Khan is a quack. He behaves as though he were a specialist doctor.
+(b) A proverb goes that Health is wealth.
+(c) I found a box in the room. The box was too heavy for me to carry/lift.
+(d) Corruption is an obscene to our national development. It is high time we took effective measures to curb corruption.
+(e) It is love that makes us happy.
+
+30.
+(a) Had he been a poet he could have written poems.
+(b) Honesty is a great virtue. We should not like those who are not honest.
+(c) A rainy day is the day when it rains all day long.
+(d) All of us should try our best to make ourselves a skilled workforce.
+(e) It is very cold. They have to put on warm clothes so that they can keep themselves warm.
+
+31.
+(a) Time once lost, is lost forever. So, we should utilize time properly.
+(b) All around us are not friends. In fact, friends who help you in your danger are real friends.
+(c) For higher education, we should learn English. So, it is high time we started to learn English well.
+(d) Neighbours are those persons who live adjacent to us. As man cannot live alone, every moment he needs a neighbour/we should be friendly with our neighbours.
+(e) Birds fly in the sky. I wish I were a bird/I could be a bird.
+
+32.
+(a) A good student must possess some qualities such as punctuality, sincerity, attentiveness. etc.
+(b) The student who cultivates these qualities is a good student.
+(c) He must be honest in thought, active in habit and obedient to his teachers and his parents.
+(d) Maintaining good and sound health is another quality of an ideal student.
+(e) He, who possesses the qualities of a good student makes a glorious result in the examination.
+
+33.
+(a) I can't recall his name. It is long since we met last.
+(b) A village doctor is a person who gives medical treatment to the village people. He is the best friend to the villagers.
+(c) Our country is beset with many problems. We all should come forward in order to overcome/remove these problems.
+(d) Whenever he speaks in English, he makes mistakes. In fact, we learn through mistakes.
+(e) A student has to be punctual. He has to study regularly lest he should cut a sorry figure in the exam.
+
+34.
+(a) I am waiting for the chairman. Can you tell me when he will arrive?
+(b) Development of a country depends on the active participation of every citizen. Bangladesh expects that each and every citizen will participate actively in her development activities.
+(c) Give me your address. I will send the documents to your address.
+(d) Her son died in an accident. She was so grief-stricken that she even could not cry. She had to cry, or she would not be able to survive/she would fall sick.
+(e) There is a job vacancy announced on BD.Job.Com. Anyone who wants to apply should go through the announcement.
+
+35.
+(a) Florence Nightingale wanted to be a nurse with a view to serving the sick people.
+(b) We are a free nation now. 1971 is the year when we achieved freedom at the cost of a bloody war.
+(c) I don't have enough money. Had I been a rich man. I would have helped the poor.
+(d) My final examination is going on. I studied hard lest I should fail in the exam.
+(e) Man proposes, but God disposes.
+
+36.
+(a) We are late. Walk fast lest we should miss the class.
+(b) There goes a proverb that time and tide wait for none. So, we must make proper use of time.
+(c) The condition of Mitu's father was not well. If I knew his mobile number, I would phone him.
+(d) Though Bangladesh is a small country, it/she has three world heritage sites. We are proud of our world heritage sites.
+(e) We are a free nation now. 1971 is the year when we became free.
+(f) English is an international language. Without learning it well, you cannot get a good job.
+(g) I found a box in the room. The box was too heavy for me to lift.
+(h) I was really in a great danger. He came here with a view to helping me.
+(i) I can't recall his name. It is long since we met last.
+(j) Time will decide everything. Do your best in the present.
+
+37.
+(a) Industry is the key to success.
+(b) A man cannot succeed in life if he is not industrious.
+(c) The successful men of the world are industrious.
+(d) The man who is industrious maintain a sound health.
+(e) We should not like those persons who are idle.
+(f) I always try to be an industrious person.
+(g) I know the story of an industrious person who kept working hard until he succeeded.
+(h) That man always inspires me to be industrious.
+(i) I have a poor uncle. He could be rich if he worked hard with sincerity.
+(j) He has become poor because of his idleness.
+
+38.
+(a) John is fond of reading. Whenever he goes to the book fair, he collects books of different types. He has a good collection of books now.
+(b) Smoking is detrimental to health. It is high time you gave up smoking.
+(c) The students saw the teacher. No sooner had the teacher entered the classroom than the students stood up.
+(d) Birds fly in the sky. I wish I were a bird.
+(e) My mother was a philanthropist. She loved to live among the poor villagers so that she could be beside them in their weal and woe.
+(f) Samia is good at all of her subjects except English. She cannot compete with her classmates because of her weakness in English.
+(g) We had to walk through a jungle. We saw a snake while we were passing a bush.
+(h) I don't have enough money. Had I been a rich man. I would have helped the poor people of my locality.
+(i) Death is inevitable. There is nobody who can escape death.
+(j) Boys, I'm going to discuss an important topic today. Be attentive to my lecture, otherwise you will miss something important to take preparation for the ensuing exam.
+
+39.
+(a) Trees are essential for our existence. So, we should plant more and more trees.
+(b) English is an international language. Without knowing English well you cannot get a good job.
+(c) Corruption is an obstacle to our national development. It is high time we took effective measures to curb corruption.
+(d) My childhood was full of joys and happiness. I wish I were a child again.
+(e) Mobile phone is a wonder of modern science. But it has many disadvantages.
+(f) He cannot run the business. So, he should find a job.
+(g) He confessed that he had made a mistake. So, I forgave him.
+(h) The students could not memorise the poem. It was too difficult for them to memorise.
+(i) Since there was no more question to discuss, the chairman declared the meeting over.
+(j) Female education is a crying need for our country. It is a good sign that nowadays girls are getting educated.
+
+40.
+(a) Physical exercise keeps us healthy and strong. If you take regular physical exercise, you will remain hale and hearty.
+(b) They came to you with a view to getting help from you, but you scolded them without any reason.
+(c) Please wait here until I come back. I have a serious matter to discuss with you.
+(d) I was not hungry at all. If I had been hungry, I would have taken food.
+(e) Trees are essential for our existence. So, we should plant more and more trees.
+(f) There goes a proverb that time and tide wait for none. So, we must make proper use of time.
+(g) We should drink pure water. Since the water of this bottle is not pure, we should avoid it.
+(h) The two brothers are not on good terms. Yesterday when we went to their house, we found them quarrelling with each other.
+(i) Air is polluted in many ways. It is high time we took measures to stop air pollution.
+(j) The martyrs laid down their lives in 1971. They did it so that our country might get freedom.
+
+41.
+(a) Florence Nightingale wanted to be a nurse with a view to serving distressed humanity.
+(b) She was thirty years old when she had given birth to her first child.
+(c) If a man sows good seeds, he will reap good harvest.
+(d) I got up late today. Let's take a taxi so that we can attend office in time.
+(e) A village doctor is a person who gives treatment and medicine to the village people. He is the best friend to the villagers.
+(f) She said, "It is high time we got united to stop eve-teasing."
+(g) I wish I could fly in the sky. If I had the wings of a bird, I could fly in the sky at large.
+(h) I don't know why you go there, most probably, you have someone special.
+(i) But all sorts of attempts to solve food problem will fail unless we are conscious.
+(j) He who follows two hares catches neither.
+
+42.
+(a) 21st February is a red-letter day in our life because on this day some of our patriotic sons accepted martyrdom to establish Bangla as a state language. It is our Mother Language Day.
+(b) Once there was a farmer who had three sons. They were so lazy that they would not do any work.
+(c) I have to meet Raihan. Do you know where he lives?
+(d) It is high time you stopped smoking cigarettes. It is detrimental to health.
+(e) English is an international language. If you want to go abroad for higher studies, you should learn English.
+(f) The bee is one of the busiest insects. It flies from flower to flower to collect honey.
+(g) My friend lived in New Zealand. It is many years since we met last.
+(h) We must grow the habit of getting up early in the morning. The sooner we get up the more we will get time for our work.
+(i) There goes the proverb. 'United we stand, divided we fall'. Unless we are united we will definitely fall.
+(j) Our country is beset with many problems. We all should come forward with a view to solving the problems.
+
+43.
+(a) Industry is the key to success. If you work hard, you will gain success in life.
+(b) Corruption is the main hindrance to development. It is high time we curbed corruption.
+(c) Abdul is an HSC candidate. He is studying hard lest he should fail in the exam.
+(d) There are a good number of reasons why students in our country fail in English. That English is a foreign language is the main reason.
+(e) Birds fly in the sky. I wish I could fly in the sky like a bird.
+(f) No sooner had we reached there than the programme started. Unless we went there earlier, we would miss the beginning of the progamme.
+(g) It is not good to mix with bad associates. A man is known by the company he keeps.
+(h) Dulal Sheikh is a quack. He behaves as if he were an MBBS.
+(i) It is very cold outside. You had better stay at home.
+(j) My childhood was full of joys and happiness. Would that I were a child again.
+
+44.
+(a) We cannot buy a car if we are not solvent enough to maintain it. It costs a lot of money.
+(b) You are now very helpless. Call me whenever you need any help.
+(c) The man was so weak that he could not walk properly. He should consult with a doctor.
+(d) Since it was raining heavily, we could not go out for playing. We stayed at home.
+(e) Though he is dull of hearing, he is very sincere in his studies. He can make a good result.
+(f) Danger comes when danger is feared. So, we have to be careful in our life.
+(g) When I was a child, I played cricket whenever I got a chance. I was fond of playing cricket.
+(h) Hardly had we seen the police when we asked them for help. Thus we were saved.
+(i) Speak the truth or you will be dishonored everywhere. A truthful man is always honoured everywhere.
+(j) He took biology in lieu of higher math. Biology is difficult for him.
+
+45.
+(a) Last night I did not have a sound sleep. I feel sleepy because I enjoyed a movie last night on TV.
+(b) You cannot handle such a significant responsibility if you don't have prior experience in teaching.
+(c) If the driver had been more careful, he could have avoided the fatal accident.
+(d) We were supposed to start our journey the next day. But, it was so hot that we had to postpone the journey.
+(e) A village market is one of the many attractions of country life. It is a public place where the villagers come to sell and buy different things
+(f) The box is very heavy. Are you strong enough to carry it?
+(g) Begging is not a profession. We must not encourage begging.
+(h) Whenever he speaks in English he makes many mistakes. But it is natural that we learn through mistakes.
+(i) It will take you five minutes to reach there on foot.
+(j) One should bear in mind that forming bad habit is easy to do but difficult to give up.
+
+46.
+(a) Geometry is very much confusing to Zillur. He practices geometry a lot so that he can master the subject very well.
+(b) I could not recognize you at first. It was five years since we had met.
+(c) Sanjida was writing quite well in the exam when suddenly she felt a bad headache. As a result she could not finish the exam with satisfaction.
+(d) Don't worry. I will be there after I have finished my study.
+(e) Fateen was really in a great danger. He came to you with a view to getting help from you, but you disappointed him.
+(f) Sujon was very weak, but he had to carry a big box. The box was too heavy for him to carry.
+(g) The farmers of our country are very poor, but they can work hard. If the bank gives them loan on easy term. they will be able to change their lot by working hard.
+(h) Load-shedding occurs because we cannot produce adequate electricity. It is high time we established new powerhouses to produce much electricity.
+(i) I requested him to join me in playing cricket. He joined me despite his unwillingness.
+(j) He tried his best to get the job but he could not get it. Had he got the job, he would have been very happy.
+
+47.
+(a) Samudra Haque is a great journalist. Do you know where he was born?
+(b) Unity is power. Unless you are united, you are sure to fall.
+(c) Work carefully lest you should fall in danger.
+(d) Shabbir Khan is a quack. He behaves as though he were an MBBS.
+(e) It is very cold. I have to put on warm clothes so that I can save myself from the biting cold.
+(f) Could you avoid such an invitation from your cousin?
+(g) A proverb goes that morning shows the day.
+(h) Democratic Govt. will provide people with all their civic rights.
+(i) Let us play in the field, shall we?
+(j) The bee is one of the busiest insects. We should follow the life of the bee.`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
         }
 
         function cleanText(text) {
