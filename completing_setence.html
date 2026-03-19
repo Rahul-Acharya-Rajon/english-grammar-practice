@@ -188,13 +188,85 @@
         }
 
         @media print {
-            .no-print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Hide interactive elements */
+            .no-print,
+            .pagination-controls,
+            .theme-toggle,
+            .btn {
                 display: none !important;
             }
 
-            .container {
-                box-shadow: none;
-                padding: 10px;
+            body {
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
+                margin: 0;
+                padding: 10mm;
+            }
+
+            .container,
+            .quiz-card {
+                background: var(--card-bg) !important;
+                box-shadow: none !important;
+                border: 1px solid var(--border) !important;
+                margin-bottom: 40px !important;
+                page-break-inside: avoid;
+                padding: 15px;
+            }
+
+            h2,
+            h3 {
+                color: var(--p) !important;
+            }
+
+            .gap-input {
+                background: var(--input-bg) !important;
+                color: var(--text-main) !important;
+                border-bottom: 3px solid var(--p) !important;
+            }
+
+            /* Make correct/wrong more visible in print */
+            .feedback-area {
+                display: block !important;
+                border: 1px solid var(--border) !important;
+            }
+
+            .correct-box {
+                background-color: rgba(22, 163, 74, 0.12) !important;
+                border-left: 8px solid var(--s) !important;
+                color: var(--s) !important;
+            }
+
+            .wrong-box {
+                background-color: rgba(220, 38, 38, 0.12) !important;
+                border-left: 8px solid var(--d) !important;
+                color: var(--d) !important;
+            }
+
+            .ans-tag {
+                background: var(--bg) !important;
+                border: 1px solid var(--border) !important;
+                color: var(--text-main) !important;
+            }
+
+            /* Ensure colored inputs stay visible */
+            input[style*="color: var(--s)"] {
+                color: var(--s) !important;
+                border-bottom-color: var(--s) !important;
+            }
+
+            input[style*="color: var(--d)"] {
+                color: var(--d) !important;
+                border-bottom-color: var(--d) !important;
+            }
+
+            /* Better spacing for print */
+            .quiz-card {
+                margin-bottom: 2cm !important;
             }
         }
     </style>
@@ -303,7 +375,7 @@ Be punctual lest ____. (b) The film ended fantastically. If you had enjoyed the 
 (d) You are very tired. You would better ____.
 (e) The novel written by Milton is very interesting. I read it when ____.
 (f) Truthfulness is a great virtue because ____ .
-(g) Corrupt persons are not only dishonest but also criminals. Now, it is high time we ____.
+(g) Corrupt persons are not only dishonest ____. Now, It is high time we uprooted corruption from society.
 (h) A library is a place where ____. So, every educational institution should have a library.
 (i) I worked hard though ____.
 (j) I closed the door of my room so that ____.
@@ -314,12 +386,10 @@ Be punctual lest ____. (b) The film ended fantastically. If you had enjoyed the 
 (b) A pen which was bought ____.
 (c) I closed the door of my room so that ____.
 (d) The poem is too hard ____.
-(c) Unless you came ____.
-(d) The poem is too hard ____.
 (e) Unless you came ____.
-(f) If I were a rich man, _____.
+(f) If I were a rich man, ____.
 (g) I wanted to learn English instead of ____.
-(h) Inspite of his being poor, ____.
+(h) In spite of his being poor, ____.
 (i) Because of her being small ____.
 (j) Learn English properly till ____.
 [JB ’25]
@@ -347,8 +417,8 @@ Be punctual lest ____. (b) The film ended fantastically. If you had enjoyed the 
 (g) Whenever he speaks in English, ____. In fact, we learn through mistakes.
 (h) We are a free nation now. 1971 is the year ____.
 (i) Man proposes, ____.
-(j) Danger comes where ____. So, we have to be careful in our life.
-[CtgB’25]
+(j) Danger comes where ____.
+[CtgB'25]
 
 8. 
 (a) Rudaba could not recognize me at first. It was many years since we ____ .
@@ -378,11 +448,11 @@ Be punctual lest ____. (b) The film ended fantastically. If you had enjoyed the 
 
 10. 
 (a) Trees are essential for our existence. So, ____.
-(b) The rats are now thinking who will tie the bell on cat? Finally, they realize is easy to say ____.
+(b) The rats are now thinking who will tie the bell on cat. Finally, they realize it is easy to say ____.
 (c) Wait until ____. You should not go out alone.
 (d) Love is divine. You can't find others to love you unless ____.
 (e) Punctuality is a great virtue. So, try ____.
-(f) The patient was so serious and we were looking for a doctor. Alas! The patient had die before ____ .
+(f) The patient was so serious and we were looking for a doctor. Alas! The patient had died before ____.
 (g) Sharing is ____ . So, teach your children how to share.
 (h) Everybody must be conscious of health because ____.
 (i) The train will start at 10 a.m. Now it is 09:55 a.m. So, walk fast lest ____.
@@ -459,7 +529,7 @@ ____.
 (a) I miss my maternal grandmother a lot. 15 years have passed since ____.
 (b) Zillur and Ashraf were lucky. No sooner had they ____.
 (c) In our country, there are many people ____. Poverty is a curse for any society.
-(d) Corruption is an obstacle to our national development. It is high time ____.
+(d) Corruption is a obstacle to our national development. It is high time ____.
 (e) Study sincerely lest ____.
 (f) Nurjahan studies medicine so that ____.
 (g) Once there was an old man who had three sons. They were so lazy that ____.
@@ -472,7 +542,7 @@ ____.
 (a) It is too late. Now I _____ go to lunch.
 (b) It is a long time since _____ .
 (c) Had I earned enough money, _____.
-(d) He is a quack but he talks to parents as if he _____.
+(d) He is a quack but he talks to the patients as if ____.
 (e) The girl returned home before evening lest she _____.
 (f) Mira sings very well. If she gets opportunity, _____.
 (g) The poem is too difficult for _____.
@@ -502,7 +572,7 @@ ____.
 (e) She spoke as if ____. She was actually a quack.
 (f) The thief was afraid of police. He ran away lest ____ arrested.
 (g) Despite ____, he helps his relatives.
-(h) He took Logic ____ History. History seems to be difficult to him.
+(h) He took Logic ____. History seems to be difficult to him.
 (i) If I had been hungry, ____ But I am not hungry at all.
 (j) Corruption is a curse. It is high time the government _____.
 [RB ‘23]
@@ -517,7 +587,7 @@ ____.
 (g) The box is very heavy. Are you strong enough _____?
 (h) John is fond of reading. Whenever he goes to the book fair, _____.
 (i) Rima is a good singer. She sings so well that _____.
-(j) Since Bangladesh is an agricultural country, _____. We should put emphasis on our agricultural sectors.
+(j) We should put emphasis on our agricultural sectors. Since Bangladesh is an agricultural country, ____.
 [JB ‘23]
 
 21. 
@@ -611,7 +681,7 @@ ____.
 (b) Though he was brilliant, _____. He was very irregular in his college.
 (c) Jamil had an accident yesterday while he _______.
 (d) I am not a rich man. The car is too expensive _____.
-(e) There goes a proverb that ______. So, we should make friendship
+(e) We should make friendship with gentleman. There goes a proverb that ____.
 [RB ‘22]
  
 29. 
@@ -627,11 +697,11 @@ ____.
 (b) Honesty is a great virtue. We should not like those_____.
 (c) A rainy day is the day when_____.
 (d) All of us should try our best____.
-(e) It is very cold. They have to put on warm clothes that ____.
+(e) It is very cold. They have to put on warm clothes so that ____.
 [CB ‘22]
  
 31. 
-(a) ______ is lost forever. So, we should utilize time properly.
+(a) ____, is lost forever. So, we should utilize time properly.
 (b) All around us are not friends. In fact, friends ______ are real friends.
 (c) For higher education, we should learn English. So, it is high time______.
 (d) Neighbours are those persons who live adjacent to us. As man cannot live alone, ____.
@@ -642,8 +712,8 @@ ____.
 (a) A good student must possess____.
 (b) The student _____ is a good student.
 (c) He must be honest in thought, active in habit and obedient to_____.
-(d) ______health is another quality of an ideal student.
-(e) He, Who ______ makes a glorious result in the examination.
+(d) ____ health is another quality of an ideal student.
+(e) He, who possesses the qualities of a good student makes ____.
 [SB ‘22]
  
 33. 
@@ -687,12 +757,12 @@ ______.
 37. 
 (a) Industry is the_____.
 (b) A man cannot succeed in life_____.
-(c) _____ of the world are industrious.
+(c) ____ of the world are industrious.
 (d) The man _____ can maintain a sound health.
 (e) We should not like those persons____.
 (f) I always _____.
-(g) 1 know the story of an industrious person _____.
-(h) That man always inspires me, _____.
+(g) I know the story of an industrious person _____.
+(h) That man always inspires me _____.
 (i) I have a poor uncle. He could be rich____.
 (j) He has become poor _____ of his idleness.
 [Combined Board '18]
@@ -705,7 +775,7 @@ ______.
 (e) My mother was a philanthropist. She loved to live among the poor villagers so that ____.
 (f) Samia is good at all of her subjects except English. She cannot compete with her classmates because of _____.
 (g) We had to walk through a jungle. We saw a snake while we _____.
-(h) I don't have enough money. Had I been a rich man, ______.
+(h) I don't have enough money. Had I been a rich man, ____.
 (i) Death is inevitable. There is nobody who _____.
 (j) Boys, I'm going to discuss an important topic today. Be attentive to my lecture, otherwise _____.
 
@@ -779,7 +849,7 @@ ______.
 (g) When I was a child, _____. I was fond of playing cricket.
 (h) Hardly had we seen the police when _____. Thus we were saved.
 (i) Speak the truth or______. A truthful man is always honoured everywhere.
-(j) He took biology in lieu of _____. Biology is difficult for him.
+(j) Biology is difficult for him. He took biology ____.
 [JB ‘19]
 
 45. 
@@ -791,7 +861,7 @@ ______.
 (f) The box is very heavy. Are you strong enough______?
 (g) Begging is not a profession. It is most disreputable. We must not ______.
 (h) Whenever he speaks in English ______. But it is natural that we learn through mistakes.
-(i) The station is not far away from here, will take you five minutes ______.
+(i) The station is not far away from here. It will take you five minutes ______.
 (j) One should bear in mind that forming bad habit is easy to do but ______.
 
 46. 
@@ -801,7 +871,7 @@ ______.
 (d) Don't worry. I _____ after I have finished my study.
 (e) Fateen was really in a great danger. He came to you with a view to ______ from you, but you disappointed him.
 (f) Sujon was very weak, but he had to carry a big box. The box was too heavy for _____.
-(g) The farmers of our country are very poor, but they can work hard. If the bank gives them loan on easy term, they _____.
+(g) The farmers of our country are very poor, but they can work hard. If the bank gives them loan on easy term. they ____.
 (h) Load-shedding occurs because we cannot produce adequate electricity. It is high time we______.
 (i) I requested him to join me in playing cricket. He joined me ______.
 (j) He tried his best to get the job but he could not get it. Had he got the job, he would_____.
@@ -876,9 +946,9 @@ Association, Barishal-2019]`;
 (e) Unless you came I would not attend the meeting.
 (f) If I were a rich man, I would help the poor.
 (g) I wanted to learn English instead of learning French.
-(h) In spite of his being poor, he is honest./he is happy.
+(h) In spite of his being poor, he is honest.
 (i) Because of her being small she is often bullied/neglected.
-(j) Learn English properly till you have acquired proficiency in it./you are able to speak it fluently.
+(j) Learn English properly till you have acquired proficiency in it.
 
 6.
 (a) Your HSC Examination is knocking at the door. You have to study attentively so that you can do well/cut a good figure.
@@ -902,7 +972,7 @@ Association, Barishal-2019]`;
 (g) Whenever he speaks in English, he makes mistakes. In fact, we learn through mistakes.
 (h) We are a free nation now. 1971 is the year when we achieved our independence.
 (i) Man proposes, God disposes.
-(j) Danger comes where danger is feared. So, we have to be careful in our life.
+(j) Danger comes where danger is feared.
 
 8.
 (a) Rudaba could not recognize me at first. It was many years since we had met last.
@@ -1009,14 +1079,14 @@ Association, Barishal-2019]`;
 (f) Nurjahan studies medicine so that she can be a medicine specialist/she can become a doctor.
 (g) Once there was an old man who had three sons. They were so lazy that they could not do any work.
 (h) Rezwan tried his best to get the job but he could not get it. Had he got the job, he would have led a better life.
-(i) The man who follows the rules of health can maintain a sound health.
+(i) The man cannot maintain a sound health. The man who follows the rules of health can maintain a sound health.
 (j) Florence Nightingale wanted to be a nurse with a view to serving the sick people.
 
 17.
 (a) It is too late. Now I had better/have to go to lunch.
 (b) It is a long time since we met last.
 (c) Had I earned enough money, I could have helped the poor.
-(d) He is a quack but he talks to the patients as if he were an expert doctor/knew everything about medical science.
+(d) He is a quack but he talks to the patients as if he knew everything about medical science.
 (e) The girl returned home before evening lest she should fall into trouble/should fall into danger.
 (f) Mira sings very well. If she gets opportunity, she can become a famous singer.
 (g) The poem is too difficult for him to understand it fully.
@@ -1046,10 +1116,10 @@ Association, Barishal-2019]`;
 (g) Despite his hardship/inability, he helps his relatives.
 (h) He took Logic instead of history. History seems to be difficult to him.
 (i) If I had been hungry, I would have eaten something.
-(1) Corruption is a curse. It is high time the government took action against corruption.
+(j) Corruption is a curse. It is high time the government took action against corruption.
 
 20.
-a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing people.
+(a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing people.
 (b) If I had the wings of a bird, I would fly freely in the sky.
 (c) Unity is strength. United we stand, divided we fall.
 (d) Time plays a very crucial role in human life. We cannot prosper in life unless we use our time properly.
@@ -1058,7 +1128,7 @@ a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing p
 (g) The box is very heavy. Are you strong enough to carry the box?
 (h) John is fond of reading. Whenever he goes to the book fair, he buys some books.
 (i) Rima is a good singer. She sings so well that it captivates everyone's attention.
-(j) Since Bangladesh is an agricultural country, its economy largely depends on agriculture. We should put emphasis on our agricultural sectors.
+(j)  We should put emphasis on our agricultural sectors. Since Bangladesh is an agricultural country, its economy largely depends on agriculture.
 
 21.
 (a) There is a wise saying that united we stand, divided we fall. So, we must be united to reach our expected goal.
@@ -1144,7 +1214,7 @@ a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing p
 (b) Though he was brilliant, he could not make good results. He was very irregular in his college.
 (c) Jamil had an accident yesterday while he was going to his village home.
 (d) I am not a rich man. The car is too expensive for me to buy.
-(e) There goes a proverb that a man is known by the company he keeps. So, we should make friendship with gentleman.
+(e) We should make friendship with gentleman. There goes a proverb that a man is known by the company he keeps.
 
 29.
 (a) Sabbir Khan is a quack. He behaves as though he were a specialist doctor.
@@ -1227,7 +1297,7 @@ a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing p
 (e) My mother was a philanthropist. She loved to live among the poor villagers so that she could be beside them in their weal and woe.
 (f) Samia is good at all of her subjects except English. She cannot compete with her classmates because of her weakness in English.
 (g) We had to walk through a jungle. We saw a snake while we were passing a bush.
-(h) I don't have enough money. Had I been a rich man. I would have helped the poor people of my locality.
+(h) I don't have enough money. Had I been a rich man, I would have helped the poor people of my locality.
 (i) Death is inevitable. There is nobody who can escape death.
 (j) Boys, I'm going to discuss an important topic today. Be attentive to my lecture, otherwise you will miss something important to take preparation for the ensuing exam.
 
@@ -1301,7 +1371,7 @@ a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing p
 (g) When I was a child, I played cricket whenever I got a chance. I was fond of playing cricket.
 (h) Hardly had we seen the police when we asked them for help. Thus we were saved.
 (i) Speak the truth or you will be dishonored everywhere. A truthful man is always honoured everywhere.
-(j) He took biology in lieu of higher math. Biology is difficult for him.
+(j) Biology is difficult for him. He took biology in lieu of higher math.
 
 45.
 (a) Last night I did not have a sound sleep. I feel sleepy because I enjoyed a movie last night on TV.
@@ -1312,7 +1382,7 @@ a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing p
 (f) The box is very heavy. Are you strong enough to carry it?
 (g) Begging is not a profession. We must not encourage begging.
 (h) Whenever he speaks in English he makes many mistakes. But it is natural that we learn through mistakes.
-(i) It will take you five minutes to reach there on foot.
+(i) The station is not far away from here. It will take you five minutes to reach there on foot.
 (j) One should bear in mind that forming bad habit is easy to do but difficult to give up.
 
 46.
@@ -1381,14 +1451,29 @@ a) Florence Nightingale wanted to be a nurse with a view to nursing the ailing p
                     let exactAnswer = fullAnswerPart;
 
                     // ১. প্রশ্নের আগের অংশ বাদ দেওয়া
-                    if (exactAnswer.includes(questionPrefix)) {
-                        exactAnswer = exactAnswer.split(questionPrefix).pop();
+                    // if (exactAnswer.includes(questionPrefix)) {
+                    //     exactAnswer = exactAnswer.split(questionPrefix).pop();
+                    // }
+                    if (questionPrefix && exactAnswer.startsWith(questionPrefix)) {
+                        exactAnswer = exactAnswer.slice(questionPrefix.length);
                     }
 
                     // ২. প্রশ্নের পরের অংশ (Context) বাদ দেওয়া
                     if (nextContext && exactAnswer.includes(nextContext)) {
                         exactAnswer = exactAnswer.split(nextContext)[0];
                     }
+
+                    // // ১. প্রশ্নের আগের অংশ বাদ দেওয়া (only if sentence starts with it)
+                    // if (questionPrefix && exactAnswer.startsWith(questionPrefix)) {
+                    //     exactAnswer = exactAnswer.slice(questionPrefix.length);
+                    // }
+
+                    // // ২. প্রশ্নের পরের অংশ বাদ দেওয়া (only if sentence ends with it)
+                    // nextContext = cleanText(nextContext);
+
+                    // if (nextContext && exactAnswer.endsWith(nextContext)) {
+                    //     exactAnswer = exactAnswer.slice(0, -nextContext.length);
+                    // }
 
                     exactAnswer = exactAnswer.trim().replace(/[.,:;?]+$/, "");
 
