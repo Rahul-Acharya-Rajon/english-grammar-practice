@@ -162,6 +162,29 @@
             color: var(--p);
         }
 
+        @media (max-width: 768px) {
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .btn-submit,
+            .btn-export,
+            .btn-reset,
+            .btn-word,
+            .btn {
+                width: 100% !important;
+                margin: 5px 0;
+            }
+
+            h2 {
+                font-size: 22px !important;
+            }
+        }
+
         /* --- COLOR PRINT OPTIMIZATION --- */
         @media print {
             @page {
@@ -256,6 +279,7 @@
     <div class="container">
         <h2 style="text-align:center; color: var(--p);">HSC Changing Sentences Practice Sheet
             Generator</h2>
+        <p style="text-align: center; color: var(--text-sub);">Change these sentences according to directions.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -280,11 +304,15 @@ water by his mother.)"></textarea>
             <div class="page-info no-print" id="page-info">Page 1 of 1</div>
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
-                <button id="prev-btn" class="btn" style="background:#3b82f6" onclick="prevPage()">Previous</button>
-                <button id="next-btn" class="btn" style="background:#3b82f6" onclick="nextPage()">Next</button>
-                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
-                <button class="btn" style="background:#9333ea" onclick="window.print()">Print in Color</button>
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Submit</button>
+                <button class="btn" style="background:#9333ea" onclick="window.print()">Export PDF</button>
+                <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
+                    Word</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
+                <div id="pagination" style="margin-top: 10px;">
+                    <button id="prev-btn" class="btn" style="background:#3b82f6" onclick="prevPage()">Previous</button>
+                    <button id="next-btn" class="btn" style="background:#3b82f6" onclick="nextPage()">Next</button>
+                </div>
             </div>
         </div>
     </div>
@@ -296,6 +324,110 @@ water by his mother.)"></textarea>
 
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function exportToWord() {
+            if (quizData.length === 0) {
+                alert("কোনো প্রশ্ন লোড করা হয়নি।");
+                return;
+            }
+
+            const start = currentPage * setsPerPage;
+            const end = Math.min(start + setsPerPage, quizData.length);
+            const currentSets = quizData.slice(start, end);
+
+            if (currentSets.length === 0) {
+                alert("এই পেজে কোনো সেট নেই।");
+                return;
+            }
+
+            let content = `
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: 'Calibri', 'Arial', sans-serif; line-height: 1.6; }
+        .question-set { margin-bottom: 25px; padding: 15px; border: 1px solid #cbd5e1; }
+        .sentence-row { margin-bottom: 12px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <h1 style="color: #2563eb; text-align: center;">HSC Changing Sentences Practice Sheet</h1>
+    <p style="text-align:center; color:#475569;">
+        Page ${currentPage + 1} of ${Math.ceil(quizData.length / setsPerPage)} – Exported on ${new Date().toLocaleDateString('en-GB')}
+    </p>
+`;
+
+            currentSets.forEach((set, localIdx) => {
+                const globalIdx = start + localIdx;
+                const fb = document.getElementById(`fb-${globalIdx}`);
+                const hasFeedback = fb && fb.style.display !== 'none';
+
+                content += `
+        <div class="question-set">
+            <h2 style="color: #2563eb;">Practice Set ${globalIdx + 1}</h2>
+            <p style="font-weight: bold; color: #2563eb;">${set.intro.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+`;
+
+                set.sentences.forEach(s => {
+                    const input = document.querySelector(`.gap-input[data-set="${globalIdx}"][data-letter="${s.letter}"]`);
+                    const userText = input ? input.value.trim() : "";
+
+                    // কালার লজিক ফিক্সড
+                    let statusColor = '#334155'; // ডিফল্ট কালো/ধূসর
+
+                    if (hasFeedback && input) {
+                        if (input.classList.contains('input-correct')) {
+                            statusColor = '#16a34a'; // সবুজ
+                        } else if (input.classList.contains('input-wrong')) {
+                            statusColor = '#d53f3f'; // লাল
+                        }
+                    }
+
+                    content += `
+            <div class="sentence-row">
+                <p style="margin: 5px 0;"><b>(${s.letter})</b> ${s.text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+                <p style="margin: 5px 0;">Your answer: 
+                    <span style="font-weight: bold; color: ${statusColor}; text-decoration: underline;">
+                        ${userText || '[খালি]'}
+                    </span>
+                </p>
+            </div>`;
+                });
+
+                if (hasFeedback) {
+                    // ফিডব্যাক বক্সের স্টাইল সরাসরি ইনলাইন করে দেওয়া হয়েছে
+                    let fbBorder = fb.className.includes('correct') ? '#16a34a' : '#d53f3f';
+                    let fbBG = fb.className.includes('correct') ? '#f0fff4' : '#fff5f5';
+
+                    content += `
+            <div style="margin-top: 15px; padding: 10px; border-left: 5px solid ${fbBorder}; background-color: ${fbBG};">
+                ${fb.innerHTML
+                            .replace(/<b>/g, '<strong>')
+                            .replace(/<\/b>/g, '</strong>')
+                            .replace(/class="ans-tag"/g, 'style="display:block; color:#2563eb; font-weight:bold; margin-top:5px;"')}
+            </div>`;
+                } else {
+                    content += `<p style="color:#2563eb; font-style:italic;">Submit চাপলে ফিডব্যাক ও স্কোর দেখা যাবে।</p>`;
+                }
+
+                content += `</div>`;
+            });
+
+            content += `</body></html>`;
+
+            // ফাইল ডাউনলোড প্রসেস
+            const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `HSC_Changing_Sentences_Page_${currentPage + 1}.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
         }
 
         function loadDemo() {
