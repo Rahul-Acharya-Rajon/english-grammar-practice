@@ -66,7 +66,8 @@
 
             .btn-submit,
             .btn-export,
-            .btn-reset {
+            .btn-reset,
+            .btn-word {
                 width: 100% !important;
                 margin: 5px 0;
             }
@@ -131,7 +132,13 @@
 
         .btn-export {
             background: #9333ea;
-            display: none;
+            /* display: none; */
+            width: 250px;
+        }
+
+        .btn-word {
+            background: #2b6cb0;
+            /* display: none; */
             width: 250px;
         }
 
@@ -223,6 +230,25 @@
             background: rgba(22, 163, 74, 0.15);
             border-left: 8px solid var(--s);
             color: var(--s);
+        }
+
+        .correct-text {
+            color: #16a34a !important;
+            font-weight: bold;
+        }
+
+        .wrong-text {
+            color: #dc2626 !important;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .answer-key-tag {
+            background-color: #f1f5f9;
+            padding: 2px 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 0.95em;
         }
 
         .wrong-box {
@@ -354,7 +380,8 @@
                 </div>
             </div>
             <button class="btn btn-start" onclick="processData()">Build Practice Sheet</button>
-            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions & Answers</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -370,10 +397,10 @@
             <div id="quiz-container"></div>
 
             <div style="text-align:center;" class="no-print">
-                <button class="btn btn-submit" onclick="runEvaluation()">Evaluate My Answers</button>
-                <button id="export-btn" class="btn btn-export" onclick="window.print()">Export Progress Report
-                    (PDF)</button>
-                <button class="btn btn-reset" onclick="location.reload()">New Session</button>
+                <button class="btn btn-submit" onclick="runEvaluation()">Submit</button>
+                <button id="export-btn" class="btn btn-export" onclick="window.print()">Export PDF</button>
+                <button id="export-word-btn" class="btn btn-word" onclick="exportToWord()">Export to Word</button>
+                <button class="btn btn-reset" onclick="location.reload()">Reset</button>
             </div>
         </div>
     </div>
@@ -382,6 +409,187 @@
         let examData = [];
         let currentPage = 0;
         const itemsPerPage = 10;
+
+        function exportToWord() {
+            if (examData.length === 0) {
+                alert("কোনো প্রশ্ন লোড করা হয়নি।");
+                return;
+            }
+
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = examData.slice(start, end);
+
+            if (currentItems.length === 0) {
+                alert("এই পেজে কোনো প্রশ্ন নেই।");
+                return;
+            }
+
+            let content = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office"
+              xmlns:w="urn:schemas-microsoft-com:office:word"
+              xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+            <meta charset="utf-8">
+            <title>HSC Article Practice - Page ${currentPage + 1}</title>
+            <!--[if gte mso 9]>
+            <xml>
+                <w:WordDocument>
+                    <w:View>Print</w:View>
+                    <w:Zoom>100</w:Zoom>
+                </w:WordDocument>
+            </xml>
+            <![endif]-->
+            <style>
+                body { 
+                    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; 
+                    line-height: 1.7; 
+                    color: #1e293b; 
+                    font-size: 11.5pt; 
+                }
+                h1 { 
+                    color: #2563eb; 
+                    text-align: center; 
+                    text-transform: uppercase; 
+                    letter-spacing: 1.2px; 
+                    margin-bottom: 0.8em; 
+                }
+                h2 { 
+                    color: #2563eb; 
+                    margin: 1.4em 0 0.6em; 
+                    font-size: 14pt; 
+                }
+                .question-set { 
+                    margin-bottom: 1.8em; 
+                    padding: 1em; 
+                    border: 1px solid #cbd5e1; 
+                    border-radius: 6px; 
+                    background: #f9fafb; 
+                }
+                .gap-answer { 
+                    font-weight: 600; 
+                    text-decoration: underline; 
+                    text-decoration-thickness: 2.5px; 
+                    text-underline-offset: 2px; 
+                }
+                .correct { 
+                    color: #16a34a !important; 
+                    text-decoration-color: #16a34a !important; 
+                }
+                .wrong { 
+                    color: #dc2626 !important; 
+                    text-decoration-color: #dc2626 !important; 
+                }
+                .neutral { 
+                    color: #000000 !important; 
+                    text-decoration-color: #000000 !important; 
+                }
+                .feedback { 
+                    margin-top: 1.2em; 
+                    padding: 0.9em; 
+                    border-left: 5px solid; 
+                    border-radius: 4px; 
+                    background: rgba(0,0,0,0.03); 
+                }
+                .correct-box { 
+                    border-left-color: #16a34a; 
+                    color: #166534; 
+                }
+                .wrong-box { 
+                    border-left-color: #dc2626; 
+                    color: #991b1b; 
+                }
+                .ans-tag { 
+                    background: #f1f5f9; 
+                    padding: 3px 7px; 
+                    margin: 0 5px 4px 0; 
+                    border: 1px solid #cbd5e1; 
+                    border-radius: 4px; 
+                    display: inline-block; 
+                    font-size: 10pt; 
+                }
+                .page-info { 
+                    text-align: center; 
+                    font-size: 12pt; 
+                    color: #475569; 
+                    margin: 1em 0 1.5em; 
+                    font-weight: bold; 
+                }
+            </style>
+        </head>
+        <body>
+            <h1>HSC Article Practice Sheet</h1>
+            <div class="page-info">Page ${currentPage + 1} of ${Math.ceil(examData.length / itemsPerPage)} – Exported on ${new Date().toLocaleString('en-GB')}</div>
+    `;
+
+            currentItems.forEach((item, localIdx) => {
+                const globalIdx = start + localIdx;
+
+                let processedHtml = item.html;
+
+                processedHtml = processedHtml.replace(
+                    /<input type="text" class="gap-input" data-qid="[^"]*" data-letter="([a-j])" autocomplete="off">/g,
+                    (match, letter) => {
+                        const inputEl = document.querySelector(`.gap-input[data-qid="${globalIdx}"][data-letter="${letter}"]`);
+                        if (!inputEl) return '______';
+
+                        const value = inputEl.value.trim() || '          ';  // blank এর জন্য স্পেস
+
+                        let colorHex = '#000000';           // default কালো
+                        let underlineColor = '#000000';
+
+                        const style = window.getComputedStyle(inputEl);
+                        const borderColor = style.borderBottomColor;
+
+                        // border-bottom এর কালার থেকে ধরা (যেহেতু input-এ border-bottom color change হয়)
+                        if (borderColor === 'rgb(22, 163, 74)' || borderColor.includes('22, 163, 74')) {
+                            colorHex = '#16a34a';
+                            underlineColor = '#16a34a';
+                        } else if (borderColor === 'rgb(220, 38, 38)' || borderColor.includes('220, 38, 38')) {
+                            colorHex = '#dc2626';
+                            underlineColor = '#dc2626';
+                        }
+
+                        // inline style দিয়ে Word-এ force করা
+                        return `<span style="color: ${colorHex}; text-decoration: underline; text-decoration-color: ${underlineColor}; font-weight: 600; text-underline-offset: 2px; text-decoration-thickness: 2px;">${value}</span>`;
+                    }
+                );
+
+                content += `
+            <div class="question-set">
+                <h2>Question Set ${globalIdx + 1}</h2>
+                <div>${processedHtml}</div>
+        `;
+
+                const feedbackEl = document.getElementById(`feedback-${globalIdx}`);
+                if (feedbackEl && feedbackEl.style.display !== 'none') {
+                    let fbClass = feedbackEl.className.includes('correct-box') ? 'correct-box' : 'wrong-box';
+                    let fbHTML = feedbackEl.innerHTML
+                        .replace(/<strong>/g, '<strong style="font-size:1.15em;">')
+                        .replace(/class="ans-tag"/g, 'class="ans-tag"');
+
+                    content += `
+                <div class="feedback ${fbClass}">
+                    ${fbHTML}
+                </div>
+            `;
+                }
+
+                content += `</div>`;
+            });
+
+            content += `</body></html>`;
+
+            const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `HSC_Article_Page_${currentPage + 1}_${new Date().toISOString().slice(0, 10)}.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
 
         function toggleTheme() {
             const current = document.documentElement.getAttribute("data-theme");
@@ -933,6 +1141,7 @@ the: (h) a; (i) the; (j) .
                 `Page Result: ${visibleCorrect} / ${visibleTotal} (${percentage}%)`;
 
             document.getElementById('export-btn').style.display = "inline-block";
+            document.getElementById('export-word-btn').style.display = "inline-block";
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
