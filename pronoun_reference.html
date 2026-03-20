@@ -220,6 +220,13 @@
             border: 1px solid var(--s);
         }
 
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--text-sub);
+        }
+
         /* --- ENHANCED PRINT OPTIMIZATION --- */
         @media print {
             @page {
@@ -317,6 +324,7 @@
     <div class="container">
         <h2 style="text-align:center; color:var(--p);" class="no-print">HSC Pronoun Reference Practice Sheet Generator
         </h2>
+        <p style="text-align: center; color: var(--text-sub);">Correct the the sentences by correcting the pronouns.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -338,8 +346,10 @@
         <div id="quiz-view" class="hidden">
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
-                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Verify Rewrite</button>
-                <button class="btn" style="background:#9333ea" onclick="window.print()">Print</button>
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Submit</button>
+                <button class="btn" style="background:#9333ea" onclick="window.print()">Export PDF</button>
+                <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
+                    Word</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
             </div>
             <div id="pagination" class="pagination no-print"></div>
@@ -354,6 +364,192 @@
 
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function exportToWord() {
+            if (quizData.length === 0) {
+                alert("কোনো প্রশ্ন লোড করা হয়নি।");
+                return;
+            }
+
+            const start = currentPage * itemsPerPage;
+            const end = Math.min(start + itemsPerPage, quizData.length);
+            const currentPageData = quizData.slice(start, end);
+
+            if (currentPageData.length === 0) {
+                alert("এই পেজে কোনো প্রশ্ন নেই।");
+                return;
+            }
+
+            let content = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office"
+              xmlns:w="urn:schemas-microsoft-com:office:word"
+              xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+            <meta charset="utf-8">
+            <title>HSC Pronoun Reference - Page ${currentPage + 1}</title>
+            <!--[if gte mso 9]>
+            <xml>
+                <w:WordDocument>
+                    <w:View>Print</w:View>
+                    <w:Zoom>100</w:Zoom>
+                </w:WordDocument>
+            </xml>
+            <![endif]-->
+            <style>
+                body { 
+                    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; 
+                    line-height: 1.7; 
+                    color: #1e293b; 
+                    font-size: 11.5pt; 
+                    margin: 2cm 1.8cm;
+                }
+                h1 { 
+                    color: #2563eb; 
+                    text-align: center; 
+                    text-transform: uppercase; 
+                    letter-spacing: 1.2px; 
+                    margin-bottom: 0.8em; 
+                }
+                h2 { 
+                    color: #2563eb; 
+                    margin: 1.6em 0 0.6em; 
+                    font-size: 14pt; 
+                    border-bottom: 1px solid #cbd5e1; 
+                    padding-bottom: 4px;
+                }
+                .question-set { 
+                    margin-bottom: 1.8em; 
+                    padding: 1.2em; 
+                    border: 1px solid #cbd5e1; 
+                    border-radius: 6px; 
+                    background: #f9fafb; 
+                }
+                .q-display { 
+                    background: #f1f5f9; 
+                    padding: 12px; 
+                    border-radius: 8px; 
+                    margin-bottom: 1em; 
+                    font-style: italic; 
+                    border-left: 4px solid #2563eb; 
+                    white-space: pre-wrap; 
+                }
+                .user-answer { 
+                    margin-top: 0.8em; 
+                    padding: 10px; 
+                    border: 1px dashed #cbd5e1; 
+                    border-radius: 6px; 
+                    background: #fffbeb; 
+                    white-space: pre-wrap; 
+                }
+                .correct-line { 
+                    color: #16a34a; 
+                    font-weight: 500; 
+                    display: block; 
+                    border-left: 3px solid #16a34a; 
+                    padding-left: 8px; 
+                    margin: 4px 0; 
+                }
+                .wrong-line { 
+                    color: #b91c1c; 
+                    font-weight: 500; 
+                    display: block; 
+                    border-left: 3px solid #b91c1c; 
+                    padding-left: 8px; 
+                    margin: 4px 0; 
+                }
+                .actual-hint { 
+                    color: #2563eb; 
+                    font-style: italic; 
+                    font-size: 0.9em; 
+                    display: block; 
+                    margin-left: 15px; 
+                    margin-bottom: 6px; 
+                }
+                .feedback { 
+                    margin-top: 1.2em; 
+                    padding: 1em; 
+                    border-left: 5px solid; 
+                    border-radius: 4px; 
+                    background: rgba(0,0,0,0.03); 
+                }
+                .correct-box { 
+                    border-left-color: #16a34a; 
+                    color: #166534; 
+                }
+                .wrong-box { 
+                    border-left-color: #b91c1c; 
+                    color: #991b1b; 
+                }
+                .page-info { 
+                    text-align: center; 
+                    font-size: 12pt; 
+                    color: #475569; 
+                    margin: 1em 0 1.8em; 
+                    font-weight: bold; 
+                }
+            </style>
+        </head>
+        <body>
+            <h1>HSC Pronoun Reference Practice Sheet</h1>
+            <div class="page-info">Page ${currentPage + 1} of ${Math.ceil(quizData.length / itemsPerPage)} – Exported on ${new Date().toLocaleString('en-GB')}</div>
+    `;
+
+            currentPageData.forEach((item, localIdx) => {
+                const globalIdx = start + localIdx;
+
+                // Original passage
+                let originalHtml = `<div class="q-display"><strong>Original:</strong><br>${item.original}</div>`;
+
+                // User input (textarea থেকে নেওয়া)
+                const userInputEl = document.querySelector(`.user-input-box[data-idx="${globalIdx}"]`);
+                const userText = userInputEl ? userInputEl.value.trim() : "";
+                let userAnswerHtml = "";
+                if (userText) {
+                    userAnswerHtml = `<div class="user-answer"><strong>Your Rewrite:</strong><br>${userText.replace(/\n/g, '<br>')}</div>`;
+                } else {
+                    userAnswerHtml = `<div class="user-answer" style="color:#64748b; font-style:italic;">[No answer provided]</div>`;
+                }
+
+                content += `
+            <div class="question-set">
+                <h2>Practice Set ${globalIdx + 1}</h2>
+                ${originalHtml}
+                ${userAnswerHtml}
+        `;
+
+                // Feedback / Correction Report (যদি চেক করা থাকে)
+                const fb = document.getElementById(`fb-${globalIdx}`);
+                if (fb && fb.style.display !== 'none') {
+                    let fbClass = fb.className.includes('correct-box') ? 'correct-box' : 'wrong-box';
+                    let fbHTML = fb.innerHTML
+                        .replace(/<h4>/g, '<h4 style="margin:0 0 0.8em 0;">')
+                        .replace(/class='diff-view'/g, 'class="diff-view"')
+                        .replace(/class="correct-line"/g, 'class="correct-line"')
+                        .replace(/class="wrong-line"/g, 'class="wrong-line"')
+                        .replace(/class="actual-hint"/g, 'class="actual-hint"');
+
+                    content += `
+                <div class="feedback ${fbClass}">
+                    ${fbHTML}
+                </div>
+            `;
+                }
+
+                content += `</div>`;
+            });
+
+            content += `</body></html>`;
+
+            const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `HSC_Pronoun_Reference_Page_${currentPage + 1}_${new Date().toISOString().slice(0, 10)}.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
         }
 
         function loadDemo() {
