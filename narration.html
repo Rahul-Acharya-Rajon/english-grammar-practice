@@ -330,8 +330,10 @@
         <div id="quiz-view" class="hidden">
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
-                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
-                <button class="btn" style="background:#9333ea" onclick="window.print()">Print</button>
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Submit</button>
+                <button class="btn" style="background:#9333ea" onclick="window.print()">Export PDF</button>
+                <button class="btn" style="background:#0ea5e9; color:white;" onclick="exportToWord()">Export to
+                    Word</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
             </div>
             <div id="pagination" class="pagination no-print"></div>
@@ -348,6 +350,183 @@
             document.documentElement.hasAttribute("data-theme")
                 ? document.documentElement.removeAttribute("data-theme")
                 : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function exportToWord() {
+            if (quizData.length === 0) {
+                alert("কোনো প্রশ্ন লোড করা হয়নি।");
+                return;
+            }
+
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = quizData.slice(start, end);
+
+            if (currentItems.length === 0) {
+                alert("এই পেজে কোনো প্রশ্ন নেই।");
+                return;
+            }
+
+            let content = `
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta charset="utf-8">
+    <title>HSC Narration Practice - Page ${currentPage + 1}</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+        body { 
+            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; 
+            line-height: 1.7; 
+            color: #1e293b; 
+            font-size: 11.5pt; 
+        }
+        h1 { 
+            color: #2563eb; 
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 1.2px; 
+            margin-bottom: 0.8em; 
+        }
+        h2 { 
+            color: #2563eb; 
+            margin: 1.4em 0 0.6em; 
+            font-size: 14pt; 
+        }
+        .question-block { 
+            margin-bottom: 1.8em; 
+            padding: 1em; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 6px; 
+            background: #f9fafb; 
+        }
+        .direct-speech {
+            font-style: italic;
+            color: #334155;
+            margin: 0.6em 0;
+            padding-left: 1em;
+            border-left: 4px solid #2563eb;
+        }
+        .user-answer {
+            margin: 0.8em 0 0.4em;
+            font-weight: bold;
+        }
+        .correct { 
+            color: #16a34a !important; 
+        }
+        .wrong { 
+            color: #dc2626 !important; 
+        }
+        .model-answer {
+            margin-top: 1em;
+            padding: 0.8em;
+            background: rgba(22,163,74,0.08);
+            border-left: 5px solid #16a34a;
+            border-radius: 4px;
+        }
+        .feedback {
+            margin-top: 1.2em;
+            padding: 0.9em;
+            border-left: 5px solid;
+            border-radius: 4px;
+            background: rgba(0,0,0,0.03);
+        }
+        .correct-box { 
+            border-left-color: #16a34a; 
+            color: #166534; 
+        }
+        .wrong-box { 
+            border-left-color: #dc2626; 
+            color: #991b1b; 
+        }
+        .page-info { 
+            text-align: center; 
+            font-size: 12pt; 
+            color: #475569; 
+            margin: 1em 0 1.5em; 
+            font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+    <h1>HSC Narration Practice Sheet</h1>
+    <div class="page-info">Page ${currentPage + 1} of ${Math.ceil(quizData.length / itemsPerPage)} – Exported on ${new Date().toLocaleString('en-GB')}</div>
+`;
+
+            currentItems.forEach((item, localIdx) => {
+                const globalIdx = start + localIdx;
+
+                // প্রশ্নের টেক্সট (direct speech)
+                const directText = item.original.replace(/\n/g, '<br>');
+
+                // ইউজারের লেখা উত্তর
+                const userTextarea = document.querySelector(`.user-input-box[data-idx="${globalIdx}"]`);
+                const userAnswer = userTextarea ? userTextarea.value.trim() : "[কোনো উত্তর লেখা হয়নি]";
+
+                // ফিডব্যাক এরিয়া (যদি চেক করা হয়ে থাকে)
+                const feedbackEl = document.getElementById(`fb-${globalIdx}`);
+                let feedbackHTML = "";
+                if (feedbackEl && feedbackEl.style.display !== 'none') {
+                    feedbackHTML = feedbackEl.innerHTML
+                        .replace(/class="correct-line"/g, 'class="correct"')
+                        .replace(/class="wrong-line"/g, 'class="wrong"')
+                        .replace(/class="actual-hint"/g, 'style="color:#2563eb; font-style:italic; margin-left:1.2em;"');
+                }
+
+                content += `
+        <div class="question-block">
+            <h2>Question ${globalIdx + 1}</h2>
+            
+            <div class="direct-speech">
+                <strong>Direct:</strong><br>${directText}
+            </div>
+            
+            <div class="user-answer">
+                <strong>Your Indirect Narration:</strong><br>
+                ${userAnswer.replace(/\n/g, '<br>') || '[খালি]'}
+            </div>
+`;
+
+                if (feedbackHTML) {
+                    let fbClass = feedbackEl.className.includes('correct') ? 'correct-box' : 'wrong-box';
+                    content += `
+            <div class="feedback ${fbClass}">
+                <strong>Feedback / Model Comparison:</strong><br>
+                ${feedbackHTML}
+            </div>
+`;
+                } else {
+                    // যদি ফিডব্যাক না দেখানো হয়, তাহলে মডেল উত্তর দেখানো যেতে পারে
+                    content += `
+            <div class="model-answer">
+                <strong>Model Answer (Reference):</strong><br>
+                ${item.model.replace(/\n/g, '<br>')}
+            </div>
+`;
+                }
+
+                content += `</div>`;
+            });
+
+            content += `</body></html>`;
+
+            const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `HSC_Narration_Page_${currentPage + 1}_${new Date().toISOString().slice(0, 10)}.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
         }
 
         function loadDemo() {
