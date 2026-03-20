@@ -106,6 +106,10 @@
             display: none;
         }
 
+        .btn-word {
+            background: #e91111;
+        }
+
         .quiz-card {
             border: 1px solid var(--border);
             padding: 28px;
@@ -116,26 +120,29 @@
         }
 
         .gap-input {
-            width: 65%;
-            padding: 9px 12px;
+            display: inline-block;
+            min-width: 100px;
+            max-width: 350px;
             border: none;
-            border-bottom: 3px solid var(--p);
+            border-bottom: 2.5px solid var(--p);
+            text-align: center;
             background: var(--input-bg);
             color: var(--text-main);
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 16px;
             outline: none;
-            margin: 6px 0;
-            border-radius: 6px 6px 0 0;
-            font-size: 1.05em;
+            margin: 4px 2px;
+            padding: 4px 8px;
+            border-radius: 4px 4px 0 0;
         }
 
         .correct-answer {
             display: none;
-            margin-left: 15px;
+            margin: 6px 6px;
             color: var(--s);
             font-weight: bold;
             background: rgba(22, 163, 74, 0.08);
-            padding: 6px 12px;
+            padding: 0px 6px;
             border-radius: 6px;
         }
 
@@ -185,6 +192,32 @@
 
         .hidden {
             display: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+                padding: 24px 16px;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 6px 0;
+            }
+
+            .gap-input {
+                width: 100px;
+                font-size: 14px;
+            }
+
+            .quiz-card {
+                padding: 20px 15px;
+            }
         }
 
         @media print {
@@ -310,7 +343,8 @@
 
             <div style="text-align:center; margin-top:30px;" class="no-print">
                 <button class="btn btn-submit" onclick="evaluateExam()">Evaluate Answers</button>
-                <button id="export-btn" class="btn btn-export" onclick="window.print()">Print / Export</button>
+                <button id="export-btn" class="btn btn-export" onclick="window.print()">Print</button>
+                <button class="btn btn-s no-print btn-word" onclick="exportToWord()">Export to Word</button>
                 <button class="btn btn-reset" onclick="location.reload()">Reset</button>
             </div>
         </div>
@@ -320,6 +354,149 @@
         let practiceItems = [];
         let currentPage = 0;
         const itemsPerPage = 5;
+
+        function exportToWord() {
+            const container = document.getElementById('quiz-container');
+            if (!container || container.innerHTML.trim() === "") {
+                alert("প্রথমে কুইজ জেনারেট করুন!");
+                return;
+            }
+
+            // Temporary clone তৈরি
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = container.innerHTML;
+
+            // 1. User-এর লেখা উত্তরগুলো (input fields)
+            const originalInputs = container.querySelectorAll('.gap-input');
+            const tempInputs = tempDiv.querySelectorAll('.gap-input');
+
+            tempInputs.forEach((tempInput, index) => {
+                const originalInput = originalInputs[index];
+                const userText = (originalInput.value.trim() || "_______");
+
+                const computedStyle = window.getComputedStyle(originalInput);
+                const color = computedStyle.color;
+                const borderColor = computedStyle.borderBottomColor;
+
+                const span = document.createElement('span');
+                span.innerText = userText;
+                span.style.color = color;
+                span.style.borderBottom = `2px solid ${borderColor}`;
+                span.style.fontWeight = "bold";
+                span.style.textDecoration = "underline";
+                span.style.padding = "0 4px";
+                span.style.fontFamily = "Arial, sans-serif";
+                span.style.whiteSpace = "pre";
+
+                tempInput.parentNode.replaceChild(span, tempInput);
+            });
+
+            // 2. Correct answer (✓ ...) দেখানো + সুন্দর স্টাইল
+            const correctSpans = tempDiv.querySelectorAll('.correct-answer');
+            correctSpans.forEach(span => {
+                if (span.textContent.trim()) {
+                    span.style.display = "inline-block";
+                    span.style.marginLeft = "10px";
+                    span.style.color = "#166534";                // deep green
+                    span.style.backgroundColor = "#f0fdf4";
+                    span.style.padding = "3px 8px";
+                    span.style.borderRadius = "6px";
+                    span.style.border = "1px solid #86efac";
+                    span.style.fontSize = "0.95em";
+                    span.style.fontWeight = "600";
+                    span.style.verticalAlign = "middle";
+                }
+            });
+
+            // 3. Feedback area সুন্দর করা
+            const feedbacks = tempDiv.querySelectorAll('.feedback-area');
+            feedbacks.forEach(fb => {
+                fb.style.display = "block";
+                fb.style.margin = "16px 0 24px 0";
+                fb.style.padding = "14px 18px";
+                fb.style.border = "1px solid #e2e8f0";
+                fb.style.borderRadius = "8px";
+                fb.style.backgroundColor = "#f8fafc";
+                fb.style.lineHeight = "1.55";
+                fb.style.fontSize = "0.98em";
+
+                // Set Score-কে আলাদা highlight করা
+                const strongTags = fb.querySelectorAll('strong');
+                strongTags.forEach(tag => {
+                    if (tag.textContent.includes("Set Score")) {
+                        tag.style.display = "inline-block";
+                        tag.style.backgroundColor = "#eff6ff";
+                        tag.style.color = "#1e40af";
+                        tag.style.padding = "6px 12px";
+                        tag.style.borderRadius = "6px";
+                        tag.style.border = "1px solid #bfdbfe";
+                        tag.style.margin = "0 0 12px 0";
+                        tag.style.fontSize = "1.1em";
+                        tag.style.fontWeight = "700";
+                    }
+                });
+            });
+
+            // 4. Quiz card-এর চেহারা Word-এ ভালো করা
+            const cards = tempDiv.querySelectorAll('.quiz-card');
+            cards.forEach(card => {
+                card.style.border = "1px solid #cbd5e1";
+                card.style.padding = "18px 22px";
+                card.style.marginBottom = "28px";
+                card.style.borderRadius = "10px";
+                card.style.backgroundColor = "#ffffff";
+                card.style.pageBreakInside = "avoid";
+            });
+
+            // 5. Heading style
+            const headings = tempDiv.querySelectorAll('h3');
+            headings.forEach(h => {
+                h.style.color = "#1d4ed8";
+                h.style.borderBottom = "2px solid #bfdbfe";
+                h.style.paddingBottom = "6px";
+                h.style.marginBottom = "16px";
+                h.style.fontSize = "1.25em";
+            });
+
+            // -------------------------
+            //      Word HTML তৈরি
+            // -------------------------
+            const header = `<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="utf-8">
+<title>HSC Completing Sentence - Answer Analysis</title>
+<style>
+    body {
+        font-family: "Calibri", "Arial", sans-serif;
+        line-height: 1.6;
+        font-size: 11.5pt;
+        color: #1e293b;
+    }
+    h3 { margin-top: 1.4em; }
+    strong { color: #0f172a; }
+    .feedback-area p { margin: 0.4em 0; }
+</style>
+</head>
+<body>`;
+
+            const footer = `</body></html>`;
+
+            const fullHTML = header + tempDiv.innerHTML + footer;
+
+            // Blob → Download
+            const blob = new Blob(['\ufeff', fullHTML], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "HSC_Completing_Sentence_Analysis_" + new Date().toISOString().slice(0, 10) + ".doc";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
 
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme")
