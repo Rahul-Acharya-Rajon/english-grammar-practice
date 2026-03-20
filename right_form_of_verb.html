@@ -277,6 +277,8 @@
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
     <div class="container">
         <h2 style="text-align:center; color:var(--p);">HSC Right Form of Verbs Practice Sheet Generator</h2>
+        <p style="text-align: center; color: var(--text-sub);">Fill up these blanks with appropriate form of verbs. You
+            have given verbs on the gaps.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -292,17 +294,18 @@
             </div>
             <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
                 Sheet</button>
-            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions & Answers</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
             <div id="page-total-score" class="no-print hidden">Page Total Score: — / —</div>
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
-                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers (Current
-                    Page)</button>
-                <button class="btn" style="background:#9333ea" onclick="preparePrintAndPrint()">Save as PDF /
-                    Print</button>
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Submit</button>
+                <button class="btn" style="background:#9333ea" onclick="preparePrintAndPrint()">Export PDF</button>
+                <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
+                    Word</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
                 <div id="pagination" style="margin-top: 10px;">
                     <button class="btn" style="background:#3b82f6" onclick="prevPage()">Previous</button>
@@ -318,6 +321,114 @@
         let currentPage = 1;
         const perPage = 10;
         let totalPages = 0;
+
+        function exportToWord() {
+            if (quizData.length === 0) {
+                alert("কোনো প্রশ্ন লোড করা হয়নি।");
+                return;
+            }
+
+            const start = (currentPage - 1) * perPage;
+            const end = start + perPage;
+            const currentItems = quizData.slice(start, end);
+
+            if (currentItems.length === 0) {
+                alert("এই পেজে কোনো exercise নেই।");
+                return;
+            }
+
+            let content = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office"
+              xmlns:w="urn:schemas-microsoft-com:office:word"
+              xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+            <meta charset="utf-8">
+            <title>HSC Right Form of Verbs - Page ${currentPage}</title>
+            <style>
+                body { 
+                    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; 
+                    line-height: 1.5; 
+                    color: #1e293b; 
+                    font-size: 11pt; /* Word-e font size control korar jonno fix */
+                    margin: 2cm 1.8cm;
+                }
+                h1 { color: #2563eb; text-align: center; font-size: 16pt; margin-bottom: 10px; }
+                h2 { color: #2563eb; margin: 1.5em 0 0.5em; font-size: 13pt; border-bottom: 1px solid #cbd5e1; }
+                .question-set { margin-bottom: 20px; padding: 15px; border: 1px solid #cbd5e1; border-radius: 6px; background: #f9fafb; }
+                .feedback { margin-top: 10px; padding: 10px; border-left: 6px solid; border-radius: 4px; background: rgba(0,0,0,0.03); }
+                .correct-box { border-left-color: #16a34a; color: #166534; }
+                .wrong-box { border-left-color: #db3d3d; color: #991b1b; }
+                .ans-tag { background: #f1f5f9; padding: 4px 8px; margin: 0 6px 4px 0; border: 1px solid #cbd5e1; border-radius: 4px; display: inline-block; font-size: 10pt; }
+                .page-info { text-align: center; font-size: 11pt; color: #475569; margin-bottom: 20px; font-weight: bold; }
+            </style>
+        </head>
+        <body>
+            <h1>HSC Right Form of Verbs Practice Sheet</h1>
+            <div class="page-info">Page ${currentPage} of ${totalPages} – Exported on ${new Date().toLocaleString('en-GB')}</div>
+    `;
+
+            currentItems.forEach((item, localIdx) => {
+                const globalIdx = start + localIdx;
+                let processedHtml = item.html;
+
+                // FIXED REGEX: Extra '>' somossa dur korar jonno .*?> add kora hoyeche
+                processedHtml = processedHtml.replace(
+                    /<input type="text" class="gap-input" data-letter="([a-n])" data-qid="[^"]*" autocomplete="off"( placeholder="[^"]*")?.*?>/g,
+                    (match, letter, placeholder) => {
+                        const inputEl = document.querySelector(`.gap-input[data-qid="${globalIdx}"][data-letter="${letter}"]`);
+
+                        // FIXED: Extra (a) dur korar jonno label bad dewa hoyeche
+                        if (!inputEl) return ` __________ `;
+
+                        let value = inputEl.value.trim() || '__________';
+                        let colorHex = '#000000';
+
+                        const style = window.getComputedStyle(inputEl);
+                        const borderColor = style.borderColor || style.borderBottomColor;
+
+                        if (borderColor.includes('22, 163, 74') || borderColor === 'rgb(22, 163, 74)') {
+                            colorHex = '#16a34a';
+                        } else if (borderColor.includes('219, 61, 61') || borderColor === 'rgb(219, 61, 61)') {
+                            colorHex = '#db3d3d';
+                        }
+
+                        // Placeholder handle kora (optional logic from your original code)
+                        if (placeholder && value === '__________') {
+                            value = placeholder.replace(/ placeholder="([^"]*)"/, '$1').trim() || value;
+                        }
+
+                        return `<span style="color:${colorHex}; text-decoration:underline; font-weight:600;">${value}</span>`;
+                    }
+                );
+
+                content += `
+            <div class="question-set">
+                <h2>Exercise ${globalIdx + 1}</h2>
+                <div style="white-space: pre-wrap;">${processedHtml}</div>
+        `;
+
+                const fb = document.getElementById(`fb-${globalIdx}`);
+                if (fb && fb.style.display !== 'none') {
+                    let fbClass = fb.className.includes('correct-box') ? 'correct-box' : 'wrong-box';
+                    let fbHTML = fb.innerHTML.replace(/<b>/g, '<strong>').replace(/class="ans-tag"/g, 'class="ans-tag"');
+                    content += `<div class="feedback ${fbClass}">${fbHTML}</div>`;
+                }
+
+                content += `</div>`;
+            });
+
+            content += `</body></html>`;
+
+            const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `HSC_Verbs_Page_${currentPage}.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
 
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme")
