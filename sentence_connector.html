@@ -168,6 +168,13 @@
             border: 1px solid var(--border);
         }
 
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--text-sub);
+        }
+
         @media print {
             * {
                 -webkit-print-color-adjust: exact !important;
@@ -247,6 +254,7 @@
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
     <div class="container">
         <h2 style="text-align:center; color:var(--p);">HSC Sentence Connector Practice Sheet Generator</h2>
+        <p style="text-align: center; color: var(--text-sub);">Connect these sentences.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -269,8 +277,10 @@
             <div id="total-score" class="no-print hidden">Total Score: — / — (checked sets only)</div>
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
-                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
-                <button class="btn" style="background:#9333ea" onclick="printSheet()">Print / Save PDF</button>
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Submit</button>
+                <button class="btn" style="background:#9333ea" onclick="printSheet()">Export PDF</button>
+                <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
+                    Word</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
             </div>
         </div>
@@ -285,6 +295,128 @@
             document.documentElement.hasAttribute("data-theme")
                 ? document.documentElement.removeAttribute("data-theme")
                 : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function exportToWord() {
+            if (quizData.length === 0) {
+                alert("আগে কুইজ সাবমিat করুন!");
+                return;
+            }
+
+            const start = currentPage * pageSize;
+            const end = Math.min(start + pageSize, quizData.length);
+            const currentItems = quizData.slice(start, end);
+
+            let totalCorrect = 0;
+            let totalBlanks = 0;
+
+            // কন্টেন্ট প্রসেসিং শুরু
+            let exerciseContent = "";
+            currentItems.forEach((item, localIdx) => {
+                const globalIdx = start + localIdx;
+                let exScore = 0;
+                let exTotal = 0;
+                let keyHTML = "";
+
+                let htmlText = item.html;
+                const inputRegex = /<input[^>]*data-letter="([a-j])"[^>]*>/g;
+
+                // ইনপুট ফিল্ডগুলোকে টেক্সট দিয়ে রিপ্লেস করা
+                htmlText = htmlText.replace(inputRegex, (match, letter) => {
+                    const el = document.querySelector(`.gap-input[data-qid="${globalIdx}"][data-letter="${letter}"]`);
+                    exTotal++;
+                    totalBlanks++;
+
+                    const official = item.answers[letter] || "";
+                    keyHTML += `<span style="display:inline-block; background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 5px; margin:2px; font-size:9pt; border-radius:3px;"><b>(${letter})</b> ${official}</span> `;
+
+                    if (!el) return "_______";
+
+                    const val = el.value.trim() || "_______";
+                    // Check computed color to identify correct/wrong
+                    const isCorrect = el.style.color === "var(--s)" || el.style.color === "rgb(22, 163, 74)";
+
+                    if (isCorrect) {
+                        totalCorrect++;
+                        exScore++;
+                        return `<span style="color:#16a34a; font-weight:bold; text-decoration:underline;">${val}</span>`;
+                    } else {
+                        // Wrong answer correction: Double underline fix korte 'line-through' style use kora hoyeche
+                        return `<span style="color:#bd3c3c; font-weight:bold; text-decoration:line-through; text-decoration-style:single;">${val}</span>`;
+                    }
+                });
+
+                exerciseContent += `
+        <div style="background-color:#2563eb; color:#ffffff; padding:10px; font-weight:bold; margin-top:20px; margin-bottom:10px;">Exercise No: ${globalIdx + 1}</div>
+        <div style="margin-bottom:10px; padding:10px; border:1px solid #e2e8f0; line-height:1.6;">
+            ${htmlText}
+            <div style="margin-top:10px; padding:8px; background-color:#fffbeb; border-top:1px dashed #fbbf24;">
+                <p style="margin:0 0 5px 0; font-weight:bold; color:#b45309; font-size:10pt;">Score: ${exScore} / ${exTotal}</p>
+                <div style="font-size:9pt; color:#1e293b;"><b>Correct Answers:</b><br>${keyHTML}</div>
+            </div>
+        </div>`;
+            });
+
+            // স্কোরবোর্ড ক্যালকুলেশন
+            const accuracy = totalBlanks > 0 ? ((totalCorrect / totalBlanks) * 100).toFixed(2) : 0;
+            const timeSpent = document.getElementById('timer-display')?.innerText || "00:00";
+            const wrongAns = totalBlanks - totalCorrect;
+
+            const scoreboardHTML = `
+    <div style="margin-top:40px; font-family:Arial, sans-serif;">
+        <h2 style="color:#2563eb; border-bottom:2px solid #2563eb; padding-bottom:5px;">Performance Report</h2>
+        <table width="100%" cellpadding="10" style="text-align:center; table-layout:fixed; border-collapse:collapse;">
+            <tr>
+                <td style="background-color:#eff6ff; border:1px solid #bfdbfe;">
+                    <div style="color:#1e40af; font-size:10pt;">Attempted</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#1e3a8a;">${totalBlanks}</div>
+                </td>
+                <td style="background-color:#f0fdf4; border:1px solid #bbf7d0;">
+                    <div style="color:#166534; font-size:10pt;">Correct</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#14532d;">${totalCorrect}</div>
+                </td>
+                <td style="background-color:#fef2f2; border:1px solid #fecaca;">
+                    <div style="color:#991b1b; font-size:10pt;">Wrong</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#7f1d1d;">${wrongAns}</div>
+                </td>
+                <td style="background-color:#fff7ed; border:1px solid #fed7aa;">
+                    <div style="color:#9a3412; font-size:10pt;">Accuracy</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#7c2d12;">${accuracy}%</div>
+                </td>
+                <td style="background-color:#f5f3ff; border:1px solid #ddd6fe;">
+                    <div style="color:#5b21b6; font-size:10pt;">Time Spent</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#4c1d95;">${timeSpent}</div>
+                </td>
+            </tr>
+        </table>
+        <div style="background-color:#2563eb; color:white; text-align:center; padding:15px; margin-top:10px; font-size:18pt; font-weight:bold;">
+            Grand Total: ${totalCorrect} / ${totalBlanks}
+        </div>
+        <p style="text-align:right; font-size:8pt; color:#64748b; margin-top:10px;">Date: ${new Date().toLocaleString()}</p>
+    </div>`;
+
+            const fullHTML = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            @page { size: A4; margin: 1in; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align:center; color:#2563eb;">Sentence Connector Practice Result</h1>
+        ${exerciseContent}
+        ${scoreboardHTML}
+    </body>
+    </html>`;
+
+            const blob = new Blob(['\ufeff', fullHTML], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `Result_Report_${new Date().getTime()}.doc`;
+            link.click();
         }
 
         function loadDemo() {
