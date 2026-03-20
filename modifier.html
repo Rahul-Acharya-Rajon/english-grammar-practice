@@ -190,6 +190,13 @@
             font-size: 1.1rem;
         }
 
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--text-sub);
+        }
+
         /* --- ENHANCED PRINT OPTIMIZATION --- */
         @media print {
             @page {
@@ -292,6 +299,7 @@
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
     <div class="container">
         <h2 style="text-align:center; color:var(--p);">HSC Modifier Practice Sheet Generator</h2>
+        <p style="text-align: center; color: var(--text-sub);">Modify these sentences according to directions.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -314,11 +322,15 @@
             <div class="pagination-info no-print" id="page-info"></div>
             <div id="quiz-container"></div>
             <div style="text-align:center;" class="no-print">
-                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Check Answers</button>
-                <button class="btn" style="background:#9333ea" onclick="window.print()">Print / Save PDF</button>
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Submit</button>
+                <button class="btn" style="background:#9333ea" onclick="window.print()">Export PDF</button>
+                <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
+                    Word</button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
-                <button class="btn" style="background:#3b82f6" onclick="prevPage()" id="prev-btn">Previous</button>
-                <button class="btn" style="background:#3b82f6" onclick="nextPage()" id="next-btn">Next</button>
+                <div id="pagination" style="margin-top: 10px;">
+                    <button class="btn" style="background:#3b82f6" onclick="prevPage()" id="prev-btn">Previous</button>
+                    <button class="btn" style="background:#3b82f6" onclick="nextPage()" id="next-btn">Next</button>
+                </div>
             </div>
             <div class="pagination-info no-print" id="score-info" style="margin-top:20px; font-size:1.1rem;"></div>
         </div>
@@ -331,6 +343,78 @@
 
         function toggleTheme() {
             document.documentElement.hasAttribute("data-theme") ? document.documentElement.removeAttribute("data-theme") : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function exportToWord() {
+            // ১. কুইজ কন্টেইনার এবং স্কোর সেকশন কপি করা
+            const quizContent = document.getElementById('quiz-container').cloneNode(true);
+            const scoreInfo = document.getElementById('score-info').cloneNode(true);
+
+            // ২. প্রতিটি এক্সারসাইজ হেডার স্টাইল করা (Exercise No)
+            const headers = quizContent.querySelectorAll('h3');
+            headers.forEach(h => {
+                h.style.backgroundColor = '#2563eb';
+                h.style.color = '#ffffff';
+                h.style.padding = '10px';
+                h.style.borderRadius = '5px';
+                h.style.marginBottom = '15px';
+            });
+
+            // ৩. ইনপুট বক্সগুলোকে কালারফুল টেক্সটে রূপান্তর করা
+            const inputs = quizContent.querySelectorAll('.gap-input');
+            inputs.forEach(input => {
+                const userValue = input.value.trim();
+                const span = document.createElement('span');
+                span.style.fontWeight = 'bold';
+
+                // কালার লজিক: ওয়েব ডকুমেন্টের কালার ভেরিয়েবল অনুযায়ী
+                if (input.style.color === "var(--s)" || input.style.color === "rgb(22, 163, 74)") {
+                    span.style.color = '#16a34a'; // Correct Green
+                } else if (input.style.color === "var(--d)" || input.style.color === "rgb(189, 60, 60)") {
+                    span.style.color = '#bd3c3c'; // Wrong Red
+                }
+
+                span.innerText = userValue ? ` ${userValue} ` : " __________ ";
+                input.parentNode.replaceChild(span, input);
+            });
+
+            // ৪. ফিডব্যাক এরিয়া (সঠিক উত্তরগুলো) সুন্দর করে দেখানো
+            const feedbackAreas = quizContent.querySelectorAll('.feedback-area');
+            feedbackAreas.forEach(area => {
+                if (window.getComputedStyle(area).display !== 'none') {
+                    area.style.display = 'block';
+                    area.style.border = '1px solid #cbd5e1';
+                    area.style.backgroundColor = '#f8fafc';
+                    area.style.padding = '10px';
+                    area.style.marginTop = '10px';
+                }
+            });
+
+            // ৫. স্কোর কার্ড স্টাইল করা
+            scoreInfo.style.marginTop = '30px';
+            scoreInfo.style.padding = '15px';
+            scoreInfo.style.border = '2px solid #2563eb';
+            scoreInfo.style.backgroundColor = '#eff6ff';
+            scoreInfo.style.fontSize = '18px';
+            scoreInfo.style.textAlign = 'center';
+
+            // ৬. ওয়ার্ড ফাইলের পূর্ণাঙ্গ ফরম্যাট তৈরি
+            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+                "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+                "xmlns='http://www.w3.org/TR/REC-html40'>" +
+                "<head><meta charset='utf-8'><style>body{font-family:'Segoe UI',Arial;}</style></head><body>";
+            const footer = "</body></html>";
+
+            // কুইজ এবং স্কোর একসাথে যোগ করা
+            const finalHTML = header + quizContent.innerHTML + scoreInfo.innerHTML + footer;
+
+            const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(finalHTML);
+            const fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'Modifier_Result_Sheet.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
         }
 
         function loadDemo() {
