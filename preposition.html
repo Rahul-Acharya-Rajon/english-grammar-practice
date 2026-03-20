@@ -74,6 +74,10 @@
             resize: vertical;
         }
 
+        label {
+            font-weight: bold;
+        }
+
         .btn {
             cursor: pointer;
             border: none;
@@ -97,6 +101,12 @@
 
         .btn-export {
             background: #9333ea;
+            display: none;
+            width: 250px;
+        }
+
+        .btn-word {
+            background: #2b6cb0;
             display: none;
             width: 250px;
         }
@@ -195,7 +205,8 @@
 
             .btn-submit,
             .btn-export,
-            .btn-reset {
+            .btn-reset,
+            .btn-word {
                 width: 100%;
                 margin: 5px 0;
             }
@@ -336,6 +347,8 @@
 
     <div class="container">
         <h2 id="top-heading">HSC Preposition Practice Sheet Generator</h2>
+        <p style="text-align: center; color: var(--text-sub);">Fill up these blanks with appropriate prepositions. There
+            is no negative marking.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -349,7 +362,8 @@
                 </div>
             </div>
             <button class="btn btn-start" onclick="processData()">Build Practice Sheet</button>
-            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions & Answers</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -360,12 +374,13 @@
 
             <div id="quiz-container"></div>
 
-            <div class="pagination-controls no-print" id="pagination-bottom"></div>
+            <!-- <div class="pagination-controls no-print" id="pagination-bottom"></div> -->
 
             <div style="text-align:center;" class="no-print">
-                <button class="btn btn-submit" onclick="runEvaluation()">Check Answers</button>
+                <button class="btn btn-submit" onclick="runEvaluation()">Submit</button>
                 <button id="export-btn" class="btn btn-export" onclick="window.print()">Export PDF</button>
-                <button class="btn btn-reset" onclick="location.reload()">Clear All</button>
+                <button id="export-word-btn" class="btn btn-word" onclick="exportToWord()">Export to Word</button>
+                <button class="btn btn-reset" onclick="location.reload()">Reset</button>
             </div>
         </div>
     </div>
@@ -374,6 +389,189 @@
         let examData = [];
         let currentPage = 1;
         const itemsPerPage = 10;
+
+        function exportToWord() {
+            if (examData.length === 0) {
+                alert("কোনো প্রশ্ন লোড করা হয়নি।");
+                return;
+            }
+
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = examData.slice(start, end);
+
+            if (currentItems.length === 0) {
+                alert("এই পেজে কোনো প্রশ্ন নেই।");
+                return;
+            }
+
+            let content = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office"
+              xmlns:w="urn:schemas-microsoft-com:office:word"
+              xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+            <meta charset="utf-8">
+            <title>HSC Preposition Practice - Page ${currentPage}</title>
+            <!--[if gte mso 9]>
+            <xml>
+                <w:WordDocument>
+                    <w:View>Print</w:View>
+                    <w:Zoom>100</w:Zoom>
+                </w:WordDocument>
+            </xml>
+            <![endif]-->
+            <style>
+                body { 
+                    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; 
+                    line-height: 1.7; 
+                    color: #1e293b; 
+                    font-size: 11.5pt; 
+                    margin: 2cm 1.5cm;
+                }
+                h1 { 
+                    color: #2563eb; 
+                    text-align: center; 
+                    text-transform: uppercase; 
+                    letter-spacing: 1.2px; 
+                    margin-bottom: 0.8em; 
+                }
+                h2 { 
+                    color: #2563eb; 
+                    margin: 1.6em 0 0.7em; 
+                    font-size: 14pt; 
+                    border-bottom: 1px solid #cbd5e1;
+                    padding-bottom: 4px;
+                }
+                .question-set { 
+                    margin-bottom: 1.8em; 
+                    padding: 1em; 
+                    border: 1px solid #cbd5e1; 
+                    border-radius: 6px; 
+                    background: #f9fafb; 
+                }
+                .gap-answer { 
+                    font-weight: 600; 
+                    text-decoration: underline; 
+                    text-decoration-thickness: 2.5px; 
+                    text-underline-offset: 2px; 
+                }
+                .correct { 
+                    color: #16a34a !important; 
+                    text-decoration-color: #16a34a !important; 
+                }
+                .wrong { 
+                    color: #dc2626 !important; 
+                    text-decoration-color: #dc2626 !important; 
+                }
+                .neutral { 
+                    color: #000000 !important; 
+                    text-decoration-color: #000000 !important; 
+                }
+                .feedback { 
+                    margin-top: 1.2em; 
+                    padding: 1em; 
+                    border-left: 5px solid; 
+                    border-radius: 4px; 
+                    background: rgba(0,0,0,0.03); 
+                }
+                .correct-box { 
+                    border-left-color: #16a34a; 
+                    color: #166534; 
+                }
+                .wrong-box { 
+                    border-left-color: #dc2626; 
+                    color: #991b1b; 
+                }
+                .ans-tag { 
+                    background: #f1f5f9; 
+                    padding: 3px 8px; 
+                    margin: 0 6px 4px 0; 
+                    border: 1px solid #cbd5e1; 
+                    border-radius: 4px; 
+                    display: inline-block; 
+                    font-size: 10pt; 
+                }
+                .page-info { 
+                    text-align: center; 
+                    font-size: 12pt; 
+                    color: #475569; 
+                    margin: 1em 0 1.8em; 
+                    font-weight: bold; 
+                }
+            </style>
+        </head>
+        <body>
+            <h1>HSC Preposition Practice Sheet</h1>
+            <div class="page-info">Page ${currentPage} of ${Math.ceil(examData.length / itemsPerPage)} – Exported on ${new Date().toLocaleString('en-GB')}</div>
+    `;
+
+            currentItems.forEach((item, localIdx) => {
+                const globalIdx = start + localIdx;
+
+                let processedHtml = item.html;
+
+                // input → inline styled underlined span (no extra (a) label)
+                processedHtml = processedHtml.replace(
+                    /<input type="text" class="gap-input" data-qid="[^"]*" data-letter="([a-j])" autocomplete="off">/g,
+                    (match, letter) => {
+                        const inputEl = document.querySelector(`.gap-input[data-qid="${globalIdx}"][data-letter="${letter}"]`);
+                        if (!inputEl) return '______';
+
+                        const value = inputEl.value.trim() || '          '; // space for blank underline visibility
+
+                        let colorHex = '#000000';
+                        let underlineColor = '#000000';
+
+                        const style = window.getComputedStyle(inputEl);
+                        const borderColor = style.borderBottomColor;
+
+                        if (borderColor === 'rgb(22, 163, 74)' || borderColor.includes('22, 163, 74')) {
+                            colorHex = '#16a34a';
+                            underlineColor = '#16a34a';
+                        } else if (borderColor === 'rgb(220, 38, 38)' || borderColor.includes('220, 38, 38')) {
+                            colorHex = '#dc2626';
+                            underlineColor = '#dc2626';
+                        }
+
+                        return `<span style="color:${colorHex}; text-decoration:underline; text-decoration-color:${underlineColor}; font-weight:600; text-underline-offset:2px; text-decoration-thickness:2.5px;">${value}</span>`;
+                    }
+                );
+
+                content += `
+            <div class="question-set">
+                <h2>Exercise ${globalIdx + 1}</h2>
+                <div>${processedHtml}</div>
+        `;
+
+                const feedbackEl = document.getElementById(`feedback-${globalIdx}`);
+                if (feedbackEl && feedbackEl.style.display !== 'none') {
+                    let fbClass = feedbackEl.className.includes('correct-box') ? 'correct-box' : 'wrong-box';
+                    let fbHTML = feedbackEl.innerHTML
+                        .replace(/<strong>/g, '<strong style="font-size:1.15em;">')
+                        .replace(/class="ans-tag"/g, 'class="ans-tag"');
+
+                    content += `
+                <div class="feedback ${fbClass}">
+                    ${fbHTML}
+                </div>
+            `;
+                }
+
+                content += `</div>`;
+            });
+
+            content += `</body></html>`;
+
+            const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `HSC_Prep_Page_${currentPage}_${new Date().toISOString().slice(0, 10)}.doc`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
 
         function toggleTheme() {
             const current = document.documentElement.getAttribute("data-theme");
@@ -875,7 +1073,7 @@ by/with; (e) by; (f) in; (g) to; (h) with; (i) in;
                 <button class="page-btn" onclick="changePage(1)" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
             `;
             document.getElementById('pagination-top').innerHTML = controls;
-            document.getElementById('pagination-bottom').innerHTML = controls;
+            // document.getElementById('pagination-bottom').innerHTML = controls;
         }
 
         function changePage(direction) {
@@ -890,6 +1088,8 @@ by/with; (e) by; (f) in; (g) to; (h) with; (i) in;
             }
             currentPage += direction;
             renderExam();
+            document.getElementById('export-btn').style.display = "none";
+            document.getElementById('export-word-btn').style.display = "none";
         }
 
         function runEvaluation() {
@@ -951,6 +1151,7 @@ by/with; (e) by; (f) in; (g) to; (h) with; (i) in;
 
             document.getElementById('summary-stat').innerText = `Current Page Score: ${pageObtained} / ${pageTotal}`;
             document.getElementById('export-btn').style.display = "inline-block";
+            document.getElementById('export-word-btn').style.display = "inline-block";
         }
     </script>
 </body>
