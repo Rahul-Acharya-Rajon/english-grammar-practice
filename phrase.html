@@ -159,6 +159,11 @@
             transition: 0.3s;
         }
 
+        #export-word-btn,
+        #export-pdf-btn {
+            display: none;
+        }
+
         .feedback-area {
             margin-top: 20px;
             padding: 16px;
@@ -279,10 +284,13 @@
 
 <body>
 
-    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Toggle Mode</div>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
 
     <div class="container">
         <h2 style="text-align:center; color:var(--p);">HSC Phrase Practice Sheet Generator</h2>
+        <p style="text-align: center; color: var(--text-sub);">Fill up these blanks with appropriate phrases given on
+            the boxes. There
+            is no negative marking.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
@@ -297,7 +305,8 @@
             </div>
             <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
                 Sheet</button>
-            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions & Answers</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
         </div>
 
         <div id="quiz-view" class="hidden">
@@ -308,14 +317,16 @@
 
             <div style="text-align:center;" class="no-print">
                 <button class="btn" style="background:var(--p)" id="prev-btn" onclick="changePage(-1)">Previous</button>
-                <button class="btn" style="background:var(--s)" onclick="checkPageAnswers()">Check Answers (Current
-                    Page)</button>
+                <button class="btn" style="background:var(--s)" onclick="checkPageAnswers()">Submit</button>
                 <button class="btn" style="background:var(--p)" id="next-btn" onclick="changePage(1)">Next</button>
             </div>
 
             <div style="text-align:center; margin-top:10px;" class="no-print">
-                <button class="btn" style="background:#9333ea" onclick="window.print()">Save as PDF</button>
-                <button class="btn" style="background:#64748b" onclick="location.reload()">Start Over</button>
+                <button id="export-pdf-btn" class="btn" style="background:#9333ea" onclick="window.print()">Export
+                    PDF</button>
+                <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
+                    Word</button>
+                <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
             </div>
         </div>
     </div>
@@ -324,6 +335,133 @@
         let quizData = [];
         let currentPage = 0;
         const itemsPerPage = 10;
+
+        function exportToWord() {
+            if (quizData.length === 0) {
+                alert("আগে কুইজ বিল্ড করুন!");
+                return;
+            }
+
+            const start = currentPage * itemsPerPage;
+            const end = Math.min(start + itemsPerPage, quizData.length);
+            const currentItems = quizData.slice(start, end);
+
+            let reportHTML = "";
+
+            currentItems.forEach((item, localIdx) => {
+                const globalIdx = start + localIdx;
+
+                // প্রশ্ন HTML clone
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = item.html;
+
+                // ✅ INPUT → TEXT CONVERT (MAIN FIX)
+                const inputs = tempDiv.querySelectorAll('input');
+
+                inputs.forEach(input => {
+                    const letter = input.getAttribute('data-letter');
+
+                    const realInput = document.querySelector(
+                        `.gap-input[data-qid="${globalIdx}"][data-letter="${letter}"]`
+                    );
+
+                    const userVal = realInput && realInput.value.trim()
+                        ? realInput.value.trim()
+                        : "_______";
+
+                    let textColor = "#000000";
+
+                    if (realInput) {
+                        const color = getComputedStyle(realInput).color;
+
+                        if (color.includes("22, 163, 74")) {
+                            textColor = "#16a34a"; // green
+                        } else if (realInput.value.trim() !== "") {
+                            textColor = "#b91c1c"; // red
+                        }
+                    }
+
+                    // 🔥 span দিয়ে replace (Word friendly)
+                    const span = document.createElement('span');
+                    span.innerText = ` ${userVal} `;
+                    span.style.fontWeight = "bold";
+                    span.style.borderBottom = "1pt solid #444";
+                    span.style.color = textColor;
+                    span.style.padding = "0 4px";
+
+                    input.replaceWith(span);
+                });
+
+                // ✅ FEEDBACK BOX
+                const feedbackEl = document.getElementById(`fb-${globalIdx}`);
+                let feedbackHTML = "";
+
+                if (feedbackEl && feedbackEl.style.display !== "none") {
+
+                    const isCorrect = feedbackEl.classList.contains('correct-box');
+                    const borderColor = isCorrect ? "#16a34a" : "#b91c1c";
+                    const bgColor = isCorrect ? "#f0fdf4" : "#fef2f2";
+
+                    const feedbackText = feedbackEl.innerHTML
+                        .replace(/class="ans-tag"/g,
+                            'style="display:inline-block; padding:3pt; margin:2pt; border:1pt solid #cbd5e1; background:#e2e8f0; color:#1e293b;"'
+                        );
+
+                    feedbackHTML = `
+                <table border="0" cellspacing="0" cellpadding="10" width="100%" 
+                style="margin-top:10pt; border:2pt solid ${borderColor}; background-color:${bgColor};">
+                    <tr>
+                        <td style="font-family:Arial, sans-serif; font-size:11pt; color:#1e293b;">
+                            ${feedbackText}
+                        </td>
+                    </tr>
+                </table>`;
+                }
+
+                reportHTML += `
+            <div style="margin-bottom:30pt; font-family:'Segoe UI', Arial;">
+                <h3 style="color:#2563eb; border-bottom:1pt solid #2563eb;">
+                    Exercise No: ${globalIdx + 1}
+                </h3>
+
+                <div style="font-size:12pt; line-height:2.2;">
+                    ${tempDiv.innerHTML}
+                </div>
+
+                ${feedbackHTML}
+            </div><br>`;
+            });
+
+            // ✅ FULL WORD HTML
+            const fullHTML = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" 
+          xmlns:w="urn:schemas-microsoft-com:office:word" 
+          xmlns="http://www.w3.org/TR/REC-html40">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Practice Report</title>
+    </head>
+
+    <body style="padding:40pt; font-family:Segoe UI, Arial;">
+        <h1 style="text-align:center; color:#2563eb; text-decoration:underline;">
+            Practice Result Report
+        </h1>
+
+        ${reportHTML}
+    </body>
+    </html>`;
+
+            // ✅ DOWNLOAD
+            const blob = new Blob(['\ufeff', fullHTML], {
+                type: 'application/msword'
+            });
+
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Result_Sheet_${Date.now()}.doc`;
+            link.click();
+        }
 
         function toggleTheme() {
             const current = document.documentElement.getAttribute("data-theme");
@@ -1993,6 +2131,8 @@ let alone; (d) had better, (e) used to; (f) It,
 
         function changePage(direction) {
             currentPage += direction;
+            document.getElementById('export-word-btn').style.display = "none";
+            document.getElementById('export-pdf-btn').style.display = "none";
             renderPage();
         }
 
@@ -2046,6 +2186,8 @@ let alone; (d) had better, (e) used to; (f) It,
             const scoreDisplay = document.getElementById('page-score-display');
             scoreDisplay.innerHTML = `<b>Total Score for this Page: ${totalPageScore} / ${totalPagePossible}</b>`;
             scoreDisplay.style.display = 'block';
+            document.getElementById('export-word-btn').style.display = "inline-block";
+            document.getElementById('export-pdf-btn').style.display = "inline-block";
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
