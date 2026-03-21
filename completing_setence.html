@@ -46,7 +46,7 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
-        h2 {
+        h1 {
             text-align: center;
             color: var(--p);
             text-transform: uppercase;
@@ -194,6 +194,13 @@
             display: none !important;
         }
 
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--text-sub);
+        }
+
         @media (max-width: 640px) {
             .container {
                 margin: 0;
@@ -310,7 +317,11 @@
     <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
 
     <div class="container">
-        <h2>HSC Completing Sentence Practice Sheet Generator</h2>
+        <h1>HSC Completing Sentence Practice Sheet Generator</h1>
+        <p style="text-align: center; color: var(--text-sub);">Complete these sentences. Your answers will be checked
+            with our raw answers. If the sentence does not match with our answers, it will be marked as wrong. So, if
+            your answers are correct in structural sense but don't match with our answers, our system will detect it as
+            wrong. But actually, it is correct.</p>
 
         <div id="setup-view" class="no-print">
             <div class="setup-grid">
