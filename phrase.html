@@ -342,124 +342,74 @@
                 return;
             }
 
-            const start = currentPage * itemsPerPage;
-            const end = Math.min(start + itemsPerPage, quizData.length);
-            const currentItems = quizData.slice(start, end);
+            const quizClone = document.getElementById("quiz-container").cloneNode(true);
 
-            let reportHTML = "";
+            const inputs = quizClone.querySelectorAll(".gap-input");
 
-            currentItems.forEach((item, localIdx) => {
-                const globalIdx = start + localIdx;
+            inputs.forEach(input => {
 
-                // প্রশ্ন HTML clone
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = item.html;
+                const userVal = input.value.trim() || "_______";
 
-                // ✅ INPUT → TEXT CONVERT (MAIN FIX)
-                const inputs = tempDiv.querySelectorAll('input');
+                const qid = input.dataset.qid;
+                const letter = input.dataset.letter;
 
-                inputs.forEach(input => {
-                    const letter = input.getAttribute('data-letter');
+                // 🔥 REAL input (original DOM থেকে)
+                const realInput = document.querySelector(
+                    `.gap-input[data-qid="${qid}"][data-letter="${letter}"]`
+                );
 
-                    const realInput = document.querySelector(
-                        `.gap-input[data-qid="${globalIdx}"][data-letter="${letter}"]`
-                    );
+                let textColor = "#000";
 
-                    const userVal = realInput && realInput.value.trim()
-                        ? realInput.value.trim()
-                        : "_______";
+                const computed = window.getComputedStyle(input);
 
-                    let textColor = "#000000";
-
-                    if (realInput) {
-                        const color = getComputedStyle(realInput).color;
-
-                        if (color.includes("22, 163, 74")) {
-                            textColor = "#16a34a"; // green
-                        } else if (realInput.value.trim() !== "") {
-                            textColor = "#b91c1c"; // red
-                        }
-                    }
-
-                    // 🔥 span দিয়ে replace (Word friendly)
-                    const span = document.createElement('span');
-                    span.innerText = ` ${userVal} `;
-                    span.style.fontWeight = "bold";
-                    span.style.borderBottom = "1pt solid #444";
-                    span.style.color = textColor;
-                    span.style.padding = "0 4px";
-
-                    input.replaceWith(span);
-                });
-
-                // ✅ FEEDBACK BOX
-                const feedbackEl = document.getElementById(`fb-${globalIdx}`);
-                let feedbackHTML = "";
-
-                if (feedbackEl && feedbackEl.style.display !== "none") {
-
-                    const isCorrect = feedbackEl.classList.contains('correct-box');
-                    const borderColor = isCorrect ? "#16a34a" : "#b91c1c";
-                    const bgColor = isCorrect ? "#f0fdf4" : "#fef2f2";
-
-                    const feedbackText = feedbackEl.innerHTML
-                        .replace(/class="ans-tag"/g,
-                            'style="display:inline-block; padding:3pt; margin:2pt; border:1pt solid #cbd5e1; background:#e2e8f0; color:#1e293b;"'
-                        );
-
-                    feedbackHTML = `
-                <table border="0" cellspacing="0" cellpadding="10" width="100%" 
-                style="margin-top:10pt; border:2pt solid ${borderColor}; background-color:${bgColor};">
-                    <tr>
-                        <td style="font-family:Arial, sans-serif; font-size:11pt; color:#1e293b;">
-                            ${feedbackText}
-                        </td>
-                    </tr>
-                </table>`;
+                if (computed.color.includes("22, 163, 74")) {
+                    textColor = "#16a34a"; // green
+                } else if (input.value.trim() !== "") {
+                    textColor = "#b91c1c"; // red
                 }
 
-                reportHTML += `
-            <div style="margin-bottom:30pt; font-family:'Segoe UI', Arial;">
-                <h3 style="color:#2563eb; border-bottom:1pt solid #2563eb;">
-                    Exercise No: ${globalIdx + 1}
-                </h3>
+                if (realInput) {
+                    const realStyle = window.getComputedStyle(realInput);
 
-                <div style="font-size:12pt; line-height:2.2;">
-                    ${tempDiv.innerHTML}
-                </div>
+                    if (realStyle.color.includes("22, 163, 74")) {
+                        textColor = "#16a34a"; // ✅ correct (green)
+                    }
+                    else if (realInput.value.trim() !== "") {
+                        textColor = "#b91c1c"; // ❌ wrong (red)
+                    }
+                }
 
-                ${feedbackHTML}
-            </div><br>`;
+                const span = document.createElement("span");
+                span.innerHTML = `&nbsp;${userVal}&nbsp;`;
+                span.style.borderBottom = "1pt solid #000";
+                span.style.fontWeight = "bold";
+                span.style.color = textColor;
+
+                input.replaceWith(span);
             });
 
-            // ✅ FULL WORD HTML
+            // feedback show
+            quizClone.querySelectorAll(".feedback-area").forEach(el => {
+                el.style.display = "block";
+            });
+
             const fullHTML = `
-    <html xmlns:o="urn:schemas-microsoft-com:office:office" 
-          xmlns:w="urn:schemas-microsoft-com:office:word" 
-          xmlns="http://www.w3.org/TR/REC-html40">
-
-    <head>
-        <meta charset="utf-8">
-        <title>Practice Report</title>
-    </head>
-
+    <html xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:w="urn:schemas-microsoft-com:office:word">
+    <head><meta charset="utf-8"></head>
     <body style="padding:40pt; font-family:Segoe UI, Arial;">
-        <h1 style="text-align:center; color:#2563eb; text-decoration:underline;">
-            Practice Result Report
-        </h1>
-
-        ${reportHTML}
+        <h1 style="text-align:center;">Practice Result Report</h1>
+        ${quizClone.innerHTML}
     </body>
     </html>`;
 
-            // ✅ DOWNLOAD
             const blob = new Blob(['\ufeff', fullHTML], {
                 type: 'application/msword'
             });
 
-            const link = document.createElement('a');
+            const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = `Result_Sheet_${Date.now()}.doc`;
+            link.download = `Result_${Date.now()}.doc`;
             link.click();
         }
 
