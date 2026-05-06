@@ -1041,24 +1041,71 @@ beautiful as the Taj Mahal.
             document.getElementById('quiz-container').innerHTML = quizData.slice(start, end).map((set, localIdx) => {
                 const globalIdx = start + localIdx;
                 return `
-                    <div class="quiz-card">
-                        <h3 style="margin-top:0">Practice Set ${globalIdx + 1}</h3>
-                        <div class="intro-text">${set.intro}</div>
-                        ${set.sentences.map(s => `
-                            <div class="sentence-row">
-                                <span class="q-text"><b>(${s.letter})</b> ${s.text}</span>
-                                <input type="text" class="gap-input" data-letter="${s.letter}" data-set="${globalIdx}" autocomplete="off">
-                            </div>
-                        `).join('')}
-                        <div id="fb-${globalIdx}" class="feedback-area"></div>
+                <div class="quiz-card">
+                    <h3 style="margin-top:0">Practice Set ${globalIdx + 1}</h3>
+                    <div class="intro-text">${set.intro}</div>
+                    ${set.sentences.map(s => `
+                        <div class="sentence-row">
+                            <span class="q-text"><b>(${s.letter})</b> ${s.text}</span>
+                            <input type="text" class="gap-input" data-letter="${s.letter}" data-set="${globalIdx}" autocomplete="off">
+                        </div>
+                    `).join('')}
+                    
+                    <!-- প্রতিটি সেটের জন্য আলাদা চেক বাটন -->
+                    <div style="margin-top: 15px;" class="no-print">
+                        <button class="btn" style="background:var(--p); padding: 8px 15px; font-size: 13px;" 
+                            onclick="checkSingleSet(${globalIdx})">Check Answer</button>
                     </div>
-                `;
+
+                    <div id="fb-${globalIdx}" class="feedback-area"></div>
+                </div>
+            `;
             }).join('');
 
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             prevBtn.disabled = page === 0;
             nextBtn.disabled = end >= quizData.length;
+        }
+
+        function checkSingleSet(setIdx) {
+            const set = quizData[setIdx];
+            let score = 0;
+            const inputs = document.querySelectorAll(`.gap-input[data-set="${setIdx}"]`);
+            let feedbackHTML = "<b>Correct Answers:</b><br>";
+
+            inputs.forEach(input => {
+                const letter = input.dataset.letter;
+                const userVal = cleanStr(input.value);
+                const ansData = set.answers[letter];
+
+                if (ansData) {
+                    const isCorrect = userVal !== "" && ansData.options.some(opt => {
+                        const correct = cleanStr(opt);
+                        return correct === userVal || similarity(correct, userVal) > 0.85;
+                    });
+
+                    if (isCorrect) {
+                        input.style.color = "var(--s)";
+                        input.classList.add('input-correct');
+                        input.classList.remove('input-wrong');
+                        score++;
+                    } else {
+                        input.style.color = "var(--d)";
+                        input.classList.add('input-wrong');
+                        input.classList.remove('input-correct');
+                    }
+                    feedbackHTML += `<span class="ans-tag"><b>(${letter})</b> ${ansData.original}</span>`;
+                }
+            });
+
+            set.score = score;
+            const fb = document.getElementById(`fb-${setIdx}`);
+            fb.style.display = "block";
+            fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br>${feedbackHTML}`;
+
+            // ঐচ্ছিক: চেক করার পর কার্ডটি ফোকাসে রাখা
+            fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         function prevPage() {

@@ -221,6 +221,12 @@
             border: 1px solid var(--s);
         }
 
+        .quiz-card .btn {
+            width: auto !important;
+            /* মোবাইলেও যেন বাটনটি পুরো স্ক্রিন জুড়ে না থাকে */
+            margin: 5px 0;
+        }
+
         @media print {
             * {
                 -webkit-print-color-adjust: exact !important;
@@ -1278,17 +1284,63 @@ the town of San Carlos.
             const pageData = quizData.slice(start, end);
 
             document.getElementById('quiz-container').innerHTML = pageData.map((item, i) => `
-            <div class="quiz-card">
-                <h3>Question ${start + i + 1}</h3>
-                <div class="q-display"><strong>Direct:</strong><br>${item.original}</div>
-                <textarea class="user-input-box no-print" data-idx="${start + i}" placeholder="Write your indirect narration here..."></textarea>
-                <div id="fb-${start + i}" class="feedback-area"></div>
-            </div>
-        `).join('');
+    <div class="quiz-card" id="card-${start + i}">
+        <h3>Question ${start + i + 1}</h3>
+        <div class="q-display"><strong>Direct:</strong><br>${item.original}</div>
+        <textarea class="user-input-box no-print" data-idx="${start + i}" placeholder="Write your indirect narration here..."></textarea>
+        
+        <!-- প্রতিটি সেটের জন্য আলাদা বাটন -->
+        <div class="no-print" style="margin-top: 15px;">
+            <button class="btn" style="background:var(--p); padding: 8px 15px; font-size: 13px;" onclick="checkSingleAnswer(${start + i})">Check This Answer</button>
+        </div>
+
+        <div id="fb-${start + i}" class="feedback-area"></div>
+    </div>
+    `).join('');
 
             renderPagination();
             document.getElementById('score-display').classList.add('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkSingleAnswer(idx) {
+            const item = quizData[idx];
+            const userTextarea = document.querySelector(`.user-input-box[data-idx="${idx}"]`);
+            const userText = userTextarea ? userTextarea.value.trim() : "";
+
+            if (!userText) {
+                alert("Please write your answer first!");
+                return;
+            }
+
+            const fb = document.getElementById(`fb-${idx}`);
+            const userLines = splitBySentence(userText);
+            const modelLines = splitBySentence(item.model);
+
+            let report = "<h4>Comparison:</h4><div class='diff-view'>";
+            let correctCount = 0;
+
+            const max = Math.max(userLines.length, modelLines.length);
+
+            for (let j = 0; j < max; j++) {
+                let u = userLines[j] || "";
+                let m = modelLines[j] || "";
+
+                if (m && u && clean(u) === clean(m)) {
+                    report += `<span class="correct-line">✓ ${u}</span>`;
+                    correctCount++;
+                } else if (m) {
+                    report += `<span class="wrong-line">✗ ${u || "[Empty line]"}</span>`;
+                    report += `<span class="actual-hint">→ Model: ${m}</span>`;
+                }
+            }
+
+            report += "</div>";
+            fb.innerHTML = report;
+            fb.style.display = "block";
+
+            // স্ক্রিনটি ওই উত্তরের দিকে ফোকাস করার জন্য (ঐচ্ছিক)
+            fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         function renderPagination() {

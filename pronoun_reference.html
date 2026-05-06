@@ -1794,18 +1794,61 @@ civilization.
             const start = page * itemsPerPage;
             const end = start + itemsPerPage;
             const pageData = quizData.slice(start, end);
-            document.getElementById('quiz-container').innerHTML = pageData.map((item, i) => `
-                <div class="quiz-card">
-                    <h3>Practice Set ${start + i + 1}</h3>
-                    <div class="q-display"><strong>Original:</strong><br>${item.original}</div>
-                    <textarea class="user-input-box no-print" data-idx="${start + i}" placeholder="Type full rewrite here..."></textarea>
-                    <div id="fb-${start + i}" class="feedback-area"></div>
-                </div>
-            `).join('');
+            document.getElementById('quiz-container').innerHTML = pageData.map((item, i) => {
+                const globalIdx = start + i;
+                return `
+            <div class="quiz-card">
+                <h3>Practice Set ${globalIdx + 1}</h3>
+                <div class="q-display"><strong>Original:</strong><br>${item.original}</div>
+                <textarea class="user-input-box no-print" data-idx="${globalIdx}" placeholder="Type full rewrite here..."></textarea>
+                
+                <!-- এককভাবে আনসার চেক করার বাটন -->
+                <button class="btn no-print" style="background:var(--p); font-size:12px; padding: 5px 15px;" 
+                        onclick="checkSingleAnswer(${globalIdx})">Check This Set</button>
+                
+                <div id="fb-${globalIdx}" class="feedback-area"></div>
+            </div>
+        `;
+            }).join('');
             renderPagination();
             document.getElementById('score-display').classList.add('hidden');
-            // Auto scroll to top smoothly when page changes
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkSingleAnswer(globalIdx) {
+            const item = quizData[globalIdx];
+            const userInputEl = document.querySelector(`.user-input-box[data-idx="${globalIdx}"]`);
+            const userText = userInputEl ? userInputEl.value.trim() : "";
+
+            if (!userText) {
+                alert("Please write your answer first!");
+                return;
+            }
+
+            const userLines = splitBySentence(userText);
+            const correctLines = splitBySentence(item.corrected);
+            const fb = document.getElementById(`fb-${globalIdx}`);
+
+            let reportHTML = "<h4>Correction Report:</h4><div class='diff-view'>";
+            const maxLines = Math.max(userLines.length, correctLines.length);
+
+            for (let idx = 0; idx < maxLines; idx++) {
+                let uL = userLines[idx] || "";
+                let cL = correctLines[idx] || "";
+                if (cL && uL && clean(uL) === clean(cL)) {
+                    reportHTML += `<span class="correct-line">✓ ${uL}</span>`;
+                } else if (cL) {
+                    reportHTML += `<span class="wrong-line">✗ ${uL || "[Missing Line]"}</span>`;
+                    reportHTML += `<span class="actual-hint">➜ Correct: ${cL}</span>`;
+                }
+            }
+
+            reportHTML += "</div>";
+            fb.style.display = "block";
+            fb.innerHTML = reportHTML;
+
+            // ফিডব্যাক এরিয়াতে স্ক্রল করার জন্য
+            fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         function renderPagination() {

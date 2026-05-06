@@ -2040,19 +2040,86 @@ let alone; (d) had better; (e) used to; (f) It;
             container.innerHTML = pageData.map((item, i) => {
                 const globalIdx = start + i;
                 return `
-                <div class="quiz-card" data-global-id="${globalIdx}">
-                    <h3>Exercise ${globalIdx + 1}</h3>
-                    <div class="clue-box">${item.clues.map(c => `<div class="clue-item">${c}</div>`).join('')}</div>
-                    <div>${item.html}</div>
-                    <div id="fb-${globalIdx}" class="feedback-area"></div>
-                </div>
-            `}).join('');
+                    <div class="quiz-card" id="card-${globalIdx}" data-global-id="${globalIdx}">
+                        <h3>Exercise ${globalIdx + 1}</h3>
+                        <div class="clue-box">${item.clues.map(c => `<div class="clue-item">${c}</div>`).join('')}</div>
+                        <div>${item.html}</div>
+                        
+                        <!-- প্রতিটি সেটের জন্য আলাদা বাটন -->
+                        <div style="margin-top: 15px;" class="no-print">
+                            <button class="btn" style="background:var(--s); padding: 8px 20px; font-size: 14px;" 
+                                onclick="checkSingleExercise(${globalIdx})">Check Answer</button>
+                        </div>
+
+                        <div id="fb-${globalIdx}" class="feedback-area"></div>
+                    </div>
+                `}).join('');
 
             document.getElementById('page-label').innerText = `Showing Exercises ${start + 1} - ${Math.min(end, quizData.length)} of ${quizData.length}`;
             document.getElementById('prev-btn').disabled = currentPage === 0;
             document.getElementById('next-btn').disabled = end >= quizData.length;
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkSingleExercise(qIdx) {
+            const card = document.querySelector(`.quiz-card[data-global-id="${qIdx}"]`);
+            const item = quizData[qIdx];
+            let exerciseScore = 0;
+            const inputs = [...card.querySelectorAll('.gap-input')];
+            let keys = [];
+            let letterIndex = 0;
+
+            let i = 0;
+            while (i < inputs.length) {
+                const input = inputs[i];
+                const letter = String.fromCharCode(97 + letterIndex);
+                const expected = (item.answers[letter] || "").trim();
+                const userVal = clean(input.value);
+
+                let isCorrect = false;
+                let skipNext = false;
+
+                if (userVal === "" && expected !== "") {
+                    input.style.color = "var(--d)";
+                    keys.push(`<span class="ans-tag">(${letter}) ${expected}</span>`);
+                    i++; letterIndex++; continue;
+                }
+
+                // DOUBLE BLANK (...) check
+                if (expected.includes('...') && i + 1 < inputs.length) {
+                    const nextInput = inputs[i + 1];
+                    const nextVal = clean(nextInput.value);
+                    const expParts = expected.split('...').map(p => clean(p.trim()));
+
+                    if (userVal === expParts[0] && nextVal === expParts[1]) {
+                        isCorrect = true;
+                    }
+
+                    if (isCorrect) {
+                        exerciseScore += 2;
+                        nextInput.style.color = "var(--s)";
+                    } else {
+                        nextInput.style.color = "var(--d)";
+                    }
+                    skipNext = true;
+                }
+                else {
+                    if (userVal === clean(expected)) isCorrect = true;
+                    if (isCorrect) exerciseScore += 1;
+                }
+
+                input.style.color = isCorrect ? "var(--s)" : "var(--d)";
+                keys.push(`<span class="ans-tag">(${letter}) ${expected}</span>`);
+
+                i++; letterIndex++;
+                if (skipNext) { i++; letterIndex++; }
+            }
+
+            const fb = document.getElementById(`fb-${qIdx}`);
+            fb.style.display = "block";
+            fb.className = `feedback-area ${exerciseScore === inputs.length ? 'correct-box' : 'wrong-box'}`;
+            fb.innerHTML = `<b>Score: ${exerciseScore} / ${inputs.length}</b><br><br>Answer Key:<br>${keys.join('')}`;
         }
 
         function changePage(direction) {

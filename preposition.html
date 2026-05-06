@@ -179,6 +179,15 @@
             cursor: not-allowed;
         }
 
+        .quiz-card .btn {
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-card .btn:hover {
+            transform: scale(1.05);
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -1043,12 +1052,19 @@ by/with; (e) by; (f) in; (g) to; (h) with; (i) in;
             container.innerHTML = pageData.map((item, localIdx) => {
                 const globalIdx = startIndex + localIdx;
                 return `
-                <div class="quiz-card" id="card-${globalIdx}">
-                    <h3 style="color:var(--p); margin-top:0; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Exercise ${globalIdx + 1}</h3>
-                    <div class="content-body">${item.html}</div>
-                    <div id="feedback-${globalIdx}" class="feedback-area"></div>
-                </div>
-            `}).join('');
+                    <div class="quiz-card" id="card-${globalIdx}">
+                        <h3 style="color:var(--p); margin-top:0; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Exercise ${globalIdx + 1}</h3>
+                        <div class="content-body">${item.html}</div>
+                        
+                        <!-- প্রতিটি সেটের জন্য আলাদা চেক বাটন -->
+                        <div style="margin-top:15px;" class="no-print">
+                            <button class="btn" style="background:var(--p); padding:8px 15px; font-size:14px; width:auto; margin:0;" 
+                                    onclick="checkSingleSet(${globalIdx})">Check Answer</button>
+                        </div>
+
+                        <div id="feedback-${globalIdx}" class="feedback-area"></div>
+                    </div>
+                `}).join('');
 
             // Restore user inputs if they were already entered
             pageData.forEach((item, localIdx) => {
@@ -1063,6 +1079,42 @@ by/with; (e) by; (f) in; (g) to; (h) with; (i) in;
 
             updatePagination();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkSingleSet(qIdx) {
+            const item = examData[qIdx];
+            const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+            let setCorrect = 0;
+            let keyList = [];
+            let totalInSet = Object.keys(item.answers).length;
+
+            if (inputs.length === 0) return;
+
+            inputs.forEach(input => {
+                let letter = input.getAttribute('data-letter');
+                let userAnsRaw = input.value;
+                let userAnsClean = cleanVal(userAnsRaw);
+                let correctAnsRaw = item.answers[letter] || "x";
+                let options = correctAnsRaw.split(/[\/\s]+/).map(o => cleanVal(o));
+
+                if (options.includes(userAnsClean) && userAnsClean !== "") {
+                    input.style.color = "var(--s)";
+                    input.style.borderBottomColor = "var(--s)";
+                    setCorrect++;
+                } else {
+                    input.style.color = "var(--d)";
+                    input.style.borderBottomColor = "var(--d)";
+                }
+                keyList.push(`<span class="ans-tag">(${letter}) ${correctAnsRaw}</span>`);
+            });
+
+            const fb = document.getElementById(`feedback-${qIdx}`);
+            if (fb) {
+                fb.style.display = "block";
+                fb.className = `feedback-area ${setCorrect === totalInSet ? 'correct-box' : 'wrong-box'}`;
+                fb.innerHTML = `<strong>Set Score: ${setCorrect} / ${totalInSet}</strong><br>
+                        <div style="margin-top:10px;"><b>Answer Key:</b> ${keyList.join(' ')}</div>`;
+            }
         }
 
         function updatePagination() {

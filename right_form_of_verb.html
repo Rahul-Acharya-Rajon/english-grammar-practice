@@ -900,11 +900,46 @@ were arranged; (j) to inspire
                 <div class="quiz-card" data-page="${Math.floor(i / perPage) + 1}" data-qid="${i}">
                     <h3>Exercise ${i + 1}</h3>
                     <div style="white-space: pre-wrap;">${item.html}</div>
+                    
+                    <!-- প্রতিটি সেটের জন্য আলাদা বাটন -->
+                    <div style="margin-top: 15px;" class="no-print">
+                        <button class="btn" style="background:var(--p); padding: 8px 15px; font-size: 13px;" 
+                            onclick="checkSingleExercise(${i})">Check Answer</button>
+                    </div>
+
                     <div id="fb-${i}" class="feedback-area"></div>
                 </div>
             `).join('');
 
             showPage(currentPage);
+        }
+
+        function checkSingleExercise(qIdx) {
+            let score = 0;
+            const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+            let keyHTML = "";
+
+            inputs.forEach(input => {
+                const letter = input.dataset.letter;
+                const userVal = cleanString(input.value);
+                const official = quizData[qIdx].answers[letter] || "";
+
+                const possible = official.split(/[/;]|\sor\s/).map(o => cleanString(o));
+                const isCorrect = userVal !== "" && possible.some(p => p === userVal);
+
+                input.style.color = isCorrect ? "var(--s)" : "var(--d)";
+                input.style.borderColor = isCorrect ? "var(--s)" : "var(--d)";
+                if (isCorrect) score++;
+                keyHTML += `<span class="ans-tag"><b>(${letter})</b> ${official}</span>`;
+            });
+
+            const fb = document.getElementById(`fb-${qIdx}`);
+            fb.style.display = "block";
+            fb.className = `feedback-area ${score === inputs.length && score > 0 ? 'correct-box' : 'wrong-box'}`;
+            fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><br><b>Correct Answers:</b><br>${keyHTML}`;
+
+            // নির্দিষ্ট কার্ডে স্ক্রল করার জন্য (ঐচ্ছিক)
+            document.querySelector(`.quiz-card[data-qid="${qIdx}"]`).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         function showPage(page) {

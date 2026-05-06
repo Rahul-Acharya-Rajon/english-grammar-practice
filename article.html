@@ -271,6 +271,17 @@
             color: var(--text-main);
         }
 
+        .quiz-card .btn {
+            margin-bottom: 0;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .quiz-card .btn:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
         /* ──────────────────────────────────────────────── */
         /* PRINT STYLES - Respect current theme + better readability */
         /* ──────────────────────────────────────────────── */
@@ -1054,15 +1065,56 @@ the: (h) a; (i) the; (j) x;
             container.innerHTML = currentItems.map((item, localIndex) => {
                 const globalIndex = start + localIndex;
                 return `
-                <div class="quiz-card" id="card-${globalIndex}">
-                    <h3 style="color:var(--p); margin-top:0;">Question Set ${globalIndex + 1}</h3>
-                    <div class="content-body">${item.html}</div>
-                    <div id="feedback-${globalIndex}" class="feedback-area"></div>
-                </div>
-            `}).join('');
+                    <div class="quiz-card" id="card-${globalIndex}">
+                        <h3 style="color:var(--p); margin-top:0;">Question Set ${globalIndex + 1}</h3>
+                        <div class="content-body">${item.html}</div>
+                        
+                        <!-- প্রতিটি সেটের জন্য আলাদা বাটন -->
+                        <div style="margin-top:15px;" class="no-print">
+                            <button class="btn" style="background:var(--p); padding:8px 15px; font-size:14px; width:auto;" 
+                                    onclick="checkSingleSet(${globalIndex})">Check Answer</button>
+                        </div>
+
+                        <div id="feedback-${globalIndex}" class="feedback-area"></div>
+                    </div>
+                `}).join('');
 
             updatePaginationUI();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkSingleSet(qIdx) {
+            const item = examData[qIdx];
+            const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+            let setCorrect = 0;
+            let keyList = [];
+
+            if (inputs.length === 0) return;
+
+            inputs.forEach(input => {
+                let letter = input.getAttribute('data-letter');
+                let userAns = cleanVal(input.value);
+                let correctAnsRaw = item.answers[letter] || "x";
+                let options = correctAnsRaw.split(/[\/\s]+/).map(o => cleanVal(o));
+
+                if (options.includes(userAns)) {
+                    input.style.color = "var(--s)";
+                    input.style.borderBottomColor = "var(--s)";
+                    setCorrect++;
+                } else {
+                    input.style.color = "var(--d)";
+                    input.style.borderBottomColor = "var(--d)";
+                }
+                keyList.push(`<span class="ans-tag">(${letter}) ${correctAnsRaw}</span>`);
+            });
+
+            const fb = document.getElementById(`feedback-${qIdx}`);
+            if (fb) {
+                fb.style.display = "block";
+                fb.className = `feedback-area ${setCorrect === inputs.length ? 'correct-box' : 'wrong-box'}`;
+                fb.innerHTML = `<strong>Set Accuracy: ${setCorrect} / ${inputs.length}</strong><br>
+                        <div style="margin-top:10px;"><b>Answer Key:</b> ${keyList.join(' ')}</div>`;
+            }
         }
 
         function changePage(direction) {

@@ -175,6 +175,16 @@
             color: var(--text-sub);
         }
 
+        .check-single-btn {
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .check-single-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+        }
+
         @media print {
             * {
                 -webkit-print-color-adjust: exact !important;
@@ -1385,7 +1395,18 @@ Futher more; (h) However; (i) But; (j) So
             document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
                 <div class="quiz-card" data-qidx="${i}" style="display: none;">
                     <h3>Set ${i + 1}</h3>
+                    
                     <div style="white-space: pre-wrap; font-size: 16px;">${item.html}</div>
+                    
+                    <!-- নতুন বাটন -->
+                    <div style="text-align: left; margin-top: 15px;">
+                        <button class="btn check-single-btn" 
+                                style="background: var(--s); padding: 10px 20px;"
+                                onclick="checkSingleSet(${i})">
+                            ✓ Check This Set
+                        </button>
+                    </div>
+                    
                     <div id="fb-${i}" class="feedback-area"></div>
                 </div>
             `).join('');
@@ -1400,6 +1421,44 @@ Futher more; (h) However; (i) But; (j) So
             document.getElementById('quiz-container').innerHTML += pagination;
 
             showPage(0);
+        }
+
+        function checkSingleSet(qIdx) {
+            const item = quizData[qIdx];
+            if (!item) return;
+
+            let score = 0;
+            const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+            let keyHTML = "";
+
+            inputs.forEach(input => {
+                const letter = input.dataset.letter;
+                const userVal = cleanString(input.value);
+                const official = item.answers[letter] || "";
+                const possible = official.split(/[/;]|\sor\s/).map(o => cleanString(o));
+                const isCorrect = userVal !== "" && possible.some(p => p === userVal);
+
+                // রঙ পরিবর্তন
+                input.style.setProperty('color', isCorrect ? 'var(--s)' : 'var(--d)', 'important');
+
+                if (isCorrect) score++;
+                keyHTML += `<span class="ans-tag"><b>(${letter})</b> ${official}</span>`;
+            });
+
+            // ফিডব্যাক দেখানো
+            const fb = document.getElementById(`fb-${qIdx}`);
+            fb.style.display = "block";
+            fb.innerHTML = `
+        <b>Score: ${score} / ${inputs.length}</b><br>
+        <b>Correct Answers:</b> ${keyHTML}
+    `;
+
+            // ডেটা আপডেট
+            item.checked = true;
+            item.score = score;
+            item.totalGaps = inputs.length;
+
+            updateTotalScore();
         }
 
         function showPage(page) {

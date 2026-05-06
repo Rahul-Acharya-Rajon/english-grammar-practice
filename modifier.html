@@ -892,9 +892,16 @@ Getting stuck in traffic congestion;
             document.getElementById('quiz-container').innerHTML = pageQuizzes.map((item, i) => {
                 const globalIdx = start + i;
                 return `
-                    <div class="quiz-card">
-                        <h3>Exercise ${globalIdx + 1}</h3>
+                    <div class="quiz-card" id="card-${globalIdx}">
+                        <h3 style="margin-top:0">Exercise ${globalIdx + 1}</h3>
                         <div style="white-space: pre-wrap;">${item.html}</div>
+                        
+                        <!-- প্রতিটি সেটের জন্য আলাদা চেক বাটন -->
+                        <div style="margin-top: 15px;" class="no-print">
+                            <button class="btn" style="background:var(--p); padding: 8px 15px; font-size: 13px;" 
+                                onclick="checkSingleSet(${globalIdx})">Check Answer</button>
+                        </div>
+
                         <div id="fb-${globalIdx}" class="feedback-area"></div>
                     </div>
                 `;
@@ -902,6 +909,34 @@ Getting stuck in traffic congestion;
 
             document.getElementById('page-info').textContent = `Page ${currentPage + 1} of ${Math.ceil(quizData.length / quizzesPerPage)}`;
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkSingleSet(qIdx) {
+            let score = 0;
+            const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+            let keyHTML = "";
+
+            if (inputs.length === 0) return;
+
+            inputs.forEach(input => {
+                const letter = input.dataset.letter;
+                const userVal = cleanString(input.value);
+                const official = quizData[qIdx].answers[letter] || "";
+                const possible = official.split(/[/;]/).map(o => cleanString(o));
+                const isCorrect = userVal !== "" && possible.some(p => p === userVal);
+
+                input.style.color = isCorrect ? "var(--s)" : "var(--d)";
+                if (isCorrect) score++;
+                keyHTML += `<span class="ans-tag"><b>(${letter})</b> ${official}</span>`;
+            });
+
+            const fb = document.getElementById(`fb-${qIdx}`);
+            fb.style.display = "block";
+            fb.className = `feedback-area ${score === inputs.length && score > 0 ? 'correct-box' : 'wrong-box'}`;
+            fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><br><b>Answers:</b><br>${keyHTML}`;
+
+            // স্কোর আপডেট করার জন্য
+            updateScoreDisplay();
         }
 
         function checkAnswers() {

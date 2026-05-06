@@ -201,6 +201,19 @@
             color: var(--text-sub);
         }
 
+        .btn-check-set {
+            background: #f59e0b;
+            /* Orange color */
+            width: auto;
+            margin-top: 15px;
+            font-size: 14px;
+            padding: 8px 20px;
+        }
+
+        .btn-check-set:hover {
+            background: #d97706;
+        }
+
         @media (max-width: 640px) {
             .container {
                 margin: 0;
@@ -1698,11 +1711,12 @@ Association, Barishal-2019]`;
             container.innerHTML = practiceItems.slice(start, end).map((item, i) => {
                 let id = start + i;
                 return `
-                    <div class="quiz-card" id="card-${id}">
-                        <h3>Set ${id + 1}</h3>
-                        <div style="line-height:2.6; white-space: pre-wrap; font-size: 1.1em;">${item.html}</div>
-                        <div id="feedback-${id}" class="feedback-area"></div>
-                    </div>`;
+            <div class="quiz-card" id="card-${id}">
+                <h3>Set ${id + 1}</h3>
+                <div style="line-height:2.6; white-space: pre-wrap; font-size: 1.1em;">${item.html}</div>
+                <button class="btn btn-check-set no-print" onclick="evaluateSingleSet(${id})">Check Answer</button>
+                <div id="feedback-${id}" class="feedback-area"></div>
+            </div>`;
             }).join("");
 
             const totalPages = Math.ceil(practiceItems.length / itemsPerPage);
@@ -1710,6 +1724,38 @@ Association, Barishal-2019]`;
             document.getElementById('prev-btn').disabled = currentPage === 0;
             document.getElementById('next-btn').disabled = currentPage >= totalPages - 1;
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function evaluateSingleSet(setId) {
+            let card = document.getElementById(`card-${setId}`);
+            let inputs = card.querySelectorAll(".gap-input");
+            let spans = card.querySelectorAll(".correct-answer");
+            let feedback = document.getElementById(`feedback-${setId}`);
+            let setCorrect = 0;
+
+            inputs.forEach((input, idx) => {
+                let userVal = input.value.trim().toLowerCase().replace(/[.,:;?]+$/, "");
+                let ansData = practiceItems[setId].missingAnswers[idx];
+
+                // বিকল্প উত্তরের সাথে তুলনা
+                let isCorrect = ansData.options.some(opt => opt === userVal && userVal !== "");
+
+                if (isCorrect) {
+                    input.style.color = "var(--s)";
+                    input.style.borderBottomColor = "var(--s)";
+                    setCorrect++;
+                } else {
+                    input.style.color = "var(--d)";
+                    input.style.borderBottomColor = "var(--d)";
+                }
+
+                spans[idx].textContent = " ✓ " + ansData.display;
+                spans[idx].style.display = "inline-block";
+            });
+
+            feedback.style.display = "block";
+            feedback.className = `feedback-area ${setCorrect === inputs.length ? 'correct-box' : 'wrong-box'}`;
+            feedback.innerHTML = `<strong>Set Score: ${setCorrect}/${inputs.length}</strong><br><strong>Full Answer:</strong><br>${practiceItems[setId].model.replace(/\n/g, '<br>')}`;
         }
 
         function changePage(dir) {
