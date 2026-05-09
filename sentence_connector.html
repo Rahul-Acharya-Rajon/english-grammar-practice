@@ -51,6 +51,17 @@
             margin-bottom: 20px;
         }
 
+        .wrong-box {
+            background: rgba(220, 38, 38, 0.15);
+            border-left: 8px solid var(--d);
+            color: var(--d);
+        }
+
+        .correct-text {
+            color: #16a34a !important;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             .setup-grid {
                 grid-template-columns: 1fr;
@@ -1448,9 +1459,20 @@ Futher more; (h) However; (i) But; (j) So
             // ফিডব্যাক দেখানো
             const fb = document.getElementById(`fb-${qIdx}`);
             fb.style.display = "block";
+            if (fb.classList.contains("correct-box")) {
+                fb.classList.remove("correct-box");
+            } else if (fb.classList.contains("wrong-box")) {
+                fb.classList.remove("wrong-box");
+            }
+            if (score === inputs.length) {
+                fb.classList.add("correct-box");
+            }
+            else {
+                fb.classList.add("wrong-box");
+            }
             fb.innerHTML = `
         <b>Score: ${score} / ${inputs.length}</b><br>
-        <b>Correct Answers:</b> ${keyHTML}
+        <b>Answers:</b> ${keyHTML}
     `;
 
             // ডেটা আপডেট
@@ -1533,6 +1555,17 @@ Futher more; (h) However; (i) But; (j) So
 
                 const fb = document.getElementById(`fb-${qIdx}`);
                 fb.style.display = "block";
+                if (fb.classList.contains("correct-box")) {
+                    fb.classList.remove("correct-box");
+                } else if (fb.classList.contains("wrong-box")) {
+                    fb.classList.remove("wrong-box");
+                }
+                if (score === inputs.length) {
+                    fb.classList.add("correct-box");
+                }
+                else {
+                    fb.classList.add("wrong-box");
+                }
                 fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><b>Answers:</b> ${keyHTML}`;
 
                 item.checked = true;
