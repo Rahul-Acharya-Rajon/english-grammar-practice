@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gap Fillings Without Clues Practice Sheet</title>
+    <style>
+        :root {
+            --p: #2563eb;
+            --s: #16a34a;
+            --d: #c94646;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --text-main: #1e293b;
+            --border: #cbd5e1;
+            --input-bg: #fffbeb;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --border: #475569;
+            --input-bg: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            padding: 20px;
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: 0.3s;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .correct-box {
+            background-color: rgba(22, 163, 74, 0.12) !important;
+            border-left: 8px solid var(--s) !important;
+            color: var(--s) !important;
+        }
+
+        .wrong-box {
+            background-color: rgba(220, 38, 38, 0.12) !important;
+            border-left: 8px solid var(--d) !important;
+            color: var(--d) !important;
+        }
+
+        @media (max-width: 768px) {
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            body {
+                padding: 10px;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            resize: vertical;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .quiz-card {
+            border: 1px solid var(--border);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            background: var(--card-bg);
+        }
+
+        .gap-input {
+            display: inline-block;
+            min-width: 130px;
+            border: none;
+            border-bottom: 2px solid var(--p);
+            text-align: center;
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 16px;
+            outline: none;
+            margin: 0 4px;
+            padding: 2px;
+        }
+
+        .letter-label {
+            font-weight: bold;
+            color: var(--p);
+            margin-right: 2px;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: white;
+            margin: 5px;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+
+        .btn:active {
+            opacity: 0.8;
+        }
+
+        .feedback-area {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .ans-tag {
+            display: inline-block;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin: 3px;
+            font-size: 0.9em;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: var(--p);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        #total-score {
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 12px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--text-sub);
+        }
+
+        .check-single-btn {
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .check-single-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            body {
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
+                padding: 0 !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: var(--card-bg) !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            /* ────────────── শুধু বর্তমান পেজের কার্ড প্রিন্ট হবে ────────────── */
+            .quiz-card {
+                display: none !important;
+            }
+
+            .quiz-card[style*="block"] {
+                display: block !important;
+                border: 1px solid var(--border) !important;
+                margin-bottom: 15px !important;
+                padding: 15px !important;
+                page-break-inside: avoid;
+                background: var(--card-bg) !important;
+            }
+
+            /* ─────────────────────────────────────────────────────────────── */
+
+            .gap-input {
+                border-bottom: 2px solid var(--p) !important;
+                background: var(--input-bg) !important;
+                min-width: 100px !important;
+                font-size: 12pt !important;
+                color: inherit !important;
+            }
+
+            h2,
+            h3 {
+                color: var(--p) !important;
+            }
+
+            .feedback-area {
+                display: block !important;
+                background: var(--bg) !important;
+                border: 1px solid var(--border) !important;
+                margin-top: 8px !important;
+                padding: 8px !important;
+                font-size: 10pt !important;
+            }
+
+            #total-score,
+            #pagination {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
+    <div class="container">
+        <h2 style="text-align:center; color:var(--p);">HSC Gap Fillings Without Clues Practice Sheet Generator</h2>
+        <p style="text-align: center; color: var(--text-sub);">Fill these sentences with appropriate clues</p>
+
+        <div id="setup-view" class="no-print">
+            <div class="setup-grid">
+                <div>
+                    <label>1. Paste Questions:</label>
+                    <textarea id="q-input" placeholder="Paste Questions..."></textarea>
+                </div>
+                <div>
+                    <label>2. Paste Answers:</label>
+                    <textarea id="a-input" placeholder="Paste Answers..."></textarea>
+                </div>
+            </div>
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
+                Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
+        </div>
+
+        <div id="quiz-view" class="hidden">
+            <div id="total-score" class="no-print hidden">Total Score: — / — (checked sets only)</div>
+            <div id="quiz-container"></div>
+            <div style="text-align:center;" class="no-print">
+                <button class="btn" style="background:var(--s)" onclick="checkAnswers()">Submit</button>
+                <button class="btn" style="background:#9333ea" onclick="printSheet()">Export PDF</button>
+                <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
+                    Word</button>
+                <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizData = [];
+        let currentPage = 0;
+        const pageSize = 10;
+
+        function toggleTheme() {
+            document.documentElement.hasAttribute("data-theme")
+                ? document.documentElement.removeAttribute("data-theme")
+                : document.documentElement.setAttribute("data-theme", "dark");
+        }
+
+        function exportToWord() {
+            if (quizData.length === 0) {
+                alert("আগে কুইজ সাবমিat করুন!");
+                return;
+            }
+
+            const start = currentPage * pageSize;
+            const end = Math.min(start + pageSize, quizData.length);
+            const currentItems = quizData.slice(start, end);
+
+            let totalCorrect = 0;
+            let totalBlanks = 0;
+
+            // কন্টেন্ট প্রসেসিং শুরু
+            let exerciseContent = "";
+            currentItems.forEach((item, localIdx) => {
+                const globalIdx = start + localIdx;
+                let exScore = 0;
+                let exTotal = 0;
+                let keyHTML = "";
+
+                let htmlText = item.html;
+                const inputRegex = /<input[^>]*data-letter="([a-j])"[^>]*>/g;
+
+                // ইনপুট ফিল্ডগুলোকে টেক্সট দিয়ে রিপ্লেস করা
+                htmlText = htmlText.replace(inputRegex, (match, letter) => {
+                    const el = document.querySelector(`.gap-input[data-qid="${globalIdx}"][data-letter="${letter}"]`);
+                    exTotal++;
+                    totalBlanks++;
+
+                    const official = item.answers[letter] || "";
+                    keyHTML += `<span style="display:inline-block; background:#f1f5f9; border:1px solid #cbd5e1; padding:2px 5px; margin:2px; font-size:9pt; border-radius:3px;"><b>(${letter})</b> ${official}</span> `;
+
+                    if (!el) return "_______";
+
+                    const val = el.value.trim() || "_______";
+                    // Check computed color to identify correct/wrong
+                    const isCorrect = el.style.color === "var(--s)" || el.style.color === "rgb(22, 163, 74)";
+
+                    if (isCorrect) {
+                        totalCorrect++;
+                        exScore++;
+                        return `<span style="color:#16a34a; font-weight:bold; text-decoration:underline;">${val}</span>`;
+                    } else {
+                        // Wrong answer correction: Double underline fix korte 'line-through' style use kora hoyeche
+                        return `<span style="color:#bd3c3c; font-weight:bold; text-decoration:line-through; text-decoration-style:single;">${val}</span>`;
+                    }
+                });
+
+                exerciseContent += `
+        <div style="background-color:#2563eb; color:#ffffff; padding:10px; font-weight:bold; margin-top:20px; margin-bottom:10px;">Exercise No: ${globalIdx + 1}</div>
+        <div style="margin-bottom:10px; padding:10px; border:1px solid #e2e8f0; line-height:1.6;">
+            ${htmlText}
+            <div style="margin-top:10px; padding:8px; background-color:#fffbeb; border-top:1px dashed #fbbf24;">
+                <p style="margin:0 0 5px 0; font-weight:bold; color:#b45309; font-size:10pt;">Score: ${exScore} / ${exTotal}</p>
+                <div style="font-size:9pt; color:#1e293b;"><b>Correct Answers:</b><br>${keyHTML}</div>
+            </div>
+        </div>`;
+            });
+
+            // স্কোরবোর্ড ক্যালকুলেশন
+            const accuracy = totalBlanks > 0 ? ((totalCorrect / totalBlanks) * 100).toFixed(2) : 0;
+            const timeSpent = document.getElementById('timer-display')?.innerText || "00:00";
+            const wrongAns = totalBlanks - totalCorrect;
+
+            const scoreboardHTML = `
+    <div style="margin-top:40px; font-family:Arial, sans-serif;">
+        <h2 style="color:#2563eb; border-bottom:2px solid #2563eb; padding-bottom:5px;">Performance Report</h2>
+        <table width="100%" cellpadding="10" style="text-align:center; table-layout:fixed; border-collapse:collapse;">
+            <tr>
+                <td style="background-color:#eff6ff; border:1px solid #bfdbfe;">
+                    <div style="color:#1e40af; font-size:10pt;">Attempted</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#1e3a8a;">${totalBlanks}</div>
+                </td>
+                <td style="background-color:#f0fdf4; border:1px solid #bbf7d0;">
+                    <div style="color:#166534; font-size:10pt;">Correct</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#14532d;">${totalCorrect}</div>
+                </td>
+                <td style="background-color:#fef2f2; border:1px solid #fecaca;">
+                    <div style="color:#991b1b; font-size:10pt;">Wrong</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#7f1d1d;">${wrongAns}</div>
+                </td>
+                <td style="background-color:#fff7ed; border:1px solid #fed7aa;">
+                    <div style="color:#9a3412; font-size:10pt;">Accuracy</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#7c2d12;">${accuracy}%</div>
+                </td>
+                <td style="background-color:#f5f3ff; border:1px solid #ddd6fe;">
+                    <div style="color:#5b21b6; font-size:10pt;">Time Spent</div>
+                    <div style="font-size:16pt; font-weight:bold; color:#4c1d95;">${timeSpent}</div>
+                </td>
+            </tr>
+        </table>
+        <div style="background-color:#2563eb; color:white; text-align:center; padding:15px; margin-top:10px; font-size:18pt; font-weight:bold;">
+            Grand Total: ${totalCorrect} / ${totalBlanks}
+        </div>
+        <p style="text-align:right; font-size:8pt; color:#64748b; margin-top:10px;">Date: ${new Date().toLocaleString()}</p>
+    </div>`;
+
+            const fullHTML = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            @page { size: A4; margin: 1in; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align:center; color:#2563eb;">Gap Fillings Without Clues  Practice Result</h1>
+        ${exerciseContent}
+        ${scoreboardHTML}
+    </body>
+    </html>`;
+
+            const blob = new Blob(['\ufeff', fullHTML], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `Result_Report_${new Date().getTime()}.doc`;
+            link.click();
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `01. Fill in the blank with appropriate in each gap: [Dhaka Board-2024]
+The development of communication in any (a) --- creates an impact on the development of the economy (b) --- the gross (c) --- product of any country. Bangladesh, in this sense, has become a (d) --- model all over the world. The present government has scheduled (e) --- and such projects recently (f) --- increase the lifestyle of the country people. We can (g) --- here some of such developments: The Padma Multipurpose Bridge, the (h) --- way, Bangabandhu Tunnel under the river (i) --- and the Metro Rail in Dhaka City. The national and international business will be (j) --- by these kinds of communication development.
+
+02. Fill in the blank with appropriate in each gap: [Rajshahi Board-2024]
+If you want to (a) --- English properly and fairly, you have to achieve writing skill. To attain this skill, you need (b) --- some measures. At first you should (c) --- your vocabulary since everywhere words are required. Words will help you (d) --- your ideas appropriately. Next you should know how to arrange (e) --- in a sentence. Here grammar will help you the basic (f) --- way. For that basic (g) ---, items must be known to you. Then you have to (h) --- your general knowledge to generate ideas and make sentences accordingly. Be creative and try to (i) --- sentences of your own. Finally, regular (j) --- will help you succeed in achieving this skill.
+
+03. Fill in the blank with appropriate in each gap: [Jashore Board-2024]
+Nelson Mandela was an unconditional brave fighter against race discrimination. During his (a) ---, he had (b) --- himself to this (c) --- of the people of Africa. He stated that he had fought against domination and he had fought against black (e) ---. Being (f) --- with his (g) ---. Nadine Gordimer, the South African writer and Nobel Laureate for literature, once (h) --- that Mandela was at the (i) --- of their time, theirs in South Africa, and the other people (j) --- they were.
+
+04. Fill in the blank with appropriate in each gap: [Dinajpur Board-2024]
+Money is power and can do much good and evil. It gives (a) --- delight. It (b) --- do everything. A person without (c) --- is a person to be pitied. Nobody pays (d) --- respect to him. His friends do not (e) --- him. He has to depend on the (f) --- of others. In order to (g) --- money, he does a lot of jobs. It is must (h) --- our life. But it does not necessarily (i) --- happiness. Happiness is absolutely a (j) --- matter.
+
+05. Fill in the blank with appropriate in each gap: Mymensingh Board 2024
+Self-employment means to create job opportunity for oneself by one's own effort. Various government organizations (a) --- trying to create (b) --- congenial atmosphere for (c) ---. Different NGO's have (d)-- rendered their help. Livestock (e) ---, agricultural farming, poultry (f) --- are some of (g) ---- sectors. There are (h) --- opportunity for self (i) --- Bangladesh. One (j) --- easily engage oneself in these jobs.
+
+06. Fill in the blank with appropriate in each gap: [Chattogram Board-2024]
+Bangladesh is a land of (a)-- beauty. Its beauty is so captivating that a stranger cannot but be (b) --- looking at this endless variety. Nature has (c) --- showered its blessings on this country. The rivers, hills and forests are rich in natural (d)--.The people of this country feel a strong (e) – for their motherland. They love their motherland from the (f) –- of heart. They work hard to (g) –- its economic condition and to remove poverty. Most of them toil hard from dawn to dusk to accelerate the pace of (h) -- The progress of this country lies in the (i) --- of common people. They are the (j) --- of a beautiful and prosperous Bangladesh.
+
+07. Fill in the blank with appropriate in each gap: [Barishal Board-2024]
+When a girl gets married, she usually drops out of school and begins full time work in her in-laws household. In the in-laws house, she is marginalized. She (a) --- vulnerable to all forms of abuse, (b) --- dowry related violence. In Bangladesh, it is still (c) --- for a bride's family to pay dowry. (d) --- the practice being illegal. Dowry demands can also (e) --- after the wedding. For an adolescent (f) ---, even if her in-laws are supportive, there (g) --- greater health risks in terms of (h) --- and child birth. The majority of adolescent (i) --- and their families are uninformed or insufficiently (j) --- about reproductive health and contraception. The maternal mortality rate for adolescents is double the national rate.
+
+08. Fill in the blank with appropriate in each gap: [Dhaka Board-2023]
+The Padma Bridge is a multi-purpose road-rail bridge over the (a) --- Padma river in Bangladesh. It is the longest bridge in Bangladesh. At first the World Bank intended to (b) --- for the construction of the bridge and later (c) --- their decision. But this mega project has been built with domestic funding without (d) --- aid. It is 6-15 km long and 18-10 m wide. There is a four-lane highway on the upper level and a one- lane railway on the lower level. The construction journey was started on 7 December 2014 and completed by May 2022. The dream of Bengalis has come to the reality after (e) --- various uncertainties. The bridge was (f) ---  by the Honorable Prime Minister Sheikh Hasina on June 25 of 2022. Through the opening of the bridge, 19 districts of the south- western region have been directly (g) --- with the eastern part of the in economic country. The importance of the Padma Bridge is (h) --- development and in changing the living (i) --- of millions of people. The world has (j) --- The historical achievement of the people of Bangladesh through this construction of the Padma Bridge. The Padma Bridge symbolizes Bangladesh's self-esteem. 
+
+09. Fill in the blank with appropriate in each gap: [Rajshahi Board-2023]
+The process of globalization obviously requires a common language for international communication. For many different reasons. English has (a) --- the (b) --- of being that language. As a result, it has (c) --- national borders to reach people who speak other languages. It is no longer the (d) --- American or other native speakers, but a language that (e) --- possession of British or to the world's its people. In fact, bilingual and multilingual users of English for (f) --- monolingual native speakers. This phenomenon has led to a (g) --- variety of English around the world. As more and more people speak English, more and more varieties have (h) --- strongly influenced by the pronunciation, grammar and idioms of the (i) --- tongues. World English has now (j) --- which are mother away from the control of its native speakers.
+
+10. Fill in the blank with appropriate in each gap: [Chattogram Board-2023]
+Education is one of the basic needs of a human being. It is (a) --- for the (b) --- they (d) --- of mind. Many illiterate people do not have any (c) --- educated, they could live a (e) --- teaches us how to live well. It (f) --- enhances our (h) ---, of health. If and planned life. Education us to make the right (g) --- to perform our duties properly and (i). problems. In fact, it is education (j). --- brings positive change our life. in life. It our everyday
+
+11. Fill in the blank with appropriate in each gap: [Sylhet Board-2023]
+Kuakata is a rare scenic spot (a) -- in Patuakhali district about 320 km (b) --- Dhaka. It is a famous (c)--- overline destination because of the picturesque (d) --- beauty, sandy beaches, blue sky and the shimmering expanse of water of the Bay of Bengal and the evergreen (e) ---. The name Kuakata (f) --- from the digging of a well (kua) by the early Rakhaines for (g)--- water. Kuakata allows its visitors to (h) --- both sunrise and sunset from the (i) ---. Gentle and sandy slopes make it (j) --- for bathing, swimming and diving.
+
+12. Fill in the blank with appropriate in each gap: [Barishal Board-2023]
+Student life is a life of (a)--- for future struggle. To make him (b)---for the struggle, education is necessary. So the first and foremost duty of a student (c)---to prosecute his studies well. He who (d) --- his lessons regularly (e) ---well in the examination. On the (f)---, the student who wastes his time cuts a (g)---figure. It should be (h) ---in mind that none can get back the (i)---time. If the students neglect their studies, they will suffer in the (j) ---run.
+
+13. Fill in the blank with appropriate in each gap: [Cumilla Board-2023]
+ A large number of people learn English (a) --- people use it (b) --- a first language and some people take it as a (c) --- language. Many international (d) --- the world. Some now depend on English for (e) --- with offices in different countries. They offer employment to people (f) --- adequate knowledge of English. The advertisements (g) --- in many dailies (h) --- in English. So, it would not be (i) --- to neglect this (j) --- language. 
+
+14. Fill in the blank with appropriate in each gap: [Dinajpur Board-2023]
+The environment (a) --- various things. All the things of the environment are related to (b) --- another. Any change in the ecosystem can (c) --- all the other parts. To prevent the environment from destruction is the (d) --- of human beings. The environment should be (e) --- neat and clean to enjoy a healthy and comfortable (f) ---. But people are not (g) --- of the dangerous effect of the cocological change. They do unwise things and bring about dangers for their own (h) ---. Imbalance in the cocology brings about climatic (i) --- and the result of the change is various natural (j) ---.
+
+15. Fill in the blank with appropriate in each gap: [Mymensingh Board-2023]
+The food (a) --- of the young people of our country has changed greatly. Our young people are getting (b) --- to fast foods and western foods day by day. Today they go to fast food shops and enjoy much taking (c) --- such as; pizza, burger, soft drinks etc. When fast foods (d) ---- high level of salt, sugar and fats, then it is called (e) ---- food. It lacks fibre, (f) ----, and minerals. The world is currently facing an obesity epidemic which puts people at the (g) --- of chronic (h) ---- like heart disease and diabetes. Junk foods (i)---- to obesity. So, we should be (j) --- about having fast foods now and then.
+
+16. Fill in the blank with appropriate in each gap: [Jashore Board-2023]
+Air and water are two important (a)--- of the environment. These elements are (b) — for life on earth. They are often (c)— in many ways. Air is polluted by (d) — If we want to live a (e) — life, and water by different kinds of (f) — and filth. We should (g) — the pollution of the environment. Total prevention may be (h) — but we can certainly (i)---  pollution by raising (j) — among the people.
+
+17. Fill in the blank with appropriate in each gap: [Rajshahi Board-2022]
+Language plays a very important (a)___in the life of human beings. We use language from the (b)___ we wake up in the morning (c)___ we go to bed at night. We use language to express what we (d) --- and to say what we like or (e) ---. We also use language to (f) --- Information. In short language is (g) --- present in our life. It is an (h) --- part of what we do and believe.
+
+18. Fill in the blank with appropriate in each gap: [Barishal Board-2022]
+Examination is very important in student’s life. It justifies a student’s (a) ---. No student ca be (b) --- to next class without examination. So, every student (c) --- hard to pass the examination. There are many ways to do (d) --- in the examination and meritorious students follow these ways. Gathering (e) --- is not all things to approach the exam. One may gather much (f) --- about his subject, but if he can not (g) --- his performance in the examination his such kind of knowledge is (h) ---.
+
+19. Fill in the blank with appropriate in each gap: [Jashore Board-2022]
+Civility means polite (a) --- or modesty. It also (b) --- courteous manner. It is a great virtue (c) ---- a man. To be well-behaved, or good-natured, we need not (d) --- money. We have to (e) --- willingness to attain civility. We have to (f) --- some code of conduct and (g) --- the norms of etiquette of the society. It (h) --- from society to society. However, one has to practise good manner in one's character from an early age. No expenditure but consciousness is required.
+
+20. Fill in the blank with appropriate in each gap: [Cumilla Board-2022]
+Gender (a) --- is a deeply rooted social and cultural problem of our country. From the very (b) --- of a girl child the disparity begins. Day by day she grows up and faces the (c) --- atutude of the (d) --- members to her. She begins to understand that she is deprived of the basic (e) --- necessary to build up her career. But she does not get (f) --way to overcome the burdens of the (g)--- of social oppression. In this way, she ends up her life keeping her dreams in her (h) ----.
+
+21. Fill in the blank with appropriate in each gap: [Dhaka Board-2019]
+We all know what a dream is. Generally we dream during our sleep. Some dreams are sweet or (a)---. When we dream something extremely bad, we call it a (b) ---Dreams have no (c) ---They are soft and (d) ---. The dream we have during the day time is called (e) ---, Dreams have fascinated philosophers for thousands of years, but none could (f) --- specifically what dream actually is. Dreams can be extraordinarily (g) ---or very vague. While many theories have been proposed no consensus has emerged. It is important to consider that science is still (h) ---the exact purpose and function of sleep itself. Some researchers suggest that dreams have no (i) ---purpose, while others believe that (j) ---is essential to mental, emotional and physical well-being. 
+
+22. Fill in the blank with appropriate in each gap: [Comilla Board-2019]In recent years there have been many alarming reports that the world’s climate is undergoing a significant change. All these reports provide (a) ---evidence (b) ---world’s temperatures are increasing day by day. This increase in global (c) ---is caused (d) ---increased amounts of carbon dioxide (e) ---the earth. Most climatologists (f) ---that greenhouse effect is the likely (g) --- of this global warming. It may harm human (h) ---seriously. This could catastrophically (i) ---mankind’s (j) ---  to grow food. 
+
+23. Fill in the blank with appropriate in each gap: [Rajshahi Board-2019]
+The persona of a traffic policeman has always been a (a) ---one. It has often found (b) ---space and close treatment in literature and other (c) ---. Besides the many poems about this (d) ---character, there is at least one (e) ---where the central character is a traffic policeman. In 1963, Greek filmmaker Filippos Fylaktas made this film (f) ---My Brother, the Traffic policeman. It featured a slightly (g) ---traffic police, Antonis Pikrocholos who is utterly (h) ---to service and duty and applies the traffic (i) ---with unyielding (j) —.
+
+24. Fill in the blank with appropriate in each gap: [Jashore Board-2019]
+There goes a proverb that child is (a) ---of the man. Today’s child is the (b) ---of a nation. He will (c) — the country. The whole (d) — depends on their proper (e) —. It is our fundamental (f) —  to rouse their (g) — talent. A sound environment is (h) — both in the family and the society so that a child (i) — up physically, mentally and spiritually. Only then it will be (j) — to build up a beautiful and developed country.
+
+25. Fill in the blank with appropriate in each gap: [Sylhet Board-2019]
+We know that all species are (a) — for maintaining ecological balance. If one is (b) —, the whole natural environment (c) —. In order to (d) — the environment from being spoilt, we should therefore protect (e) — wildlife. The good news is that many countries are now (f) — action to protect their (g) — wildlife. We should (h) — the earth’s wild (i) — to save ourselves. To be (j) — to animals is to be kind to mankind.
+
+26. Fill in the blank with appropriate in each gap: [Barishal Board-2019]
+In Britain road and transport rules are (a) — followed by the drivers. Consequently it has the best road (b) — record in Europe. All transports must strictly (c) — by the rules (d) —by the government. Coaches and minibuses (e) — carry children under 16 must be (f) — with seat-belts. There the law (g) — agencies are (h) —. So, the buses and coaches have become the (i) — a form of the road (j) —.  
+
+27. Fill in the blank with appropriate in each gap: [Chattogram Board-2019]
+Adolescents (a) — on their (b) —, their communities, schools, health services and their workplaces to (c) — a wide range of skills that can (d) — them to cope with the (e) — they face and make a successful transition from (f) — to adulthood. Parents, members (g) — the community, service providers, and (h) — institutions have the (i) — to both promote adolescent development and adjustment and to intervene (j) — when problems arise.
+
+28. Fill in the blank with appropriate in each gap: [Dinajpur Board-2019]Diaspora is an age-old (a) —. In recent times, Rohingya (b) — has attracted a lot of attention. More than one million Rohingyas have (c) — from Myanmar to Bangladesh. Their migration is (d) — to the adverse conditions in Rakhine State of Myanmar–the ancestral homeland of the Rohingyas. The government of Bangladesh has (e) — this huge number of refugees on humanitarian (f) —. But these people are a huge (g) — on our economy and on our (h) —. The world community should extend their full support to the (i) — Rohingyas so that they can (j) — return to their homeland.
+
+29. Fill in the blank with appropriate in each gap: [HSC Exam-Ka Set-2018]
+In our country, women are the worst sufferers in every stage of life. Social prejudices and customs tend to (a) — their position. When a female child is born. it is not regarded (b) — a happy event. She is not welcomed with the deep (c) — of heart. Instead of being delighted, most of the members of the family think that she has come to add to their (d) —. Even the mother of the female child is not welcomed cordially for giving (e) — to a female child. Rather the mother of the female child is (f) — for this. In most cases, women are the victim of gender (g) —. In fact, the life of our women is not smooth (h) — If we want lasting development of the country, we have to (i) — the dignified status of (j) — women of our country. The government is conscious of this matter. 
+
+30.  Fill in the blank with appropriate in each gap: [HSC Exam-Kha Set-2018]
+Dream is a series of thoughts, images and sensations occurring in a person’s mind during sleep. Dream is a (a) — of unconscious wishes, thoughts and imaginations. It (b) — be sweet or horrible. When we dream (c) — pleasant, we call it a sweet dream. (d) — when we dream something extremely bad, we (e) — it a nightmare. Dream is meaningless if (f) — is a day dream. But dream has also (g) — real purpose as it is related to our (h) —, emotional and physical well-being. The main benefit (i) — dream is that it produces new thoughts (j) — ideas in brain and helps to clean up clutter from mind.
+
+31. Fill in the blank with appropriate in each gap: [Dhaka Board-2017]
+Rabindranath Tagore was a man of (a) — genius. He was (b) — a poet and a novelist (c) — a playwright, a composer, a painter and a philosopher. He was awarded the Nobel Prize for (d) — ‘Gitanjali’ into English. Those translations earned him a great (e) — in the West. As a humanist, Tagore accused the British (f) — and pleaded for the (g) — of India from Britain, Tagore was highly influential in (h) — the best of Indian culture to the West and Vice-versa. He (i) — himself to literature at a very early age. After coming back from England, he began to write (i) — in all branches of literature.  
+
+32.  Fill in the blank with appropriate in each gap: [Cumilla Board-2017]
+Bangladesh is a land of (a) — beauty. Its beauty is so captivating that a stranger cannot but be (b) — looking at this endless variety. Nature has (c) — showered its blessings on this country. The rivers, hills and forests are rich in natural (d) —. The people of this country feel a strong (e) — for their motherland. They love their motherland from the (f) — of heart. They work hard to (g) — its economic condition and to remove poverty. Most of them toil hard from dawn to dusk to accelerate the pace of (h) —. The progress of this country lies in the (i) — of common people. They are the (j) — of a beautiful and prosperous Bangladesh. 
+
+33. Fill in the blank with appropriate in each gap: [Rajshahi Board-2017; Cumilla Board-2008,2015, Sylhet Board-2005]Sincerity is the best way of achieving success. One can go a long way if one does anything with sincerity. People who are sincere in their work are (a) — of making anything successful. The great men are also sincere because they (b) — that sincerity is the (c) — to success. Those who are not (d) — can never (e) — a long way in the world. The poor people are not always sincere, because they do not know the (f) — of sincerity. If they knew it, they would (g) — good use of it. Sincerity (h) — _ not only to do work properly but also with dutifulness, honesty, modesty and good behaviour. The people of our country are not still (i) — of the (j) — of sincerity.
+
+ 34. Fill in the blank with appropriate in each gap: [Jashore Board-2017]
+Beauty is easy to appreciate but difficult to define. As we look around, we discover beauty in (a) — objects and sights – in nature, in the (b) — of children, in the kindness of strangers. But asked to define, we run into (c) —. Does beauty have an independent objective identity? Is it (d) — or is it dependent on our sense (e) —? Does it lie in the (f) — of the beholder? Thus, we ask (g) —. However, poets, artists, philosophers and thinkers (h) — always in search of beauty in their works and arts. But most of them have a common opinion that where there is beauty, there is (i) — that is a thing of beauty is a joy (j) —.
+
+35. Fill in the blank with appropriate in each gap: [Dhaka Board-2004; Barishal Board-2017]
+Many events of (a) — importance took place during the last century. Significant advances were made in the (b) — of science and technology. Many European colonies (c) — independence. The movement for democracy become (d) — in many parts of the world. Two world wars (e) — out in this century. It also witnessed the misuse of atomic energy. Two cities of Japan were completely (f) — as a result of the dropping of atom bombs. The Vietnam war and the Gulf war killed (g) — of innocent people. However, the emergence of Bangladesh as an (h) — nation was a momentous event. After a bloody (i) — of nine months, Bangladesh was born. Now we hold our heads (j) — in the comity of nations.
+
+36. Fill in the blank with appropriate in each gap: [Chittagong Board-2017]There goes a proverb that child is (a) — of the man. Today’s child is the (b) — of a nation. He will (c) — the country. The whole (d) — depends on their proper (e) —. It is our fundamental (f) — to rouse their (g) — talent. A sound environment is (h) — both in the family and society so that a child (i) — up physically, mentally and spiritually. Only then it will be (j) — to build up a beautiful and developed country.
+
+37. Fill in the blank with appropriate in each gap: [Dinajpur Board-2017; Rajshahi Board-2013]
+Sports are a popular form of entertainment. Many international sporting events are (a) — from time to time. Most of these events are (b) — by multinational manufacturing (c) — and business firms. They pay for the sports events in (d) — for the right to (e) — their products during those events. These events are (f) — worldwide by satellite and people all over the world watch them (g) —. As a (h)---, the sponsors’ products (i) — maximum media coverage. Thus sports help the (j) — of trade and commerce.
+
+38. Fill in the blank with appropriate in each gap: [Dhaka Board-2016]
+Hospitality has long been a part of our (a)---in Bangladesh. Although many other (b)--are changing now, people are still quite (c)-and friendly towards (d)-.They like speaking to foreigners even if they have not been (e) -. It is quite (f)- for Bangladeshis to ask personal (g)-about family, jobs and (h)-which visitors (i) from overseas might find (i). However, it should be understood that no harm is (j)--- by such questions. On the other hand, they express a genuine interest in the foreigner's state of affairs!
+
+39. Fill in the blank with appropriate in each gap:[Rajshahi Board-2016;Dhaka Board-2007]
+Television has become a (a)--- source of entertainment of the present world. A wide (b)—of programmes is (c) — on numerous channels. Almost every family has a television (d) — today. Television (e) — are not only entertaining, they can be highly (f) — too. For example, television is now (g) — used for distance learning. The courses (h) — by the open university are shown on BTV. Several channels like the Discovery Channels and the National Geographic Chanel telecast highly informative and (i) — programmes. However, watching TV (j) — is not permissible.
+
+40. Fill in the blank with appropriate in each gap: [Rajshahi Board-2013, Dhaka Board-2011, Barishal Board-2009, Cumilla Board-2007; Dinajpur Board-2017]Sports are a popular form of (a) —. Many international (b) — events are organised from time to time. Most of those events are (c) — by multinational manufacturing companies and business firms. They (d) — for the sports events in exchange for the right to (e) — their products during those events. These events are (f) — worldwide by satellite and people all (g) — the world watch them (h) —. As a result, the sponsors’ products receive maximum media (i) — thus giving companies international (j) —.
+
+41. Fill in the blank with appropriate in each gap: [Cumilla Board-2013, Sylhet Board-2006]Air and water are two important (a)--- of the environment. These elements are (b) — for life on earth.  They are often (c)— in many ways. Air is polluted by (d) — If we want to live a (f) — life, and water by different kinds of (e) — and filth. We should (g) — the pollution of the environment. Total prevention may be (h) — but we can certainly (i)---  pollution by raising (j) — among the people.
+
+42. Fill in the blank with appropriate in each gap: [Chattogram Board-2013, Barishal Board-2007]Bangladesh is a land of (a)---. But nowadays the rivers are (b) ---up. So, (c) ---is an urgent necessity for our country now. The rivers carry (d) ---which makes the land (e) ---to grow crops. Besides, they supply us with plenty of (f) ---. During the dry season, we (g)–river water to the land. At present, the (h) ---of water causes a bad harvest. We can easily (i) ---the use and utility of the rivers in our life and (j---.
+
+43. Fill in the blank with appropriate in each gap: [Dinajpur Board-2014; Rajshahi Board-2012, 2008, Barishal Board-2008, Jashore Board-2003,2010; Chattogram Board-2009; Sylhet Board-2012]Man pollutes water, another vital (a) — of the environment by  (b) — waste into it. Farmers (c) — chemical fertilizers and insecticides in their fields. Some of these chemicals, washed away by rain and flood, (d) — mixed with water in rivers, canals and ponds. Water is also (e) — by mills and factories when they throw their (f) — chemicals and waste products into rivers and canals. Water vehicles also pollute rivers by dumping oil, food waste and human (g) — into them. Unsanitary latrines (h) — on the river and canal banks are also (i) — for further pollution. In this way, various (j) — of waste and filth contaminate water.
+
+44. Fill in the blank with appropriate in each gap: [Cumilla Board-2012, Dinajpur Board-2012, Chattogram Board-2006]If we (a) — forests and cut (b) — trees, the effects might eventually (c) — us all. If forests (d) — into deserts, what will (e) — carbon dioxide? Then the weather pattern (f) — change and the world will become (g) —. This is called the greenhouse effect. As a (h) — of this effect the polar ice caps will (i) — and this will cause the flood of (j) — areas of the globe.
+
+45. Fill in the blank with appropriate in each gap: [Chattogram Board-2012, Cumilla Board-2006]
+Learning a language is (a) — riding a cycle. The most (b) — thing (c) — any language is communication. You learn to (d) — effectively by using a language, by doing things with it and by experiencing it. You (e) — learn English in the same (f) — as one learns to ride a cycle. Do not (g) — if people laugh at you (h) — you make (i) —. You can certainly learn (j) — mistakes.
+
+46. Fill in the blank with appropriate in each gap:[Jashore Board-2011]Rose is a symbol of (a) —. I have a rose garden. The garden looks (b) — when the roses bloom. It (c) — sweet. The (d) — and fragrance of the rose attract all. I pluck roses from my garden (e) — our house (f) —. Nowadays many people (g) — roses. The (h) — of rose is profitable. So we should (f) — roses and only to earn money but also to (j) — our houses
+
+47. Fill in the blank with appropriate in each gap:[Chattogram Board-2011]Today women (a) — an important role in all spheres of life. They (b) — no longer within the four walls of their home. They have (c) — out of their kitchens and are (d) — with men in all the development programmes of the government. Many women have (e) — higher education and are (f) — as doctors, engineers, teachers, administrations, judge etc. They have been able to (g) — their worth. However, women still face (h) — discrimination. Many girls are married (i) — at an early age. Many never (j) — to school.
+
+48. Fill in the blank with appropriate in each gap: [Dinajpur Board-2011]Returning home can be very difficult. When people (a) — to their home countries, they often find many changes. The (b) — old streets may not look the same. People they remember may not (c) — them. If they go back to their own childhood house, the house may look very (d) —. It may (e) — small and cramped. One woman wrote that she returned to her (f) — and her house was gone. In its (g) —, there was a little, modern grocery shop. No one (h) — her. She was extremely (i) —. It is also possible to return to a place where everyone remembers you. That makes a person feel happy inside; at least you were not (j) —.
+
+49. Fill in the blank with appropriate in each gap: [Dhaka Board-2010]Language plays a very (a) — role in our life. We use language from the (b) — we wake up in the morning (c) — we go to bed at night. We use language not only during our (d) — hours but also in our dreams. We use language to (e) — what we feel and to say (f) — we like or dislike. We also use language to (g) — information. In short, language is (h) — present in our life. It is an (i) — part of what we do, (j) — and believe.
+
+50. Fill in the blank with appropriate in each gap: [Rajshahi Board-2010, Cumilla Board-2009]
+Dhaka is the capital of Bangladesh. It is a (a) — city. It is a city (b) — traffic jam. A fly (c) — is built at Mohakhali with a view to (d) — the traffic jam. To solve this problem, traffic rules (e) — be enforced. Besides these drivers, passers-by and (f) — should honour and abide (g) — all rules (h) — making the city habitable. Otherwise our life (i) — remain (j) — stake.
+
+51.  Fill in the blank with appropriate in each gap: [Comilla Board-2010, Rajshahi Board-2007, Dhaka Board-2005]
+Modern life (a) — much on transport. We can very well (b) — how important transport is when it is (c) — by natural calamities or during socio-political crises. In fact, transport has made it (d) — for us to reach places previously (e) —. It has (f) — helped the flourish of trade and commerce and to (g) — new knowledge and ideas. (h) — transport has (i) — friendship and understanding among nations and people (j) — the globe.
+
+52. Fill in the blank with appropriate in each gap: [Chattogram Board-2010]It is happy news that the (a) — of adopting unfair means in the examination has been (b) — to a greater extent. Our students have now (c) — that passing in the examination is not the only goal of student life. But still this heinous (d) — has not been totally (e) —. When an examinee is caught copying in the examination there is nothing open to authority (f) — to (g) — him /her. This damages not only the concerned examinee but also (h) — a total loss to the whole family of that examinee So, our students must refrain themselves (i) — this bad practice. They should also remember that a building (j) — strong foundation must fall down either today or tomorrow.
+
+53. Fill in the blank with appropriate in each gap: [Sylhet Board-2010]One day a fox was very (a) —. It was (b) — for some food to eat. But it could not manage any (c) —. At last, it became very (d) — and sat (e) — a tree. A crow was sitting on the tree with a (f) — of meat in its beak. The fox looked at the crow and (g) — the piece of meat. An idea came to its mind to (h) — the meat from the crow. The fox said loudly “(i) — a beautiful bird it is! But alas! the bird (j) — not sing.”
+
+54. Fill in the blank with appropriate in each gap: [Barishal Board-2010]Electricity is (a) — a part of our every day (b) — that we rarely think twice about its importance and necessity. When we switch (c) — the light and the fan or turn on our television and computer, we enjoy (d) — blessing of electricity. Even when we turn off the bedside lamp and are fast asleep, (e) — remains working for us driving our fans, heating or cooling our rooms and running our refrigerators. Unfortunately, we (f) — enjoy the uninterrupted blessings of electricity. There is some (g) — in the generation (h) — electricity in Bangladesh. (i) —, load-shedding or suspension of the supply of electricity has (j) — a regular programme of the Power Development Board.
+
+55. Fill in the blank with appropriate in each gap:[Dinajpur Board-2010] 
+Everybody (a) — to live a happy and peaceful life. But what are the (b) — that can assure you of such a nice life? Naturally, people’s opinions are quite different on this point. The factors (c) — be money, power, security, honour, love, health, good family bondage, education, voluptuous pleasures etc.  Most people (d) — money alone can ensure all other elements (e) — for a happy life. It’s partly true. But if you (f) — stick to money, you may start running after money. But you cannot live in two rooms, cannot (g) — two persons’ food etc. at the (h) —  time. You should bear in (i) — that your necessity or desire has a limit. If you exceed the limit and run (j) — money with endless greed, you will be utterly ruined.
+
+`;
+
+            const demoAnswers = `01.  Answer: (a) sector/field/country; (b) and; (c) national; (d) role; (e) projects; (f) significantly; (g) mention/see/notice; (h) Elevated Express; (i) Karnaphuli; (j) boosted/flourished;
+02. Answer: (a) learn; (b) to take / to implement; (c) enrich; (d) express / write/ flourish; (e) them; (f) right; (g) grammatical; (h) apply/use; (i) make/create; (j) practice;
+03. Answer: (a) lifetime; (b) dedicated; (c) struggle; (d) white; (e) oppression; (f) aligned; (g) struggle; (h) said; (i) epicenter; (j) where;
+04. Answer: (a) pleasure; (b) can; (c) money; (d) proper; (e) value/respect; (f) mercy; (g) earn; (h) for; (i) bring; (j) relative;
+05. Answer: (a) are (b) a; (c) employees; (d) also/already; (e) rearing (f) farming (g) the (h) many/some; (i) employment; (j) can;
+06. Answer: (a) natural; (b) fascinated/mesmerized; (c) generously/lavishly; (d) resources; (e) love/ affection; (f) core; (g) develop; (h) development; (i) hand; (j) sources;
+07. Answer: (a) becomes; (b) including /like; (c) common; (d) despite; (e) continue /remain/prevail; (f) bride; (g) are/remain; (h) pregnancy; (i) brides; (j) informed;
+08. Answer: (a) mighty/powerful; (b) invest/spend; (c) overturned/withdrew; (d) foreign/any; (e) having/facing; (f) inaugurated/commenced; (g) connected/linked; (h) huge/great; (i) standards; (j) seen/witnessed;
+09. Answer: (a) gained/achieved/got; (b) status/rank/place; (c) crossed; (d) only; (e) belongs; (f) communicating; (g) wide; (h) evolved/arisen/appeared; (i) different; (j) run/passed;
+10. Answer: (a) necessary/essential; (b) development/evolution; (c) knowledge/awareness; (d) were; (e) better/structured; (f) teaches; (g) decision/choice; (h) ability/capacity; (i) solve; (j) that/which;
+11. Answer: (a) situated/located; (b) from; (c) tourist; (d) natural; (e) forest /forests; (f) originates; (g) collecting; (h) watch; (i) beach; (j) pleasant;
+12. Answer: (a) preparation; (b) capable/prepared/ready/fit; (c) is; (d) learns; (e) does/performs; (f) other hand/contrary; (g) sorry/bad/poor; (h) kept; (i) lost/wasted; (j) long;
+13. Answer: (a) throughout; (b) as; (c) second; (d) organizations/institutions; (e) communicating; (f) with; (g) published/circulated; (h) are; (i) logical/wise; (j) important;
+14. Answer: (a) includes; (b) one; (c) affect/interrupt/disrupt; (d) duty/responsibility; (e) kept/maintained; (f) life; (g) aware/conscious; (h) lives; (i) change; (j) disasters/calamities;
+15. Answer: (a) habit; (b) habituated/accustomed/attracted; (c) foods; (d) have/contain; (e) junk; (f) vitamins; (g) risk/risks; (h) diseases; (i) lead; (j) aware/conscious/sensible/careful;
+16. Answer: (a) elements; (b) essential/important/necessary/vital; (c) polluted/contaminated; (d) smoke; (e) healthy; (f) waste/dirt; (g) prevent/stop/reduce/control/check/minimize; (h) impossible/difficult; (i) reduce/decrease/minimize/control/check; (j) awareness/consciousness;
+17. Answer: (a) role; (b) moment; (c) till; (d) do; (e) dislike; (f) gather; (g) always/constantly; (h) integral/important;
+18. Answer: (a) ability/quality/skill; (b) promoted; (c) must study/should study/studies/tries; (d) well; (e) knowledge/information; (f) knowledge/information; (g) show; (h) valueless/useless/meaningless;
+19. Answer: (a) behaviours; (b) means; (c) of; (d) have/own; (e) have; (f) follow; (g) maintain; (h) varies/differs;
+20. Answer: (a) disparity/inequality/discrimination; (b) birth; (c) cruel; (d) family; (e) needs/rights; (f) enough/proper; (g) shackle/chain; (h) mind/heart;
+21. Answer: (a) romantic/pleasant; (b) nightmare; (c) colour; (d) silvery; (e) day-dream; (f) define/say; (g) vivid; (h) unraveling; (i) real; (j) dreaming;
+22. Answer: (a) strong; (b) that; (c) warming; (d) by; (e) around; (f) believe/predict; (g) cause; (h) beings; (i) reduce; (j) ability;
+23. Answer: (a) curious; (b) important; (c) arts; (d) fascinating; (e) movie; (f) named; (g) manic; (h) devoted; (i) code; (j) severity;
+24. Answer: (a) father; (b) future; (c) lead; (d) country; (e) development; (f) duty/responsibility; (g) hidden/latent; (h) required; (i) grow; (j) possible;
+25. Answer: (a) important; (b) gone; (c) suffers; (d) protect; (e) our/the; (f) taking; (g) vulnerable; (h) protect/save; (i) lives/creatures/animals; (j) kind;
+26. Answer: (a) strictly/duly; (b) safety; (c) abide; (d) prescribed/set; (e) that; (I) equipped/furnished; (g) enforcing; (h) strict ;(i) symbolic; (j) road;
+27. Answer: (a) depend; (b) families; (c) learn; (d) help/assist; (e) pressures/problems; (f) childhood; (g) of; (h) social; (i) responsibility; (j) effectively;
+28. Answer: (a) issue/matter/phenomenon; (b) diaspora; (c) fled/come/migrated; (d) due; (e) accepted; (f) ground; (g) burden; (h) environment; (i) migrated; (j) safely/easily;
+29. Answer: (a) degrade; (b) as; (c) feeling; (d) suffering; (e) birth; (f) condemned; (g) discrimination; (h) at all; (i) ensure; (j) all/the;
+30. Answer: (a) representation; (b) can/may; (c) something; (d) but; (e) call; (f) it; (g) a; (h) mental; (i) of; (j) and;
+31. Answer: (a) Versatile; (b) not only; (c) but also; (d) translating; (e) popularity/name; (f) rulers; (g) freedom; (h) transporting; (i) turned/attached; (j) profusely/copiously;
+32. Answer: (a) natural; (b) overwhelmed; (c) generously; (d) beauty; (e) love/attraction; (f) core; (g) develop; (h) development; (i) hands; (j) makers;
+33. Answer: (a) sure/confident; (b) know; (c) key; (d) sincere; (e) go; (f) importance/value/significance; (g) made; (h) sincerely; (i) become; (j) surely;
+34. Answer: (a) pleasurable; (b) laughter; (c) difficulties; (d) universal; (e) perceptions; (f) eye; (g) questions; (h) are; (i) truth; (j) forever;
+35. Answer: (a) happened; (b) occurred; (c) for; (d) momentous; (e) occurred; (f) also; (g) emergence; (h) was; (i) bloody; (j) raise;
+36. Answer: (a) father; (b) future; (c) lead; (d) nation; (e) development; (f) duty; (g) hidden/latent; (h) necessary; (i) grow; (j) possible;
+37. Answer: (a) organized; (b) sponsored; (c) companies; (d) exchange; (e) advertise; (f) telecast; (g) live; (h) result; (i) coverage; (j) expansion;
+38. Answer: (a) culture/tradition; (b) things; (c) polite; (d) foreigners; (e) introduced; (f) common/natural/normal/usual; (g) questions/information; (h) income; (i) awkward/impolite/unusual/unnatural; (j) meant;
+39. Answer: (a) common/main/prime/popular/vital/wonderful; (b) range/number; (c) telecast/televise/shown; (d) set; (e) programmes; (f) educative/informative/instructive; (g) being/widely/popularly/broadly/extensively/also/greatly; (h) run/conducted; (i) educative/useful/entertaining/interesting; (j) is;
+40. Answer: (a) entertainment; (b) sports; (c) sponsored; (d) play; (e) advertise; (f) telecast; (g) over; (h) receive; (i) coverage; (j) recognition;
+41. Answer: (a) elements; (b) essential/important/necessary/vital; (c) polluted; (d) smoke; (e) waste/dirt; (f) healthy; (g) stop/reduce/control/check; (h) impossible/difficult; (i) reduce/decrease/minimize/control/check; (j) awareness/consciousness;
+42. Answer: (a) rivers; (b) drying; (c) dredging; (d) silt; (e) fertile; (f) water; (g) carry; (h) scarcity; (i) make; (j) economy;
+43. Answer: (a) element; (b) throwing; (c) use; (d) are/get; (e) polluted; (f) poisonous; (g) waste; (h) standing; (i) responsible; (j) kinds;
+44. Answer: (a) destroy; (b) down; (c) endanger/harm/affect; (d) turn; (e) absorb/reduce; (f) will; (g) warmer/hotter; (h) result; (i) melt; (j) coastal/low-lying/huge;
+45. Answer: (a) like; (b) important; (c) of/about; (d) communicate; (e) can/may/should; (f) way; (g) hesitate; (h) when/while; (i) mistakes; (j) through;
+46. Answer: (a) beauty; (b) beautiful/nice; (c) smells; (d) colour; (e) for/nicely; (f) decoration; (g) cultivate/grow; (h) cultivation; (i) grow/cultivate/plant; (j) decorate/beautify;
+47. Answer: (a) play/perform; (b) are/remain; (c) come/got; (d) working/serving/participating; (e) received; (f) working; (g) prove; (h) gender; (i) off; (j) go;
+48. Answer: (a) return/come back; (b) very/familiar; (c) recognize/know/identify; (d) strange/unknown/different; (e) appear/seem/look; (f) house; (g) place; (h) knew/recognized; (i) shocked/sad/surprised; (j) unwelcomed/forgotten;
+49. Answer: (a) important/vital/significant; (b) moment/time; (c) till; (d) walking; (e) express; (f) what; (g) exchange/get/obtain/collect; (h) ever/always; (i) inseparable/inevitable/important/indispensable; (j) perceive;
+50. Answer: (a) populous/big/large; (b) of; (c) over; (d) decreasing; (e) must/should; (f) all/others; (g) by; (h) for; (i) will; (j) at;
+51. Answer: (a) depends; (b) know/understand/realise/perceive; (c) disrupted; (d) possible/easier; (e) impossible /difficult; (f) also; (g) gain/gather/acquire/earn/attain; (h) besides/moreover; (i) developed/promoted; (j) around/across;
+52. Answer: (a) practice; (b) checked/controlled; (c) realised; (d) crime/act; (e) stopped/removed; (f) but; (g) punish; (h) causes; (i) from; (j) without;
+53. Answer: (a) hungry; (b) searching/looking; (c) food; (d) tired; (e) under; (f) piece; (g) wanted; (h) get/have; (i) what; (j) can;
+54. Answer: (a) now; (b) life; (c) on; (d) the; (e) electricity; (f) can't; (g) crisis; (h) of; (i) therefore; (j) become;
+55. Answer: (a) wants/desires/likes/wishes; (b) factors/things; (c) may; (d) think; (e) essential/necessary; (f) only; (g) eat; (h) same; (i) mind; (j) after;
+`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
+        }
+
+        function cleanString(str) {
+            return str.toLowerCase().replace(/\s+/g, ' ').trim().replace(/[.;:]/g, '');
+        }
+
+        function initApp() {
+            const qIn = document.getElementById('q-input').value.trim();
+            const aIn = document.getElementById('a-input').value.trim();
+            if (!qIn || !aIn) return alert("Fill both boxes!");
+
+            const qBlocks = qIn.split(/\n\s*(?=\d+\.)/).filter(b => b.trim());
+            const aBlocks = aIn.split(/\n\s*(?=\d+\.)/).filter(b => b.trim());
+
+            quizData = qBlocks.map((text, idx) => {
+                let ansMap = {};
+                let rawAns = aBlocks[idx] || "";
+                const pattern = /\(([a-n])\)([\s\S]*?)(?=\([a-n]\)|$)/g;
+                let match;
+                while ((match = pattern.exec(rawAns)) !== null) {
+                    ansMap[match[1]] = match[2].trim().replace(/;$/, '');
+                }
+                let html = text.replace(/\(([a-n])\)\s*[_—.-]+/g, (m, letter) => {
+                    return `<span class="letter-label">(${letter})</span><input type="text" class="gap-input" data-letter="${letter}" data-qid="${idx}" autocomplete="off">`;
+                });
+                return { html, answers: ansMap, checked: false, score: 0, totalGaps: 0 };
+            });
+
+            document.getElementById('setup-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+
+            document.getElementById('quiz-container').innerHTML = quizData.map((item, i) => `
+                <div class="quiz-card" data-qidx="${i}" style="display: none;">
+                    <h3>Set ${i + 1}</h3>
+                    
+                    <div style="white-space: pre-wrap; font-size: 16px;">${item.html}</div>
+                    
+                    <!-- নতুন বাটন -->
+                    <div style="text-align: left; margin-top: 15px;">
+                        <button class="btn check-single-btn" 
+                                style="background: var(--s); padding: 10px 20px;"
+                                onclick="checkSingleSet(${i})">
+                            ✓ Check This Set
+                        </button>
+                    </div>
+                    
+                    <div id="fb-${i}" class="feedback-area"></div>
+                </div>
+            `).join('');
+
+            const pagination = `
+                <div id="pagination" class="no-print" style="text-align:center; margin:25px 0;">
+                    <button id="prev-btn" class="btn" style="background:#64748b" onclick="prevPage()">Prev</button>
+                    <span id="page-info" style="font-size:1.1em; margin:0 20px; font-weight:bold;"></span>
+                    <button id="next-btn" class="btn" style="background:#64748b" onclick="nextPage()">Next</button>
+                </div>
+            `;
+            document.getElementById('quiz-container').innerHTML += pagination;
+
+            showPage(0);
+        }
+
+        function checkSingleSet(qIdx) {
+            const item = quizData[qIdx];
+            if (!item) return;
+
+            let score = 0;
+            const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+            let keyHTML = "";
+
+            inputs.forEach(input => {
+                const letter = input.dataset.letter;
+                const userVal = cleanString(input.value);
+                const official = item.answers[letter] || "";
+                const possible = official.split(/[/;]|\sor\s/).map(o => cleanString(o));
+                const isCorrect = userVal !== "" && possible.some(p => p === userVal);
+
+                // রঙ পরিবর্তন
+                input.style.setProperty('color', isCorrect ? 'var(--s)' : 'var(--d)', 'important');
+
+                if (isCorrect) score++;
+                keyHTML += `<span class="ans-tag"><b>(${letter})</b> ${official}</span>`;
+            });
+
+            // ফিডব্যাক দেখানো
+            const fb = document.getElementById(`fb-${qIdx}`);
+            fb.style.display = "block";
+            if (fb.classList.contains("correct-box")) {
+                fb.classList.remove("correct-box");
+            } else if (fb.classList.contains("wrong-box")) {
+                fb.classList.remove("wrong-box");
+            }
+            if (score === inputs.length) {
+                fb.classList.add("correct-box");
+            }
+            else {
+                fb.classList.add("wrong-box");
+            }
+            fb.innerHTML = `
+        <b>Score: ${score} / ${inputs.length}</b><br>
+        <b>Answers:</b> ${keyHTML}
+    `;
+
+            // ডেটা আপডেট
+            item.checked = true;
+            item.score = score;
+            item.totalGaps = inputs.length;
+
+            updateTotalScore();
+        }
+
+        function showPage(page) {
+            currentPage = page;
+            const start = page * pageSize;
+            const end = Math.min(start + pageSize, quizData.length);
+
+            document.querySelectorAll('.quiz-card').forEach((card, i) => {
+                card.style.display = (i >= start && i < end) ? 'block' : 'none';
+            });
+
+            const totalPages = Math.ceil(quizData.length / pageSize);
+            document.getElementById('page-info').innerHTML = `Page ${page + 1} of ${totalPages}`;
+
+            document.getElementById('prev-btn').disabled = page === 0;
+            document.getElementById('next-btn').disabled = page === totalPages - 1;
+
+            document.getElementById('quiz-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function prevPage() {
+            if (currentPage > 0) showPage(currentPage - 1);
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(quizData.length / pageSize);
+            if (currentPage < totalPages - 1) showPage(currentPage + 1);
+        }
+
+        function updateTotalScore() {
+            let totalCorrect = 0;
+            let totalAttemptedGaps = 0;
+
+            quizData.forEach(item => {
+                if (item.checked) {
+                    totalCorrect += item.score;
+                    totalAttemptedGaps += item.totalGaps;
+                }
+            });
+
+            const scoreEl = document.getElementById('total-score');
+            if (totalAttemptedGaps > 0) {
+                scoreEl.innerHTML = `Total Score (checked sets): ${totalCorrect} / ${totalAttemptedGaps}`;
+                scoreEl.classList.remove('hidden');
+            } else {
+                scoreEl.classList.add('hidden');
+            }
+        }
+
+        function checkAnswers() {
+            const start = currentPage * pageSize;
+            const end = Math.min(start + pageSize, quizData.length);
+
+            for (let qIdx = start; qIdx < end; qIdx++) {
+                const item = quizData[qIdx];
+                let score = 0;
+                const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+                let keyHTML = "";
+
+                inputs.forEach(input => {
+                    const letter = input.dataset.letter;
+                    const userVal = cleanString(input.value);
+                    const official = item.answers[letter] || "";
+                    const possible = official.split(/[/;]|\sor\s/).map(o => cleanString(o));
+                    const isCorrect = userVal !== "" && possible.some(p => p === userVal);
+
+                    input.style.setProperty('color', isCorrect ? 'var(--s)' : 'var(--d)', 'important');
+
+                    if (isCorrect) score++;
+                    keyHTML += `<span class="ans-tag"><b>(${letter})</b> ${official}</span>`;
+                });
+
+                const fb = document.getElementById(`fb-${qIdx}`);
+                fb.style.display = "block";
+                if (fb.classList.contains("correct-box")) {
+                    fb.classList.remove("correct-box");
+                } else if (fb.classList.contains("wrong-box")) {
+                    fb.classList.remove("wrong-box");
+                }
+
+                if (score === inputs.length) {
+                    fb.classList.add("correct-box");
+                }
+                else {
+                    fb.classList.add("wrong-box");
+                }
+                fb.innerHTML = `<b>Score: ${score} / ${inputs.length}</b><br><b>Answers:</b> ${keyHTML}`;
+
+                item.checked = true;
+                item.score = score;
+                item.totalGaps = inputs.length;
+            }
+
+            updateTotalScore();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function printSheet() {
+            window.print();
+        }
+    </script>
+</body>
+
+</html>
