@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gap Fillings With Clues Practice Sheet</title>
+    <style>
+        :root {
+            --p: #2563eb;
+            --s: #16a34a;
+            --d: #b91c1c;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --text-main: #1e293b;
+            --border: #cbd5e1;
+            --input-bg: #fffbeb;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --border: #475569;
+            --input-bg: #334155;
+            --d: #f87171;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            padding: 20px;
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .gap-input {
+                min-width: 100px;
+                font-size: 15px;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            height: 380px;
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-family: inherit;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        .clue-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 16px;
+            background: rgba(37, 99, 235, 0.08);
+            border: 2px dashed var(--p);
+            border-radius: 12px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+        .clue-item {
+            background: var(--card-bg);
+            border: 1px solid var(--p);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--p);
+        }
+
+        .quiz-card {
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin-bottom: 32px;
+            border-radius: 16px;
+            background: var(--card-bg);
+        }
+
+        /* .gap-input {
+            display: inline-block;
+            min-width: 140px;
+            border: none;
+            border-bottom: 3px solid var(--p);
+            text-align: center;
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 17px;
+            outline: none;
+            margin: 0 6px;
+            padding: 3px 6px;
+            border-radius: 6px 6px 0 0;
+            vertical-align: middle;
+        } */
+
+        .gap-input {
+            display: inline-block;
+            width: 175px;
+            border: none;
+            border-bottom: 3px solid var(--p);
+            text-align: center;
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 17px;
+            outline: none;
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .gap-input:focus {
+            border-bottom-color: var(--s);
+        }
+
+        .letter-label {
+            font-weight: bold;
+            color: var(--p);
+            margin-right: 4px;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            margin: 10px 6px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        #export-word-btn,
+        #export-pdf-btn {
+            display: none;
+        }
+
+        .feedback-area {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .correct-box {
+            background: rgba(22, 163, 74, 0.12);
+            border-left: 6px solid var(--s);
+        }
+
+        .wrong-box {
+            background: rgba(220, 38, 38, 0.12);
+            border-left: 6px solid var(--d);
+        }
+
+        .ans-tag {
+            display: inline-block;
+            background: var(--bg);
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin: 4px 6px 4px 0;
+            border: 1px solid var(--border);
+            font-size: 0.95em;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--p);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .pagination-info {
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+            color: var(--p);
+        }
+
+        .page-total-score {
+            text-align: center;
+            background: var(--p);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 1.2em;
+        }
+
+        @media print {
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
+                padding: 0 !important;
+            }
+
+            .container {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .quiz-card {
+                border: 1px solid var(--border) !important;
+                margin-bottom: 15px !important;
+                padding: 15px !important;
+                page-break-inside: avoid;
+                display: block !important;
+            }
+
+            .gap-input {
+                border-bottom: 1px solid var(--p) !important;
+                min-width: 110px !important;
+                background: transparent !important;
+            }
+
+            .theme-toggle,
+            .btn,
+            .no-print,
+            label,
+            .pagination-info,
+            .page-total-score {
+                display: none !important;
+            }
+
+            .feedback-area {
+                display: block !important;
+                border: 1px solid var(--border) !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
+
+    <div class="container">
+        <h2 style="text-align:center; color:var(--p);">HSC Gap Fillings With Clues Practice Sheet Generator</h2>
+        <p style="text-align: center; color: var(--text-sub);">Fill up these blanks with appropriate Gap Fillings With
+            Clues given on
+            the boxes. There
+            is no negative marking.</p>
+
+        <div id="setup-view" class="no-print">
+            <div class="setup-grid">
+                <div>
+                    <label style="display:block; margin-bottom:8px; font-weight:600;">1. Paste All Questions:</label>
+                    <textarea id="q-input" placeholder="Paste questions like: 01. ... (a) ___ (b) ___"></textarea>
+                </div>
+                <div>
+                    <label style="display:block; margin-bottom:8px; font-weight:600;">2. Paste All Answers:</label>
+                    <textarea id="a-input" placeholder="Paste answers like: 01. (a) was born; (b) as if;"></textarea>
+                </div>
+            </div>
+            <button class="btn" style="background:var(--p); width:100%" onclick="initApp()">Build Practice
+                Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
+        </div>
+
+        <div id="quiz-view" class="hidden">
+            <div class="pagination-info no-print" id="page-label"></div>
+            <div id="page-score-display" class="page-total-score no-print"></div>
+
+            <div id="quiz-container"></div>
+
+            <div style="text-align:center;" class="no-print">
+                <button class="btn" style="background:var(--p)" id="prev-btn" onclick="changePage(-1)">Previous</button>
+                <button class="btn" style="background:var(--s)" onclick="checkPageAnswers()">Submit</button>
+                <button class="btn" style="background:var(--p)" id="next-btn" onclick="changePage(1)">Next</button>
+            </div>
+
+            <div style="text-align:center; margin-top:10px;" class="no-print">
+                <button id="export-pdf-btn" class="btn" style="background:#9333ea" onclick="window.print()">Export
+                    PDF</button>
+                <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
+                    Word</button>
+                <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizData = [];
+        let currentPage = 0;
+        const itemsPerPage = 10;
+
+        function exportToWord() {
+            if (quizData.length === 0) {
+                alert("আগে কুইজ বিল্ড করুন!");
+                return;
+            }
+
+            const quizClone = document.getElementById("quiz-container").cloneNode(true);
+
+            const inputs = quizClone.querySelectorAll(".gap-input");
+
+            inputs.forEach(input => {
+
+                const userVal = input.value.trim() || "_______";
+
+                const qid = input.dataset.qid;
+                const letter = input.dataset.letter;
+
+                // 🔥 REAL input (original DOM থেকে)
+                const realInput = document.querySelector(
+                    `.gap-input[data-qid="${qid}"][data-letter="${letter}"]`
+                );
+
+                let textColor = "#000";
+
+                const computed = window.getComputedStyle(input);
+
+                if (computed.color.includes("22, 163, 74")) {
+                    textColor = "#16a34a"; // green
+                } else if (input.value.trim() !== "") {
+                    textColor = "#b91c1c"; // red
+                }
+
+                if (realInput) {
+                    const realStyle = window.getComputedStyle(realInput);
+
+                    if (realStyle.color.includes("22, 163, 74")) {
+                        textColor = "#16a34a"; // ✅ correct (green)
+                    }
+                    else if (realInput.value.trim() !== "") {
+                        textColor = "#b91c1c"; // ❌ wrong (red)
+                    }
+                }
+
+                const span = document.createElement("span");
+                span.innerHTML = `&nbsp;${userVal}&nbsp;`;
+                span.style.borderBottom = "1pt solid #000";
+                span.style.fontWeight = "bold";
+                span.style.color = textColor;
+
+                input.replaceWith(span);
+            });
+
+            // feedback show
+            quizClone.querySelectorAll(".feedback-area").forEach(el => {
+                el.style.display = "block";
+            });
+
+            const fullHTML = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:w="urn:schemas-microsoft-com:office:word">
+    <head><meta charset="utf-8"></head>
+    <body style="padding:40pt; font-family:Segoe UI, Arial;">
+        <h1 style="text-align:center;">Practice Result Report</h1>
+        ${quizClone.innerHTML}
+    </body>
+    </html>`;
+
+            const blob = new Blob(['\ufeff', fullHTML], {
+                type: 'application/msword'
+            });
+
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `Result_${Date.now()}.doc`;
+            link.click();
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute("data-theme");
+            if (current === "dark") {
+                document.documentElement.removeAttribute("data-theme");
+            } else {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        }
+
+        function loadDemo() {
+
+            const demoQuestions = `1. DB ’14; BB ’09; CtgB ’08 n Sreemangal Govt. College13; Dania College, Dhaka 12  Govt. Mujibur Rahman Women’s College, Bogra 11  Mirzapur Cadet College, Tangail 09  Bogra Public School & College 08. <br>
+Overeating (a) ____ taking too much food (b) ____ one needs. We eat (c) ____ to overload our stomach but to (d) ____ a sound health. A sound health (e) ____ on eating habit to some extent. Overeating tells (f) ____ our health. By (g) ____ awareness of the people, the/ this habit of overeating can be (h) ____. With a view to (i) ____ our body fit, we should (j) ____ taking too much food.
+
+2. RB ’14; DinajB ’10; BB ’08; DB ’03 n Military Collegiate School & College, Khulna 16; Shachindra College, Habiganj 16; Rajshahi Cadet College, Rajshahi 14; Mymensingh Girls’ Cadet College 13<br>
+Trees are very useful to human beings. They (a) ____ the rich top soil from being (b) ____ away by rainwater and floods. You can see trees being (c) ____ along mountain slopes, on road sides, in parks and gardens. Trees give us shade. They (d) ____ life to a place with their colourful flowers, beautiful leaves, fruits and thick trunks. They (e) ____ shelters for birds and animals. They give us timber, medicines, paper, gum and many other useful things. They (f) ____ in carbon di oxide and (g) ____ oxygen. As you know, by now man (h) ____ oxygen to (i) ____ and live. Trees are our best friends. We should (j) ____ them and plant more trees around us.
+
+3. DinajB ’14; CB ’10; BB ;10; RB ’09; SB ’03 n Faujdarhat Cadet College, Chittagong 16; Govt. Azizul Haque College, Bogra 14<br>
+Once upon a time, there was a king who was very fond of (a) ____ his future from the astrologers.  A famous astrologer (b) ____ to stop at his capital on his way to Benaras/ Bombay. The king called on him to know about his future and the astrologer told him something (c) ____. At this the king got (d) ____ and condemned him to (e) ____ saying, “Men like you should not live to (f) ____ the peace of the world.” But another thought had crossed his mind before the astrologer was removed for (g) ____. “How long will you live?” asked the king. With ready (h) ____ the astrologer said, “The stars (i) ____  that I shall die only a week before your majesty. So, good bye.” Hearing this, the king turned pale like a dead man and shouted, “Drive this (j) ____  away, let him not come here again.”
+
+4. JB ’14<br>
+In the present world, advertisement is the most (a) ____ and recognised means of (b) ____ people know about the products and (c) ____ of a company. With the introduction of open market (d) ____, production system has become very (e) ____. But only producing quality goods is not the last thing to do. (f) ____ people know about the products, goods will not sell on its own (g) ____. Advertisement will serve that purpose of informing people of the quality, price and (h) ____ of goods or products concerned. Even effective advertisement will motivate people to buy goods of even (i) ____ quality. So advertisement has got both persuasive and (j) ____ quality.
+
+5. CB ’14  [Jalalabad Cantonment Public School & College, Sylhet 16; Akij Collegiate School, Navaron, Jessore 14]<br>
+It is a great tragedy that after many years of independence, illiteracy still remains one of the greatest problems in Bangladesh. It is one of the serious threats to progress and (a) ____ that our country has to face. Illiteracy keeps people (b) ____ and superstitious. It is a strong obstacle in the way of (c) ____. There are still many people who do not believe in (d) ____ medicine. They prefer to go to the village (e) ____ who gives them charms and promises to work miracles. They refuse to take part in any family planning (f) ____. They think that the more children they have, the (g) ____ bread earners there will be. They are not educated themselves nor do they want to send their children to (h) ____. We must try to grow (i) ____ among our countrymen about the need of education. We who are fortunate enough to attend school should (j) ____ those who do not have this facility.
+
+6. CtgB ’14 [Syed Shah Mostafa College, Moulvibazar 16]<br>
+The habit of the British for (a) ____ their emotions private is (b) ____. Some obvious things are noticed in the (c) ____ of the British. For example, on public transport one passenger does not usually (d) ____ to another passenger. On first meeting, people do not (e) ____ and often simply shake hands. In theatres, concert halls and cinemas audiences (f) ____ quiet during the performance. None of these (g) ____ of their conduct should be (h) ____ as unfriendliness. If a visitor (i) ____ the first move to start a conversation, he will find a British citizen rather (j) ____.
+
+7. SB ’14 n Sylhet Cadet College, Sylhet 16; Feni Girls’ Cadet College, Feni 16; Motijheel Model School & college, Dhaka 16;<br>
+Many diseases are rising at an (a) ____ rate, which experts believe is due to (b) ____ pollution of the (c) ____. Pollution appears to be (d) ____ in urban areas (e) ____ rural societies too are (f) ____ by increased use of (g) ____ fertilizers and insecticides. Nevertheless, today city people appear to suffer from many more (h) ____ and (i) ____ more (j) ____ than country people.
+
+8. BB ’14; CB ’13 n Moulvibazar Govt. Women’s College, Moulvibazar 14; Chandranath College, Netrakona ’13; Pirojpur Govt. Women’s College13.<br>
+All species are important for maintaining ecological balance. If one is lost, the whole natural environment gets (a) ____. We should (b) ____ our wildlife to protect the environment from being (c) ____. Many countries are now taking action to protect their (d) ____ wildlife. Mankind must develop a (e) ____ for wild creatures and must ensure that they will not (f) ____. (g) ____ wild creatures means destroying ourselves. It is high time we (h) ____ them. Love for animals (i) ____ love for (j) ____.
+
+9. DB ’13 n Muminunnissa Govt. Women’s College, Mymensingh–13<br>
+Shaheed Doctor Shamsuzzoha is (a) ____ to be the first intellectual who attained (b) ____ during the pre liberation period of Bangladesh. Following the (c) ____ of Sergent Zohurul Hoque in prison by the autocratic Ayub Khan goverment, a flame of protest (d) ____ throughout erstwhile East Pakistan. On February 17, 1969 Section 144 was (e) ____ on Rajshahi city. The students of Rajshahi University who had (f) ____ the protest, took out a procession in (g) ____ of Section 144 and were (h) ____ in a clash with police in front of the residence of the Principal of Rajshahi Medical College. As a result, several students were (i) ____. On hearing this, Doctor Zoha a professor of chemistry and proctor of the University, rushed to the spot and took the (j) ____ students to hospital.
+
+10. RB ’13 n [Qadirabad Cantonment Sapper College, Natore 16; Comilla Shikkha Board Model College–13]<br>
+Scientists have recently reported that polar ice caps are melting. This is due to rise in (a) ____ temperatures known as the ‘Greenhouse Effect’. Carbon dioxide is (b) ____ responsible for temperature rise in atmosphere. The carbon dioxide is (c) ____ off when coal and oil are burnt. This gas is (d) ____ in the air and the ice caps in the North and South poles are melting. This may (e) ____ lead to a rise in the sea levels which could (f) ____ many areas of the globe. The ‘Greenhouse Effect’ is just one of the many (g) ____ changes which are taking place in the environment. Tropical rain forests, which took fifty million years (h) ____ are being (i) ____ at the rate of fourteen acres per minute. The total area of the world’s deserts is increasing every year. Many species of animals and plants are (j) ____ with the threat of extinction.
+
+11. DinajB ’13<br>
+Higher education in Britain has experienced a dramatic (a) ____. One in three young people now (b) ____ higher education compared to one in six in 1989. The number of graduates also has increased (c) ____. There are some (d) ____ in Britain which offer (e) ____ in a wide range of subjects including (f) ____ arts subjects as well as science and technology. Over 90% (g) ____ receive government (h) ____ covering tuition fees and a maintenance grant. Parents also (i) ____ the amount depending on their income. The overseas students have to pay very (j) ____ tuition fees.
+
+12. JB ’13<br>
+We (a) ____ fall into jam on the roads and streets. Sometimes, specially in rainy season water (b) ____ stagnant on the road even for 2/3 days (c) ____ causes a serious traffic jam. Water remains (d) ____ on the road from 1 to 1.5 feet. The rain gets (e) ____ with dust, mud etc. Most of the time the (f) ____ system is not active and it becomes (g) ____ for the passerby. The pedestrians (h) ____ a lot of problems as they can’t move (i) ____. The drainage system should be (j) ____ and city authorities should be careful in this respect.
+
+13. CtgB ’13; DB ’12; JB ’04 n Rajuk Uttara Model College, Dhaka 14; Rajshahi Govt. Women’s College13;<br>
+Television has (a) ____ the most common and widespread (b) ____ of entertainment of the present world. A wide range of programmes of (c) ____ interest is telecast on (d) ____ channels. Almost every middle class and (e) ____ working class families have a television set today. Television programmes are not only (f) ____ but also highly educative. For example, television is used for (g) ____ learning. Courses (h) ____ by the Open University are (i) ____ on BTV. Several channels like the Discovery and the National Geographic channels telecast highly (j) ____ programmes.
+
+14. SB ’13 n Ghatail Cantt. School & College, Tangail 16; BAF Shaheen College, Shamshernagar, Moulvibazar 16; Birshrestha Noor Mohammad Public College, Dhaka 14.<br>
+Literally and truly, one cannot get on well in the world without (a) ____. To be in (b) ____ of it, is to pass through life with little (c) ____ or pleasure; it is to be despised; it is not to be asked out to dinner, or noticed in the (d) ____ ; it is not to have your (e) ____ consulted or else (f) ____ with contempt, it is to be (g) ____ by strangers and neglected by (h) ____, it is to forego (i) ____, freedom, ease of body and mind, to be dependent on the good will and (j) ____ of others.
+
+15. BB ’13 n Blue Bird School & College, Sylhet 16; Comilla Shikkha Board Model College, Comilla 14; Govt Zia Mohila College, Feni 14; Mohanagar Ideal School & College, Dhaka 13.<br>
+Communicative competence refers to the (a) ____ to use language appropriately in various circumstances. There are two ways of (b) ____ communicative competence in a language. The first is (c) ____ which is similar to the way people develop ability in their (d) ____ tongue. They are aware only of the (e) ____ that they are (f) ____ the language for (g) ____. It is a (h) ____, subconscious process in which users are not (i) ____ of acquiring a language. In non technical terms, acquisition is ‘picking up’ a language (j) ____.
+
+16. RB ’12 n Jhalokathi Govt. Womens’ College, Jhalokathi 16; Dania University College, Dhaka 14; Thakurgaon Govt. Women’s College13;<br>
+If all the children in Bangladesh (a) ____ to school, the country would get rid of the curse of illiteracy. To (b) ____ up education, the government should spend more money. Subsidies must be (c) ____ in the education sector. Teachers are (d) ____ to be trained for good teaching. The poor students can (e) ____ under ÔFood for EducationÕ program. We should take care that no institution is (f) ____ down due to political clashes. More co curricular activities are to be (g) ____ to enable the students to (h) ____ their non academic skills—like debate, creative thinking and (i) ____ events etc. It is our social responsibility to educate our children and the (j) ____ of which will lead to a catastrophe.
+
+17. JB ’12 n [Rajshahi Govt. City College, Rajshahi 16; Cantonment Public School & College, Saidpur, Nilphamari 14]<br>
+English is called an (a) ____ language. In almost all countries, there are people who can (b) ____ English. No other language than English serves the (c) ____ of a common language through which people can (d) ____ with one another across the national border. We should learn English for a great (e) ____ of purposes. English is a skill (f) ____ subject. We should therefore learn the (g) ____ skills of listening, speaking, reading and writing. The communicative approach to learning English does not (h) ____ one to know or learn definitions of grammar (i) ____. Traditional grammar has little or no place in learning English through the (j) ____ approach.
+
+18. CB ’12; SB ’10 n Nageswari Degree College, Kurigram13; Chittagong Metropolitan Commerce College13;<br>
+Education is one of the basic (a) ____ of a human being. It is (b) ____ for the (c) ____ of mind. Many illiterate people do not have any (d) ____ of health. If they were (e) ____, they could live a (f) ____ and planned life. (g) ____ teaches us how to live well. It (h) ____ us to make the right (i) ____ in life. It enhances our (j) ____ to face our everyday problems.
+
+19. SB ’12 n Govt. Begum Rokeya College, Rangpur 16; Mia Jinnah Alom Degree College, Jhenidah 14;<br>
+(a) ____ blind people cannot (b) ____, their sense of (c) ____ becomes far more (d) ____ than that of most sighted people. This ability was put to use by  brilliant man (e) ____ Louis Braille. In the early 19th century, he invented a (f) ____ of writing which (g) ____ his name. The Braille system reproduces the letters of the alphabet by a series of (h) ____ in certain positions, which are raised on the paper. The blind person runs the (i) ____ of his fingers across the pages of the Braille book and can work out the letters and numbers (j) ____ there.
+
+20. BB ’12<br>
+It is very (a) ____ that man loves his life most of all things and he wants to live or survive a bit longer at any (b) ____. However, every year thousands of people (c) ____ suicide in Bangladesh. It is seen that most of the people committing suicide are those (d) ____ women who (e) ____ on their husbands for their living. But why do they commit suicide when people love their lives most? Most probably, they decide to kill themselves (f) ____ they feel entirely helpless and meaningless to live. The bitterness and sufferings of life become totally (g) ____. However, the incident of suicide among the self reliant women is (h) ____ rare. So, can’t we say that the unfortunate women would not have committed (i) ____ if they had been self reliant and had an independent way of (j) ____ their livelihood without being dependent on their husbands?
+
+21. DB ’11 n Shahpur Madhugram College, Dumuria, Khulna 14; Joupurhat Girls’ Cadet College 13;<br>
+Dictionaries are very important books in the (a) ____ of a people. A dictionary lists the words in a language (b) ____ , so that the reader may (c) ____ them easily. A dictionary entry gives us the accepted (d) ____ of a word, its division into (e) ____ , its pronunciation, its origins and its meanings. Sometimes a dictionary also provides (f) ____ or opposites of a word. In addition, if the word is a (g) ____ that describes a visible thing, the dictionary may provide a (h) ____ of it. Dictionaries of the past, present and future can become your teachers and good (i) ____. Don’t (j) ____ them.
+
+22. RB’11, SB ’09, ’05 n Joypurhat Girls’ Cadet College, Joypurhat 14; Poura Mohila College, Kishoreganj 13;<br>
+Children are very fond of festivals. They become very (a) ____ on a day of festival. If it is their birthday, their joys become over (b) ____. They become very (c) ____ to have wishes from their beloved persons. Whole day they (d) ____ to spend times in joys. Usually a child on her birthday gets up early and tries to (e) ____ close to her presents. It becomes a (f) ____ day, if she is presented anything very (g) ____ to her. Children also want to have their friends (h) ____ to their house on a festival. They expect to have a party. Their joys give pleasure to their (i) ____. We should try to keep the children always in a (j) ____ mind.
+
+23. DinajB ’11 n Govt. Shah Sultan College, Bogra 13; Adhyapak Abdul Majid College, Comilla 11<br>
+In 1884 France (a) ____ the United States with gift as a dramatic gesture of friendship. This (b) ____ gift was in the form of a huge copper statue. Its (c) ____ name is “Liberty Enlightening the world”. Most people, however, (d) ____ it simply as the statue of liberty. The pieces of the statue (e) ____ in the United States in 214 cases. The French people donated the money for the (f) ____ of the statue. Grateful, the people of the United States collected the funds for the (g) ____ granite and concrete pedestal. This impressive monument found a (h) ____ home on Liberty Island in New York harbour. At 151 feet and 1 inch high, it (i) ____ one of the largest statues in the world. The monumental lady with the torch quickly became a (j) ____ of American democracy.
+
+24. JB ’11n Sylhet Commerce College13; BAF Shaheen College, Dhaka 12<br>
+Hamidur Rahman was the (a) ____ who gave shape to the (b) ____ and design of the Shaheed Minar, by (c) ____ all the aspirations of Bengali (d) ____ and nationalism. He was the first art (e) ____ of Bangladesh who in the 1950s (f) ____ to Europe and studied at “Ecole de Beaux Art” in Paris. He was the (g) ____ of the new painting movement in the (h) ____ Pakistan. But he is most (i) ____ for his remarkable (j) ____ of the Central Shaheed Minar.
+
+25. CtgB ’11, SB ’07 n Cantonment Public School & College, BUSMS, Dinajpur 16; Western College, Dhaka 13;<br>
+The world is getting (a) ____ because of pollution. Every year millions of people all over the world die (b) ____ as a result of pollution. In the recent years there have been (c) ____ reports that the world’s (d) ____ is undergoing a significant (e) ____. All these reports provide strong (f) ____ that world temperatures are (g) ____ day by day. Climatologists (h) ____ that mid way through the next century temperatures may have (i) ____ as much as 4°C. This could raise sea levels and thereby (j) ____ coastal areas and farmlands.
+
+26. SB ’11 n Rajdhani Ideal College, Rampura, Dhaka 16; New Govt. Degree College, Rajshahi 16; Kushiara College, Sylhet 14; <br>
+Language (a) ____ an important medium of expression of thoughts, feelings, ideas etc. We use it from the (b) ____ we wake up in the morning (c) ____ we go to bed at night. We use language not only during our (d) ____ hours but also in our dreams. We use language to (e) ____ what we feel and to say (f) ____ we like or dislike. We also use it to (g) ____ information. In short, language is an (h) ____ part of what we do, (i) ____ and believe. We must avoid (j) ____ bad language.
+
+27. BB ’11<br>
+Many diseases are rising (a) ____ an (b) ____ rate, which experts believe is (c) ____ to increased (d) ____ of the environment. Pollution (e) ____ to be greater in urban areas although rural societies too are (f) ____ by (g) ____ use of chemical fertilizers and insecticides. Nevertheless, today city people (h) ____ to suffer from many more diseases and suffer more (i) ____ than country people. Now let us see how life in cities is (j) ____ from that in the country.
+
+28. DB ’10 n Naogaon Govt. College, Naogaon 14; Cantt. Public School & College, Rangpur 13,<br>
+Micro credit institutions have a great (a) ____ in Bangladesh. Grameen Bank in one of them which has (b) ____ recognition. It (c) ____ money to the poor especially the (d) ____ women. It (e) ____ the need to develop skills and (f) ____ consciousness among them. It creates (g) ____ opportunity for rural women. This institution has a positive (h) ____ on their economic variables and family (i) ____ . It also helps to (j) ____ their poverty.
+
+29. RB ’10; DB ’09 n Sonargaon Kazi Fazlul Haq Women’s University Colleges, Dhaka 14; Dinajpur Govt. College 13;<br>
+Investment in education (a)  — girls increases the economic and social (b) ____ of development investment in all other sectors. Educating girls contributes (c) ____ wealth through its impact on economic development. Educated women have a higher income (d) ____ than those who have (e) ____ no schooling. Educated mothers are more (f) ____ to send both their boys and girls to school. It is important to realise that (g) ____ in girl’s education generally results (h) ____ an integrated approach to community development. Thus (i) ____ to educate girls results in a tremendous waste of potential human (j) ____.
+
+30. JB ’10 n BN School & College, Khulna 16; Khulna Collegiate Girls’ School 13; Moulvibazar Govt. College 13; <br>
+In ancient times, education was (a) ____ for the general people but a (b) ____ for the chosen few who took on (c) ____ roles in the (d) ____ of the state and in religion. (e) ____ Greece, education became more (f) ____ in about the 5th century BC. The Greeks, however, sent (g) ____ their male children to school. When Rome was (h) ____ by the Greeks, the Romans under Greek influence (i) ____ a strong (j) ____ of literacy.
+
+31. DinajB ’09 n Cantonment Public School and College, Rangpur 14; Mirkadim Hazi Amzad Ali Degree College, Munsiganj13; Ibn Taimiya School & College, Comilla13; Comilla Cadet College 13;<br>
+There are many people in our country who have a conservative (a) ____. Quite early in life they learn to (b) ____ that everything in this world was (c) ____—. They think all that happens to them was (d) ____ by God.   From this belief the poor generally accept their (e) ____. They also accept all their (f) ____ and sufferings without trying much to overcome them. They also (g) ____ a firm belief that those who (h) ____ sufferings in this world will be (i) ____ rewarded in the next world. They also have the same sort of (j) ____ towards illness and disease.
+
+32. CB ’09<br>
+Hellow, my name is Charles Karoro and I am a banker. My salary is (a) ____ but the (b) ____ expenses in Nairobi are (c) ____ high. Both housing and food are (d) ____ in the capital. I have (e) ____an apartment but it is really too small for   my   family.   Of  course   it   doesn’t   have a garden. So my (f) ____ Maria, who loves gardening, can’t (g)— anything. She can’t go out to work either because there’s no one else in the house to look after the children. So the whole family depends on my (h) ____ alone. I have great hopes for my children and would like to send them to a good school. But good schools are very (i) ____. I am not sure how much I will be able to help them. Moreover, I am often in a fix about whether I should (j) ____ my income with my brothers in the village.
+
+33. CtgB ’09, ’05 n Mirzapur Cadet College13; Ananda Mohan College, Mymensingh13; Kushtia Govt Girl’s College 13;<br>
+Education is one of the basic (a) ____ of a human being and is (b) ____ for every kind of development. It (c) ____ us to make right choices in life. It (d) ____ our ability to raise crops, store food, (e) ____ the environment and (f) ____ out our social responsibilities. It (g) ____ us with an enlightened (h) ____ about things. But education has to be (i) ____ . It is not merely (j) ____ degrees from schools, colleges and universities. It is something more lasting, more humane.
+`;
+
+            const demoAnswers = `01. (a) means; (b) than; (c) not; (d) maintain; (e) depends; (f) upon; (g) raising; (h) stopped; (i) keeping; (j) avoid;
+
+02. (a) prevent; (b) washed; (c) planted; (d) add; (e) provide; (f) take; (g) produce; (h) needs; (i) breathe; (j) preserve;
+
+03. (a) knowing; (b) happened; (c) unpleasant; (d) furious; (e) death; (f) spoil; (g) execution; (h) wit; (i) declare; (j) wretch;
+
+04. (a) effective; (b) making; (c) goods; (d) economy; (e) competitive; (f) Unless; (g) merit; (h) availability; (i) low; (j) informative;
+
+05. (a) civilization; (b) ignorant; (c) development; (d) modern; (e) quak; (f) programme; (g) more; (h) school; (i) awareness; (j) teach;
+
+06. (a) keeping; (b) praiseworthy; (c) behaviour; (d) talk; (e) embrace; (f) remain; (g) traits; (h) considered; (i) makes; (j) friendly;
+
+07. (a) alarming; (b) increased; (c) environment; (d) greater; (e) although; (f) afflicted; (g) chemical; (h)  diseases; (i) suffer; (j) severely;
+
+08. (a) changed; (b) protect; (c) spoilt; (d) endangered; (e) concern; (f) perish perished; (g) Destroying destroy; (h) saved; (i) means; (j) mankind;
+
+09. (a) considered; (b) martyrdom; (c) killing; (d) spread; (e) enforced; (f) joined; (g) violation; (h) locked; (i) injured; (j) injured;
+
+10. (a) atmospheric; (b) primarily; (c) given; (d) accumulating; (e) eventually; (f) inundate; (g) fundamental; (h) to grow; (i) depleted; (j) endangered;
+
+11. (a) expansion; (b) enters; (c) tremendously; (d) universities; (e) courses; (f) traditional; (g) students; (h) awards; (i) contribute; (j) high.;
+
+12. (a) generally; (b) remains; (c) which; (d) logged; (e) intensified; (f) drainage; (g) troublesome; (h) face; (i) freely; (j) activated;
+
+13. (a) become; (b) source; (c) varied; (d) numerous; (e) even; (f) enjoyable; (g) distance; (h) run; (i) shown; (j) informative;
+
+14. (a) money; (b) want; (c) credit; (d) street; (e) opinion; (f) rejected; (g) scrutinised; (h) friends; (i) leisure; (j) caprice;
+
+15. (a) ability; (b) developing; (c) acquisition; (d) mother; (e) fact; (f) using; (g) communication; (h) natural; (i) aware; (j) spontaneously;
+
+16. (a) went; (b) boost; (c) given; (d) needed; (e) be brought; (f) closed; (g) included; (h) develop; (i) organizing; (j) failure;
+
+17. (a) international; (b) speak; (c) purpose; (d) communicate; (e) variety; (f) based; (g) four; (h) require; (i) items; (j) communicative.;
+
+18. (a) needs; (b) important; (c) development; (d) knowledge; (e) educated; (f) healthy; (g) Education; (h) enables; (i) choices; (j) ability;
+
+19. (a) Although; (b) see; (c) touch; (d) developed; (e) called; (f) way; (g) bears; (h) dots; (i) tips; (j) printed;
+
+20. (a) natural; (b) cost; (c) commit; (d) married; (e) depend; (f) when; (g) unbearable; (h) very; (i) suicide; (j) earning;
+
+21. (a) life; (b) alphabetically; (c) find; (d) spelling; (e) syllables; (f) synonyms; (g) noun; (h) picture; (i) friends; (j) neglect;
+
+22. (a) joyous; (b) flooded; (c) eager; (d) want; (e) remain; (f) delightful; (g) favourite; (h) invited; (i) elders; (j) festive;
+
+23. (a) presented; (b) massive; (c) official; (d) know; (e) arrived; (f) construction; (g) spectacular; (h) permanent; (i) remains; (j) symbol;
+
+24. (a) man; (b) concept; (c) combining; (d) identity; (e) student; (f) went; (g) pioneer; (h) then; (i) remembered; (j) design;
+
+25. (a) warmer; (b) unnecessarily; (c) alarming; (d) climate; (e) change; (f) evidence; (g) increasing; (h) predict; (i) risen; (j) flood;
+
+26. (a) is; (b) moment; (c) till; (d) waking; (e) express; (f) what; (g) obtain; (h) integral; (i) perceive; (j) using;
+
+27. (a) at; (b) alarming; (c) due; (d) pollution; (e) appears; (f) afflicted; (g) increased; (h) appear; (i) severely; (j) different;
+
+28. (a) importance; (b) international; (c) lends; (d) rural; (e) emphasizes; (f) raise; (g) employment; (h) impact; (i) planning; (j) reduce;
+
+29. (a) for; (b) returns; (c) to creating; (d) potential; (e) had; (f) likely; (g) success; (h) from; (i) failure; (j) resources;
+
+30. (a) not; (b) privilege; (c) strategic; (d) running; (e) In; (f) widespread; (g) only; (h) conquered; (i) developed; (j) tradition;
+
+31. (a) outlook; (b) believe; (c) predetermined; (d) ordained; (e) fate; (f) sorrows; (g) hold; (h) undergo; (i) amply; (j) attitude;
+
+32. (a) okay; (b) day to day; (c) pretty; (d) costly; (e) rented; (f) wife; (g) grow; (h) income; (i) expensive; (j) share;
+
+33. (a) needs; (b) essential; (c) enables; (d) enhances; (e) protect; (f) carry; (g) provides; (h) awareness; (i) redefined; (j) getting;`;
+
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
+        }
+
+        function clean(s) {
+            if (!s) return "";
+            return s.toLowerCase()
+                .replace(/\s+/g, ' ')     // একাধিক স্পেস → একটা
+                .replace(/^\s+|\s+$/g, '') // শুরু/শেষের স্পেস মুছে
+                .trim();
+        }
+
+        function splitEllipsisPhrase(phrase) {
+            if (!phrase.includes('...')) {
+                return [phrase.trim()];
+            }
+
+            // "What does ... look like" → ["What does", "look like"]
+            // "What's ... like" → ["What's", "like"]
+            const parts = phrase.split(/\s*\.{3}\s*/);
+            return parts.map(p => p.trim()).filter(p => p.length > 0);
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function initApp() {
+            const qIn = document.getElementById('q-input').value.trim();
+            const aIn = document.getElementById('a-input').value.trim();
+
+            if (!qIn || !aIn) return alert("দুটো ঘরই পূরণ করো!");
+
+            const qBlocks = qIn.split(/\n\s*\d+\.\s*/).filter(b => b.trim().length > 5);
+            const aBlocks = aIn.split(/\n\s*\d+\.\s*/).filter(b => b.trim().length > 0);
+
+            quizData = qBlocks.map((text, idx) => {
+                let ansMap = {};
+                let clues = [];
+
+                let answerText = aBlocks[idx] || "";
+                answerText = answerText.replace(/^\d+\.\s*/, '');
+
+                // (a) phrase (b) phrase ... ফরম্যাট থেকে parse করা
+                let parts = answerText.split(/\s*\(([a-z])\)\s*/g).filter(p => p.trim());
+
+                for (let k = 1; k < parts.length; k += 2) {
+                    let letter = parts[k - 1].trim(); // a, b, c...
+                    let val = parts[k].split(/;|$/)[0].trim().replace(/[:;]/g, '').trim();
+                    if (letter && val) {
+                        ansMap[letter] = val;
+                        clues.push(val);
+                    }
+                }
+
+                // যদি উপরের ফরম্যাট না মেলে, তাহলে ; দিয়ে আলাদা করে নেওয়া
+                if (Object.keys(ansMap).length === 0) {
+                    let items = answerText.split(/;\s*/);
+                    items.forEach((item, i) => {
+                        let val = item.trim().replace(/^[a-z]\)\s*/i, '');
+                        if (val) {
+                            let letter = String.fromCharCode(97 + i);
+                            ansMap[letter] = val;
+                            clues.push(val);
+                        }
+                    });
+                }
+
+                clues = shuffleArray([...new Set(clues)]);  // duplicate remove + shuffle
+
+                let html = text.replace(/_{3,}/g, () => {
+                    return `<input type="text" class="gap-input" data-qid="${idx}" autocomplete="off">`;
+                });
+
+                html = html.replace(/\(([a-z])\)/gi, '<span class="letter-label">($1)</span>');
+
+                return { html, answers: ansMap, clues };
+            });
+
+            document.getElementById('setup-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            currentPage = 0;
+            renderPage();
+        }
+
+        function renderPage() {
+            const container = document.getElementById('quiz-container');
+            const scoreDisplay = document.getElementById('page-score-display');
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageData = quizData.slice(start, end);
+
+            scoreDisplay.style.display = 'none';
+
+            container.innerHTML = pageData.map((item, i) => {
+                const globalIdx = start + i;
+                return `
+                    <div class="quiz-card" id="card-${globalIdx}" data-global-id="${globalIdx}">
+                        <h3>Exercise ${globalIdx + 1}</h3>
+                        <div class="clue-box">${item.clues.map(c => `<div class="clue-item">${c}</div>`).join('')}</div>
+                        <div>${item.html}</div>
+                        
+                        <!-- প্রতিটি সেটের জন্য আলাদা বাটন -->
+                        <div style="margin-top: 15px;" class="no-print">
+                            <button class="btn" style="background:var(--s); padding: 8px 20px; font-size: 14px;" 
+                                onclick="checkSingleExercise(${globalIdx})">Check Answer</button>
+                        </div>
+
+                        <div id="fb-${globalIdx}" class="feedback-area"></div>
+                    </div>
+                `}).join('');
+
+            document.getElementById('page-label').innerText = `Showing Exercises ${start + 1} - ${Math.min(end, quizData.length)} of ${quizData.length}`;
+            document.getElementById('prev-btn').disabled = currentPage === 0;
+            document.getElementById('next-btn').disabled = end >= quizData.length;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkSingleExercise(qIdx) {
+            const card = document.querySelector(`.quiz-card[data-global-id="${qIdx}"]`);
+            const item = quizData[qIdx];
+            let exerciseScore = 0;
+            const inputs = [...card.querySelectorAll('.gap-input')];
+            let keys = [];
+            let letterIndex = 0;
+
+            let i = 0;
+            while (i < inputs.length) {
+                const input = inputs[i];
+                const letter = String.fromCharCode(97 + letterIndex);
+                const expected = (item.answers[letter] || "").trim();
+                const userVal = clean(input.value);
+
+                let isCorrect = false;
+                let skipNext = false;
+
+                if (userVal === "" && expected !== "") {
+                    input.style.color = "var(--d)";
+                    keys.push(`<span class="ans-tag">(${letter}) ${expected}</span>`);
+                    i++; letterIndex++; continue;
+                }
+
+                // DOUBLE BLANK (...) check
+                if (expected.includes('...') && i + 1 < inputs.length) {
+                    const nextInput = inputs[i + 1];
+                    const nextVal = clean(nextInput.value);
+                    const expParts = expected.split('...').map(p => clean(p.trim()));
+
+                    if (userVal === expParts[0] && nextVal === expParts[1]) {
+                        isCorrect = true;
+                    }
+
+                    if (isCorrect) {
+                        exerciseScore += 2;
+                        nextInput.style.color = "var(--s)";
+                    } else {
+                        nextInput.style.color = "var(--d)";
+                    }
+                    skipNext = true;
+                }
+                else {
+                    if (userVal === clean(expected)) isCorrect = true;
+                    if (isCorrect) exerciseScore += 1;
+                }
+
+                input.style.color = isCorrect ? "var(--s)" : "var(--d)";
+                keys.push(`<span class="ans-tag">(${letter}) ${expected}</span>`);
+
+                i++; letterIndex++;
+                if (skipNext) { i++; letterIndex++; }
+            }
+
+            const fb = document.getElementById(`fb-${qIdx}`);
+            fb.style.display = "block";
+            fb.className = `feedback-area ${exerciseScore === inputs.length ? 'correct-box' : 'wrong-box'}`;
+            fb.innerHTML = `<b>Score: ${exerciseScore} / ${inputs.length}</b><br><br>Answer Key:<br>${keys.join('')}`;
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            document.getElementById('export-word-btn').style.display = "none";
+            document.getElementById('export-pdf-btn').style.display = "none";
+            renderPage();
+        }
+
+        function checkPageAnswers() {
+            const visibleCards = document.querySelectorAll('.quiz-card');
+            let totalPageScore = 0;
+            let totalPagePossible = 0;
+
+            visibleCards.forEach(card => {
+                const qIdx = parseInt(card.getAttribute('data-global-id'));
+                const item = quizData[qIdx];
+                let exerciseScore = 0;
+                const inputs = [...card.querySelectorAll('.gap-input')];
+                let keys = [];
+                let letterIndex = 0;   // a থেকে শুরু করে যতদূর দরকার
+
+                let i = 0;
+                while (i < inputs.length) {
+                    const input = inputs[i];
+                    const letter = String.fromCharCode(97 + letterIndex);
+                    const expected = (item.answers[letter] || "").trim();
+                    const userVal = clean(input.value);
+
+                    let isCorrect = false;
+                    let skipNext = false;
+
+                    // খালি রাখলে সরাসরি ভুল (যদি expected খালি না হয়)
+                    if (userVal === "" && expected !== "") {
+                        input.style.color = "var(--d)";
+                        if (expected) {
+                            keys.push(`<span class="ans-tag">(${letter}) ${expected}</span>`);
+                        }
+                        i++;
+                        letterIndex++;
+                        continue;
+                    }
+
+                    // DOUBLE BLANK (...) case
+                    if (expected.includes('...') && i + 1 < inputs.length) {
+                        const nextInput = inputs[i + 1];
+                        const nextVal = clean(nextInput.value);
+
+                        if (userVal === "" || nextVal === "") {
+                            isCorrect = false;
+                        } else {
+                            const expParts = expected.split('...').map(p => clean(p.trim()));
+                            if (expParts.length >= 2) {
+                                if (userVal === expParts[0] && nextVal === expParts[1]) {
+                                    isCorrect = true;
+                                } else if (
+                                    [userVal, nextVal].sort().join(' ') ===
+                                    expParts.slice(0, 2).sort().join(' ')
+                                ) {
+                                    isCorrect = true;
+                                }
+                            }
+                        }
+
+                        if (isCorrect) {
+                            exerciseScore += 2;
+                            nextInput.style.color = "var(--s)";
+                        } else {
+                            nextInput.style.color = "var(--d)";
+                        }
+                        skipNext = true;
+                    }
+                    // SINGLE BLANK
+                    else {
+                        const expClean = clean(expected);
+                        if (userVal === expClean) {
+                            isCorrect = true;
+                        } else {
+                            // word order flexible
+                            const userSorted = userVal.split(' ').sort().join(' ');
+                            const expSorted = expClean.split(' ').sort().join(' ');
+                            if (userSorted === expSorted && userVal !== "") {
+                                isCorrect = true;
+                            }
+                        }
+
+                        if (isCorrect) exerciseScore += 1;
+                    }
+
+                    input.style.color = isCorrect ? "var(--s)" : "var(--d)";
+
+                    if (expected) {
+                        keys.push(`<span class="ans-tag">(${letter}) ${expected}</span>`);
+                    }
+
+                    i++;
+                    letterIndex++;
+                    if (skipNext) {
+                        i++;
+                        letterIndex++;
+                    }
+                }
+
+                totalPageScore += exerciseScore;
+                totalPagePossible += inputs.length;
+
+                const fb = document.getElementById(`fb-${qIdx}`);
+                fb.style.display = "block";
+                fb.className = `feedback-area ${exerciseScore === inputs.length && inputs.length > 0 ? 'correct-box' : 'wrong-box'}`;
+                fb.innerHTML = `<b>Score: ${exerciseScore} / ${inputs.length}</b><br><br>Answer Key:<br>${keys.join('')}`;
+            });
+
+            const scoreDisplay = document.getElementById('page-score-display');
+            scoreDisplay.innerHTML = `<b>Total Score for this Page: ${totalPageScore} / ${totalPagePossible}</b>`;
+            scoreDisplay.style.display = 'block';
+            document.getElementById('export-word-btn').style.display = "inline-block";
+            document.getElementById('export-pdf-btn').style.display = "inline-block";
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
