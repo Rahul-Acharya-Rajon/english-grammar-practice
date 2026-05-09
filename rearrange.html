@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rearrange Practice Sheet</title>
+    <style>
+        :root {
+            --p: #2563eb;
+            --s: #16a34a;
+            --d: #dc2626;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --input-bg: #fffbeb;
+            --border: #cbd5e1;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-sub: #cbd5e1;
+            --input-bg: #334155;
+            --border: #475569;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            padding: 20px;
+            line-height: 1.6;
+            transition: 0.3s;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* .no-print {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        } */
+
+        .quiz-card {
+            border: 1px solid var(--border);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .rearrange-box {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: var(--bg);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .gap-input {
+            width: 45px;
+            height: 38px;
+            border: 2px solid var(--p);
+            text-align: center;
+            border-radius: 8px;
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .plus-sign {
+            font-weight: bold;
+            color: var(--p);
+            font-size: 18px;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        .btn-p {
+            background: var(--p);
+            color: white;
+        }
+
+        .btn-s {
+            background: var(--s);
+            color: white;
+        }
+
+        .btn-nav {
+            background: #64748b;
+            color: white;
+        }
+
+        .feedback-area {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .correct-box {
+            border-left: 6px solid var(--s);
+            background: rgba(22, 163, 74, 0.1);
+        }
+
+        .wrong-box {
+            border-left: 6px solid var(--d);
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .ans-tag {
+            display: inline-block;
+            background: var(--p);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin: 3px;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media print {
+
+            .no-print,
+            .btn,
+            .feedback-area {
+                display: none !important;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+        }
+
+        :root {
+            /* Light Mode Colors */
+            --p: #2563eb;
+            --s: #16a34a;
+            --d: #dc2626;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --input-bg: #fffbeb;
+            --border: #cbd5e1;
+        }
+
+        /* Dark Mode Colors */
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-sub: #cbd5e1;
+            --input-bg: #334155;
+            --border: #475569;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg);
+            padding: 20px;
+            color: var(--text-main);
+            line-height: 1.8;
+            transition: all 0.3s ease;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .btn-submit,
+            .btn-export,
+            .btn-reset,
+            .btn-word {
+                width: 100% !important;
+                margin: 5px 0;
+            }
+
+            h2 {
+                font-size: 22px !important;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--p);
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--text-sub);
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            resize: vertical;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
+            margin: 10px 5px;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-start {
+            background: var(--p);
+            width: 100%;
+        }
+
+        .btn-submit {
+            background: var(--s);
+            width: 250px;
+        }
+
+        .btn-export {
+            background: #9333ea;
+            /* display: none; */
+            width: 250px;
+        }
+
+        .btn-word {
+            background: #2b6cb0;
+            /* display: none; */
+            width: 250px;
+        }
+
+        .btn-reset {
+            background: #64748b;
+            width: 150px;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn-nav {
+            background: #475569;
+            padding: 10px 20px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: var(--p);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .quiz-card {
+            border: 1px solid var(--border);
+            padding: 20px;
+            margin-bottom: 35px;
+            border-radius: 15px;
+            line-height: 2.8;
+            background: var(--card-bg);
+            position: relative;
+            transition: transform 0.2s;
+            overflow-x: auto;
+        }
+
+        /* .gap-input {
+            width: 80px;
+            border: none;
+            border-bottom: 3px solid var(--p);
+            text-align: center;
+            background: var(--input-bg);
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 17px;
+            outline: none;
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+        } */
+
+        [data-theme="dark"] .gap-input {
+            background: #2d3748;
+            color: #ffffff;
+        }
+
+        .gap-input:focus {
+            border-bottom-color: var(--s);
+            background: #e2e8f0;
+        }
+
+        [data-theme="dark"] .gap-input:focus {
+            background: #4a5568;
+        }
+
+        .feedback-area {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            display: none;
+            line-height: 2;
+        }
+
+        .correct-text {
+            color: #16a34a !important;
+            font-weight: bold;
+        }
+
+        .wrong-text {
+            color: #dc2626 !important;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .answer-key-tag {
+            background-color: #f1f5f9;
+            padding: 2px 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        /* .correct-box {
+            background: rgba(22, 163, 74, 0.15);
+            border-left: 8px solid var(--s);
+            color: var(--s);
+        } */
+
+        /* .wrong-box {
+            background: rgba(220, 38, 38, 0.15);
+            border-left: 8px solid var(--d);
+            color: var(--d);
+        } */
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* .ans-tag {
+            display: inline-block;
+            background: var(--bg);
+            padding: 2px 10px;
+            border-radius: 5px;
+            margin: 2px;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        } */
+
+        .quiz-card .btn {
+            margin-bottom: 0;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .quiz-card .btn:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        /* ──────────────────────────────────────────────── */
+        /* PRINT STYLES - Respect current theme + better readability */
+        /* ──────────────────────────────────────────────── */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Hide interactive elements */
+            .no-print,
+            .pagination-controls,
+            .theme-toggle,
+            .btn {
+                display: none !important;
+            }
+
+            body {
+                background: var(--bg) !important;
+                color: var(--text-main) !important;
+                margin: 0;
+                padding: 10mm;
+            }
+
+            .container,
+            .quiz-card {
+                background: var(--card-bg) !important;
+                box-shadow: none !important;
+                border: 1px solid var(--border) !important;
+                margin-bottom: 40px !important;
+                page-break-inside: avoid;
+                padding: 15px;
+            }
+
+            h2,
+            h3 {
+                color: var(--p) !important;
+            }
+
+            .gap-input {
+                background: var(--input-bg) !important;
+                color: var(--text-main) !important;
+                border-bottom: 3px solid var(--p) !important;
+            }
+
+            /* Make correct/wrong more visible in print */
+            .feedback-area {
+                display: block !important;
+                border: 1px solid var(--border) !important;
+            }
+
+            .correct-box {
+                background-color: rgba(22, 163, 74, 0.12) !important;
+                border-left: 8px solid var(--s) !important;
+                color: var(--s) !important;
+            }
+
+            .wrong-box {
+                background-color: rgba(220, 38, 38, 0.12) !important;
+                border-left: 8px solid var(--d) !important;
+                color: var(--d) !important;
+            }
+
+            .ans-tag {
+                background: var(--bg) !important;
+                border: 1px solid var(--border) !important;
+                color: var(--text-main) !important;
+            }
+
+            /* Ensure colored inputs stay visible */
+            input[style*="color: var(--s)"] {
+                color: var(--s) !important;
+                border-bottom-color: var(--s) !important;
+            }
+
+            input[style*="color: var(--d)"] {
+                color: var(--d) !important;
+                border-bottom-color: var(--d) !important;
+            }
+
+            /* Better spacing for print */
+            .quiz-card {
+                margin-bottom: 2cm !important;
+            }
+        }
+
+        /* .upper-box {
+            display: flex;
+            justify-content: space-between;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="theme-toggle no-print" onclick="toggleTheme()">🌓 Theme</div>
+    <div class="container">
+        <h2 style="margin: 0; color: var(--p);">HSC Rearrange Practice Sheet Generator</h2>
+        <!-- <div class="no-print upper-box">
+        </div> -->
+        <p style="text-align: center; color: var(--text-sub);">Arrange these paragraphs according to the correct
+            order so that the whole sentences makes sense</p>
+
+        <div id="setup-view" class="no-print">
+            <div class="setup-grid">
+                <div>
+                    <label>1. Paste Questions:</label>
+                    <textarea id="q-input" placeholder="Example: 1. Article (a) ___ parliament house..."></textarea>
+                </div>
+                <div>
+                    <label>2. Paste Answers:</label>
+                    <textarea id="a-input" placeholder="Example: 1. (a) The; (b) an; (c) a; ..."></textarea>
+                </div>
+            </div>
+            <button class="btn btn-start" onclick="initQuiz()">Build Practice Sheet</button>
+            <button class="btn" style="background:#f59e0b; width:100%" onclick="loadDemo()">Load Demo Questions &
+                Answers</button>
+        </div>
+
+        <div id="quiz-view" class="hidden">
+            <div id="summary-stat"
+                style="text-align: center; font-size: 22px; font-weight: bold; margin-bottom: 20px; color: var(--s);">
+            </div>
+
+            <div class="no-print upper-box"
+                style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 30px;">
+                <button id="prev-btn" class="btn btn-nav" onclick="changePage(-1)">← Prev</button>
+                <span id="page-info" style="font-weight: bold; font-size: 18px; align-self: center;"></span>
+                <button id="next-btn" class="btn btn-nav" onclick="changePage(1)">Next →</button>
+            </div>
+
+            <div id="quiz-container"></div>
+
+            <div style="text-align: center; margin-top: 30px;" class="no-print">
+                <button class="btn btn-s" style="padding: 15px 40px;" onclick="checkFullPage()">Check Page
+                    Result</button>
+                <!-- <button class="btn btn-nav" onclick="window.print()">🖨️ Print</button> -->
+                <button id="export-btn" class="btn btn-export" onclick="window.print()">Export PDF</button>
+                <button id="export-word-btn" class="btn btn-word" onclick="exportToWord()">Export to Word</button>
+                <button class="btn btn-reset" onclick="location.reload()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ১. Question Variable (Rearrange.txt theke copy kore ekhane diben)
+        function loadDemo() {
+            const demoQuestions = `
+1. Rearrange the following sentences to make a coherent order. Dhaka Board-2025
+(a) As Saadi was dressed in his usual inexpensive attire, the courtier didn't recognize him.
+(b) On his way back home from the emperor's palace, Saadi deliberately stopped at the same courtier's house.
+(c) During the meal, however, the guest began to put the delicacies into the folds of his fine clothes.
+(d) Sheikh Saadi, a renowned Persian poet, was travelling to the emperor's palace.
+(e) Saadi said that his clothes, in fact, deserved the food, reminding the host that last time he was shown poor hospitality because of his ordinary clothes.
+(f) Seeing the expensive clothes of the guest, the courtier and his men were extremely hospitable, offering him a spread of fine dishes.
+(g) Surprised, the courtier asked, "Why are you feeding your clothes, my honorable guest?"
+(h) Night fell on the way, and the poet took shelter in a courtier's house.
+(i) This time, however, he was wearing the luxurious clothes given to him by the emperor.
+(j) So, he treated the great man with indifference, offering him only a small meal and poor accommodation.
+
+2. Rearrange the following sentences to make a coherent order. Cumilla Board-2025
+(i) Sadi replied, "My dress deserves these foods."
+(ii) He set out for the emperor's palace in ordinary dress.
+(iii) On the way, he took shelter in a courtier's house but the courtier and his men did not show much honour and hospitality to him.
+(iv) The courtier realized his fault and begged the poet's pardon.
+(v) Once he was invited to the emperor's palace.
+(vi) On his way back home, Saadi again took shelter in the same courtier's house putting on gorgeous dress.
+(vii) The courtier received him cordially and entertained him with rich and delicious foods.
+(viii) Sheikh Saadi, great Persian poet, was simple in his way of life.
+(ix) Now, Saadi began to put his foods in the pockets of his dress.
+(x) Being surprised, the courtier asked, "Why are you putting the foods in the pockets of your dress?"
+
+3. Rearrange the following sentences to make a coherent order. Jashore Board-2025
+(i) And that person was his loving mother.
+(ii) His father got angry for this kind of activity.
+(iii) Because he always asked, "Why, why, why."
+(iv) The boy often undertook some risky adventures.
+(v) He was Thomas Alva Edison.
+(vi) But there was only one person who did never feel annoyed with the boy.
+(vii) For example, once the boy set his father's barn of fire only to see how it could burn.
+(viii) Do you know who this boy was?
+(ix) Sometimes it was difficult to satisfy him with answer.
+(x) A young boy of six or seven became the subject of talk in a village.
+
+4. Rearrange the following sentences to make a coherent order. Sylhet Board-2025
+(a) He showed it to his wife.
+(b) The lands yielded him some crops.
+(c) However, he picked it up and carried it home.
+(d) With that he supported his family.
+(e) One day he was walking through the fields.
+(f) While walking he came across a purse of gold.
+(g) He had a few acres of land.
+(h) There lived a farmer in a village.
+(i) He thought that it might have been dropped by a passer-by.
+(j) He was thinking how he could add to his income.
+
+5. Rearrange the following sentences to make a coherent order. Dinajpur Board-2025
+(i) Everyone frantically searched for the balloon with their name, colliding with each other, pushing around others, and there was utter chaos.
+(ii) Each one was asked to write his/her name on the balloon using a marker pen and release it.
+(iii) He then took all the attendees to the room and asked each one to randomly collect a balloon and give it to the person whose name was written on it.
+(iv) Once a group of 50 people were attending a seminar.
+(v) He then collected all the balloons and put them in another room.
+(vi) Within minutes everyone had their own balloon.
+(vii) The speaker then began, "This is happening in our lives and our happiness lies in the happiness of other people."
+(viii) At the end of five minutes no one could find their own balloon.
+(ix) He then took all the attendees to the room and asked them to find the balloon with their name within five minutes.
+(x) The speaker gave a balloon to each attendee.
+
+6. Rearrange the following sentences to make a coherent order. Mymensingh Board-2025
+(a) He donated the thief some money to start a business.
+(b) The box was full of gold and money.
+(c) A thief entered his house at night.
+(d) The man said, "Sir, I am very poor. So, I have no food in my house."
+(e) He was well-known for his kindness.
+(f) Hazi Muhammad Mohsin took him to another room and opened a box.
+(g) Hazi Muhammad Mohsin was a very kind hearted man.
+(h) He woke up and caught hold of the thief.
+(i) He helped the poor and helpless people with food and clothes.
+(j) He took pity on the poor.
+
+7. Rearrange the following sentences to make a coherent order. Ctg Board -2025
+(a) "Where is my son?" asked the grocer
+(b) Then one day, the fruit-seller said to the grocer, "I am going to the town to do some shopping. Please, send your son with me to carry my things."
+(c) The grocer said, "The mice ate away your balance and weights. So, I can't return those to you."
+(d) "A crow carried your son away," replied the fruit-seller.
+(e) One day, a grocer borrowed a balance and weights from a fruit-seller.
+(f) The grocer sent his son with the fruit-seller but he came back alone from the town.
+(g) "You liar, how can a crow carry away such a big boy?" the grocer shouted angrily.
+(h) The lame excuse of the dishonest grocer made the fruit-seller very angry. But he controlled his temper.
+(i) "Just the same way as mice can eat away the balance and weights," said the fruit-seller.
+(j) After a few days, the fruit-seller asked the grocer to return his balance and weights.
+
+8. Rearrange the following sentences to make a coherent order. Barishal Board-2025
+(i) All the servants were called and interrogated.
+(ii) In order to find out the thief, the judge chalked out an intelligent plan.
+(iii) Once a gold necklace was lost from a rich man’s house.
+(iv) The servants were summoned to the court but they denied having stolen the necklace.
+(v) When the servants came to the court the next day, the thief had already cut off an inch of his stick.
+(vi) But nobody confessed their guilt.
+(vii) So, the owner of the house lodged a complaint in the court.
+(viii) The judge found one of the sticks shorter than the others and in this way he could easily catch the thief.
+(ix) Naturally, it was suspected that one of the servants had stolen the necklace.
+(x) He gave each of the suspects a stick of equal length and said that one of the sticks would increase by an inch the next day.
+
+9. Rearrange the following sentences to make a coherent order. Rajshahi Board-2025
+(a) The angel took down his request and went away.
+(b) His name was Abu Ben Adhem.
+(c) Abu then requested him to put his name in the list because he loved mankind and his fellow brothers.
+(d) He again appeared the next night and showed Abu that his name was at the top of the list.
+(e) The angel was writing the names of persons who loved God.
+(f) Once upon a time there was an honest and pious man.
+(g) He asked the angel if his name was there.
+(h) He was once sleeping peacefully.
+(i) In reply, the angel said that his name was not there.
+(j) Suddenly he woke up and saw an angel.
+
+10. Rearrange the following sentences to make a coherent order. Madrasah Board-2025
+(a) By chance, it pierced a boy standing in the jungle.
+(b) One day he was on hunting a deer in the jungle.
+(c) His capital was Sonargaon near Dhaka.
+(d) The boy instantly died.
+(e) The arrow missed its aim.
+(f) The Sultan's hobby was hunting.
+(g) He shot an arrow aiming at a fawn.
+(h) Long ago, there was a Sultan in Bengal.
+(i) He was a very just and kind ruler.
+(j) His name was Giasuddin Azam.
+
+11. Rearrange the following sentences to make a coherent order [Dhaka Board-2024]
+(i) For this, he was awarded gold medal in all India.
+(ii) Joynul Abedin was such a personality who enriched our culture.
+(iii) The artist did not like the hard rules of school.
+(iv) He died on 28 May, 1976 in Dhaka.
+(v) Joynul Abedin was born at a village in Kishoregonj in 1914.
+(vi) The great personality is a person who contributed for his country or the people.
+(vii) He drew the pictures of the famine of the 2nd world war and got huge reputation.
+(viii) His father Tamij Uddin was a police officer.
+(ix) So, at the age of 15, he went to Kolkata and was admitted in a Government Art College.
+(x) He was a great artist who owned name and fame for himself and his country.
+
+12. Rearrange the following sentences to make a coherent order [Rajshahi Board-2024]
+(i) Knowledge of these machines is essential to keep pace with the future world.
+(ii) The sooner we can make and activate this plan, the be for us.. better it will
+(iii) This is known to be AI (Artificial Intelligence) Revolution.
+(iv) Therefore, learning technology and achieving technological skill should be thought of seriously. 
+(v) The machines will mainly include computer, mobile phone and robot.
+(vi) But we can no longer wait; exact an made now. and realistic plan should be
+(vii) The fourth revolution is knocking at the door.
+(viii) Those who are skillful in it will survive successfully.
+(ix) We have not yet been prepared for this sort of education.
+(x) This revolution will turn the world into a machine-based one.
+
+13. Rearrange the following sentences to make a coherent order [Cumilla Board-2024]
+(a) The angel took down his request and went away.
+(b) His name was Abu Ben Adhem.
+(c) Abu then requested him to put his name in the list because he loved mankind and his fellow brothers.
+(d) He again appeared the next night and showed Abu that his name was at the top of the list.
+(e) The angel was writing the names of persons who loved God.
+(f) Once upon a time there was an honest and pious man.
+(g) He asked the angel if his name was there.
+(h) He was once sleeping peacefully.
+(i) In reply the angel said that his name was not there.
+(j) Suddenly he woke up and he saw an angel.
+
+14. Rearrange the following sentences to make a coherent order [Mymensingh Board-2024]
+(i) He asked him where God is.
+(ii) He praised him highly.
+(iii) Once a lad went to a famous teacher.
+(iv) The teacher thought highly of the boy's understanding.
+(v) The lad replied that he would answer if he would tell where he is not.
+(vi) The boy devoted himself to earning knowledge.
+(vii) He begged to instruct him in arts and science.
+(viii) He agreed to teach the lad.
+(ix) He expressed his desire to acquire knowledge.
+(x) The teacher wished to find out the ability of the boy.
+
+15. Rearrange the following sentences to make a coherent order [Barishal Board-2024]
+(i) Hojja became furious and decided to teach him a lesson.
+(ii) Suddenly, he saw someone calling from below. 
+(iii) Hojja immediately replied, "Why did you make me climb the way down stairs to ask for money? Couldn't you see that I was working?"
+(iv) When he came near, the man said that he was a beggar and wanted some money.
+(v) One day, Nasiruddin Hojja was mending a hole on the roof of his two storeyed house.
+(vi) The beggar was very surprised and asked why Hojja had made him climb the stairs to say he had no money.
+(vii) When they both got to the rooftop, where he was previously working, Hojja turned towards the man and said, "Sorry, I have no money, so you have to leave."
+(viii) He saw there was a man standing at the foot of the stairs and was asking him to get down and listen to him.
+(ix) So, he told the man to climb the stairs with him.
+(x) Being curious, he climbed down from the roof and went down the stairs.
+
+16.Rearrange the following sentences to make a coherent order [Chattogram Board-2024]
+(i) The crow tried to turn the jar over again and again, but it had no effect.
+(ii) At last, he found a jar in a garden.
+(iii) As he was leaving the jar in despair, he noticed a heap of pebbles nearby
+(iv) There was some water in the jar, but it was at the bottom and out of reach.
+(v) He flew from one place to another in search of water.
+(vi) He took some pebbles and dropped them into the jar.
+(vii) Then he hit upon a plan.
+(viii) A crow was very thirsty and wanted to have a drink.
+(ix) When the water came to the mouth of the jar, the crow drank and met up his thirst.
+(x) As each pebble went down, the water in the jar rose up little by little.
+
+17. Rearrange the following sentences to make a coherent order [Dinajpur Board-2024]
+(a) There she became a teacher of a school in Kolkata.
+(b) Soon her activities for the service of mankind spread all over the world.
+(c) She was on her heels for her selfless services to mankind even at her old age.
+(d) As a recognition to her service, she was awarded the Nobel Prize for Peace in 1979.
+(e) She was one of those people who dedicated their lives to the service of mankind.
+When she was eighteen, she decided to be a nun and came to Kolkata.
+(g) She swore to dedicate her life for the cause of helpless and poor people.
+(h) She was born in Yugoslavia in 1910.
+(i) She was also given 'Bharat Ratna Award' in the following year.
+(j) You have heard the name of Mother Teresa.
+
+18. Rearrange the following sentences to make a coherent order [Jashore Board-2024]
+(a) The cook was very stubborn.
+(b) The cook could not check his temptation and ate one of the drumsticks.
+(c) The master was also very clever and was not to be fooled so easily.
+(d) The cook was more than clever.
+(e) He replied that it was a one-legged duck.
+(f) Once a cook roasted a duck for his master and it looked very delicious.
+(g) The master came to have his meal and noticed one of the legs missing.
+(h) He said that there was no one-legged duck.
+(i) He asserted that this duck had only one leg.
+(j) He asked what had happened to the other leg.
+
+19. Rearrange the following sentences to make a coherent order. [Dhaka Board 2023]
+(a) “Where is my son?” asked the grocer.
+(b) Then one day, the fruit seller said to the grocer, ”I am going to the town to do some shopping. Please, send your son with me to carry my things.”
+(c) The grocer said, “ The mice ate away your balance and weight. So, I can’t return you.”
+(d) “A crow carried your son away,” replied the fruit seller.
+(e) One day, a grocer borrowed a balance and weights from a fruit seller.
+(f) The grocer sent his son with the fruit seller but he came back alone from the town.
+(g) “You liar! How can a crow carry such a big boy?” The grocer shouted angrily.
+h) The lame excuse of the dishonest grocer made the fruit seller very angry. But he checked his tamper.
+(i) “Just the same way as mice can eat the balance and weights,” said the fruit seller.
+(j) After a few days, the fruit seller asked the grocer to return his balance and weights.
+
+20. Rearrange the following sentences to make a coherent order. [Mymenshing Board -2023]
+(a) He used to interesting stories to the people of the village.
+(b) He never spoke for the rest of his life.
+(c) His name was Nambi.
+(d) He lived in a temple of the edge of the village and passed his time under the banyan tree in front of the temple.
+(e) Before telling a story, he used to light a lamp in front of the tree.
+(f) There was a remote village named Somal.
+(g) One day, he could not continue his story.
+(h) After a few days, he called the villagers and told them something.
+(i) He was so ignorant that he could not tell his age, but he could make up stories.
+(j) The villagers were enchanted by a man.
+
+21. Rearrange the following sentences to make a coherent order. [Cumilla Board-2023]
+(a) He was one of the most renowned linguists of Bangladesh.
+(b) He died in 1969 and remembers him with respect.
+ (c) He was second to in Bengali language and literature.
+(d) Dr Mohammad Shahidullah was born in 24 Pogonas, west Bengal 1885.
+(e) He joined Jashore Zilla School in 1910.
+(f) He passed the Entrance and FA Exam in 1904 and 1906.
+(g) He received some awards and contributed much to Bangla literature.
+(h) He passed Honours and Masters in 1910 and 1912.
+(i) He joined Dhaka University as a Lecture in 1921.
+(j) He got his Ph.D. in 1928.
+
+22. Rearrange the following sentences to make a coherent order. [Rajshahi board-2023]
+(a) One day, he was very hungry.
+(b) The grapes were too high for him to reach.
+(c) Again and again he jumped.
+(d) At last, he entered into a vineyard.
+(e) Once upon a time, there lived a fox in a forest.
+(f) But each time, he failed to reach the grapes.
+(g) At last being tired, he went to say that the grapes were sour.
+(h) He took a run and jumped to reach the bunch of grapes but could not reach it.
+(i) He searched for food everywhere, but he did not get any food.
+(j) There were ripe grapes hanging up on the vine.
+
+23. Rearrange the following sentences to make a coherent order. [Dinajpur Board-2023]
+(a) They dug the hole, killed the snake, and took the necklace.
+(b) The crow at last thought of a plan to get rid of its enemy.
+(c) It stole an expensive necklace of the princess from the royal palace and dropped it into the snake’s hole after scatting a few rubies here and there.
+(d) A snake lived in a hole at the foot of a tree.
+(e) The king became very angry at the loss and sent out men to look for the necklace.
+(f) High up on its branches was the nest of a crow.
+(g) In this way, the snake ate up three of the chicks.
+(h) I the course of time, they noticed the scattered rubies near the hole.
+(i) The crow had four young chicks in its nest.
+(j) Whenever the crow would leave the nest to bring food for its chicks, the snake would climb up and eat one.
+
+24. Rearrange the following sentences to make a coherent order. [Jashore Board-2023]
+(a) Then he invited applications.
+(b) The applications were asked to meet the Sultan one by one.
+(c) Long ago, there lived a Sultan in a country.
+(d) Then the sultan found the desired man.
+(e) He wanted to appoint in honest man as his six collectors.
+(f) A number of people applied for the job.
+(g) All the applicants blushed and refused except one.
+(h) So, he asked for the wise counsellors’ advice.
+(i) When they arrived, the sultan asked them to dance.
+(j) They came through a passage where gold coins were kept.
+
+25. Rearrange the following sentences to make a coherent order. [Chattogram Board-2023]
+(a) He asked him where God is.
+(b) He praised him highly.
+(c) Once, a lad went to a famous teacher.
+(d) The teacher thought highly of the boy’s understanding.
+(e) The lad replied that he would answer if he would tell where he is not.
+(f) The boy devoted himself to earning knowledge.
+(g) He bagged to instruct him in the arts and science.
+(h) He agreed to teach the lad.
+(i) He expressed his desire to acquire knowledge.
+(j) The teacher wished to find out the ability of the boy.
+
+26. Rearrange the following sentences to make a coherent order. [Sylhet Board-2023]
+(a) The grapes were too high for him to reach.
+(b) One day, he was very hungry.
+(c) Again and again he jumped.
+(d) At last, he entered into a vineyard.
+(e) Once upon a time, there lived a fox in a forest.
+(f) At last being tired, he went away saying that grapes but could not reach it.
+(g) But each time, he failed to reach the grapes.
+(h) He took a run and jumped to reach the bunch of grapes but could not reach it.
+(i) He searched for food everywhere, but he did not get any food.
+(j) There were ripe grapes hanging up on the vine.
+
+27. Rearrange the following sentences to make a coherent order. [Barishal Board-2023]
+(a) As a result, he studied under a great thinker Plato.
+(b) He also wrote books on Biology, Literature, Economics and Comparative Politics.
+(c) Plato taught Aristotle according to his own way.
+(d) Aristotle was born in Greece.
+(e) His father wanted him to be a physician, but he never cherished to be so.
+(f) Later on, Aristotle took the pen to write on topics suitable for human civilization.
+(g) He is called the father of Biology because of his creativity.
+(h) “Politics’’ is one of his famous books which expose fullest development of his wisdom.
+(i) He wanted to be a free thinker.
+(j) He was the son of a royal physician.
+
+28. Rearrange the following sentences to make a coherent order. [Jashore Board -2022]
+(a) MRT Line-6 is the first line to be approved from Uttara to Motijheel covering a length of 20 km.
+(b) This project is being developed by the Dhaka Mass Transit Company.
+(c) Moreover, this Metro Rail Project will have 16 elevated stations in total.
+(d) Indeed, the initiative will uplift the traffic system to an internationally advanced level.
+(e) It is projected to serve 60,000 passengers per hour.
+(f) The Dhaka Metro Rail Project' is a wise and far-sighted initiative by the current government.
+(g) It will also reduce the existing traffic jams to a great extent.
+(h) A total of five lines. MRT 1. 2. 4. 5, and 6 have been proposed for this project.
+
+29. Rearrange the following sentences to make a coherent order. [Cumilla Board -2022]
+(a) In 1994, Mandela was elected as the first black president of Africa.
+(b) After passing nearly three decades, he was freed.
+(c) Nelson Mandela, the black leader understood the fact.
+(d) Finally, he left his public life in 2004 and worldly life in 2013.
+(e) While domination in South Africa was a very inhuman practice.
+(f) So, he was arrested and sent behind the prison bar.
+(g) He raised his voice against the cruelties of apartheid.
+(h) The white African leader F.W. de Klerk
+
+30. Rearrange the following sentences to make a coherent order. [Chattogram Board -2022]
+(a) He wrote a lot of poems, songs-gazals, short stories, poems, novels, etc.
+(b) He lost his father at the age of eight and at the age of eleven he showed his poetic genius.
+(c) At the age of nineteen, he joined the Army as an ordinary soldier to the fight in the First World War.
+(d) On his return from the battlefield, he gave up the sword for the pen.
+(e) It was tragic that he had been suffering from a fatal disease since 1942 and remained paralysed for the rest of his life.
+(f) In 1924 he married Promila in Kolkata.
+(g) Bangladesh became independent in 1971 and he was brought to Bangladesh from Kolkata in 1972.
+(h) Kazi Nazrul Islam was born in 1899 in the district of Burdwan in West Bengal.
+
+31. Rearrange the following sentences to make a coherent order. [Sylhet Board -2022]
+(a) Due to this drastic change, people cannot decide what appropriately to do to fight this danger.
+(b) We are witnessing a serious education crisis that was once beyond imagination.
+(c) Because of the inconceivable Covid-19 disaster, the entire world is passing a very difficult time.
+(d) They also find difficulties keeping pace with this change.
+(e) This disaster has changed the world scenario drastically.
+(f) The hope is that with the problems, some prospects are also appearing.
+(g) Our education sector is undergoing the same critical condition.
+(h) However, there is a ray of hope.
+
+32. Rearrange the following sentences to make a coherent order. [Barishal Board -2022]
+(a) Haji Mohsin took him to another room and opened a box.
+(b) Haji Mohsin woke up and caught hold of the thief.
+(c) The box was full of gold and money.
+(d) He took pity with the poor man.
+(e) He was famous for his kindness.
+(f) Haji Mohsin helped the poor and the helpless people with food and clothes.
+(g) A thief entered into his bedroom one night.
+(h) The man said, "Sir, I am very poor, I have no food in my house."
+
+33. Rearrange the following sentences to make a coherent order. [Dinajpur Board -2022]
+(a) He died on August 29, 1976 and was buried in the compound of Dhaka University.
+(b) He wrote a lot of poems, songs, ghazals, short stories, novels, etc.
+(c) He lost his father at the age of eight and at the age of eleven he showed his poetic genius.
+(d) At the age of nineteen, he joined the army as an ordinary soldier but after the First World War, he gave up the sword for the pen.
+(e) It was tragic that he had been suffering from a cruel disease since 1942 and remained paralyzed for the rest of his life.
+(f) Bangladesh became independent in 1971 and he was brought to Bangladesh from Kolkata in 1972.
+(g) Kazi Nazrul Islam was born in 1899 in the district of Burdwan in West Bengal.
+(h) Then he was declared our national poet by the government of Bangladesh.
+
+34. Rearrange the following sentences to make a coherent order. [Dhaka Board-2019]
+(i) All the servants were called and interrogated.
+(ii) In order to find out the thief, the judge chalked out an intelligent plan.
+(iii) Once a gold necklace was lost from a rich man's house.
+(iv) The servants were summoned to the court but they denied having stolen the necklace.
+(v) When the servants came to the court the next day, the thief had already cut off an inch of his stick.
+(vi) But nobody confessed their guilt.
+(vii) So the owner of the house lodged a complaint in the court.
+(viii) The judge found one of the sticks shorter than the others and in this way he could easily catch the thief.
+(ix) Naturally it was suspected that one of the servants had stolen the necklace.
+(x) He gave each of the suspects a stick of equal length and said that one of the sticks would increase by an inch the next day.
+
+35. Rearrange the following sentences to make a coherent order. [Rajshahi Board-2019]
+(a) He showed extraordinary credit in every examination of the school.
+(b) He has made great contribution to the scientific research of Bangladesh.
+(c) Dr.Kudrat-e-Khuda was born on 8th May at village Maragra in the district of Birbhum in West Bengal in 1900 AD.
+(d) In 1925, getting star marks he passed M.Sc in Chemistry from Kolkata Varsity.
+(e) He died on 3rd November in 1977. His father Hazrat Shah Abdul Mukit was a pious man.
+(f) In 1929, he passed D.Sc. from Imperial College in England.
+(h) At the age of six, he was admitted into a Furkania Madrasa and then he was admitted into an English School.
+(i) He made a great plan to give the new structure of education system.
+(j) In 1953, he was appointed Chairman of Secondary Education Board.
+
+36. Rearrange the following sentences to make a coherent order. [Cumilla Board-2019, Dinajpur Board-2022]
+(i) He died on August 29, 1976 and was buried in the compound of Dhaka University.
+(ii) He wrote a lot of poems, songs, gazals, short stories, novels, etc.
+(iii) He lost his father at the age of eight and at the age of eleven he showed his poetic genius. (iv) At the age of nineteen, he joined the Army as an ordinary soldier to fight in the First World War.
+(v) On his return from the battlefield, he gave up the sword for the pen.
+(vi) It was tragic that he had been suffering from a cruel disease since 1942 and remained paralyzed for the rest of his life.
+(vii) In 1924, he married Promila in Kolkata.
+(viii) Bangladesh became independent in 1971 and he was brought to Bangladesh from Kolkata in 1972.
+(ix) Kazi Nazrul Islam was born in 1899 in the district of Burdwan in West Bengal.
+(x) Then he was declared our national poet by the Government of Bangladesh.
+
+37. Rearrange the following sentences to make a coherent order. [Jashore Board-2019; Sylhet Board-2013; Rajshahi Board-2012; Dinajpur Board-2012; Dhaka Board-2005]
+(a) The king was fond of knowing his future from the astrologer.
+(b) The king called him to the palace.
+(c) At this, the king got furious and condemned him to death.
+(d) A good astrologer visited the capital of the king.
+(e) Once there was a king.
+(f) With ready wit he said, "The stars declare that I'll die only a week before your death."
+(g) But another thought crossed his mind before the astrologer was removed for execution.
+(h) The king then asked, “How long would you like to live?”
+(i) The astrologer told something very unpleasant.
+(j) He then thought for a while some ways of escape.
+
+38. Rearrange the following sentences to make a coherent order. [Barishal Board -2019; Sylhet Board -2015]
+(i) The last words of the speech are: “Government of the people, by the people, for the people shall not perish from the earth.”
+(ii) Abraham Lincoln was the President of the United States of America.
+(iii) On the 10th of November 1863, a railway train was carrying him to a place called Gettysburg.
+(v) It is one of the finest and shortest speeches in English language.
+(vi) He was going there to speak at a meeting.
+(vi) On the envelope, it was what he was going to say at the meeting.
+(vi) These words tell us what the best possible way of ruling a country is.
+(vii) He was not writing on paper but on the back of an envelope.
+(ix) In the train, he was busy with writing something.
+(x) In fact, the speech on the envelope is now famous as “Gettysburg Address.”
+
+39. Rearrange them in proper sequence. [Sylhet Board -2019; Chattogram Board -2016]
+(i) One day, he was very hungry.
+(ii) The grapes were too high for him to reach.
+(iii) Again and again he jumped.
+(iv) At last, he entered into a vineyard.
+(v) Once upon a time, there lived a fox in a forest.
+(vi) But each time, he failed to reach the grapes.
+(vii) At last being tired, he went away saying that the grapes were sour.
+(viii) He took a run and jumped to reach the bunch of grapes but could not reach it.
+(ix) He searched food everywhere but he did not get any food.
+(x) There were ripe grapes hanging up on the vine.
+
+40. The following sentences are jumbled. Rearrange them in a proper sequence. [HSC Exam-2018 (Ka Set); Barishal Board-2014; Cumilla Board-2013]
+a) In 1880, Rabindranath was called back to India.
+b) He was awarded the Nobel Prize in 1913 for Gitanjali.
+c) He returned home without any qualification of distinction.
+d) He wrote Gitanjali, a collection of Bengali songs of superior quality.
+e) Rabindranath Tagore was born in 1861 into a respectable family at Jorasanko in Kolkata.
+f) At the age of seventeen, in 1878, he reached London to attend school.
+g) He went to school early and wrote his first verse at the age of eight.
+h) The experience had a lasting effect on his later life.
+i) However, he never gave up his habit of writing poetry.
+j) He gathered much experience from his stay in London.
+
+41. The following sentences are jumbled. Rearrange them in a proper sequence. [HSC Exam-2018(Kha Set); Dinajpur Board-2016; Cumilla Board -2011; Dhaka Board-2004]
+a) They were aliens in their own country and were subjected to all sorts of indignities. 
+b) The blacks were treated cruelly.
+c) The great leader vowed to put an end to the inhuman practice.
+d) They were denied all basic human rights.
+e) Even dogs received much better treatment than the blacks.
+f) Eventually, the great leader realized the goal of liberating his own people.
+g) He was thrown behind the prison bar.
+h) Nelson Mandela was the greatest leader of South Africa.
+i) But the oppressive rulers could not break the spirit.
+j) In fact, he was one of the greatest leaders of the world who struggled against apartheid throughout his whole life.
+
+42. Rearrange the sentences to make a coherent order: [Dhaka Board-2017; Barishal Board-2017, Rajshahi Board-2022]
+a) Then he invited applicants.
+b) The applicants were asked to meet the Sultan one by one.
+c) Long ago, there lived a Sultan in a country.
+d) Then he found the desired man.
+e) He wanted to appoint an honest man as his tax collector.
+f) A number of people applied for the job.
+g) All the applicants blushed and refused to accept one.
+h) So, he asked for the wise counsellor’s advice.
+i) When they all arrived, Sultan asked them to dance.
+j) They came through a passage where gold coins were kept.
+
+43. Rearrange the following sentences to make a coherent order: [Rajshahi Board 2017]
+a) As a result, he studied under a great thinker Plato.
+b) He also wrote books on Biography, Literature, Economics, and Comparative politics.
+c) Plato taught Aristotle according to his own way.
+d) Aristotle was born in Greece.
+e) His father wanted him to be a physician but he never cherished to be so.
+f) Later on, Aristotle took the pen to write on topics suitable for human civilization.
+g) He is called the father of Biology because of his creativity.
+h) ‘Politics’ is one of his famous books which expose the fullest development of his wisdom.
+i) He was the son of a royal physician.
+j) He wanted to be a free thinker.
+
+44. The following sentences are jumbled. Rearrange them in a proper sequence. [Cumilla Board 2017, Mymensingh Board-2022]
+a) As Bagerhat is near the Bay of Bengal, the water is usually saline.
+b) Khan Jahan Ali was a philanthropic man.
+c) He, therefore, excavated many tanks to provide fresh water to the people.
+d) He came to Bagerhat to preach Islam and to promote the plight of common people.
+e) He found Bagerhat beset with many problems. f) His memory will never be sunk into oblivion. g) Thus he redressed the problem of drinking water.
+h) The scarcity of drinking water is one of them. i) The people of Bagerhat remember him with respect.
+j) Gora Dighi is one of them.
+
+45. Rearrange the following sentences to make a coherent order: [Jashore Board 2017]
+a) He asked him where God was.
+b) He praised him highly.
+c) Once a lad went to a famous teacher.
+d) The teacher thought highly of the boy’s understanding.
+e) The lad replied that he would answer if he would tell where he is not.
+f) The boy devoted himself to earning knowledge.
+g) He begged to instruct him in the arts and sciences.
+h) He agreed to teach the lad.
+i) He had expressed his desire to acquire knowledge.
+j) The teacher wished to find out the ability of the boy.
+
+46. The sentences are jumbled. Rearrange them in a proper sequence. [Sylhet Board 2017]
+a) One prize is awarded in each field.
+b) The prize is instituted by a man who was the inventor of the science of destruction.
+c) Nobel prize is the world’s most important prize.
+d) He is Alfred Bernard Nobel.
+e) Though he is a citizen of Sweden, he was educated in Russia.
+f) Nobel prizes are awarded everyone for outstanding achievements in the field of science, literature and for performing world’s peace.
+g) The prize is given to persons with the most outstanding contribution.
+h) If there are more than one recipient of the prize in one field, the prize money is equally distributed among all the winners.
+i) Economics was added in the list in 1969 for the first time.
+j) He was born in Stockholm on 21st October 1833 and he died on 10th December 1896. 
+
+47. The following sentences are jumbled. Rearrange them in a proper sequence. [Chattogram Board 2017]
+a)  He was one of the most renowned linguists of Bangladesh.
+b) He died in 1969 and we remember him with respect.
+c) He was second to none in Bengali Language and literature.
+d) Dr. Mohammad Shahidullah was born in 24 Pogona, West Bengal in 1885.
+e) He joined Jessore Zilla School in 1910.
+f) He passed the entrance and FA exam, in 1904 and 1906.
+g) He received some awards and contributed much to Bengali Literature.
+h) He passed Hons and M. A. in 1910 and 1912.i) He joined Dhaka University as a lecturer of Bengali in 1921.
+j) He got his Ph.D. in 1928.
+
+48. Rearrange the following sentences to make a coherent order: [Dinajpur Board 2017]
+a) “Please let me go to my country.”
+b) An English boy was making a small boat.
+c) “I shall cross the sea and go to my country by this boat.”
+d) He made all arrangements to send him to his country.
+e) Suddenly he noticed a wonderful thing.
+f) Napoleon was charmed by the words of the small boy.
+g) “I haven’t seen my mother for a long time.”
+h) The boy said, “My country is on the other side of the sea.”
+i) One day Napoleon, the king of France, was walking along the seashore.
+j) The boy was brought before him and he asked him what he would do with such a small boat. 
+
+49. Rearrange the following sentences to make a coherent order. [Dhaka Board -2016]
+(i) He used to tell interesting stories to the people of the village.
+(ii) He never spoke the rest of his life.
+(iii) His name was Nambi.
+(iv) He lived in a temple at the edge of the village and passed his time under the banyan tree in front of the temple.
+(v) Before telling a story, he used to light a lamp in front of the tree.
+(vi) There was a remote village named Somal. (vii) One day, he could not continue his story. (viii) After a few days, he called all the villagers and told them something.
+(ix) He was so ignorant that he could not tell his age, but he could make up stories.
+(x) The villagers were enchanted by a man.
+
+50. Rearrange the following sentences to make a coherent order. [Rajshahi Board- 2016]
+(i) He did not find any safe place to keep the bag and could not think where to keep the money.
+(ii) He gradually realised that he had money, but no peace of mind.
+(iii) He dug a hole in his hut and kept the money there.
+(iv) So, he could not devote himself to his work.
+(v) The farmer was surprised and said to himself, “One thousand rupee is a lot of money.”
+(vi) Now, a thought took hold of the farmer that his money could be stolen any time.
+(vii) He said to him, “Look my friend! I have brought one thousand rupees for you. Keep this money and remove your distress.”
+(viii) The rich man went to the farmer with one thousand rupees in a bag.
+(ix) He took the bag of money from the rich man and thanked him.
+(x) This thought kept him awake and his sleep fled away at night.
+
+51. Rearrange the following sentences to make a coherent order. [Cumilla Board -2016, 2004; Barishal Board-2010]
+(i) The crow tried to turn the jar over the over again but failed.
+(ii) At last he found a jar in a garden.
+(iii) As he was leaving the jar in despair, he noticed a heap of pebbles nearby.
+(iv) There was some water in the jar, but it was at the bottom and out of his reach.
+(v) He flew from one place to another in search of water.
+(vi) He took some pebbles and started dropping them into the jar.
+(vii) Then he hit upon a plan.
+(viii) A crow was very thirsty and wanted to drink water.
+(ix) When the water came to the mouth of the jar the crow drank his full.
+(x) As each pebble went down, the water in the jar rose up little by little.
+
+52. Rearrange the following sentences to make a coherent order. [Sylhet Board -2016]
+(i) The master was very amused.
+(ii) One of the ducks was standing on one leg and had the other leg a car atat folded inside, but the master was not to be fooled.
+(iii) The master looked at the cook and said there was no such thing as one-legged duck.
+(iv) The master clapped his hands loudly, and the duck put down its other leg and ran off.
+(v) The master became very annoyed as the cook told him that the duck had one leg only.
+(vi) The roast looked delicious and the cook ate one of the legs of the duck.
+(vii) At that moment, the cook looked out of the window.
+(viii) A cook once roasted a duck for his master.
+(ix) The cook replied that his master was right.
+(x) The cook insisted that the duck had one leg only.
+        `;
+
+            // ২. Answer Variable (Rearrange.txt theke copy kore ekhane diben)
+            const demoAnswers = `
+01. Answer: (d) + (h) + (a) + (j) + (b) + (i) + (f) + (c) + (g) + (e);
+02. Answer: (viii) + (v) + (ii) + (iii) + (vi) + (vii) + (ix) + (x) + (i) + (iv);
+03. Answer: (x) + (iii) + (ix) + (iv) + (vii) + (ii) + (vi) + (i) + (viii) + (v);
+04. Answer: (h) + (g) + (b) + (d) + (j) + (e) + (f) + (i) + (c) + (a);
+05. Answer: (iv) + (x) + (ii) + (v) + (ix) + (i) + (viii) + (iii) + (vi) + (vii);
+06. Answer: (g) + (e) + (i) + (c) + (h) + (d) + (j) + (f) + (b) + (a);
+07. Answer: (e) + (j) + (c) + (h) + (b) + (f) + (a) + (d) + (g) + (i);
+08. Answer: (iii) + (ix) + (i) + (vi) + (vii) + (iv) + (ii) + (x) + (v) + (viii);
+09. Answer: (f) + (b) + (h) + (j) + (e) + (g) + (i) + (c) + (a) + (d);
+10. Answer: (h) + (j) + (c) + (i) + (f) + (b) + (g) + (e) + (a) + (d);
+11. Answer: (v) + (viii) + (ii) + (vi) + (x) + (iii) + (ix) + (vii) + (iv) + (i);
+12. Answer: (vii) + (iii) + (x) + (v) + (i) + (viii) + (iv) + (ix) + (ii) + (vi);
+13. Answer: (f) + (b) + (h) + (j) + (e) + (g) + (c) + (a) + (d) + (i);
+14. Answer: (iii) + (ix) + (vii) + (x) + (i) + (v) + (iv) + (ii) + (viii) + (vi);
+15. Answer: (vi) + (i) + (viii) + (iv) + (iii) + (ix) + (vii) + (ii) + (x) + (v);
+16. Answer: (iii) + (vii) + (ii) + (x) + (viii) + (iv) + (vi) + (v) + (ix) + (i);
+17. Answer: (j) + (h) + (f) + (a) + (g) + (b) + (e) + (d) + (i) + (c);
+18. Answer: (f) + (b) + (g) + (j) + (d) + (e) + (c) + (h) + (a) + (i);
+19. Answer: (e) + (j) + (c) + (h) + (b) + (f) + (a) + (d) + (g) + (i);
+20. Answer: (f) + (j) + (c) + (d) + (i) + (a) + (e) + (g) + (h) + (b);
+21. Answer: (c) + (i) + (g) + (a) + (e) + (d) + (b) + (h) + (f) + (j);
+22. Answer: (e) + (b) + (i) + (d) + (j) + (a) + (h) + (c) + (g) + (f);
+23. Answer: (i) + (e) + (b) + (j) + (h) + (c) + (f) + (d) + (a);
+24. Answer: (c) + (i) + (g) + (j) + (a) + (e) + (d) + (b) + (h) + (f);
+25. Answer: (d) + (f) + (h) + (i) + (j) + (c) + (a) + (e) + (b);
+26. Answer: (e) + (b) + (i) + (d) + (j) + (a) + (h) + (c) + (g) + (f);
+27. Answer: (d) + (j) + (e) + (i) + (a) + (c) + (f) + (h) + (b) + (g);
+28. Answer: (f) + (b) + (h) + (a) + (c) + (e) + (g) + (d);
+29. Answer: (e) + (c) + (g) + (f) + (b) + (h) + (a) + (d);
+30. Answer: (h) + (b) + (c) + (d) + (a) + (f) + (e) + (g);
+31. Answer: (c) + (e) + (a) + (d) + (g) + (b) + (h) + (f);
+32. Answer: (f) + (e) + (g) + (b) + (h) + (d) + (a) + (c);
+33. Answer: (g) + (c) + (d) + (b) + (e) + (f) + (h) + (a);
+34. Answer: (iii) + (ix) + (i) + (vi) + (vii) + (iv) + (ii) + (x) + (v) + (viii);
+35. Answer: (c) + (f) + (h) + (a) + (d) + (g) + (j) + (i) + (b) + (e) ;
+36. Answer: (ix) + (iii) + (iv) + (v) + (ii) + (vii) + (vi) + (viii) + (x) + (i);
+37. Answer: (e) + (a) + (d) + (b) + (i) + (c) + (g) + (h) + (j) + (f);
+38. Answer: (ii) + (iii) + (v) + (ix) + (viii) + (vi) + (x) + (iv) + (i) + (vii);
+39. Answer: (v) + (i) + (ix) + (iv) + (x) + (viii) + (ii) + (iii) + (vi) + (vii);
+40. Answer: (e) + (g) + (f) + (j) + (h) + (a) + (c) + (i) + (d) + (b);
+41. Answer: (h) + (j) + (b) + (d) + (a) + (e) + (c) + (g) + (i) + (f);
+42. Answer: (c) + (e) + (h) + (a) + (f) + (b) + (j) + (i) + (g) + (d);
+43. Answer: (d) + (i) + (e) + (j) + (a) + (c) + (f) + (h) + (b) + (g);
+44. Answer: (b) + (d) + (e) + (h) + (a) + (c) + (j) + (g) + (f) + (i);
+45. Answer: (c) + (i) + (g) + (j) + (a) + (e) + (d) + (b) + (h);
+46. Answer: (c) + (b) + (d) + (j) + (e) + (f) + (i) + (g) + (a) + (h);
+47. Answer: (d) + (a) + (f) + (e) + (h) + (i) + (j) + (c) + (g) + (b);
+48. Answer: (i) + (e) + (b) + (j) + (h) + (c) + (g) + (a) + (f) + (d);
+49. Answer: (vi) + (x) + (iii) + (iv) + (ix) + (i) + (v) + (vii) + (viii) + (ii);
+50. Answer: (viii) + (vii) + (v) + (ix) + (i) + (iii) + (vi) + (x) + (iv) + (ii);
+51. Answer: (viii) + (v) + (ii) + (iv) + (i) + (iii) + (vii) + (vi) + (x) + (ix);
+52. Answer: (viii) + (vi) + (v) + (x) + (vii) + (ii) + (iv) + (iii) + (ix) + (i);
+        `;
+            document.getElementById("q-input").value = demoQuestions;
+            document.getElementById("a-input").value = demoAnswers;
+        }
+
+        let examData = [];
+        let currentPage = 0;
+        const itemsPerPage = 10;
+
+        function initQuiz() {
+            const rawQuestions = document.getElementById('q-input').value;
+            const rawAnswers = document.getElementById('a-input').value;
+
+            if (!rawQuestions || !rawAnswers) {
+                alert("Please paste both Questions and Answers correctly.");
+                return;
+            }
+
+            // ১. Questions alada kora: shurur number (e.g. 1. 2.) bad diye split kora
+            const qBlocks = rawQuestions.trim().split(/\n\s*\d+\./).filter(s => s.trim() !== "");
+
+            // ২. Answers alada kora: "01. Answer:", "1. Answer:" ba shudhu "Answer:" bad deya
+            const aBlocks = rawAnswers.trim().split(/\n\s*\d+\./).filter(s => s.trim() !== "");
+
+            examData = qBlocks.map((q, index) => {
+                let ansLine = aBlocks[index] ? aBlocks[index] : "";
+
+                // Ekhane extra cleaning: "Answer:" kothata ebong tar pashe thaka space ba colon bad deya
+                ansLine = ansLine.replace(/^\d+\.\s*/, '').replace(/Answer\s*:\s*/i, '').replace(/;/g, '').trim();
+
+                return {
+                    question: q.trim(),
+                    answerKey: ansLine.split('+').map(a => a.trim())
+                };
+            });
+
+            document.getElementById('setup-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            renderPage();
+        }
+
+        function renderPage() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            const start = currentPage * itemsPerPage;
+            const end = Math.min(start + itemsPerPage, examData.length);
+
+            for (let i = start; i < end; i++) {
+                const item = examData[i];
+                const card = document.createElement('div');
+                card.className = 'quiz-card';
+
+                let inputsHtml = '';
+                item.answerKey.forEach((_, idx) => {
+                    inputsHtml += `<input type="text" class="gap-input" data-qid="${i}" data-idx="${idx}" placeholder="">`;
+                    if (idx < item.answerKey.length - 1) inputsHtml += `<span class="plus-sign">+</span>`;
+                });
+
+                card.innerHTML = `
+                    <div style="font-weight:bold; color:var(--p); margin-bottom:10px;">SET ${i + 1}</div>
+                    <div style="white-space: pre-wrap; margin-bottom:15px; font-weight: 500;">${item.question}</div>
+                    <div class="rearrange-box">
+                        <strong style="margin-right:10px;"></strong> ${inputsHtml}
+                    </div>
+                    <button class="btn btn-p no-print" style="margin-top:15px; padding:8px 20px;" onclick="checkSet(${i})">Check Answer</button>
+                    <div id="feedback-${i}" class="feedback-area"></div>
+                `;
+                container.appendChild(card);
+            }
+
+            document.getElementById('page-info').innerText = `Page ${currentPage + 1} of ${Math.ceil(examData.length / itemsPerPage)}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkSet(qIdx) {
+            const inputs = document.querySelectorAll(`.gap-input[data-qid="${qIdx}"]`);
+            const correctOnes = examData[qIdx].answerKey;
+            let setCorrect = 0;
+            let keyList = [];
+
+            inputs.forEach((input, idx) => {
+                const userVal = input.value.trim().toLowerCase().replace(/[()]/g, '');
+                const correctValRaw = correctOnes[idx].trim();
+                const correctValClean = correctValRaw.toLowerCase().replace(/[()]/g, '');
+
+                if (userVal === correctValClean && userVal !== "") {
+                    input.style.color = "var(--s)";
+                    input.style.borderColor = "var(--s)";
+                    setCorrect++;
+                } else {
+                    input.style.color = "var(--d)";
+                    input.style.borderColor = "var(--d)";
+                }
+
+                // আর্টিকেল ফাইলের মতো অ্যানসার ট্যাগ তৈরি
+                keyList.push(`<span class="ans-tag">${correctValRaw}</span>`);
+            });
+
+            const fb = document.getElementById(`feedback-${qIdx}`);
+            if (fb) {
+                fb.style.display = "block";
+                // সব সঠিক হলে গ্রিন বক্স, না হলে রেড বক্স (আর্টিকেল ফাইলের লজিক)
+                fb.className = `feedback-area ${setCorrect === inputs.length ? 'correct-box' : 'wrong-box'}`;
+
+                // একুরেসি এবং অ্যানসার কি প্রদর্শন
+                fb.innerHTML = `
+            <strong>Accuracy: ${setCorrect} / ${inputs.length}</strong><br>
+            <div style="margin-top:10px;">
+                <b>Correct Order:</b> ${keyList.join(' <span style="color:var(--p); font-weight:bold;">+</span> ')}
+            </div>
+        `;
+            }
+        }
+
+        function checkFullPage() {
+            const start = currentPage * itemsPerPage;
+            const end = Math.min(start + itemsPerPage, examData.length);
+            for (let i = start; i < end; i++) checkSet(i);
+
+            let pageInputs = document.querySelectorAll('.gap-input');
+            let correctCount = 0;
+            pageInputs.forEach(input => { if (input.style.color === "var(--s)") correctCount++; });
+
+            const percentage = Math.round((correctCount / pageInputs.length) * 100) || 0;
+            document.getElementById('summary-stat').innerHTML = `Page Result: ${correctCount} / ${pageInputs.length} (${percentage}%)`;
+        }
+
+        function changePage(dir) {
+            const totalPages = Math.ceil(examData.length / itemsPerPage);
+            if (currentPage + dir >= 0 && currentPage + dir < totalPages) {
+                currentPage += dir;
+                renderPage();
+            }
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.getAttribute("data-theme") === "dark" ? html.removeAttribute("data-theme") : html.setAttribute("data-theme", "dark");
+        }
+    </script>
+</body>
+
+</html>
