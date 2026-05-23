@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tense - English Grammar Notes - Rahul Acharya Rajon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans Bengali", sans-serif;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            width: 75%;
+            margin: auto;
+            text-align: justify;
+            background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
+            color: #e0e7ff;
+            line-height: 1.75;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            background: rgba(15, 15, 35, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(120, 100, 255, 0.25);
+            border-radius: 24px;
+            padding: 45px 40px;
+            box-shadow:
+                0 30px 60px -15px rgba(0, 0, 0, 0.6),
+                inset 0 2px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #a5b4fc, #c4b5fd, #e0bbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 1.85rem;
+            margin: 45px 0 18px 0;
+            color: #c4b5fd;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 28px;
+            background: linear-gradient(#8b5cf6, #c026d3);
+            border-radius: 4px;
+        }
+
+        h3 {
+            font-size: 1.45rem;
+            color: #ddd6fe;
+            margin: 28px 0 12px 0;
+        }
+
+        .rule {
+            background: rgba(25, 25, 50, 0.65);
+            border: 1px solid rgba(147, 112, 255, 0.25);
+            border-radius: 18px;
+            padding: 22px;
+            margin: 20px 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rule:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #a78bff;
+            box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Examples */
+        .example {
+            background: linear-gradient(135deg, rgba(59, 7, 100, 0.5), rgba(88, 28, 135, 0.4));
+            border-left: 6px solid #a855f7;
+            padding: 18px 22px;
+            margin: 18px 0;
+            border-radius: 12px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #f3e8ff;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: rgba(20, 20, 45, 0.7);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        th {
+            background: rgba(139, 92, 246, 0.25);
+            color: #e0bbff;
+            padding: 16px;
+            text-align: left;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        tr:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e1b4b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#8b5cf6, #c026d3);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a78bff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            h2 {
+                font-size: 1.65rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
+    <h2 id="tense">Tense</h2>
+    <p>ইংরেজিতে মোট <strong>১২টা Tense</strong> আছে। এগুলোকে ৩ ভাগে ভাগ করা হয়:</p>
+    <h3 id="tense-">Tense-এর মূল ৩ প্রকার:</h3>
+    <ol>
+        <li><strong>Present Tense</strong></li>
+        <li><strong>Past Tense</strong></li>
+        <li><strong>Future Tense</strong></li>
+    </ol>
+    <p>প্রত্যেকটার আবার <strong>৪টা রূপ</strong>:</p>
+    <ul>
+        <li>Simple</li>
+        <li>Continuous</li>
+        <li>Perfect</li>
+        <li>Perfect Continuous</li>
+    </ul>
+    <h3 id="-present-tense">১. Present Tense</h3>
+    <h4 id="1-present-simple-tense">1. Present Simple Tense</h4>
+    <p><strong>Structure</strong>: Subject + Verb (base form) + s/es (3rd person singular)</p>
+    <ul>
+        <li><strong>Affirmative</strong>: I eat / He eats</li>
+        <li><strong>Negative</strong>: I do not eat / He does not eat</li>
+        <li><strong>Question</strong>: Do you eat? / Does he eat?</li>
+    </ul>
+    <p><strong>ব্যবহার</strong>:</p>
+    <ul>
+        <li>সাধারণ সত্য (Universal truth)</li>
+        <li>অভ্যাস (Habits)</li>
+        <li>নিয়মিত কাজ</li>
+        <li>Schedule/Program</li>
+    </ul>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>The sun rises in the east.</li>
+        <li>I go to school every day.</li>
+        <li>She loves music.</li>
+    </ul>
+    <p><strong>Signal words</strong>: always, usually, often, sometimes, never, every day, etc.</p>
+    <h4 id="2-present-continuous-tense">2. Present Continuous Tense</h4>
+    <p><strong>Structure</strong>: Subject + am/is/are + Verb-ing</p>
+    <ul>
+        <li><strong>Affirmative</strong>: I am eating</li>
+        <li><strong>Negative</strong>: I am not eating</li>
+        <li><strong>Question</strong>: Am I eating?</li>
+    </ul>
+    <p><strong>ব্যবহার</strong>:</p>
+    <ul>
+        <li>এখন চলছে এমন কাজ</li>
+        <li>ভবিষ্যতে নির্দিষ্ট পরিকল্পনা</li>
+        <li>অস্থায়ী পরিস্থিতি</li>
+    </ul>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I am writing a letter now.</li>
+        <li>They are coming tomorrow.</li>
+        <li>He is living in Dhaka these days.</li>
+    </ul>
+    <p><strong>Signal words</strong>: now, right now, at this moment, at present, etc.</p>
+    <h4 id="3-present-perfect-tense">3. Present Perfect Tense</h4>
+    <p><strong>Structure</strong>: Subject + have/has + V3 (Past Participle)</p>
+    <ul>
+        <li><strong>Affirmative</strong>: I have eaten</li>
+        <li><strong>Negative</strong>: I have not eaten</li>
+        <li><strong>Question</strong>: Have you eaten?</li>
+    </ul>
+    <p><strong>ব্যবহার</strong>:</p>
+    <ul>
+        <li>অতীতে শুরু হয়ে বর্তমানে প্রভাব আছে</li>
+        <li>অভিজ্ঞতা (Experience)</li>
+        <li>এখনো শেষ হয়নি এমন সময়ে</li>
+    </ul>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I have just finished my work.</li>
+        <li>She has visited Cox’s Bazar twice.</li>
+        <li>They have lived here for 5 years.</li>
+    </ul>
+    <p><strong>Signal words</strong>: just, already, yet, ever, never, for, since, recently, lately.</p>
+    <h4 id="4-present-perfect-continuous-tense">4. Present Perfect Continuous Tense</h4>
+    <p><strong>Structure</strong>: Subject + have/has + been + Verb-ing</p>
+    <p><strong>ব্যবহার</strong>:</p>
+    <ul>
+        <li>অতীতে শুরু হয়ে এখনো চলছে</li>
+        <li>জোর দেওয়া হয় কতক্ষণ ধরে চলছে তার উপর</li>
+    </ul>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>It has been raining since morning.</li>
+        <li>I have been learning English for 2 years.</li>
+        <li>She has been waiting for you for 3 hours.</li>
+    </ul>
+    <h3 id="-past-tense">২. Past Tense</h3>
+    <h4 id="5-past-simple-tense">5. Past Simple Tense</h4>
+    <p><strong>Structure</strong>: Subject + V2 (Past form)</p>
+    <p><strong>ব্যবহার</strong>:</p>
+    <ul>
+        <li>অতীতে সম্পূর্ণ শেষ হয়ে যাওয়া কাজ</li>
+        <li>গল্পের ঘটনা</li>
+    </ul>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I went to Sylhet yesterday.</li>
+        <li>He bought a new phone last week.</li>
+        <li>They played football.</li>
+    </ul>
+    <p><strong>Signal words</strong>: yesterday, last week, ago, in 2020, etc.</p>
+    <h4 id="6-past-continuous-tense">6. Past Continuous Tense</h4>
+    <p><strong>Structure</strong>: Subject + was/were + Verb-ing</p>
+    <p><strong>ব্যবহার</strong>:</p>
+    <ul>
+        <li>অতীতে কোনো সময়ে চলছিল এমন কাজ</li>
+        <li>দুটো কাজ একসাথে চলছিল (while/when)</li>
+    </ul>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I was sleeping when you called.</li>
+        <li>They were playing while it was raining.</li>
+    </ul>
+    <h4 id="7-past-perfect-tense">7. Past Perfect Tense</h4>
+    <p><strong>Structure</strong>: Subject + had + V3</p>
+    <p><strong>ব্যবহার</strong>:</p>
+    <ul>
+        <li>অতীতের আগের অতীত (Past before Past)</li>
+    </ul>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I had eaten before he came.</li>
+        <li>She had left when I reached the station.</li>
+    </ul>
+    <p><strong>Signal words</strong>: before, after, when, by the time, already, just.</p>
+    <h4 id="8-past-perfect-continuous-tense">8. Past Perfect Continuous Tense</h4>
+    <p><strong>Structure</strong>: Subject + had + been + Verb-ing</p>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I had been studying for 5 hours before the power went out.</li>
+        <li>They had been waiting for the bus for 2 hours.</li>
+    </ul>
+    <h3 id="-future-tense">৩. Future Tense</h3>
+    <h4 id="9-future-simple-tense">9. Future Simple Tense</h4>
+    <p><strong>Structure</strong>: Subject + will/shall + Verb (base)</p>
+    <p><strong>ব্যবহার</strong>:</p>
+    <ul>
+        <li>ভবিষ্যতে করা কাজ (সিদ্ধান্ত, প্রতিশ্রুতি, ভবিষ্যদ্বাণী)</li>
+    </ul>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I will call you tomorrow.</li>
+        <li>It will rain today.</li>
+    </ul>
+    <h4 id="10-future-continuous-tense">10. Future Continuous Tense</h4>
+    <p><strong>Structure</strong>: Subject + will be + Verb-ing</p>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I will be waiting for you at 5 PM.</li>
+        <li>They will be playing cricket at this time tomorrow.</li>
+    </ul>
+    <h4 id="11-future-perfect-tense">11. Future Perfect Tense</h4>
+    <p><strong>Structure</strong>: Subject + will have + V3</p>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>I will have finished the work by 10 PM.</li>
+        <li>She will have completed her degree by 2027.</li>
+    </ul>
+    <h4 id="12-future-perfect-continuous-tense">12. Future Perfect Continuous Tense</h4>
+    <p><strong>Structure</strong>: Subject + will have been + Verb-ing</p>
+    <p><strong>উদাহরণ</strong>:</p>
+    <ul>
+        <li>By December, I will have been working here for 3 years.</li>
+        <li>Next year, they will have been living in London for 10 years.</li>
+    </ul>
+    <h3 id="-">সারাংশ টেবিল (মুখস্থ করার জন্য)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Tense</th>
+                <th>Form</th>
+                <th>সংক্ষিপ্ত ব্যবহার</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Present Simple</td>
+                <td>V1 / V1+s</td>
+                <td>অভ্যাস, সত্য</td>
+            </tr>
+            <tr>
+                <td>Present Continuous</td>
+                <td>am/is/are + V-ing</td>
+                <td>এখন চলছে</td>
+            </tr>
+            <tr>
+                <td>Present Perfect</td>
+                <td>have/has + V3</td>
+                <td>অতীত-বর্তমান সংযোগ</td>
+            </tr>
+            <tr>
+                <td>Present Perfect Cont.</td>
+                <td>have/has been + V-ing</td>
+                <td>কতক্ষণ ধরে চলছে</td>
+            </tr>
+            <tr>
+                <td>Past Simple</td>
+                <td>V2</td>
+                <td>অতীতে শেষ</td>
+            </tr>
+            <tr>
+                <td>Past Continuous</td>
+                <td>was/were + V-ing</td>
+                <td>অতীতে চলছিল</td>
+            </tr>
+            <tr>
+                <td>Past Perfect</td>
+                <td>had + V3</td>
+                <td>অতীতের আগে</td>
+            </tr>
+            <tr>
+                <td>Past Perfect Cont.</td>
+                <td>had been + V-ing</td>
+                <td>অতীতে কতক্ষণ চলছিল</td>
+            </tr>
+            <tr>
+                <td>Future Simple</td>
+                <td>will + V1</td>
+                <td>ভবিষ্যতে করব</td>
+            </tr>
+            <tr>
+                <td>Future Continuous</td>
+                <td>will be + V-ing</td>
+                <td>ভবিষ্যতে চলবে</td>
+            </tr>
+            <tr>
+                <td>Future Perfect</td>
+                <td>will have + V3</td>
+                <td>ভবিষ্যতে শেষ হয়ে যাবে</td>
+            </tr>
+            <tr>
+                <td>Future Perfect Cont.</td>
+                <td>will have been + V-ing</td>
+                <td>ভবিষ্যতে কতক্ষণ চলবে</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
