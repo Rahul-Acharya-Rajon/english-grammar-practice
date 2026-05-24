@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Narration / Speech - English Grammar Notes ~ Rahul Acharya Rajon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --card: #1e2937;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --accent: #22d3ee;
+            --accent2: #67e8f9;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: var(--card);
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #67e8f9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--accent2);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #bae6fd;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #bae6fd;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .rule {
+            background: rgba(103, 232, 249, 0.08);
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #334155;
+            font-family: 'Inter', monospace;
+        }
+
+        .example strong {
+            color: #67e8f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #1e2937;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(103, 232, 249, 0.1);
+        }
+
+        .highlight {
+            background: rgba(103, 232, 249, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #67e8f9;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        code {
+            background: #1e2937;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #67e8f9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Beautiful scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
+    <h2 id="narration-speech">Narration / Speech</h2>
+    <h2 id="-rules-1-11-">📌 প্রাথমিক ধারণা ও মূল রুলস (Rules 1 - 11)</h2>
+    <h3 id="-rule-1-tense-"><strong>Rule 1: Tense পরিবর্তনের নিয়ম</strong></h3>
+    <ul>
+        <li><strong>(a) ব্যতিক্রমহীন নিয়ম:</strong> Reporting Verb যদি Present, Present Perfect বা Future Tense-এর হয়,
+            তবে Reported Speech-এর Verb-এর <strong>Tense-এর কোনো পরিবর্তন হয় না</strong>। কেবল Person পরিবর্তিত হয়।</li>
+        <li><em>Direct:</em> He says, &quot;I am ill.&quot; $\rightarrow$ <em>Indirect:</em> He says that he is ill.
+        </li>
+        <li><em>Direct:</em> He has said, &quot;I have done my duty.&quot; $\rightarrow$ <em>Indirect:</em> He has said
+            that he has done his duty.</li>
+        <li><em>Direct:</em> Shiplu will say, &quot;He writes a letter.&quot; $\rightarrow$ <em>Indirect:</em> Shiplu
+            will say that he writes a letter.</li>
+    </ul>
+    <ul>
+        <li><strong>(b) মূল নিয়ম:</strong> Reporting Verb-টি <strong>Past Tense</strong> হলে Reported Speech-এর Verb
+            পরিবর্তিত হয়ে <strong>Corresponding Past Tense</strong> হয়। ছক অনুযায়ী পরিবর্তনটি নিচে দেওয়া হলো:</li>
+    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Reported Speech of Direct Narration</th>
+                <th>Reported Speech of Indirect Narration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Simple Present:</strong> <em>He said, &quot;I write a letter.&quot;</em></td>
+                <td><strong>Simple Past:</strong> <em>He said that he wrote a letter.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Present Continuous:</strong> <em>He said, &quot;I am reading.&quot;</em></td>
+                <td><strong>Past Continuous:</strong> <em>He said that he was reading.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Present Perfect:</strong> <em>She said, &quot;I have done my duty.&quot;</em></td>
+                <td><strong>Past Perfect:</strong> <em>She said that she had done her duty.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Present Perfect Continuous:</strong> <em>They said, &quot;We have been working...&quot;</em>
+                </td>
+                <td><strong>Past Perfect Continuous:</strong> <em>They said that they had been working...</em></td>
+            </tr>
+            <tr>
+                <td><strong>Simple Past:</strong> <em>He said, &quot;I wrote a letter&quot;</em></td>
+                <td><strong>Past Perfect:</strong> <em>He said that he had written a letter.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Past Continuous:</strong> <em>Nafisa said, &quot;I was reading.&quot;</em></td>
+                <td><strong>Past Perfect Continuous:</strong> <em>Nafisa said that she had been reading.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Past Perfect:</strong> <em>The boy said, &quot;I had done the work.&quot;</em></td>
+                <td><strong>No change:</strong> <em>The boy said that he had done the work.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Past Perfect Continuous:</strong> <em>He said, &quot;I had already been
+                        reading...&quot;</em></td>
+                <td><strong>No change:</strong> <em>He said, &quot;I had already been reading...&quot;</em></td>
+            </tr>
+            <tr>
+                <td><strong>Future Tense:</strong> <em>She said to me, &quot;I shall help you.&quot;</em></td>
+                <td><strong>Future in the Past:</strong> <em>She said that she would help me.</em></td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li><strong>💡 Past Continuous-এর ব্যতিক্রম:</strong> Past Continuous Tense যদি সম্পূর্ণরূপে কোনো সম্পন্নকৃত কাজ
+            (completed action) বোঝায়, তবে তা অপরিবর্তিত রাখা যায়। যেমন:</li>
+        <li><em>Direct:</em> Belal said, &quot;I was thinking of going to Cox&#39;s Bazar but I have changed my
+            plan.&quot;</li>
+        <li><em>Indirect:</em> Belal said that he had been thinking of going to Cox&#39;s Bazar but he had changed his
+            plan.</li>
+    </ul>
+    <h3 id="-modal-auxiliaries-"><strong>Modal Auxiliaries পরিবর্তন</strong></h3>
+    <p>Direct-এর Modal-গুলো Indirect-এ নিম্নোক্তভাবে পরিবর্তিত হয়:</p>
+    <ul>
+        <li><code>will</code> $\rightarrow$ <code>would</code> | <code>shall</code> $\rightarrow$ <code>should</code> |
+            <code>can</code> $\rightarrow$ <code>could</code> | <code>may</code> $\rightarrow$ <code>might</code>
+        </li>
+        <li><em>Direct:</em> Robi said to me, &quot;You will go home tomorrow.&quot; $\rightarrow$ <em>Indirect:</em>
+            Robi said to me that I would go home the next day.</li>
+    </ul>
+    <ul>
+        <li><strong>💡 ব্যতিক্রম (unreal Past Tense):</strong> <code>wish</code>, <code>would, rather</code>,
+            <code>sooner</code> ও <code>it is time</code>-এর পর unreal Past Tense অপরিবর্তিত থাকে।
+        </li>
+        <li><em>Direct:</em> He said, &quot;It is time we left the place&quot; $\rightarrow$ <em>Indirect:</em> He said
+            that it was time they left the place.</li>
+    </ul>
+    <ul>
+        <li><strong>💡 &quot;had better&quot;-এর নিয়ম:</strong> Indirect Speech-এ <code>had better</code> ১ম ও ৩য়
+            Person-এর ক্ষেত্রে অপরিবর্তিত থাকে। কিন্তু ২য় Person-এর সাথে অপরিবর্তিত থাকতে পারে অথবা
+            <code>Subject + advise/advised + object + infinitive</code> গঠনে পরিবর্তিত হতে পারে।
+        </li>
+        <li><em>Direct:</em> He said to me, &quot;You had better go.&quot; $\rightarrow$ <em>Indirect:</em> He said to
+            me that I had better go. / He advised me to do the work.</li>
+    </ul>
+    <ul>
+        <li><strong>💡 অপরিবর্তিত Modal:</strong> <code>might</code>, <code>ought to</code>, <code>should</code>,
+            <code>would</code>, <code>used to</code>, <code>could</code> সাধারণত Indirect Speech-এ অপরিবর্তিত থাকে।
+        </li>
+        <li><em>Direct:</em> The mayor said, &quot;They ought to keep the streets clean.&quot; $\rightarrow$
+            <em>Indirect:</em> The mayor told the workers that they ought to keep the streets neat and clean.
+        </li>
+    </ul>
+    <h3 id="-rule-2-person-"><strong>Rule 2: Person পরিবর্তনের নিয়ম</strong></h3>
+    <ul>
+        <li><strong>(i) First Person:</strong> Reported Speech-এর অন্তর্গত First Person সর্বদা Reporting Verb-এর
+            <strong>Subject</strong>-এর Person অনুযায়ী পরিবর্তিত হয়।
+        </li>
+        <li><em>Direct:</em> He said to me, &quot;I have done my duty.&quot; $\rightarrow$ <em>Indirect:</em> He said to
+            me that he had done his duty.</li>
+    </ul>
+    <ul>
+        <li><strong>(ii) Second Person:</strong> Reported Speech-এর অন্তর্গত Second Person সর্বদা Reporting Verb-এর
+            <strong>Object</strong>-এর Person অনুযায়ী পরিবর্তিত হয়।
+        </li>
+        <li><em>Direct:</em> He said to me, &quot;You have done your duty.&quot; $\rightarrow$ <em>Indirect:</em> He
+            said to me that I had done my duty.</li>
+    </ul>
+    <ul>
+        <li><strong>(iii) Third Person:</strong> Reported Speech-এর অন্তর্গত Third Person-এর <strong>কোনো পরিবর্তন হয়
+                না</strong>।</li>
+        <li><em>Direct:</em> I said to you, &quot;He has done his duty.&quot; $\rightarrow$ <em>Indirect:</em> I said to
+            you that he had done his duty.</li>
+    </ul>
+    <h4 id="-person-"><strong>⚠️ Person পরিবর্তনের ব্যতিক্রমসমূহ:</strong></h4>
+    <ul>
+        <li><strong>ব্যতিক্রম (a):</strong> <code>we</code> দ্বারা মানবজাতি বোঝালে First Person হওয়া সত্ত্বেও Indirect
+            Speech-এ তার <strong>কোনো পরিবর্তন হয় না</strong>।</li>
+        <li><em>Direct:</em> The teacher said, &quot;We are mortal.&quot; $\rightarrow$ <em>Indirect:</em> The teacher
+            said that we are mortal.</li>
+    </ul>
+    <ul>
+        <li><strong>ব্যতিক্রম (b):</strong> <code>we</code> যদি বক্তা (speaker) ও শ্রোতা (person spoken to) উভয়কে বোঝায়,
+            তবে Indirect Speech-এ তার কোনো পরিবর্তন হয় না।</li>
+        <li><em>Direct:</em> He said to me, &quot;We should do our duty.&quot; $\rightarrow$ <em>Indirect:</em> He said
+            to me that we should do our duty.</li>
+    </ul>
+    <ul>
+        <li><strong>ব্যতিক্রম (c) Editorial &quot;We&quot;:</strong> সংবাদপত্রের এডিটর বা সম্পাদকীয় <code>We</code>
+            থাকলে Indirect Speech-এ তা <code>It</code>-এ পরিবর্তিত হয়।</li>
+        <li><em>Direct:</em> The Ittefaq says, &quot;We published that report...&quot; $\rightarrow$ <em>Indirect:</em>
+            The Ittefaq says that it had published the report...</li>
+    </ul>
+    <h3 id="-rule-3-must-"><strong>Rule 3: &quot;Must&quot;-এর রূপান্তর</strong></h3>
+    <ul>
+        <li><strong>সাধারণ নিয়ম:</strong> <code>must</code> সাধারণত <code>had to</code>-তে রূপান্তরিত হয়।</li>
+        <li><em>Direct:</em> Nafisa said, &quot;I must write a letter.&quot; $\rightarrow$ <em>Indirect:</em> Nafisa
+            said that she had to write a letter.</li>
+    </ul>
+    <ul>
+        <li><strong>ভবিষ্যৎ বাধ্যবাধকতা:</strong> First Person-এ <code>must</code> দ্বারা ভবিষ্যৎ কাজের বাধ্যবাধকতা
+            বোঝালে তা <code>would have to</code>-তে রূপান্তরিত হয়।</li>
+        <li><em>Direct:</em> He said, &quot;We must leave the house if the rent is increased.&quot; $\rightarrow$
+            <em>Indirect:</em> He said that they would have to leave the house if the rent was increased.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>চিরকালীন বাধ্যবাধকতা:</strong> চিরকালীন বাধ্যবাধকতা বোঝালে <code>must</code>-এর কোনো পরিবর্তন হয় না।
+        </li>
+        <li><em>Direct:</em> Father said to his son, &quot;You must obey your teachers.&quot; $\rightarrow$
+            <em>Indirect:</em> Father said to his son that he must obey his teachers.
+        </li>
+    </ul>
+    <h3 id="-rule-4-universal-truth-"><strong>Rule 4: Universal Truth (চিরন্তন সত্য)</strong></h3>
+    <p>Reported speech কোনো <strong>universal truth (চিরন্তন সত্য)</strong> বা <strong>habitual fact (অভ্যাসগত
+            কর্ম)</strong> প্রকাশ করলে Verb-এর টেন্সের কোনো পরিবর্তন হয় না।</p>
+    <ul>
+        <li><em>Direct:</em> He said, &quot;The earth moves round the sun.&quot; $\rightarrow$ <em>Indirect:</em> He
+            said that the earth moves round the sun.</li>
+    </ul>
+    <h3 id="-rule-5-reporting-verb-say-tell-"><strong>Rule 5: Reporting Verb হিসেবে &quot;say&quot; বা
+            &quot;tell&quot;-এর ব্যবহার</strong></h3>
+    <ul>
+        <li>Direct ও Indirect উভয় ক্ষেত্রে <code>say</code> ব্যবহার করা যায়। তবে Indirect-এ Object থাকলে
+            <code>tell</code> ব্যবহার করা শ্রেয়। <code>tell</code>-এর পর সরাসরি অবজেক্ট বসে (কোনো &#39;to&#39; বসে না),
+            কিন্তু <code>say</code>-এর পর অবজেক্ট বসাতে হলে &#39;to&#39; ব্যবহার করতে হয়।
+        </li>
+        <li><em>Direct:</em> Tanima said to Upama, &quot;I like to read novels.&quot; $\rightarrow$ <em>Indirect:</em>
+            Tanima told Upama that she liked to read novels.</li>
+    </ul>
+    <h3 id="-rule-6-distance-word-change-"><strong>Rule 6: নৈকট্যসূচক শব্দ পরিবর্তন (Distance Word Change)</strong></h3>
+    <p>Direct Speech-এর নৈকট্যসূচক শব্দগুলো Indirect-এ দূরত্বসূচক শব্দে পরিণত হয়:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Direct</th>
+                <th>Indirect</th>
+                <th>Direct</th>
+                <th>Indirect</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>This</strong></td>
+                <td>That</td>
+                <td><strong>Today</strong></td>
+                <td>That day</td>
+            </tr>
+            <tr>
+                <td><strong>These</strong></td>
+                <td>Those</td>
+                <td><strong>Tomorrow</strong></td>
+                <td>The next day / Following day</td>
+            </tr>
+            <tr>
+                <td><strong>Here</strong></td>
+                <td>There</td>
+                <td><strong>Yesterday</strong></td>
+                <td>The previous day</td>
+            </tr>
+            <tr>
+                <td><strong>Ago</strong></td>
+                <td>Before</td>
+                <td><strong>Last month</strong></td>
+                <td>The previous month</td>
+            </tr>
+            <tr>
+                <td><strong>Come</strong></td>
+                <td>Go</td>
+                <td><strong>To night</strong></td>
+                <td>That night</td>
+            </tr>
+            <tr>
+                <td><strong>Thus</strong></td>
+                <td>So</td>
+                <td><strong>Last night</strong></td>
+                <td>The previous night</td>
+            </tr>
+            <tr>
+                <td><strong>Hither</strong></td>
+                <td>Thither</td>
+                <td><strong>Next week</strong></td>
+                <td>The following week</td>
+            </tr>
+            <tr>
+                <td><strong>Now</strong></td>
+                <td>Then</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li><strong>💡 ব্যতিক্রম (Time Indication):</strong> <code>this</code> দ্বারা সময় নির্দেশ করলে তা পরিবর্তিত হয়ে
+            <code>that</code> হয়। কিন্তু <code>this/these/that</code> যখন <strong>Adjective</strong> হিসেবে ব্যবহৃত হয়,
+            তখন সাধারণত Indirect Speech-এ তা <strong>The</strong>-তে রূপান্তরিত হয়।
+        </li>
+        <li><em>Direct:</em> Ahsan said, &quot;I gave him this ring on his birthday.&quot; $\rightarrow$
+            <em>Indirect:</em> Ahsan said that he had given him the ring on his birthday.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>💡 Pronoun হিসেবে:</strong> <code>this/these</code> প্রোনাউন হিসেবে ব্যবহৃত হলে Indirect Speech-এ তা
+            <code>it/they/the</code> হয়।
+        </li>
+        <li><em>Direct:</em> I said to him, &quot;I bought a book for you. I would like to present this...&quot;
+            $\rightarrow$ <em>Indirect:</em> I said to him that I had bought a book for him and I would like to present
+            it...</li>
+    </ul>
+    <h3 id="-rule-7-direct-speech-thank-you-"><strong>Rule 7: Direct Speech-এ &quot;Thank you&quot; থাকলে</strong></h3>
+    <ul>
+        <li><strong>Structure:</strong> <code>Subject + thanked + Reporting Verb-এর Object</code></li>
+        <li><em>Direct:</em> He said to me, &quot;Thank you&quot; $\rightarrow$ <em>Indirect:</em> He thanked me.</li>
+    </ul>
+    <h3 id="-rule-8-good-bye-"><strong>Rule 8: &quot;Good-bye&quot; যুক্ত বাক্য</strong></h3>
+    <ul>
+        <li><strong>Structure:</strong> <code>Reporting verb-এর Subject + bid/bade + object + good-bye</code></li>
+        <li><em>Direct:</em> He said, &quot;Good-bye my friends.&quot; $\rightarrow$ <em>Indirect:</em> He bade his
+            friends good-bye.</li>
+    </ul>
+    <h3 id="-rule-9-good-morning-good-evening-good-night-"><strong>Rule 9: &quot;Good morning/Good evening/Good
+            night&quot; যুক্ত বাক্য</strong></h3>
+    <ul>
+        <li><strong>Structure:</strong> <code>Reporting Verb-এর Subject + wish/wished + object + good morning/...</code>
+        </li>
+        <li><em>Direct:</em> I said to him, &quot;Good morning.&quot; $\rightarrow$ <em>Indirect:</em> I wished him good
+            morning.</li>
+    </ul>
+    <h3 id="-rule-10-proper-noun-pronoun-"><strong>Rule 10: উভয়ই Proper Noun হলে Pronoun-এর পাশে ব্র্যাকেট</strong></h3>
+    <p>বক্তা এবং শ্রোতা দুজনেই যদি Proper Noun (নাম) হয়, তবে Indirect করার সময় Pronoun-এর পাশে ব্র্যাকেটের মধ্যে ওই
+        ব্যক্তির নামের প্রথম অক্ষর (Capital Letter) লিখতে হয়।</p>
+    <ul>
+        <li><em>Direct:</em> Suman said to Mamun, &quot;I have taken your pen.&quot; $\rightarrow$ <em>Indirect:</em>
+            Suman said to Mamun that he (S) had taken his (M) pen.</li>
+    </ul>
+    <h3 id="-rule-11-object-"><strong>Rule 11: শ্রোতা (Object) উল্লেখ না থাকলে</strong></h3>
+    <p>Reporting Verb-এ কোনো Object বা শ্রোতার উল্লেখ না থাকলে, Indirect করার সময় <strong>&quot;The speaker said to the
+            person spoken to&quot;</strong> লিখে রূপান্তর করা যায়।</p>
+    <ul>
+        <li><em>Direct:</em> &quot;I shall meet you tomorrow&quot; $\rightarrow$ <em>Indirect:</em> The speaker said to
+            the person spoken to that he/she would meet him/her the next day.</li>
+    </ul>
+    <h1 id="-">🏛️ সেন্টেন্স অনুযায়ী পরিবর্তনের বিশেষ নিয়মাবলি</h1>
+    <h2 id="1-assertive-sentence-">1. Assertive Sentence (বর্ণনামূলক বাক্য)</h2>
+    <ul>
+        <li><strong>নিয়ম:</strong> Reporting Verb হিসেবে <code>say/said</code> অথবা <code>tell/told</code> (অবজেক্ট
+            থাকলে) বসে। ইনভার্টেড কমা (<code>&quot; &quot;</code>) উঠে গিয়ে Conjunction হিসেবে
+            <strong><code>that</code></strong> বসে।
+        </li>
+        <li><strong>Structure:</strong>
+            <code>Subject + say/tell + object (যদি থাকে) + that + Reported Speech-এর Subject + Verb + বাকি অংশ।</code>
+        </li>
+        <li><em>Direct:</em> Jébin said, &quot;I am reading a book.&quot; $\rightarrow$ <em>Indirect:</em> Jébin said
+            that she was reading a book.</li>
+        <li><em>Direct:</em> Hasan said, &quot;I lived many years in Dhaka.&quot; $\rightarrow$ <em>Indirect:</em> Hasan
+            said that he had lived many years in Dhaka.</li>
+    </ul>
+    <h2 id="2-interrogative-sentence-">2. Interrogative Sentence (প্রশ্নবোধক বাক্য)</h2>
+    <ul>
+        <li><strong>নিয়ম (a):</strong> Reporting Verb-টি পরিবর্তিত হয়ে <strong><code>ask/asked</code>,
+                <code>enquire of</code>, <code>want to know</code>, `demand</strong>` ইত্যাদি হয়।</li>
+        <li><strong>নিয়ম (b) - Auxiliary Verb দ্বারা শুরু হলে:</strong> প্রশ্নবোধক বাক্যটি যদি Auxiliary Verb (do,
+            does, did, shall, will, am, is, are, was, can, may ইত্যাদি) দ্বারা শুরু হয়, অর্থাৎ যার উত্তর &quot;Yes&quot;
+            বা &quot;No&quot; দিয়ে দেওয়া যায়, তবে Inverted Comma উঠে গিয়ে <strong><code>if</code></strong> বা
+            <strong><code>whether</code></strong> বসে।
+        </li>
+        <li><strong>নিয়ম (c) - WH-Word দ্বারা শুরু হলে:</strong> বাক্যটি যদি Interrogative Pronoun বা Adverb (Who,
+            Whom, Whose, What, Which, Why, Where, How) দিয়ে শুরু হয়, তবে <code>if/whether</code> বসে না; ওই শব্দটিই বসে
+            যায়।</li>
+        <li><strong>⚠️ বিশেষ দ্রষ্টব্য:</strong> Indirect speech-এ বাক্যটি আর প্রশ্নবোধক থাকে না, তা <strong>Assertive
+                sentence</strong>-এ রূপান্তরিত হয় (অর্থাৎ, Subject আগে বসে, তারপর Verb)।</li>
+        <li><strong>Structure (Auxiliary Verb-এর জন্য):</strong>
+            <code>Subject + ask + object + if/whether + reported speech-এর subject + verb + বাকি অংশ।</code>
+        </li>
+        <li><em>Direct:</em> Premul said to his sister, &quot;Will you go to school?&quot; $\rightarrow$
+            <em>Indirect:</em> Premul asked his sister if she would go to school.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>Structure (WH-Word-এর জন্য):</strong>
+            <code>Subject + ask + object + Interrogative Word + Reported Speech-এর Subject + Verb + বাকি অংশ।</code>
+        </li>
+        <li><em>Direct:</em> He said to his father, &quot;What are you doing?&quot; $\rightarrow$ <em>Indirect:</em> He
+            asked his father what he was doing.</li>
+        <li><em>Direct:</em> She said to me, &quot;Who are you and what do you want?&quot; $\rightarrow$
+            <em>Indirect:</em> She asked me who I was and what I wanted.
+        </li>
+    </ul>
+    <h2 id="3-imperative-sentence-">3. Imperative Sentence (আদেশ, উপদেশ, অনুরোধমূলক বাক্য)</h2>
+    <ul>
+        <li><strong>নিয়ম 1:</strong> অর্থ অনুযায়ী Reporting Verb পরিবর্তিত হয়ে নিচের শব্দগুলো বসে:</li>
+        <li>অনুরোধ বোঝালে $\rightarrow$ <strong><code>request</code></strong></li>
+        <li>আদেশ বোঝালে $\rightarrow$ <strong><code>order / command</code></strong></li>
+        <li>উপদেশ বোঝালে $\rightarrow$ <strong><code>advise</code></strong></li>
+        <li>অন্যথায়/সাধারণভাবে $\rightarrow$ <strong><code>tell / ask</code></strong></li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম 2:</strong> Inverted Comma উঠে গিয়ে মূল Verb-এর পূর্বে <strong><code>to</code></strong> বসে।
+        </li>
+        <li><strong>Structure:</strong>
+            <code>Subject + request/order/advise/tell + object (যদি থাকে) + to + reported speech-এর মূল Verb থেকে শেষ পর্যন্ত।</code>
+        </li>
+        <li><em>Direct:</em> He said to me, &quot;Please give me a glass of water.&quot; $\rightarrow$
+            <em>Indirect:</em> He requested me to give him a glass of water.
+        </li>
+        <li><em>Direct:</em> The teacher said to the student, &quot;Always speak the truth.&quot; $\rightarrow$
+            <em>Indirect:</em> The teacher advised the student to speak the truth always.
+        </li>
+    </ul>
+    <h4 id="-imperative-"><strong>⚠️ Imperative-এর বিশেষ নিয়ম ও ব্যতিক্রমসমূহ:</strong></h4>
+    <ul>
+        <li><strong>Negative Imperative (না-বোধক বাক্য):</strong> বাক্যটি &#39;Do not&#39; দিয়ে শুরু হলে, Reporting
+            Verb-এর পরে <strong><code>not</code></strong> বসে এবং তারপর <strong><code>to</code></strong> বসে। অথবা
+            Reporting verb হিসেবে <strong><code>forbid/forbade</code></strong> ব্যবহার করলে পরে আর <code>not</code> বসে
+            না।</li>
+        <li><em>Direct:</em> He said to me, &quot;Don&#39;t do this.&quot; $\rightarrow$ <em>Indirect:</em> He told me
+            not to do that. / He forbade me to do that.</li>
+    </ul>
+    <ul>
+        <li><strong>কাউকে সম্বোধন করা হলে (Addressing):</strong> &quot;Friends&quot;, &quot;Brothers&quot; ইত্যাদি
+            সম্বোধন থাকলে শুরুতে <code>Addressing + object + as + [সম্বোধন শব্দ]</code> বসে।</li>
+        <li><em>Direct:</em> He said to them, &quot;Friends, help me.&quot; $\rightarrow$ <em>Indirect:</em> Addressing
+            them as friends, he requested them to help him.</li>
+    </ul>
+    <ul>
+        <li><strong>&quot;Sir&quot; থাকলে:</strong> Direct Speech-এ <code>Sir</code> থাকলে Indirect করার সময় Sir-এর
+            পরিবর্তে <strong><code>respectfully</code></strong> বা <strong><code>with respect</code></strong> ব্যবহৃত
+            হয়।</li>
+        <li><em>Direct:</em> The boy said to the teacher, &quot;Sir, lend me your book please.&quot; $\rightarrow$
+            <em>Indirect:</em> The boy requested the teacher respectfully to lend him his book.
+        </li>
+    </ul>
+    <h4 id="-let-"><strong>💡 &quot;Let&quot; এর ব্যবহার:</strong></h4>
+    <ul>
+        <li><strong>(A) Let us (বা Let&#39;s) থাকলে (প্রস্তাব বোঝালে):</strong> Reporting Verb পরিবর্তিত হয়ে
+            <strong><code>propose</code></strong> বা <strong><code>suggest</code></strong> হয় + Inverted comma উঠে
+            <strong><code>that</code></strong> বসে + Subject হিসেবে <strong><code>they / we</code></strong> বসে +
+            <strong><code>should</code></strong> বসে + মূল Verb থেকে শেষ অংশ বসে।
+        </li>
+        <li><em>Direct:</em> He said to me, &quot;Let us go out for a walk.&quot; $\rightarrow$ <em>Indirect:</em> He
+            proposed to me that we should go for a walk.</li>
+    </ul>
+    <ul>
+        <li><strong>(B) Let দ্বারা প্রস্তাব না বোঝালে (অনুমতি বা অন্য কিছু):</strong> Reporting Verb-এর পরিবর্তন হয় না
+            (say/tell বসে) + Inverted comma উঠে <strong><code>that</code></strong> বসে + Reported Verb-এর Subject পুনরায়
+            বসে + <strong><code>might / might be allowed to</code></strong> বসে + মূল Verb থেকে শেষ অংশ বসে।</li>
+        <li><em>Direct:</em> Kamal said to me, &quot;Let him say whatever he likes.&quot; $\rightarrow$
+            <em>Indirect:</em> Kamal told me that he might say whatever he liked.
+        </li>
+    </ul>
+    <h2 id="4-optative-sentence-">4. Optative Sentence (ইচ্ছা বা প্রার্থনামূলক বাক্য)</h2>
+    <ul>
+        <li><strong>নিয়ম:</strong> Reporting Verb পরিবর্তিত হয়ে <strong><code>wish</code></strong> বা
+            <strong><code>pray</code></strong> বসে। Inverted Comma উঠে গিয়ে Conjunction হিসেবে
+            <strong><code>that</code></strong> বসে। Reported Speech-এর Subject-এর পর
+            <strong><code>may / might</code></strong> বসে।
+        </li>
+        <li><strong>Structure:</strong>
+            <code>Subject + wish/pray + that + Reported Speech-এর Subject + may/might + মূল Verb থেকে শেষ পর্যন্ত।</code>
+        </li>
+        <li><em>Direct:</em> Father said to me, &quot;May you pass the examination.&quot; $\rightarrow$
+            <em>Indirect:</em> Father prayed that I might pass the examination.
+        </li>
+        <li><em>Direct:</em> The teacher said to the students, &quot;May Allah bless you.&quot; $\rightarrow$
+            <em>Indirect:</em> The teacher wished that Allah might bless the student.
+        </li>
+    </ul>
+    <h2 id="5-exclamatory-sentence-">5. Exclamatory Sentence (বিস্ময় বা আবেগসূচক বাক্য)</h2>
+    <ul>
+        <li><strong>নিয়ম 1:</strong> অর্থ অনুযায়ী Reporting Verb পরিবর্তিত হয়ে নিচের রূপ নেয়:</li>
+        <li>আনন্দ বোঝালে $\rightarrow$ <strong><code>exclaim with joy / exclaimed with joy</code></strong></li>
+        <li>দুঃখ বা অনুশোচনা বোঝালে $\rightarrow$ <strong><code>exclaim with sorrow / grief</code></strong></li>
+        <li>বিস্ময় বোঝালে $\rightarrow$ <strong><code>exclaim with wonder / surprise</code></strong></li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম 2:</strong> Inverted Comma উঠে গিয়ে <strong><code>that</code></strong> বসে।</li>
+        <li><strong>নিয়ম 3:</strong> Reported Speech-এর অন্তর্গত <code>What</code> বা <code>How</code>-এর পরিবর্তে
+            আতিশয্য বোঝাতে Adjective-এর পূর্বে <strong><code>very</code></strong> এবং Noun-এর পূর্বে
+            <strong><code>great</code></strong> বসে। বাক্যটি Assertive হয়ে যায়।
+        </li>
+        <li><strong>Structure:</strong>
+            <code>Subject + exclaim/exclaimed with joy/sorrow + that + reported speech-এর subject + verb + very/great + Adjective/Noun + বাকি অংশ।</code>
+        </li>
+        <li><em>Direct:</em> The students said, &quot;Hurrah! Our team has won the game.&quot; $\rightarrow$
+            <em>Indirect:</em> The students exclaimed with joy that their team had won the game.
+        </li>
+        <li><em>Direct:</em> Silvia said, &quot;What a fine bird it is!&quot; $\rightarrow$ <em>Indirect:</em> Silvia
+            exclaimed with joy that it was a very fine bird.</li>
+    </ul>
+    <h2 id="-mixed-shortened-types-">🧠 Mixed / Shortened Types (সংক্ষিপ্ত উত্তরের নিয়ম)</h2>
+    <p>বইয়ের শেষ অংশে কিছু বিশেষ কথোপকথনের নিয়ম দেওয়া আছে, যেখানে সম্পূর্ণ বাক্য না বলে সংক্ষিপ্ত উত্তর দেওয়া হয়।
+        Indirect করার সময় পূর্বের বাক্যের সাথে সংগতি রেখে তা <strong>পূর্ণাঙ্গ বাক্যে</strong> রূপান্তর করতে হয়:</p>
+    <ul>
+        <li><em>Direct:</em> Rupak said to Fahim, &quot;What class do you read in?&quot; Fahim said, &quot;Class
+            eight.&quot;</li>
+        <li><em>Indirect:</em> Rupak asked Fahim what class he read in. Fahim replied that he read in class eight.
+            (<em>এখানে শুধু &quot;Class eight&quot; কে পূর্ণ বাক্যে রূপান্তর করা হয়েছে</em>)</li>
+    </ul>
+    <p>আপনার দেওয়া ছবিগুলো থেকে প্যাসেজ ন্যারেশনের (Passage Narration) ১৬টি নিয়মের একটি সহজ ও সংক্ষিপ্ত সারসংক্ষেপ
+        (Summary) নিচে উদাহরণসহ দেওয়া হলো, যাতে আপনি খুব সহজেই নিয়মগুলো মনে রাখতে পারেন:</p>
+    <h2 id="-">প্যাসেজ ন্যারেশনের ১৬টি নিয়মের সারসংক্ষেপ</h2>
+    <h3 id="rule-1-">Rule 1: স্পিকার, লিসেনার ও মুড চেনা</h3>
+    <p>পুরো প্যাসেজটি আগে ভালো করে পড়ে <strong>Speaker (বক্তা)</strong>, <strong>Person spoken to (শ্রোতা)</strong> এবং
+        সেন্টেন্সগুলোর <strong>Mood (ভাব/অর্থ)</strong> চিহ্নিত করে নিতে হবে।</p>
+    <h3 id="rule-2-">Rule 2: রিপোর্টিং ভার্ব শুরুতে আনা</h3>
+    <p>Direct speech-এ Reporting verb-টি বাক্যের মাঝে বা শেষে যেখানেই থাকুক না কেন, Indirect করার সময় তাকে অবশ্যই
+        বাক্যের <strong>শুরুতে</strong> নিয়ে আসতে হবে।</p>
+    <ul>
+        <li><strong>Direct:</strong> &quot;Will you come?&quot; I asked the boy.</li>
+        <li><strong>Indirect:</strong> I asked the boy if he would come.</li>
+    </ul>
+    <h3 id="rule-3-">Rule 3: একই বক্তার একাধিক উক্তি</h3>
+    <p>একই বক্তা পরপর একাধিক কথা বললে ২য় বা পরবর্তী বাক্যগুলোর ক্ষেত্রে:</p>
+    <ul>
+        <li><strong>Assertive sentence-এ:</strong> added / further added / also said / again said ইত্যাদি বসে।</li>
+        <li><strong>Interrogative sentence-এ:</strong> also asked / again asked / further asked ইত্যাদি বসে।</li>
+        <li><strong>Example:</strong> The old man said, &quot;You can go home now. You may come tomorrow.&quot;
+            $\rightarrow$ The old man told me that I could go home then. He <strong>added that</strong> I might come the
+            next day.</li>
+    </ul>
+    <h3 id="rule-4-yes-no-">Rule 4: &#39;Yes&#39; এবং &#39;No&#39; এর নিয়ম</h3>
+    <ul>
+        <li><strong>(a) শুধু Yes থাকলে:</strong> replied in the affirmative বসে।</li>
+        <li><strong>(b) Yes-এর পর আরও কথা থাকলে:</strong> replied in the affirmative and said that... বসে।</li>
+        <li><strong>(c) শুধু No থাকলে:</strong> replied in the negative বসে।</li>
+        <li><strong>(d) No-এর পর আরও কথা থাকলে:</strong> replied in the negative and said that... বসে।</li>
+        <li><strong>Example:</strong> &quot;Yes, I will come,&quot; said Nazrul. $\rightarrow$ Nazrul <strong>replied in
+                the affirmative and said that</strong> he would come.</li>
+    </ul>
+    <h3 id="rule-5-sir-">Rule 5: &#39;Sir&#39; থাকলে</h3>
+    <p>Direct speech-এ <strong>Sir</strong> শব্দটি থাকলে Indirect করার সময় সেটির পরিবর্তে <strong>respectfully</strong>
+        বা <strong>addressing as sir</strong> ব্যবহার করতে হয়।</p>
+    <ul>
+        <li><strong>Direct:</strong> &quot;Sir, I need one day leave,&quot; said the officer.</li>
+        <li><strong>Indirect:</strong> The officer told the manager <strong>respectfully</strong> that he needed one day
+            leave.</li>
+    </ul>
+    <h3 id="rule-6-address-">Rule 6: কাউকে সম্বোধন (Address) করলে</h3>
+    <p>কাউকে &#39;Friends&#39;, &#39;Brother&#39; ইত্যাদি বলে সম্বোধন করলে বাক্যটি <strong>Addressing as [সম্বোধন
+            পদ]</strong> দিয়ে শুরু করতে হয়।</p>
+    <ul>
+        <li><strong>Direct:</strong> &quot;Are you hungry, friends?&quot; said the king.</li>
+        <li><strong>Indirect:</strong> <strong>Addressing them as friends</strong>, the king asked if they were hungry.
+        </li>
+    </ul>
+    <h3 id="rule-7-swearing-">Rule 7: শপথ বা কসম (Swearing) বুঝালে</h3>
+    <p>বাক্যে By Allah / By God / By my life ইত্যাদি থাকলে Indirect-এর শুরুতে <strong>Swearing by Allah/God/my
+            life</strong> বসে।</p>
+    <ul>
+        <li><strong>Direct:</strong> &quot;By Allah,&quot; he replied, &quot;I will not leave.&quot;</li>
+        <li><strong>Indirect:</strong> <strong>Swearing by Allah</strong>, he replied that he would not leave.</li>
+    </ul>
+    <h3 id="rule-8-present-participle-phrase-">Rule 8: অতিরিক্ত অংশ (Present Participle Phrase) শুরুতে আনা</h3>
+    <p>Inverted comma-র বাইরে যদি কোনো Present Participle Phrase (যেমন: turning to...) থাকে, তবে তা Indirect করার সময়
+        বাক্যের একেবারে শুরুতে বসে।</p>
+    <ul>
+        <li><strong>Direct:</strong> &quot;Are you brothers?&quot; asked the mistress, turning to the dervishes.</li>
+        <li><strong>Indirect:</strong> <strong>Turning to the dervishes</strong>, the mistress asked if they were
+            brothers.</li>
+    </ul>
+    <h3 id="rule-9-assertive-">Rule 9: উক্তিটি গঠনে Assertive কিন্তু শেষে প্রশ্নবোধক (?) হলে</h3>
+    <p>যদি কোনো বাক্য দেখতে Assertive কিন্তু শেষে প্রশ্নবোধক চিহ্ন থাকে, তবে তা বিস্ময় প্রকাশ করে। এক্ষেত্রে Reporting
+        verb-এর পূর্বে <strong>Being surprised</strong> লিখতে হয় এবং ইন্টারোগেটিভের নিয়ম অনুসরণ করতে হয়।</p>
+    <ul>
+        <li><strong>Direct:</strong> She said to me, &quot;You have remembered how she looked all these years?&quot;
+        </li>
+        <li><strong>Indirect:</strong> <strong>Being surprised</strong>, she asked me if I had remembered...</li>
+    </ul>
+    <h3 id="rule-10-thank-you-">Rule 10: &quot;Thank you&quot; থাকলে</h3>
+    <p>Direct speech-এ <strong>Thank you</strong> থাকলে গঠন হবে: <strong>Subject + thanked + Object</strong>।</p>
+    <ul>
+        <li><strong>Direct:</strong> He said to me, &quot;Thank you.&quot;</li>
+        <li><strong>Indirect:</strong> He <strong>thanked me</strong>.</li>
+    </ul>
+    <h3 id="rule-11-good-bye-">Rule 11: &quot;Good bye&quot; থাকলে</h3>
+    <p>Direct speech-এ <strong>Good bye</strong> থাকলে গঠন হবে: <strong>Subject + bade + Object + good-bye</strong>।</p>
+    <ul>
+        <li><strong>Direct:</strong> He said, &quot;Good bye my friends.&quot;</li>
+        <li><strong>Indirect:</strong> He <strong>bade</strong> his friends <strong>good-bye</strong>.</li>
+    </ul>
+    <h3 id="rule-12-good-morning-night-evening-">Rule 12: Good morning/night/evening থাকলে</h3>
+    <p>শুভেচ্ছা জানালে গঠন হবে: <strong>Subject + wished + Object + good morning/night/evening</strong>।</p>
+    <ul>
+        <li><strong>Direct:</strong> I said to him, &quot;Good-morning.&quot;</li>
+        <li><strong>Indirect:</strong> I <strong>wished him good-morning</strong>.</li>
+    </ul>
+    <h3 id="rule-13-phrase-">Rule 13: অপূর্ণাঙ্গ বাক্য (Phrase) থাকলে</h3>
+    <p>Direct speech-এ অনেক সময় বক্তা পুরো বাক্য না বলে শুধু একটি Phrase (যেমন: &quot;Fifty taka?&quot;) বলে। Indirect
+        করার সময় বক্তার ভাব বুঝে এটিকে একটি পূর্ণাঙ্গ বাক্যে রূপান্তর করতে হয়।</p>
+    <ul>
+        <li><strong>Direct:</strong> &quot;Fifty taka?&quot; I said to the rickshaw puller.</li>
+        <li><strong>Indirect:</strong> I asked him <strong>if fifty taka would do</strong>.</li>
+    </ul>
+    <h3 id="rule-14-">Rule 14: বক্তা ও শ্রোতা উল্লেখ না থাকলে</h3>
+    <p>প্যাসেজে যদি স্পষ্ট করে বক্তা (Speaker) ও শ্রোতা (Listener)-র নাম না থাকে, তবে Indirect করার সময় <strong>the
+            speaker</strong> এবং <strong>the listener (or the person spoken to)</strong> শব্দগুলো ব্যবহার করতে হয়।</p>
+    <ul>
+        <li><strong>Direct:</strong> &quot;Are you coming?&quot; &quot;Yes.&quot;</li>
+        <li><strong>Indirect:</strong> <strong>The speaker</strong> asked <strong>the listener</strong> if he was
+            coming. The listener replied in the affirmative.</li>
+    </ul>
+    <h3 id="rule-15-reporting-verb-">Rule 15: কিছু নির্দিষ্ট Reporting Verb অপরিবর্তিত থাকে</h3>
+    <p>Direct speech-এ যদি ইতিমধ্যেই <strong>cried, muttered, replied, asked</strong> ইত্যাদি রিপোর্টিং ভার্ব হিসেবে
+        দেওয়া থাকে, তবে Indirect করার সময় এগুলোর কোনো পরিবর্তন হয় না।</p>
+    <h3 id="rule-16-pronoun-noun-">Rule 16: Pronoun ও Noun-এর ক্রম</h3>
+    <p>প্যাসেজে প্রথম বাক্যে Pronoun এবং পরের বাক্যে Noun থাকলে, অস্পষ্টতা দূর করার জন্য Indirect speech-এ Pronoun-এর
+        পরিবর্তে সরাসরি <strong>Noun (নামটি)</strong> ব্যবহার করাই শ্রেয়।</p>
+</body>
+
+</html>
