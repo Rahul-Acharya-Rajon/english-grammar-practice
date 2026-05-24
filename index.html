@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HSC English Exam Portal</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&display=swap');
+
         :root {
             --primary: #2563eb;
             --secondary: #64748b;
@@ -17,7 +19,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Anek Bangla", sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
@@ -261,6 +263,15 @@
     <div class="container">
         <div class="grid" id="examGrid">
         </div>
+        <!-- ==================== NEW NOTES SECTION ==================== -->
+        <h2 style="text-align: center; margin: 50px 0 30px; font-size: 2.2rem; color: var(--primary);">
+            📚 Important Notes & Summaries
+        </h2>
+
+        <div class="grid" id="notesGrid">
+            <!-- Notes cards এখানে আসবে -->
+        </div>
+        <!-- ==================== NOTES SECTION END ==================== -->
     </div>
 
     <footer>
@@ -8996,6 +9007,147 @@ j) The boy was brought before him and he asked him what he would do with such a 
             toast.className = "show";
             setTimeout(() => { toast.className = ""; }, 3000);
         }
+
+        // === NOTES DATA (আলাদা সেকশনের জন্য) ===
+        const notesData = [
+            {
+                id: 'article_notes',
+                title: 'Article',
+                icon: '📝',
+                desc: 'Article এর নিয়ম, শর্টকাট, বোর্ড প্রশ্ন ও সমাধান',
+                link: 'article_notes.html'
+            },
+            {
+                id: 'changing_sentence_notes',
+                title: 'Changing Sentence',
+                icon: '🔄',
+                desc: 'Assertive, Interrogative, Imperative, Exclamatory পরিবর্তনের নিয়ম',
+                link: 'changing_sentence_note.html'
+            },
+            {
+                id: 'completing_sentence_notes',
+                title: 'Completing Sentence',
+                icon: '✅',
+                desc: 'Completing Sentence এর টেকনিক ও প্র্যাকটিস',
+                link: 'completing_sentence_note.html'
+            },
+            {
+                id: 'connector_notes',
+                title: 'Connector',
+                icon: '🔗',
+                desc: 'Connector এর ব্যবহার, নিয়ম ও বোর্ড প্রশ্ন',
+                link: 'connector_note.html'
+            },
+            {
+                id: 'gap_with_clues_notes',
+                title: 'Gap Fillings with Clues',
+                icon: '🧩',
+                desc: 'Clues সহ Gap Filling এর নিয়ম ও সমাধান',
+                link: 'gap_with_clues_note.html'
+            },
+            {
+                id: 'gap_without_clues_notes',
+                title: 'Gap Fillings without Clues',
+                icon: '💭',
+                desc: 'Clues ছাড়া Gap Filling এর টেকনিক ও প্র্যাকটিস',
+                link: 'gap_without_clues_note.html'
+            },
+            {
+                id: 'modifier_notes',
+                title: 'Modifier',
+                icon: '✍️',
+                desc: 'Modifier এর নিয়ম, ভুল সংশোধন ও উদাহরণ',
+                link: 'modifier_note.html'
+            },
+            {
+                id: 'narration_notes',
+                title: 'Narration',
+                icon: '🗣️',
+                desc: 'Direct & Indirect Speech এর সম্পূর্ণ নিয়ম',
+                link: 'narration_note.html'
+            },
+            {
+                id: 'phrase_notes',
+                title: 'Phrase & Idioms',
+                icon: '💡',
+                desc: 'Special Phrases ও Idioms এর লিস্ট ও ব্যবহার',
+                link: 'phrase_note.html'
+            },
+            {
+                id: 'preposition_notes',
+                title: 'Preposition',
+                icon: '🔗',
+                desc: 'Preposition এর নিয়ম, ব্যবহার ও বোর্ড প্রশ্ন',
+                link: 'preposition_note.html'
+            },
+            {
+                id: 'pronoun_reference_notes',
+                title: 'Pronoun Reference',
+                icon: '👤',
+                desc: 'Pronoun Reference এর নিয়ম ও সমাধান পদ্ধতি',
+                link: 'pronoun_reference_note.html'
+            },
+            {
+                id: 'rearrange_notes',
+                title: 'Rearranging Sentences',
+                icon: '📋',
+                desc: 'Sentence Rearrange এর টেকনিক ও প্র্যাকটিস',
+                link: 'rearrange_note.html'
+            },
+            {
+                id: 'right_form_of_verbs_notes',
+                title: 'Right Form of Verbs',
+                icon: '📐',
+                desc: 'Right Form of Verbs এর নিয়ম ও বোর্ড প্রশ্ন',
+                link: 'right_form_of_verb_note.html'
+            },
+            {
+                id: 'special_phrase_notes',
+                title: 'Special Phrases',
+                icon: '🌟',
+                desc: 'was born, have to, as if, let alone ইত্যাদি',
+                link: 'special_phrase_note.html'
+            },
+            {
+                id: 'subject_verb_agreement_notes',
+                title: 'Subject-Verb Agreement',
+                icon: '⚖️',
+                desc: 'Subject-Verb Agreement এর গুরুত্বপূর্ণ নিয়ম',
+                link: 'subject_verb_agreement_note.html'
+            },
+            {
+                id: 'tense_notes',
+                title: 'Tense',
+                icon: '⏰',
+                desc: 'সব Tense এর নিয়ম, ব্যবহার ও উদাহরণ',
+                link: 'tense_note.html'
+            },
+            {
+                id: 'voice_change_notes',
+                title: 'Voice Change',
+                icon: '🔁',
+                desc: 'Active & Passive Voice এর সম্পূর্ণ নিয়ম',
+                link: 'voice_note.html'
+            }
+        ];
+
+        // Render Notes Cards
+        const notesGrid = document.getElementById('notesGrid');
+        notesData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="icon-box">${item.icon}</div>
+                <h2>${item.title}</h2>
+                <p>${item.desc}</p>
+                <div class="button-stack">
+                    <div class="btn-main-row">
+                        <a href="${item.link}" class="btn btn-exam">View Notes</a>
+                    </div>
+                </div>
+            `;
+            notesGrid.appendChild(card);
+        });
     </script>
 </body>
 
