@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rearrange - English Grammar Notes - Rahul Acharya Rajon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --card: #1e2937;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --accent: #22d3ee;
+            --accent2: #67e8f9;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: var(--card);
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #67e8f9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--accent2);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #bae6fd;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #bae6fd;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .rule {
+            background: rgba(103, 232, 249, 0.08);
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #334155;
+            font-family: 'Inter', monospace;
+        }
+
+        .example strong {
+            color: #67e8f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #1e2937;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(103, 232, 249, 0.1);
+        }
+
+        .highlight {
+            background: rgba(103, 232, 249, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #67e8f9;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        code {
+            background: #1e2937;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #67e8f9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Beautiful scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
+    <h2 id="rearranging">Rearranging</h2>
+    <p>এইচএসসি পরীক্ষায় সাধারণত দুই ধরণের রিয়ার্রেঞ্জ এসে থাকে:</p>
+    <ol>
+        <li><strong>জীবনীমূলক বা ঐতিহাসিক (Biographical / Historical)</strong></li>
+        <li><strong>গল্পভিত্তিক বা শিক্ষামূলক (Story-based / Moral)</strong></li>
+    </ol>
+    <p>নিচে এই দুটি ক্যাটাগরির সমস্ত নিয়ম এবং টেকনিক উদাহরণসহ সংক্ষেপে আলোচনা করা হলো:</p>
+    <h2 id="-biographical-rearrange-">১. জীবনীমূলক রিয়ার্রেঞ্জ (Biographical Rearrange)</h2>
+    <p>কোনো বিখ্যাত ব্যক্তি (যেমন: কাজী নজরুল ইসলাম, রবীন্দ্রনাথ ঠাকুর, সক্রেটিস, আব্রাহাম লিংকন) বা ঐতিহাসিক কোনো ঘটনার
+        ক্ষেত্রে এই ধারাবাহিকতা বজায় থাকে:</p>
+    <ul>
+        <li><strong>নাম ও পরিচয় (Name &amp; Identity):</strong> শুরুতেই ব্যক্তির নাম, তিনি কে ছিলেন এবং কেন বিখ্যাত—তা
+            উল্লেখ থাকে।</li>
+        <li><em>উদাহরণ:</em> &quot;Kazi Nazrul Islam is the national poet of Bangladesh.&quot;</li>
+    </ul>
+    <ul>
+        <li><strong>জন্ম ও বংশপরিচয় (Birth &amp; Parentage):</strong> এরপর তাঁর জন্মসাল, জন্মস্থান এবং মা-বাবার পরিচয়
+            আসবে।</li>
+        <li><em>উদাহরণ:</em> &quot;He was born on 25 May 1899 in Churulia.&quot;</li>
+    </ul>
+    <ul>
+        <li><strong>শৈশব ও শিক্ষাজীবন (Childhood &amp; Education):</strong> তাঁর ছোটবেলার দিনগুলো এবং প্রাতিষ্ঠানিক
+            শিক্ষার বর্ণনা।</li>
+        <li><em>উদাহরণ:</em> &quot;He had to suffer from poverty in his childhood. Later, he was admitted to a local
+            school.&quot;</li>
+    </ul>
+    <ul>
+        <li><strong>কর্মজীবন ও অবদান/কৃতিত্ব (Career &amp; Achievements):</strong> বড় হয়ে তিনি কী কাজ করলেন, তাঁর
+            বিখ্যাত সৃষ্টি বা আবিষ্কারগুলো কী কী।</li>
+        <li><em>উদাহরণ:</em> &quot;His poem &#39;Bidrohi&#39; brought him great poetic fame.&quot;</li>
+    </ul>
+    <ul>
+        <li><strong>পুরস্কার বা স্বীকৃতি (Awards &amp; Recognition):</strong> তাঁর কাজের জন্য তিনি কী কী সম্মাননা বা
+            পুরস্কার পেলেন।</li>
+        <li><em>উদাহরণ:</em> &quot;In 1976, he was awarded the Ekushey Padak.&quot;</li>
+    </ul>
+    <ul>
+        <li><strong>শেষ জীবন ও মৃত্যু (Old Age &amp; Death):</strong> জীবনের শেষ দিনগুলো এবং তাঁর মৃত্যুর ঘটনা।</li>
+        <li><em>উদাহরণ:</em> &quot;He breathed his last on 29 August 1976.&quot;</li>
+    </ul>
+    <ul>
+        <li><strong>স্মরণ/উত্তরাধিকার (Legacy):</strong> মৃত্যুর পর মানুষ তাঁকে কীভাবে মনে রেখেছে বা বর্তমান যুগে তাঁর
+            গুরুত্ব।</li>
+        <li><em>উদাহরণ:</em> &quot;We still remember his great contributions with deep respect.&quot;</li>
+    </ul>
+    <h2 id="-story-based-moral-">২. গল্পভিত্তিক বা শিক্ষামূলক রিয়ার্রেঞ্জ (Story-Based / Moral)</h2>
+    <p>যেকোনো পরিচিত বা অপরিচিত গল্প (যেমন: তৃষ্ণার্ত কাক, রবার্ট ব্রুস ও মাকড়সা, দুই বন্ধু ও ভালুক) সাজানোর জন্য নিচের
+        ধাপগুলো অনুসরণ করতে হয়:</p>
+    <ol>
+        <li><strong>পটভূমি ও চরিত্রের সূচনা:</strong> ধাপ ১.
+            গল্পের শুরুতেই সময়, স্থান এবং মূল চরিত্রের পরিচয় দেওয়া হয়। সাধারণত &#39;Once upon a time&#39;, &#39;Long
+            long ago&#39;, &#39;There lived a...&#39; দিয়ে শুরু হয়।
+            <em>উদাহরণ:</em> &quot;Once upon a time, there lived a king named Robert Bruce.&quot;
+        </li>
+    </ol>
+    <ol>
+        <li><strong>ঘটনার সূত্রপাত (Inciting Incident):</strong> ধাপ ২.
+            চরিত্রটি হঠাৎ কী পরিস্থিতির মুখোমুখি হলো বা কী সমস্যা তৈরি হলো, তা দেখানো হয়।
+            <em>উদাহরণ:</em> &quot;His kingdom was invaded by foreign enemies, and he lost his kingdom.&quot;
+        </li>
+    </ol>
+    <ol>
+        <li><strong>চেষ্টা ও ব্যর্থতা (Action &amp; Complication):</strong> ধাপ ৩.
+            সমস্যা সমাধানের জন্য চরিত্রটি কী করল এবং কীভাবে বারবার ব্যর্থ বা সফল হতে লাগল।
+            <em>উদাহরণ:</em> &quot;He fought bravely six times but was defeated each time. He took shelter in a
+            cave.&quot;
+        </li>
+    </ol>
+    <ol>
+        <li><strong>ক্লাইম্যাক্স বা টার্নিং পয়েন্ট (Turning Point):</strong> ধাপ ৪.
+            গল্পের এমন একটি মোড় যা মূল চরিত্রের চিন্তাভাবনা বা ভাগ্য বদলে দেয়।
+            <em>উদাহরণ:</em> &quot;In the cave, he saw a small spider trying to reach the ceiling. It failed six times
+            but succeeded on the seventh attempt.&quot;
+        </li>
+    </ol>
+    <ol>
+        <li><strong>চূড়ান্ত পরিণতি ও শিক্ষা (Resolution &amp; Moral):</strong> ধাপ ৫.
+            গল্পের শেষ অংশ, যেখানে সমস্যার সমাধান হয় এবং একটি নৈতিক শিক্ষা পাওয়া যায়।
+            <em>উদাহরণ:</em> &quot;This inspired Bruce. He gathered his army, fought for the seventh time, and regained
+            his kingdom.&quot;
+        </li>
+    </ol>
+    <h2 id="-linking-words-trick-">৩. গুরুত্বপূর্ণ লিঙ্কিং ওয়ার্ডস (Linking Words Trick)</h2>
+    <p>অনেক সময় বাক্যের ভেতরের কিছু শব্দ দেখে বুঝে নেওয়া যায় যে বাক্যটি আগে বসবে নাকি পরে:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>লিঙ্কিং ওয়ার্ড (Linking Words)</th>
+                <th>রিয়ার্রেঞ্জ-এ এর ভূমিকা ও ব্যবহার</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>But, However, Yet</strong></td>
+                <td>এগুলো বৈপরীত্য দেখায়। এর অর্থ হলো, এর ঠিক আগের বাক্যে সম্পূর্ণ উল্টো কোনো কথা বলা হয়েছে।</td>
+            </tr>
+            <tr>
+                <td><strong>Then, After that, Next</strong></td>
+                <td>এগুলো একটি ঘটনার পর আরেকটি ঘটনা ঘটার ধারাবাহিকতা নির্দেশ করে (এগুলো মাঝের বাক্যগুলোতে বসে)।</td>
+            </tr>
+            <tr>
+                <td><strong>So, Therefore, As a result, Consequently</strong></td>
+                <td>এগুলো কোনো ঘটনার ফলাফল দেখায়। সাধারণত আগের বাক্যে &#39;কারণ&#39; এবং এই শব্দযুক্ত বাক্যে
+                    &#39;ফলাফল&#39; থাকে।</td>
+            </tr>
+            <tr>
+                <td><strong>Finally, At last</strong></td>
+                <td>এগুলো একদম শেষের দিকের বা সমাপনী বাক্য নির্দেশ করতে ব্যবহৃত হয়।</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>পরীক্ষার জন্য প্রো-টিপ:</strong> প্রশ্ন পাওয়ার পর প্রথমেই ১ থেকে ৮ পর্যন্ত বাক্যগুলো রিডিং পড়ে নেবেন।
+        এরপর মনে মনে চিন্তা করবেন এটি &#39;জীবনী&#39; নাকি &#39;গল্প&#39;। জীবনী হলে সাল বা বয়স (যেমন: <em>At the age of
+            ten...</em>) খেয়াল করবেন। গল্প হলে একটি ঘটনার পর আরেকটি ঘটনা কীভাবে ঘটছে (Cause and Effect) তা মেলাবেন।
+        উত্তরপত্রে বক্স (Box) তৈরি করে শুধু ক্রমিক নম্বরগুলো (যেমন: iii -&gt; v -&gt; i) লিখে দিলেই পূর্ণ নম্বর পাওয়া
+        যায়, পুরো বাক্য তোলার প্রয়োজন নেই।</p>
+    <p><strong>এইচএসসি রিয়ারেঞ্জিং সেনটেন্সের নিয়মসমূহ (সারাংশ + উদাহরণ)</strong></p>
+    <p>রিয়ারেঞ্জিং সেনটেন্সে zumbled sentences গুলোকে সঠিক ক্রমে সাজিয়ে একটি coherent paragraph বানাতে হয়। এখানে
+        সবচেয়ে গুরুত্বপূর্ণ নিয়মগুলো সহজ বাংলায় দেওয়া হলো।</p>
+    <h3 id="-introductory-sentence-"><strong>১. Introductory Sentence (প্রথম বাক্য) চেনার নিয়ম</strong></h3>
+    <ul>
+        <li>সাধারণত <strong>topic বা main idea</strong> introduce করে।</li>
+        <li><strong>নতুন ব্যক্তি/বিষয়</strong> (নাম, স্থান, ঘটনা) দিয়ে শুরু হয়।</li>
+        <li><strong>Pronoun (he, she, it, they)</strong> থাকলে প্রথম বাক্য হতে পারে না।</li>
+        <li><strong>Linking words</strong> (However, But, So, Then, Also, Moreover) থাকলে প্রথম বাক্য হবে না।</li>
+    </ul>
+    <p><strong>উদাহরণ:</strong><br>(a) Once there was a king.<br>(b) The king was fond of knowing his
+        future.<br><strong>প্রথম বাক্য:</strong> (a) — কারণ এটি নতুন গল্প শুরু করেছে।</p>
+    <h3 id="-pronoun-reference-"><strong>২. Pronoun Reference (সর্বনামের নিয়ম)</strong></h3>
+    <ul>
+        <li>Pronoun (he, she, it, this, that, they) আগের বাক্যের noun-কে refer করে।</li>
+        <li>Noun আগে আসবে, পরে pronoun।</li>
+    </ul>
+    <p><strong>উদাহরণ:</strong><br>(a) Nelson Mandela was a great leader.<br>(b) He fought against
+        apartheid.<br><strong>ক্রম:</strong> a → b (He = Mandela)</p>
+    <h3 id="-chronological-order-"><strong>৩. Chronological Order (সময়ের ক্রম)</strong></h3>
+    <ul>
+        <li>জন্ম-মৃত্যু, ঘটনার ধারাবাহিকতা দেখো (1900, then 1925, later, after that, finally)।</li>
+    </ul>
+    <p><strong>উদাহরণ:</strong><br>(a) Dr. Kudrat-e-Khuda was born in 1900.<br>(b) In 1925, he passed M.Sc.<br>(c) He
+        died in 1977.<br><strong>ক্রম:</strong> a → b → c</p>
+    <h3 id="-cause-effect-logical-flow-"><strong>৪. Cause-Effect / Logical Flow</strong></h3>
+    <ul>
+        <li>কারণ → ফলাফল</li>
+        <li>Problem → Solution</li>
+        <li>General → Specific</li>
+    </ul>
+    <p><strong>উদাহরণ:</strong><br>(a) A crow was very thirsty.<br>(b) He found a jar but water was at the
+        bottom.<br>(c) He dropped pebbles into the jar.<br>(d) Finally he drank water.<br><strong>ক্রম:</strong> a → b →
+        c → d</p>
+    <h3 id="-linking-words-connectors-"><strong>৫. Linking Words / Connectors</strong></h3>
+    <ul>
+        <li><strong>Addition:</strong> And, Also, Moreover, Besides</li>
+        <li><strong>Contrast:</strong> But, However, Yet, Though</li>
+        <li><strong>Result:</strong> So, Therefore, As a result</li>
+        <li><strong>Sequence:</strong> First, Then, Next, After, Finally</li>
+        <li><strong>Example:</strong> For example, Such as</li>
+    </ul>
+    <p><strong>উদাহরণ:</strong><br>(a) The king was angry.<br>(b) <strong>However</strong>, another thought came to his
+        mind.<br><strong>ক্রম:</strong> a → b (However contrast দেখায়)</p>
+    <h3 id="-article-a-an-vs-the-"><strong>৬. Article নিয়ম (A/An vs The)</strong></h3>
+    <ul>
+        <li><strong>A/An</strong> = নতুন জিনিস</li>
+        <li><strong>The</strong> = আগে উল্লেখিত জিনিস</li>
+    </ul>
+    <p><strong>উদাহরণ:</strong><br>(a) A boy was making a boat.<br>(b) <strong>The</strong> boy
+        said...<br><strong>ক্রম:</strong> a → b</p>
+    <h3 id="-conclusion-ending-sentence-"><strong>৭. Conclusion / Ending Sentence</strong></h3>
+    <ul>
+        <li>সাধারণত <strong>moral, result, summary</strong> বা <strong>finally, at last, thus</strong> দিয়ে শেষ হয়।
+        </li>
+    </ul>
+    <p><strong>উদাহরণ:</strong><br>His memory will never be sunk into oblivion. (শেষ বাক্য)</p>
+    <h3 id="-"><strong>অতিরিক্ত টিপস (খুব গুরুত্বপূর্ণ)</strong></h3>
+    <ol>
+        <li>পুরো paragraph পড়ে <strong>মূল থিম</strong> বুঝে নাও (গল্প, জীবনী, ঘটনা ইত্যাদি)।</li>
+        <li><strong>Pair খুঁজো</strong> — যে দুটো বাক্য একসাথে ভালো মানায়।</li>
+        <li><strong>Option elimination</strong> করো — কোন বাক্য প্রথমে আসতে পারে না তা বাদ দাও।</li>
+        <li><strong>Read aloud</strong> করে দেখো — কোন ক্রমে ভালো শোনায়।</li>
+        <li>Story type হলে <strong>beginning-middle-end</strong> চিন্তা করো।</li>
+    </ol>
+    <h3 id="-"><strong>একটি পুরো উদাহরণ (সমাধানসহ)</strong></h3>
+    <p><strong>Jumbled sentences:</strong><br>(a) He wanted to appoint an honest man.<br>(b) Long ago, there lived a
+        Sultan.<br>(c) Then he invited applications.<br>(d) The applicants were asked to dance.<br>(e) They came through
+        a passage where gold coins were kept.<br>(f) All the applicants blushed and refused.<br>(g) Finally he found the
+        desired man.</p>
+    <p><strong>সঠিক ক্রম:</strong> b → a → c → e → d → f → g</p>
+    <p><strong>প্যারাগ্রাফ:</strong> Long ago, there lived a Sultan. He wanted to appoint an honest man. Then he invited
+        applications...</p>
+</body>
+
+</html>

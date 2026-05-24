@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gap Fillings without Clues - English Grammar Notes - Rahul Acharya Rajon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --card: #1e2937;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --accent: #22d3ee;
+            --accent2: #67e8f9;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: var(--card);
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #67e8f9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--accent2);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #bae6fd;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #bae6fd;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .rule {
+            background: rgba(103, 232, 249, 0.08);
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #334155;
+            font-family: 'Inter', monospace;
+        }
+
+        .example strong {
+            color: #67e8f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #1e2937;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(103, 232, 249, 0.1);
+        }
+
+        .highlight {
+            background: rgba(103, 232, 249, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #67e8f9;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        code {
+            background: #1e2937;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #67e8f9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Beautiful scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
+    <h2 id="gap-fillings-without-clues">Gap Fillings Without Clues</h2>
+    <p><strong>Gap Filling without Clues</strong> হলো HSC English 1st Paper-এর একটি গুরুত্বপূর্ণ অংশ। এখানে কোনো শব্দের
+        ক্লু (bracket-এ) দেওয়া থাকে না। তোমাকে নিজে থেকে উপযুক্ত শব্দ বসাতে হয়। সাধারণত <strong>Article, Preposition,
+            Conjunction, Pronoun, Linking word</strong> ইত্যাদি আসে।</p>
+    <h3 id="-"><strong>প্রধান টপিকসমূহ</strong></h3>
+    <h4 id="-articles-a-an-the-"><strong>১. Articles (a, an, the, কোনো কিছু না)</strong></h4>
+    <ul>
+        <li><strong>a</strong> → consonant sound এর আগে (a boy, a university)</li>
+        <li><strong>an</strong> → vowel sound এর আগে (an apple, an hour)</li>
+        <li><strong>the</strong> → নির্দিষ্ট/আগে উল্লেখিত/সবচেয়ে পরিচিত জিনিসের আগে</li>
+        <li><strong>Zero Article</strong> → নাম, বৃহৎ স্থান, abstract noun, meal, game ইত্যাদির আগে</li>
+    </ul>
+    <p><strong>উদাহরণ:</strong><br>Sun is (a) — star. He is (b) — honest man. (c) — honesty is best policy.</p>
+    <p><strong>উত্তর:</strong> (a) a (b) an (c) × (zero)</p>
+    <h4 id="-prepositions-in-on-at-to-for-with-by-from-of-"><strong>২. Prepositions (in, on, at, to, for, with, by,
+            from, of ইত্যাদি)</strong></h4>
+    <p><strong>গুরুত্বপূর্ণ নিয়ম:</strong></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Preposition</th>
+                <th>ব্যবহার</th>
+                <th>উদাহরণ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>in</strong></td>
+                <td>মাস, বছর, দেশ, সময়ের মধ্যে</td>
+                <td>in January, in Bangladesh</td>
+            </tr>
+            <tr>
+                <td><strong>on</strong></td>
+                <td>দিন, তারিখ, উপরে</td>
+                <td>on Monday, on the table</td>
+            </tr>
+            <tr>
+                <td><strong>at</strong></td>
+                <td>নির্দিষ্ট সময়, স্থান</td>
+                <td>at 5 pm, at school</td>
+            </tr>
+            <tr>
+                <td><strong>to</strong></td>
+                <td>দিকে যাওয়া, প্রাপক</td>
+                <td>go to school, give to him</td>
+            </tr>
+            <tr>
+                <td><strong>for</strong></td>
+                <td>উদ্দেশ্য, সময়কাল</td>
+                <td>for two hours, for education</td>
+            </tr>
+            <tr>
+                <td><strong>with</strong></td>
+                <td>সাথে, ব্যবহার করে</td>
+                <td>with my friend, with a pen</td>
+            </tr>
+            <tr>
+                <td><strong>by</strong></td>
+                <td>কর্তৃক, মাধ্যমে</td>
+                <td>by bus, written by him</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4 id="-conjunctions-linking-words-"><strong>৩. Conjunctions / Linking Words</strong></h4>
+    <ul>
+        <li><strong>and</strong> (যোগ), <strong>but</strong> (বিপরীত), <strong>or</strong> (অথবা)</li>
+        <li><strong>so</strong> (ফলস্বরূপ), <strong>because</strong> (কারণ), <strong>though/although</strong> (যদিও)
+        </li>
+        <li><strong>if</strong> (যদি), <strong>unless</strong> (না হলে), <strong>while</strong> (যখন)</li>
+    </ul>
+    <h4 id="-pronouns-"><strong>৪. Pronouns</strong></h4>
+    <ul>
+        <li>he, she, it, they, we, you, this, that, who, which, whom ইত্যাদি</li>
+    </ul>
+    <h3 id="-"><strong>সমাধানের কৌশল (খুব গুরুত্বপূর্ণ)</strong></h3>
+    <ol>
+        <li><strong>পুরো প্যাসেজ একবার পড়ো</strong> — মূল অর্থ বুঝে নাও।</li>
+        <li>প্রত্যেক ফাঁকার <strong>আগে ও পরের শব্দ</strong> দেখো।</li>
+        <li><strong>Grammar rule</strong> প্রয়োগ করো (Article, Preposition, Tense)।</li>
+        <li><strong>অর্থের সাথে মিল</strong> আছে কিনা চেক করো।</li>
+        <li>Negative শব্দ (not, no, never) থাকলে অর্থ উল্টো করে ভাবো।</li>
+        <li>পুরো বাক্য মনে মনে পড়ে দেখো যে শব্দটা ফিট করে কিনা।</li>
+    </ol>
+    <h3 id="-hsc-board-"><strong>পুরো উদাহরণ (HSC Board স্ট্যান্ডার্ড)</strong></h3>
+    <p><strong>Fill in the blanks with appropriate words:</strong></p>
+    <p>Bangladesh is (a) — country of natural beauty. It is (b) — land of rivers. Padma, Meghna and Jamuna are (c) —
+        main rivers (d) — this country. We are proud (e) — our country. We should work hard (f) — develop it. (g) — we
+        fail to do so, we will lag behind.</p>
+    <p><strong>উত্তর:</strong>
+        (a) a<br>(b) a<br>(c) the<br>(d) of<br>(e) of<br>(f) to<br>(g) If</p>
+    <p><strong>আরেকটি উদাহরণ:</strong></p>
+    <p>Truthfulness is (a) — greatest of all virtues. It makes (b) — person really great. (c) — truthful person may be
+        poor (d) — he leads a happy life. He leads (e) — peaceful life. We should be truthful (f) — our daily life.</p>
+    <p><strong>উত্তর:</strong><br>(a) the<br>(b) a<br>(c) A<br>(d) but<br>(e) a<br>(f) in</p>
+    <h3 id="-"><strong>অতিরিক্ত টিপস</strong></h3>
+    <ul>
+        <li>সবচেয়ে বেশি আসে: <strong>Article (40%) + Preposition (30%)</strong></li>
+        <li>একই ফাঁকে একাধিক শব্দ বসানো যেতে পারে (যেমন: in front of, as well as)</li>
+        <li>&quot;the&quot; বেশি ব্যবহার হয় নির্দিষ্ট জিনিসের ক্ষেত্রে।</li>
+        <li>Conjunction বসাতে হলে দুই অংশের মধ্যে সম্পর্ক বুঝতে হবে (কারণ, ফলাফল, বিপরীত ইত্যাদি)।</li>
+        <li>প্রতিদিন অন্তত ২টা করে without clues অনুশীলন করো।</li>
+    </ul>
+</body>
+
+</html>
