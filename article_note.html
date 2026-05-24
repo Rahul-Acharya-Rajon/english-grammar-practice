@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Article - English Grammar Notes - Rahul Acharya Rajon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --card: #1e2937;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --accent: #22d3ee;
+            --accent2: #67e8f9;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: var(--card);
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #67e8f9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--accent2);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #bae6fd;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #bae6fd;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .rule {
+            background: rgba(103, 232, 249, 0.08);
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #334155;
+            font-family: 'Inter', monospace;
+        }
+
+        .example strong {
+            color: #67e8f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #1e2937;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(103, 232, 249, 0.1);
+        }
+
+        .highlight {
+            background: rgba(103, 232, 249, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #67e8f9;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        code {
+            background: #1e2937;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #67e8f9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Beautiful scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
+    <h2 id="article">Article</h2>
+    <h3 id="-introduction-to-articles-">১. ভূমিকা (Introduction to Articles)</h3>
+    <ul>
+        <li><strong>আর্টিকেল কাকে বলে?</strong> A, An এবং The-কে article বলে।</li>
+        <li><strong>প্রকারভেদ:</strong> আর্টিকেল দুই প্রকার:
+            ১. <strong>Indefinite Article (অনির্দিষ্ট):</strong> A এবং An (Singular Countable Noun-এর পূর্বে বসে)।
+            ২. <strong>Definite Article (নির্দিষ্ট):</strong> The (Singular ও Plural উভয় Noun-এর পূর্বে বসে)।</li>
+        <li><strong>Adjective-এর সাথে পার্থক্য:</strong> আর্টিকেল সাধারণত Adjective হিসেবে গণ্য হলেও দুটি পার্থক্য আছে:
+        </li>
+        <li>Adjective-এর Degree of Comparison (যেমন: good, better, best) আছে, কিন্তু আর্টিকেলের নেই।</li>
+        <li>Adjective সাধারণত Predicate verb-এর পরে বসতে পারে, কিন্তু আর্টিকেল Predicate হিসেবে একা বসতে পারে না।</li>
+    </ul>
+    <h3 id="-uses-of-a-and-an-a-an-">২. Uses of A and An (A এবং An-এর ব্যবহার)</h3>
+    <h4 id="-">মৌলিক নিয়ম:</h4>
+    <ul>
+        <li><strong>ব্যঞ্জনবর্ণ ও স্বরবর্ণ:</strong> সাধারণত শব্দের শুরুতে Consonant থাকলে <strong>a</strong> এবং Vowel
+            (a, e, i, o, u) থাকলে <strong>an</strong> বসে।</li>
+        <li><em>Ex:</em> a hen, a boy, a pen, an egg, an apple.</li>
+    </ul>
+    <ul>
+        <li><strong>&#39;H&#39;-এর উচ্চারণ:</strong> শব্দের প্রথমে &#39;h&#39; উচ্চারিত হলে <strong>a</strong> বসে, আর
+            &#39;h&#39; উচ্চারিত না হলে (উচ্চারণ ও-এর মতো হলে) <strong>an</strong> বসে।</li>
+        <li><em>Ex:</em> a horse, a historian; an honest man, an hour.</li>
+    </ul>
+    <ul>
+        <li><strong>&#39;U&#39; বা &#39;E&#39;-এর উচ্চারণ:</strong> শব্দের শুরুতে vowel থাকলেও তার উচ্চারণ যদি
+            <strong>&quot;ইউ&quot; (u)</strong>-এর মতো হয়, তবে তার পূর্বে an না বসে <strong>a</strong> বসে।
+        </li>
+        <li><em>Ex:</em> a ewe, a European, a uniform, a university, a useful metal, a unique position.</li>
+    </ul>
+    <ul>
+        <li><strong>&#39;O&#39;-এর উচ্চারণ:</strong> &#39;O&#39; দিয়ে গঠিত সব শব্দের পূর্বে an বসলেও, শুধু
+            <strong>&quot;one&quot;</strong> যুক্ত শব্দের পূর্বে <strong>a</strong> বসে (উচ্চারণ &#39;ওয়া&#39; হলে)।
+        </li>
+        <li><em>Ex:</em> an open field, an open heart surgery; <strong>a one-taka note</strong>, <strong>a one-eyed
+                man</strong>.</li>
+    </ul>
+    <ul>
+        <li><strong>সংক্ষিপ্ত শব্দ (Abbreviation):</strong> সংক্ষিপ্ত শব্দের প্রথম অক্ষর Vowel-এর মতো উচ্চারিত হলে
+            <strong>an</strong> বসে, আর Consonant-এর মতো উচ্চারিত হলে <strong>a</strong> বসে।
+        </li>
+        <li><em>Ex:</em> an M.A., an F.R.C.S., an F.C.P.S.</li>
+        <li><em>Ex:</em> a B.A., a B.A.G., a B.Sc.</li>
+    </ul>
+    <h4 id="-other-uses-of-a-and-an-">অন্যান্য বিশেষ ব্যবহার (Other uses of A and An):</h4>
+    <ul>
+        <li><strong>একজাতীয় সকলকে বোঝাতে:</strong> Singular common noun যখন সমগ্র জাতিকে বোঝায় (Generalising A/An)।
+        </li>
+        <li><em>Ex:</em> A dog is a faithful animal. An ant is industrious.</li>
+    </ul>
+    <ul>
+        <li><strong>অনির্দিষ্ট কোনো ব্যক্তি/বস্তু বোঝাতে:</strong></li>
+        <li><em>Ex:</em> He bought an ice-cream. I live in a tiny room.</li>
+    </ul>
+    <ul>
+        <li><strong>&#39;The same&#39; (একই) বা &#39;A certain&#39; (কোনো এক) বোঝাতে:</strong></li>
+        <li><em>Ex:</em> Criminals are of <strong>a</strong> (the same) character. They are men of <strong>a</strong>
+            (the same) profession.</li>
+        <li><em>Ex:</em> There lived <strong>a</strong> (a certain) king.</li>
+    </ul>
+    <ul>
+        <li><strong>Disguised Preposition (ছদ্মবেশী প্রিপজিশন):</strong> কখনো কখনো Preposition &#39;on&#39; বা
+            &#39;at&#39;-এর অর্থে <strong>a</strong> ব্যবহৃত হয়।</li>
+        <li><em>Ex:</em> The king went <strong>a</strong> (on) hunting.</li>
+    </ul>
+    <ul>
+        <li><strong>Plural Noun-এর পূর্বে নির্দিষ্ট কিছু Phrase থাকলে:</strong> Few, little, good many, lot of, great
+            many, good deal ইত্যাদি থাকলে তার পূর্বে <strong>a</strong> বসে।</li>
+        <li><em>Ex:</em> He earns <strong>a</strong> lot of money. There is <strong>a</strong> little water in the
+            glass. There are <strong>a</strong> few apples on the table. He lived <strong>a</strong> great many years.
+            King Solomon had <strong>a</strong> great deal of money.</li>
+    </ul>
+    <ul>
+        <li><strong>সংখ্যাবাচক Expression:</strong> Couple, dozen, score (20), hundred, thousand, million ইত্যাদির
+            পূর্বে <strong>a</strong> বসে।</li>
+        <li><em>Ex:</em> He earns <strong>a</strong> hundred taka a day. They sold <strong>a</strong> dozen pens. At
+            least <strong>a</strong> million of people attended the meeting.</li>
+    </ul>
+    <ul>
+        <li><strong>Exclamation (বিস্ময় প্রকাশে):</strong> What, how, such ইত্যাদির পরে <strong>a</strong> বা
+            <strong>an</strong> বসে।
+        </li>
+        <li><em>Ex:</em> Such <strong>a</strong> long queue! What <strong>a</strong> pretty girl! How nice
+            <strong>a</strong> bird!
+        </li>
+    </ul>
+    <ul>
+        <li><strong>নির্দিষ্ট কিছু Phrase-এর পূর্বে:</strong></li>
+        <li><em>Ex:</em> In <strong>a</strong> body, in <strong>a</strong> hurry, in <strong>a</strong> nutshell, in
+            <strong>a</strong> fix, in <strong>a</strong> temper, to take <strong>an</strong> interest.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>Quite, many, rather, but, more, not-এর পর:</strong> Singular common noun-এর পূর্বে এগুলো থাকলে তার
+            আগে <strong>a/an</strong> বসে।</li>
+        <li><em>Ex:</em> Gulliver&#39;s Travels is quite <strong>an</strong> interesting book. Mr. Khan is rather
+            <strong>a</strong> gentleman. You are but <strong>a</strong> child. Not <strong>a</strong> rickshaw is seen
+            on the road.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>Adjective-এর পূর্বে so, too থাকলে:</strong> Adjective-এর পরে এবং Noun-এর পূর্বে
+            <strong>a/an</strong> বসে।
+        </li>
+        <li><em>Ex:</em> This is too serious <strong>a</strong> matter for him to overlook. Iron is so useful
+            <strong>a</strong> metal. The horse is faithful <strong>an</strong> animal.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>তুলনা অর্থে Proper Noun যখন Common Noun হয়:</strong></li>
+        <li><em>Ex:</em> Nelson Mandela is <strong>an</strong> Abraham Lincoln in his ideals. I see you are
+            <strong>a</strong> Wordsworth.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>Abstract Noun যখন Common Noun রূপে ব্যবহৃত হয়:</strong></li>
+        <li><em>Ex:</em> Helen was <strong>a</strong> beauty (সুন্দরী নারী অর্থে).</li>
+    </ul>
+    <ul>
+        <li><strong>Many এবং Such-এর পর:</strong> এর পরে Singular Common Noun থাকলে তার পূর্বে <strong>a/an</strong>
+            বসে।</li>
+        <li><em>Ex:</em> Many <strong>a</strong> boy was present in the meeting.</li>
+    </ul>
+    <ul>
+        <li><strong>Mr./Mrs./Miss-এর পূর্বে:</strong> অপরিচিত ব্যক্তি বোঝাতে এদের আগে <strong>a</strong> বসে।</li>
+        <li><em>Ex:</em> <strong>A</strong> Mr. Rahman called at my office. <strong>A</strong> Mrs. Shamima sought his
+            help.</li>
+    </ul>
+    <h3 id="-omission-of-a-an-a-an-">৩. Omission of A/An (যেসব জায়গায় A/An বসে না)</h3>
+    <ul>
+        <li><strong>খাবারের (Meals) পূর্বে:</strong> সাধারণত breakfast, lunch, dinner-এর পূর্বে a/an বসে না। তবে খাবারের
+            পূর্বে Adjective থাকলে <strong>a/an</strong> বসে।</li>
+        <li><em>Incorrect:</em> We have a breakfast at 7 a.m. ➔ <em>Correct:</em> We have breakfast at 7 a.m.</li>
+        <li><em>Correct with Adjective:</em> We had <strong>a</strong> good breakfast yesterday.</li>
+    </ul>
+    <ul>
+        <li><strong>Plural Noun-এর পূর্বে:</strong> <em> </em>Ex:* Roses are beautiful. Horses are useful.</li>
+        <li><strong>Uncountable Noun-এর পূর্বে:</strong> Advice, information, news, baggage, luggage ইত্যাদির পূর্বে
+            a/an বসে না।</li>
+        <li><em>Ex:</em> My teacher gave me good advice.</li>
+    </ul>
+    <ul>
+        <li><strong>পদার্থ ও তরল পদার্থের পূর্বে:</strong> Water, milk, oil, ink, hydrogen, tea, paper ইত্যাদি
+            uncountable noun-এর পূর্বে a/an বসে না। তবে এদের সাথে পরিমাপক শব্দ (measure words) যোগ করলে
+            <strong>a/an</strong> বসে।
+        </li>
+        <li><em>Ex:</em> We write on paper. Milk is nutritious food.</li>
+        <li><em>With measure words:</em> Give me <strong>a glass of</strong> water.</li>
+    </ul>
+    <ul>
+        <li><strong>Abstract Noun-এর পূর্বে:</strong> <em> </em>Ex:* Kindness is a great virtue.</li>
+    </ul>
+    <h3 id="-uses-of-definite-article-the-the-">৪. Uses of Definite Article: The (The-এর ব্যবহার)</h3>
+    <h4 id="-">সাধারণ ও ভৌগোলিক নিয়ম:</h4>
+    <ul>
+        <li><strong>নির্দিষ্ট করে বোঝাতে:</strong> Singular ও Plural উভয় প্রকার Number-এর নির্দিষ্ট Noun-এর পূর্বে
+            <strong>the</strong> বসে।
+        </li>
+        <li><em>Ex:</em> <strong>The</strong> boys are playing. <strong>The</strong> girl is reading.</li>
+    </ul>
+    <ul>
+        <li><strong>একজাতীয় সকলকে বোঝাতে (Defining &quot;The&quot;):</strong> Singular Common Noun-এর পূর্বে সমগ্র জাতি
+            বোঝাতে <strong>the</strong> বসে। (তবে Man ও Woman-এর পূর্বে বসে না)।</li>
+        <li><em>Ex:</em> <strong>The</strong> rose is a nice flower. <strong>The</strong> cow is a useful animal.</li>
+        <li><em>Exception:</em> Man is mortal. (The man is mortal হবে না)।</li>
+    </ul>
+    <ul>
+        <li><strong>নদী, সাগর, উপসাগর, মহাসাগর, পর্বতশ্রেণী, দ্বীপপুঞ্জ, জাহাজ ইত্যাদি:</strong> এদের নামের পূর্বে
+            <strong>the</strong> বসে। কিন্তু একটি মাত্র পর্বত বা দ্বীপ বোঝালে বসে না।
+        </li>
+        <li><em>Ex:</em> <strong>The</strong> Andamans, <strong>the</strong> Himalayas, <strong>the</strong> Pacific,
+            <strong>the</strong> Titanic.
+        </li>
+        <li><em>Exception (একটি মাত্র পর্বত/দ্বীপ):</em> Sandwip, Hatia, Mount Everest.</li>
+    </ul>
+    <ul>
+        <li><strong>ধর্মগ্রন্থ ও পত্রিকার নামের পূর্বে:</strong> <em> </em>Ex:<em> <strong>The</strong> holy Quran,
+                <em>*the</em></em> Observer.</li>
+        <li><strong>একক বস্তু ও দিক:</strong> পৃথিবী, সূর্য, চন্দ্র, এবং দিক (পূর্ব, পশ্চিম ইত্যাদি) বোঝালে তার পূর্বে
+            <strong>the</strong> বসে (Familiar &quot;The&quot;)।
+        </li>
+        <li><em>Ex:</em> <strong>The</strong> sun, <strong>the</strong> earth, <strong>the</strong> moon,
+            <strong>the</strong> polestar, <strong>the</strong> North, <strong>the</strong> South.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>বর্ণনামূলক বা অর্থপূর্ণ ভৌগোলিক নাম:</strong> <em> </em>Ex:<em> <strong>The</strong> U.S.A.,
+                <strong>the</strong> Punjab, <em>*the</em></em> U.S.S.R.</li>
+        <li><strong>তারিখের নামের পূর্বে:</strong> <em> </em>Ex:<em> <strong>The</strong> 10th of November,
+                <em>*the</em></em> 26th of March.</li>
+        <li><strong>শরীরের অঙ্গ-প্রত্যঙ্গ:</strong> Possessive Adjective-এর পরিবর্তে Common Noun-এর ক্ষেত্রে
+            <strong>the</strong> ব্যবহৃত হয়।
+        </li>
+        <li><em>Ex:</em> He struck me on <strong>the</strong> (my) head. The teacher pulled the boy by
+            <strong>the</strong> (his) ear.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>জাতি ও সম্প্রদায়:</strong> জাতি বা কোনো শ্রেণীর নামের পূর্বে <strong>the</strong> বসে এবং এরপর
+            Plural Verb হয়।</li>
+        <li><em>Ex:</em> <strong>The</strong> English, <strong>the</strong> rich, <strong>the</strong> poor,
+            <strong>the</strong> pious, <strong>the</strong> Muslims.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>Superlative Degree:</strong> Superlative degree-র Adjective-এর পূর্বে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> He is <strong>the</strong> best boy in the class.</li>
+    </ul>
+    <ul>
+        <li><strong>তুলনা বোঝাতে Comparative Degree:</strong> দুটির মধ্যে তুলনা বোঝাতে Adjective-এর Comparative Degree-র
+            পূর্বে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> Ruba is <strong>the</strong> better of the two girls.</li>
+    </ul>
+    <ul>
+        <li><strong>&quot;যত তত&quot; বোঝাতে:</strong> Adverb রূপে ব্যবহৃত Comparative Degree-র পূর্বে
+            <strong>the</strong> বসে।
+        </li>
+        <li><em>Ex:</em> <strong>The</strong> sooner, <strong>the</strong> better. <strong>The</strong> more you read,
+            <strong>the</strong> more you learn.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>বৃত্তি বা পেশা বোঝালে:</strong> <em> </em>Ex:<em> He joined <em>*the</em></em> army.</li>
+        <li><strong>Ordinal Number (ক্রমবাচক সংখ্যা):</strong> অক্ষরে লেখা থাকলে তার পূর্বে <strong>the</strong> বসে।
+            রোমান সংখ্যায় থাকলে &#39;the&#39; লিখতে হয় না, কিন্তু পড়ার সময় পড়তে হয়।</li>
+        <li><em>Ex:</em> Edward <strong>the</strong> seventh, George <strong>the</strong> sixth.</li>
+        <li><em>Note:</em> Omar II (পড়ার সময়: Omar the second).</li>
+    </ul>
+    <ul>
+        <li><strong>Abstract Quality বা গুণ প্রকাশে:</strong> কোনো গুণবাচক শব্দ যখন নির্দিষ্ট কোনো শ্রেণীকে বোঝায়, তখন
+            তার পূর্বে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> People love <strong>the</strong> brave (সাহসীদের).</li>
+    </ul>
+    <ul>
+        <li><strong>নির্দিষ্ট কোনো ব্যক্তি বা বস্তুর গুণ:</strong> Abstract Noun-এর পূর্বে নির্দিষ্টতা বোঝাতে
+            <strong>the</strong> বসে।
+        </li>
+        <li><em>Ex:</em> <strong>The</strong> courage of Richard is known to all.</li>
+    </ul>
+    <ul>
+        <li><strong>Abstract Idea প্রকাশে:</strong> Common Noun বা Adjective যখন মনের কোনো ভাব বা অনুভূতি প্রকাশ করে।
+        </li>
+        <li><em>Ex:</em> <strong>The</strong> mother (মাতৃত্ব/motherly affection) rose in her. <strong>The</strong> fox
+            (ধূর্ততা/cunningness) was found in him.</li>
+    </ul>
+    <ul>
+        <li><strong>দুটি বিখ্যাত ব্যক্তি/বস্তুর তুলনা:</strong> একই গুণসম্পন্ন দুটি ব্যক্তি বা বস্তুর তুলনা করা হলে যার
+            সাথে তুলনা করা হয় তার পূর্বে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> Nazrul is <strong>the</strong> Shelly of Bengal.</li>
+    </ul>
+    <ul>
+        <li><strong>নির্দিষ্ট প্রকারের পদার্থ (Material Noun):</strong> সাধারণত Material Noun-এর পূর্বে the বসে না, তবে
+            নির্দিষ্ট স্থানের বা প্রকারের বোঝালে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> <strong>The</strong> perfume of Saudi Arabia is famous.</li>
+    </ul>
+    <ul>
+        <li><strong>প্রসিদ্ধ ঐতিহাসিক নাম:</strong> <em> </em>Ex:<em> Ibrahim Lodi was defeated in <em>*the</em></em>
+            battle of Panipat.</li>
+        <li><strong>Proper Noun-এর পূর্বে Adjective থাকলে:</strong> <em> </em>Ex:<em> <em>*The</em></em> great Omar was
+            the second Caliph of Islam.</li>
+        <li><strong>Singular Designation (পদবী/উপাধি):</strong> <em> </em>Ex:<em> <strong>The</strong> President,
+                <strong>the</strong> Prime Minister, <em>*the</em></em> Headmaster.</li>
+        <li><strong>Superlative-এর গুরুত্ব বোঝাতে:</strong> Noun-এর পূর্বে Superlative বসে বিশেষ গুরুত্ব দিলে।</li>
+        <li><em>Ex:</em> Michael Jackson is <strong>the</strong> singer of the day. Humayun Ahmed is
+            <strong>the</strong> novelist of the day.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>Plural পরিবার বা বংশের নামের পূর্বে:</strong> <em> </em>Ex:<em> <strong>The</strong> Mughals,
+                <strong>the</strong> Pathans, <em>*the</em></em> Khans.</li>
+        <li><strong>নির্দিষ্টকারী Clause বা Phrase থাকলে:</strong> কোনো Adjective/Phrase/Clause দ্বারা Common Noun
+            নির্দিষ্ট হলে তার পূর্বে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> <strong>The</strong> man who came here yesterday is my friend. <strong>The</strong> man in
+            white dress is known to me.</li>
+    </ul>
+    <ul>
+        <li><strong>Unit বা একক অর্থে সংখ্যা প্রকাশক শব্দ:</strong> <em> </em>Ex:<em> He sells mangoes by
+                <strong>the</strong> hundred. The man buys eggs by <em>*the</em></em> score.</li>
+        <li><em>বিঃদ্রঃ:</em> By <strong>the</strong> dozens, by <strong>the</strong> scores, by <strong>the</strong>
+            hundreds বলা ভুল।</li>
+    </ul>
+    <ul>
+        <li><strong>Epithet (গুণবাচক শব্দ) যুক্ত Proper Noun:</strong> Proper Noun-এর পরে গুণবাচক শব্দ থাকলে তার পূর্বে
+            <strong>the</strong> বসে।
+        </li>
+        <li><em>Ex:</em> Alexander <strong>the</strong> great was a brave warrior.</li>
+    </ul>
+    <ul>
+        <li><strong>বাদ্যযন্ত্র (Musical Instruments):</strong> বাজানো অর্থে বাদ্যযন্ত্রের পূর্বে <strong>the</strong>
+            বসে।</li>
+        <li><em>Ex:</em> He plays <strong>the</strong> piano.</li>
+    </ul>
+    <ul>
+        <li><strong>Choir, Orchestra এবং Pop Group:</strong> এদের নামের পূর্বে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> <strong>The</strong> Miles, <strong>the</strong> Abba.</li>
+    </ul>
+    <ul>
+        <li><strong>অবিবাহিত বোনদের চিঠি পাঠানোর Structure:</strong> অবিবাহিত বোনদের ক্ষেত্রে একসঙ্গে সম্বোধন করতে:
+            <code>The Misses + Surname</code>
+        </li>
+        <li><em>Ex:</em> <strong>The</strong> Misses + Khan = <strong>The</strong> Misses Khan.</li>
+    </ul>
+    <ul>
+        <li><strong>নির্দিষ্ট কিছু Phrase-এর পূর্বে:</strong></li>
+        <li><em>Ex:</em> He is on <strong>the</strong> brink of ruin. I am in <strong>the</strong> wrong.</li>
+    </ul>
+    <ul>
+        <li><strong>কতিপয় Collective Noun-এর পূর্বে:</strong> <em> </em>Ex:<em> <strong>The</strong> elite,
+                <strong>the</strong> peasantry, <em>*the</em></em> audience.</li>
+        <li><strong>Adjective-যুক্ত কতিপয় Proper Noun বা স্থান:</strong> <em> </em>Ex:<em> <strong>The</strong>
+                national zoo at Mirpur, <strong>the</strong> National Science Museum, <em>*the</em></em> fort of Lalbag.
+        </li>
+    </ul>
+    <h3 id="-omission-of-definite-article-the-">৫. Omission of Definite Article (যেসব জায়গায় The বসে না)</h3>
+    <ul>
+        <li><strong>বিখ্যাত গ্রন্থের পূর্বে লেখকের নাম থাকলে:</strong> গ্রন্থের নামের পূর্বে লেখকের নাম থাকলে the বসে
+            না। কিন্তু লেখকের নাম না থাকলে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> Nazrul&#39;s Agnibina (The Nazrul&#39;s Agnibina হবে না)।</li>
+        <li><em>But:</em> <strong>The</strong> Agnibina of Nazrul.</li>
+    </ul>
+    <ul>
+        <li><strong>প্রাথমিক উদ্দেশ্যে (Primary Purpose) ব্যবহৃত স্থান:</strong> Bed, mosque, church, hospital, prison,
+            school, college, university, court ইত্যাদি স্থানে যদি সাধারণ বা মূল উদ্দেশ্যে যাওয়া হয়, তবে &#39;the&#39;
+            বসে না। কিন্তু বিশেষ বা অন্য কোনো উদ্দেশ্যে পরিদর্শন করলে <strong>the</strong> বসে।</li>
+        <li><em>No Article (মূল উদ্দেশ্য):</em> After I leave school, I want to go to college (ছাত্র হিসেবে). Mr. Rahim
+            is in prison for a murder (কয়েদি হিসেবে). Mr. Karim goes to mosque on Friday (নামাজ পড়তে).</li>
+        <li><em>With &#39;The&#39; (বিশেষ উদ্দেশ্য):</em> Mr. Khan went to <strong>the</strong> school to meet his
+            son&#39;s teacher. Mr. Rahim went to <strong>the</strong> prison to see Karim (পরিদর্শক হিসেবে).</li>
+    </ul>
+    <ul>
+        <li><strong>Home-এর পূর্বে:</strong> Home-এর পূর্বে সাধারণত the বসে না (যেমন: He is at home)। কিন্তু home
+            শব্দটির পূর্বে কোনো বর্ণনামূলক শব্দ বা phrase থাকলে <strong>the</strong> বসে।</li>
+        <li><em>Ex:</em> We arrived at <strong>the</strong> bride&#39;s home. For some four or five years this was
+            <strong>the</strong> home for the queen.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>ঋতুর নামের পূর্বে:</strong> ঋতুর নামের পূর্বে the বসালেও চলে, না বসালেও চলে।</li>
+        <li><em>Ex:</em> <strong>The</strong> rain has set in / Rain has set in. It dews in winter.</li>
+    </ul>
+    <ul>
+        <li><strong>রাস্তা, এভিনিউ, স্কয়ার, পার্ক:</strong> এদের নামের পূর্বে the বসে না। তবে রাস্তার নামের শেষে
+            <strong>road</strong> শব্দটি উল্লেখ থাকলে <strong>the</strong> বসে।
+        </li>
+        <li><em>No Article:</em> In the morning I go to Bahadurshah park. He bought a shop in park street.</li>
+        <li><em>With &#39;The&#39;:</em> He bought a shop on <strong>the</strong> Mirpur Road.</li>
+    </ul>
+    <ul>
+        <li><strong>সাধারণ অর্থে Proper, Abstract, Material ও Plural Common Noun:</strong> <em> </em>Ex:* Dhaka is a
+            populous city. Forgiveness is a great virtue. Iron is a useful metal. Cows give us milk.</li>
+        <li><em>Exception (নির্দিষ্ট করলে):</em> <strong>The</strong> women in the hall are all in red sharee.
+            <strong>The</strong> flowers in his garden are fine.
+        </li>
+        <li><em>Note (পদবীবাচক শব্দ Proper Noun-এর আগে থাকলে):</em> <strong>The</strong> poet Nazrul is our pride.
+            <strong>The</strong> caliph Omar was a great ruler.
+        </li>
+        <li><em>Note (Abstract Noun দ্বারা গুণ না বুঝিয়ে গুণবিশিষ্ট ব্যক্তি/বস্তু বোঝালে):</em> Nazrul is
+            <strong>the</strong> glory of Bangladesh.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>Proper Noun যখন Adjective-রূপে কাজ করে:</strong> <em> </em>Ex:* Principal Jalaluddin was a man of
+            strict principles. (The Principal Jalaluddin হবে না)।</li>
+        <li><strong>Pronominal ও Numeral Adjective যখন Noun-কে qualify করে:</strong> <em> </em>Ex:* This is my book.
+            Each boy has a separate room.</li>
+        <li><strong>Rank/Profession যখন Proper Noun-এর Apposition রূপে বসে:</strong> <em> </em>Ex:* Dr. Enamul Haque,
+            Vice-Chancellor of Jahangir Nagar University; was a scholar.</li>
+        <li><strong>সম্বোধন পদরূপে ব্যবহৃত Common Noun:</strong> <em> </em>Ex:* Boys, you are the future leaders of the
+            country.</li>
+        <li><strong>ভাষার নামের পূর্বে:</strong> ভাষার নামের পূর্বে the বসে না। তবে ভাষার নামের পরে
+            <strong>Language</strong> শব্দটি যুক্ত থাকলে <strong>the</strong> বসে।
+        </li>
+        <li><em>No Article:</em> English is an international language.</li>
+        <li><em>With &#39;The&#39;:</em> <strong>The</strong> English language is very interesting to learn.</li>
+    </ul>
+    <ul>
+        <li><strong>হ্রদ (Lake)-এর নামের পূর্বে:</strong> <em> </em>Ex:* Lake Superior, Lake Baikal, Lake Caspian.</li>
+        <li><strong>দিন বা মাসের নামের পূর্বে:</strong> <em> </em>Ex:* Sunday, Monday, January, February.</li>
+        <li><strong>রোগের নামের পূর্বে:</strong> সাধারণত রোগের নামের পূর্বে the বসে না। (যেমন: Cholera has broken out in
+            the village)।</li>
+        <li><em>ব্যতিক্রম (নির্দিষ্ট কিছু রোগ):</em> <strong>The</strong> gout, <strong>the</strong> measles,
+            <strong>the</strong> mumps.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>Factitive Verb-এর Complement-এর পূর্বে:</strong> Nominate, elect, select, make, appoint, crown,
+            choose প্রভৃতি Verb-এর Complement-এর পূর্বে article বসে না। তবে নির্দিষ্ট করে বোঝালে <strong>the</strong>
+            বসতে পারে।</li>
+        <li><em>No Article:</em> We made him chairman. They elected me captain.</li>
+        <li><em>With &#39;The&#39;:</em> We made him <strong>the</strong> captain of the team.</li>
+    </ul>
+    <ul>
+        <li><strong>Allah বা God-এর নামের পূর্বে:</strong> <em> </em>Ex:* Allah has created this earth.</li>
+        <li><strong>পোশাক-পরিচ্ছদ ও অঙ্গ-প্রত্যঙ্গের পূর্বে Possessive Adjective থাকলে:</strong> <em> </em>Ex:* Raise
+            your left hand. He took off his shirt.</li>
+        <li><strong>খেলার নামের পূর্বে:</strong> <em> </em>Ex:* He plays football.</li>
+        <li><strong>Possessive Case-এর পর কোনো Noun থাকলে:</strong> <em> </em>Ex:* It is my book. (It is my the book হবে
+            না)।</li>
+        <li><strong>ভ্রমণ সম্পর্কিত যানবাহন বা ভ্রমণ পথের পূর্বে:</strong> <em> </em>Ex:* By bus, by train, by launch,
+            by air, by sea, by water, by river ইত্যাদি।</li>
+        <li><strong>Phrase-এ ব্যবহৃত Singular Common Noun-এর পূর্বে:</strong> <em> </em>Ex:* Learn by heart, take
+            offence. He went there on foot. A beggar begs from door to door.</li>
+    </ul>
+    <h3 id="-repetition-of-articles-">৬. Repetition of Articles (আর্টিকেলের পুনরাবৃত্তি)</h3>
+    <ul>
+        <li><strong>একাধিক Adjective যখন একই Noun-কে বোঝায়:</strong> দুই বা ততোধিক Adjective যদি একই Noun-কে qualify
+            করে, তবে শুধুমাত্র <strong>প্রথম Adjective-টির পূর্বে</strong> article বসে।</li>
+        <li><em>Ex:</em> He has <strong>a</strong> red and white horse. (লাল-সাদা মেশানো একটিমাত্র ঘোড়া)।</li>
+    </ul>
+    <ul>
+        <li><strong>একাধিক Adjective যখন ভিন্ন ভিন্ন Noun-কে বোঝায়:</strong> Adjective-গুলো যদি আলাদা আলাদা Noun-কে
+            বোঝায়, তবে <strong>প্রত্যেকটি Adjective-এর পূর্বে</strong> a/an/the বসে।</li>
+        <li><em>Ex:</em> I have <strong>a</strong> red horse and <strong>a</strong> white horse. (দুটি ভিন্ন ঘোড়া—একটি
+            লাল এবং একটি সাদা)।</li>
+    </ul>
+    <ul>
+        <li><strong>দুটি Noun &#39;and&#39; দ্বারা যুক্ত হয়ে একই ব্যক্তি/বস্তু বোঝালে:</strong> শুধুমাত্র প্রথম Noun-টির
+            পূর্বে <strong>the</strong> বসে এবং Verbটি Singular হয়।</li>
+        <li><em>Ex:</em> <strong>The</strong> Headmaster and secretary is present in the meeting. (একই ব্যক্তি যিনি
+            হেডমাস্টার ও সেক্রেটারি)।</li>
+    </ul>
+    <ul>
+        <li><strong>দুটি Noun &#39;and&#39; দ্বারা যুক্ত হয়ে ভিন্ন ব্যক্তি/বস্তু বোঝালে:</strong> উভয় Noun-এর পূর্বেই
+            <strong>the</strong> বসে এবং Verbটি Plural হয়।
+        </li>
+        <li><em>Ex:</em> <strong>The</strong> Headmaster and <strong>the</strong> secretary are present in the meeting.
+            (দুজন ভিন্ন ব্যক্তি)।</li>
+    </ul>
+    <ul>
+        <li><strong>Singular Noun-এর পূর্বে দুই বা ততোধিক Adjective থাকলে:</strong> এদের প্রত্যেকের পূর্বে
+            <strong>the</strong> বসে। কিন্তু Noun-টি Plural হলে শুধু প্রথম Adjective-টির পূর্বে <strong>the</strong>
+            বসে।
+        </li>
+        <li><em>Singular Noun:</em> I have read <strong>the</strong> fourth and <strong>the</strong> fifth
+            <strong>chapter</strong> of the book.
+        </li>
+        <li><em>Plural Noun:</em> I have read <strong>the</strong> fourth and fifth <strong>chapters</strong> of the
+            book.</li>
+    </ul>
+    <h3 id="-a-the-few-little-">৭. পরিমাণের ক্ষেত্রে অর্থের পরিবর্তন (A/The + Few/Little)</h3>
+    <p>আর্টিকেল ব্যবহারের কারণে পরিমাণের অর্থে বড় পরিবর্তন আসে:</p>
+    <h4 id="a-few-countable-noun-">A. Few (Countable Noun-এর ক্ষেত্রে):</h4>
+    <ul>
+        <li><strong>few:</strong> নেই বললেই চলে (Negative অর্থ)।</li>
+        <li><em>Ex:</em> I have <strong>few</strong> books. (আমার বই নাই বললেই চলে)।</li>
+    </ul>
+    <ul>
+        <li><strong>a few:</strong> অল্প সংখ্যক আছে (Positive অর্থ)।</li>
+        <li><em>Ex:</em> I have <strong>a few</strong> books. (আমার অল্প কয়েকটি বই আছে)।</li>
+    </ul>
+    <ul>
+        <li><strong>the few:</strong> অল্প সংখ্যক, তবে তার সবটুকুই।</li>
+        <li><em>Ex:</em> I have <strong>the few</strong> books. (আমার অল্প সংখ্যক বই যা ছিল, তার সবগুলোই)।</li>
+    </ul>
+    <h4 id="b-little-uncountable-noun-">B. Little (Uncountable Noun-এর ক্ষেত্রে):</h4>
+    <ul>
+        <li><strong>little:</strong> নাই বললেই চলে (Negative অর্থ)।</li>
+        <li><em>Ex:</em> I have <strong>little</strong> rice. (চাল নাই বললেই চলে)।</li>
+    </ul>
+    <ul>
+        <li><strong>a little:</strong> সামান্য পরিমাণ আছে (Positive অর্থ)।</li>
+        <li><em>Ex:</em> I have <strong>a little</strong> rice. (সামান্য চাল আছে)।</li>
+    </ul>
+    <ul>
+        <li><strong>the little:</strong> সামান্য পরিমাণ, তবে তার সবটুকুই।</li>
+        <li><em>Ex:</em> I have <strong>the little</strong> rice. (আমার সামান্য যে চাল ছিল, তার সবটুকুই)।</li>
+    </ul>
+    <h3 id="-comparison-rules-">৮. তুলনা ও ব্যক্তিনির্দেশ (Comparison Rules)</h3>
+    <ul>
+        <li><strong>একই ব্যক্তির দুটি গুণের তুলনা:</strong> তুলনা বোঝাতে দুটি Noun যদি একই ব্যক্তিকে নির্দেশ করে, তবে
+            প্রথম Noun-টির পূর্বে article বসে। কিন্তু দুজন ভিন্ন ব্যক্তিকে নির্দেশ করলে প্রত্যেকটি object-এর পূর্বেই
+            article বসে।</li>
+        <li><em>একই ব্যক্তি:</em> She is <strong>a</strong> better singer than dancer. (তিনি নর্তকীর চেয়ে গায়িকা হিসেবে
+            ভালো)।</li>
+        <li><em>ভিন্ন ব্যক্তি:</em> She is <strong>a</strong> better singer than <strong>a</strong> dancer. (একজন
+            নর্তকীর চেয়ে তিনি ভালো গায়িকা)।</li>
+    </ul>
+</body>
+
+</html>

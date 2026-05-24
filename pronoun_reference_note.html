@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pronoun Reference - English Grammar Notes - Rahul Acharya Rajon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --card: #1e2937;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --accent: #22d3ee;
+            --accent2: #67e8f9;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: var(--card);
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #67e8f9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--accent2);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #bae6fd;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #bae6fd;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .rule {
+            background: rgba(103, 232, 249, 0.08);
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #334155;
+            font-family: 'Inter', monospace;
+        }
+
+        .example strong {
+            color: #67e8f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #1e2937;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(103, 232, 249, 0.1);
+        }
+
+        .highlight {
+            background: rgba(103, 232, 249, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #67e8f9;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        code {
+            background: #1e2937;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #67e8f9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Beautiful scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
+    <h2 id="pronoun-reference">Pronoun Reference</h2>
+    <h2 id="-">১. প্রোনাউন রেফারেন্সের সংজ্ঞা ও মূল ধারণা</h2>
+    <ul>
+        <li><strong>Pronoun ও Antecedent:</strong> প্রোনাউন সবসময় কোনো না কোনো Noun-এর পরিবর্তে বসে। প্রোনাউনটি যে
+            Noun-এর পরিবর্তে বসে, সেই Noun-টিকে প্রোনাউনের <strong>Antecedent</strong> বলা হয়। একটি বাক্যে Antecedent-টি
+            সবসময় স্পষ্ট ও নির্ভুল হওয়া উচিত।</li>
+        <li><strong>Unclear Pronoun Reference:</strong> কোনো বাক্যে যদি দুই বা ততোধিক Noun থাকে এবং প্রোনাউনটি ঠিক
+            কোনটিকে নির্দেশ করছে তা স্পষ্ট না হয়, তবে তাকে <em>Unclear Pronoun Reference</em> বা অস্পষ্ট প্রোনাউন
+            রেফারেন্স বলে।</li>
+    </ul>
+    <h3 id="-">অস্পষ্টতার বিভিন্ন ধরন:</h3>
+    <h4 id="-antecedent-ambiguous-reference-">ক) দুই বা ততোধিক সম্ভাব্য Antecedent থাকলে (Ambiguous Reference)</h4>
+    <p>যখন একটি প্রোনাউন একাধিক Noun-কে নির্দেশ করতে পারে, তখন পাঠক বিভ্রান্ত হয়ে পড়ে।</p>
+    <ul>
+        <li><strong>Incorrect:</strong> After putting the gold in the almirah, Sharmin locked <strong>it</strong>.
+            <em>(এখানে &#39;it&#39; দিয়ে gold নাকি almirah বোঝানো হচ্ছে তা অস্পষ্ট)</em>
+        </li>
+        <li><strong>Correct:</strong> After putting the gold in the almirah, Sharmin locked the
+            <strong>almirah</strong>.
+        </li>
+        <li><strong>Incorrect:</strong> Take the radio out of the car and fix <strong>it</strong>. <em>(এখানে
+                &#39;it&#39; দিয়ে radio নাকি car ঠিক করতে বলা হচ্ছে তা অস্পষ্ট)</em></li>
+        <li><strong>Correct:</strong> Take the radio out of the car and fix the <strong>radio</strong>.</li>
+    </ul>
+    <h4 id="-antecedent-hidden-antecedent-">খ) লুকানো বা অস্পষ্ট Antecedent (Hidden Antecedent)</h4>
+    <p>যখন কোনো বাক্যে প্রোনাউনের কোনো স্পষ্ট Noun Antecedent থাকে না, বরং প্রোনাউনটি কোনো Adjective-এর দিকে ইশারা করে।
+        প্রোনাউন কখনো Adjective-কে নির্দেশ করতে পারে না।</p>
+    <ul>
+        <li><strong>Incorrect:</strong> The ice cream box was empty, but we were tired of eating <strong>it</strong>.
+            <em>(এখানে &#39;it&#39; বলতে box খাওয়া বোঝায় না, ice cream খাওয়া বোঝায়; কিন্তু ice cream শব্দটি এখানে
+                Adjective হিসেবে বসেছে)</em>
+        </li>
+        <li><strong>Correct:</strong> The ice cream box was empty, but we were tired of eating <strong>ice
+                cream</strong>.</li>
+    </ul>
+    <h4 id="-antecedent-absence-of-antecedent-">গ) Antecedent-এর অনুপস্থিতি (Absence of Antecedent)</h4>
+    <p>বাক্যে কোনো স্পষ্ট Noun বা Antecedent না রেখেই প্রোনাউন ব্যবহার করা হলে।</p>
+    <ul>
+        <li><strong>Incorrect:</strong> Though he was rich, he made no use of <strong>it</strong>. <em>(এখানে
+                &#39;it&#39; নির্দেশ করার মতো কোনো Noun নেই, কারণ &#39;rich&#39; একটি Adjective)</em></li>
+        <li><strong>Correct:</strong> Though he was rich, he made no use of his <strong>riches</strong>.</li>
+    </ul>
+    <h2 id="-basic-rules-">২. প্রোনাউন রেফারেন্সের মৌলিক নিয়মাবলি (Basic Rules)</h2>
+    <ul>
+        <li><strong>নিয়ম ১ (Number):</strong> প্রোনাউন সবসময় তার Antecedent-এর <strong>Number (Singular/Plural)</strong>
+            অনুযায়ী বসে।</li>
+        <li><strong>Incorrect:</strong> Every one is trying <strong>their</strong> best to do well in the exam.</li>
+        <li><strong>Correct:</strong> Every one is trying <strong>his/her</strong> best to do well in the exam.</li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম ২ (Person):</strong> প্রোনাউন তার পূর্ববর্তী Noun বা Pronoun-এর <strong>Person</strong> অনুযায়ী
+            পরিবর্তিত হয়।</li>
+        <li><strong>Incorrect:</strong> If a person works hard, <strong>you</strong> will succeed.</li>
+        <li><strong>Correct:</strong> If a person works hard, <strong>he/she</strong> will succeed.</li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম ৩ (Possessive Noun):</strong> প্রোনাউন কখনো কোনো <strong>Possessive Noun</strong> (যেমন:
+            teacher&#39;s, Karim&#39;s)-কে নির্দেশ করতে পারে না, কারণ পসেসিভ নাউন বাক্যে Adjective-এর মতো কাজ করে।</li>
+        <li><strong>Incorrect:</strong> In the <strong>teacher&#39;s</strong> attitude <strong>he</strong> was very
+            impartial.</li>
+        <li><strong>Correct:</strong> The <strong>teacher&#39;s</strong> attitude was very impartial. Or, The
+            <strong>teacher</strong> was very impartial in his attitude.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম ৪ (Explicit Antecedent):</strong> Antecedent-টিকে অবশ্যই বাক্যে সুনির্দিষ্ট বা স্পষ্ট হতে হবে।
+        </li>
+        <li><strong>Incorrect:</strong> In case of reducing pollution <strong>they</strong> opined that public awareness
+            is a must. <em>(এখানে &#39;they&#39; কারা তা বলা নেই)</em></li>
+        <li><strong>Correct:</strong> In case of reducing pollution <strong>the experts</strong> opined that public
+            awareness is a must.</li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম ৫ (Relative Pronoun and Clause):</strong> Relative pronoun কখনো কোনো পুরো <strong>Clause
+                (বাক্যাংশ)</strong>-কে নির্দেশ করতে পারে না।</li>
+        <li><strong>Incorrect:</strong> You kill time and <strong>that</strong> is unwanted.</li>
+        <li><strong>Correct:</strong> You kill time and <strong>this habit/act</strong> is unwanted.</li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম ৬ (Demonstrative Pronoun):</strong> &quot;This&quot;, &quot;That&quot; বা &quot;Which&quot;
+            যাতে পাঠককে বিভ্রান্ত না করে, সেজন্য এদের ব্যবহার সুনির্দিষ্ট হতে হবে।</li>
+        <li><strong>Incorrect:</strong> The teacher accused the student of copying in the exam. <strong>It</strong> was
+            unfair. <em>(এখানে &#39;It&#39; বলতে পরীক্ষা নাকি নকল করা নাকি শিক্ষকের দোষারোপ করা—কোনটি unfair তা স্পষ্ট
+                নয়)</em></li>
+        <li><strong>Correct:</strong> The teacher&#39;s accusation of copying in the exam was unfair.</li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম ৭ (Who vs Which/That):</strong> ব্যক্তি বুঝাতে Relative Pronoun হিসেবে <strong>Who</strong> বসে
+            এবং প্রাণী বা বস্তু বুঝাতে <strong>Which/That</strong> বসে।</li>
+        <li><strong>Incorrect:</strong> I met the boy <strong>that</strong> is your friend. $\rightarrow$
+            <strong>Correct:</strong> I met the boy <strong>who</strong> is your friend.
+        </li>
+        <li><strong>Incorrect:</strong> This is the book <strong>who</strong> I want. $\rightarrow$
+            <strong>Correct:</strong> This is the book <strong>which/that</strong> I want.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>নিয়ম ৮ (Singular Antecedent):</strong> একটি Singular Noun-এর জন্য একটিই Singular প্রোনাউন বা
+            Antecedent জোড়া থাকা উচিত।</li>
+        <li><strong>Incorrect:</strong> Azim has invited Azad to his house. Now Azim and Azad are going to
+            <strong>their</strong> house. <em>(কার বাড়ি তা অস্পষ্ট)</em>
+        </li>
+        <li><strong>Correct:</strong> Azim has invited Azad to his house. Now Azim and Azad are going to
+            <strong>Azim&#39;s</strong> house.
+        </li>
+    </ul>
+    <h2 id="-noun-pronoun-agreement-">৩. Noun-Pronoun Agreement (বিশেষ নিয়মাবলি)</h2>
+    <p>বাক্যে সাবজেক্টের গঠন অনুযায়ী প্রোনাউন কীভাবে পরিবর্তিত হয়, তার নিয়মসমূহ নিচে দেওয়া হলো:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>ক্রমিক</th>
+                <th>নিয়ম (Rule)</th>
+                <th>ভুল উদাহরণ (Incorrect)</th>
+                <th>সঠিক উদাহরণ (Correct)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>(i)</strong></td>
+                <td><strong>Each</strong> বা <strong>Every</strong> যুক্ত দুটি Singular Noun যদি
+                    <strong>&#39;And&#39;</strong> দ্বারা যুক্ত হয়, তবে প্রোনাউনটি <strong>Singular</strong> হবে।
+                </td>
+                <td>Every clerk and every peon should do <strong>their</strong> duties.</td>
+                <td>Every clerk and every peon should do <strong>his</strong> duty.</td>
+            </tr>
+            <tr>
+                <td><strong>(ii)</strong></td>
+                <td>দুটি বা ততোধিক Singular Noun যদি <strong>&#39;And&#39;</strong> দ্বারা যুক্ত হয়, তবে প্রোনাউনটি
+                    <strong>Plural</strong> হবে।
+                </td>
+                <td>Kazal and Sazal are attentive in <strong>his</strong> lessons.</td>
+                <td>Kazal and Sazal are attentive in <strong>their</strong> lessons.</td>
+            </tr>
+            <tr>
+                <td><strong>(iii)</strong></td>
+                <td>দুটি Singular Noun যদি <strong>Or, Either...or, Neither...nor</strong> দ্বারা যুক্ত হয়, তবে
+                    প্রোনাউনটি <strong>Singular</strong> হবে।</td>
+                <td>Either Noman or Mahbub did <strong>their</strong> homework.</td>
+                <td>Either Noman or Mahbub did <strong>his</strong> homework.</td>
+            </tr>
+            <tr>
+                <td><strong>(iv)</strong></td>
+                <td>একটি Plural Noun ও একটি Singular Noun যদি <strong>Or</strong> বা <strong>Nor</strong> দ্বারা যুক্ত
+                    হয়, তবে প্রোনাউনটি <strong>Plural</strong> হবে (এবং Plural নাউনটি সাধারণত শেষে বসে)।</td>
+                <td>Either the teachers or the Headmaster has succeeded in <strong>his</strong> attempt.</td>
+                <td>Either the teachers or the Headmaster have succeeded in <strong>their</strong> attempt.</td>
+            </tr>
+            <tr>
+                <td><strong>(v)</strong></td>
+                <td><strong>Collective Noun</strong> (যেমন: Jury, Committee) যদি অবিভক্ত সমষ্টি বোঝায়, তবে প্রোনাউনটি
+                    <strong>Singular ($Neuter\ Gender$)</strong> হয়। কিন্তু মতপার্থক্য বোঝালে (Noun of Multitude)
+                    প্রোনাউনটি <strong>Plural</strong> হয়।
+                </td>
+                <td>The jury were divided in <strong>its</strong> opinion. The jury was divided in
+                    <strong>their</strong> opinion.
+                </td>
+                <td>The jury was divided in <strong>its</strong> opinion. <em>(অবিভাজ্য সমষ্টি)</em> The jury were
+                    divided in <strong>their</strong> opinion. <em>(বিভক্ত মত)</em></td>
+            </tr>
+            <tr>
+                <td><strong>(vi)</strong></td>
+                <td>প্রোনাউনটি সবসময় তার Antecedent-এর <strong>Number, Gender ও Person</strong> অনুযায়ী বসে।</td>
+                <td>She is a <strong>poet</strong>.</td>
+                <td>She is a <strong>poetess</strong>. <em>(বা Her book)</em></td>
+            </tr>
+            <tr>
+                <td><strong>(vii)</strong></td>
+                <td>একটি বাক্যে First, Second ও Third Person একসাথে থাকলে সাধারণ ক্ষেত্রে তাদের বসার ক্রম হয় <strong>231
+                        (Second $\rightarrow$ Third $\rightarrow$ First)</strong>।</td>
+                <td><strong>I, you and he</strong> are friends.</td>
+                <td><strong>You, he and I</strong> are friends. </td>
+            </tr>
+            <tr>
+                <td><strong>(viii)</strong></td>
+                <td>অন্য কোনো Noun/Pronoun-এর সাথে <strong>First Person</strong> যুক্ত থাকলে, তাদের পরিবর্তে Plural
+                    প্রোনাউন হিসেবে <strong>&#39;Our/We&#39;</strong> বসে। আর First Person না থেকে শুধু Second ও Third
+                    Person থাকলে <strong>&#39;Your&#39;</strong> বসে।</td>
+                <td>He and I did <strong>his</strong> best. You and your supporters are guilty for <strong>your</strong>
+                    evil motives.</td>
+                <td>He and I did <strong>our</strong> best. You and your supporters are guilty for
+                    <strong>their</strong> evil motives.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
