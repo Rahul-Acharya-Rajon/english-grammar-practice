@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Voice - English Grammar Notes ~ Rahul Acharya Rajon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #0f172a;
+            --card: #1e2937;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --accent: #22d3ee;
+            --accent2: #67e8f9;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: var(--card);
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #67e8f9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--accent2);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #bae6fd;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #bae6fd;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .rule {
+            background: rgba(103, 232, 249, 0.08);
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #334155;
+            font-family: 'Inter', monospace;
+        }
+
+        .example strong {
+            color: #67e8f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #1e2937;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(103, 232, 249, 0.1);
+        }
+
+        .highlight {
+            background: rgba(103, 232, 249, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #67e8f9;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        code {
+            background: #1e2937;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #67e8f9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Beautiful scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
+    <h2 id="voice">Voice</h2>
+    <h3 id="-voice-"><strong>ভয়েস (Voice) কী?</strong></h3>
+    <p>Voice হলো Verb-এর গঠন যার দ্বারা Subject নিজে কাজ করছে (Active) নাকি অন্যের কাজ তার উপর এসে পড়ছে (Passive) তা
+        বোঝায়। শুধু <strong>Object যুক্ত Transitive verb</strong>-এরই passive voice হয়।</p>
+    <p><strong>Object চেনার উপায়:</strong> মূল Verb-কে ‘কী’ (What) বা ‘কাকে’ (Whom) দ্বারা প্রশ্ন করলে object পাওয়া যায়।
+    </p>
+    <h3 id="-"><strong>মূল ২১টি রুলস এবং সাব-রুলস</strong></h3>
+    <h4 id="-rule-1-active-passive-"><strong>Rule 1: Active থেকে Passive করার সাধারণ ৩টি নিয়ম</strong></h4>
+    <ul>
+        <li><strong>(i)</strong> Active Voice-এর Subject-টি Passive Voice-এর Object হয় এবং তার পূর্বে সাধারণত
+            <strong>by</strong> বসে।
+        </li>
+        <li><strong>(ii)</strong> Active Voice-এর Object-টি Passive Voice-এর Subject হয়।</li>
+        <li><strong>(iii)</strong> মূল Verb-এর সর্বদা <strong>Past Participle (V3)</strong> হয় এবং তার পূর্বে Subject ও
+            Tense অনুযায়ী <strong>Auxiliary Verb</strong> বসে।</li>
+        <li><em>Note:</em> কাজটি কে করেছে তা জানা না থাকলে বা গুরুত্বপূর্ণ না হলে passive voice-এ &#39;by + object&#39;
+            দেওয়ার প্রয়োজন হয় না (যেমন: <em>Jute is grown in Bangladesh.</em>)।</li>
+    </ul>
+    <h4 id="-rule-2-tense-auxiliary-verb-"><strong>Rule 2: Tense অনুযায়ী Auxiliary Verb ব্যবহারের নিয়ম</strong></h4>
+    <ul>
+        <li><strong>(A) Indefinite Tense:</strong> (i) Present $\rightarrow$ am, is, are | (ii) Past $\rightarrow$ was,
+            were | (iii) Future $\rightarrow$ shall be, will be.</li>
+        <li><strong>(B) Continuous Tense:</strong> (i) Present $\rightarrow$ am being, is being, are being | (ii) Past
+            $\rightarrow$ was being, were being | (iii) Future $\rightarrow$ shall be being, will be being.</li>
+        <li><strong>(C) Perfect Tense:</strong> (i) Present $\rightarrow$ has been, have been | (ii) Past $\rightarrow$
+            had been | (iii) Future $\rightarrow$ shall have been, will have been.</li>
+    </ul>
+    <h4 id="-rule-3-tense-"><strong>Rule 3: Tense ভিত্তিক রূপান্তর (সাব-রুল সহ)</strong></h4>
+    <ul>
+        <li><strong>(a) Present Indefinite:</strong> Object-এর Subjective form + am/is/are + V3 + by + Subject-এর
+            Objective form.</li>
+        <li><em>Active:</em> I eat rice. $\rightarrow$ <em>Passive:</em> Rice is eaten by me.</li>
+    </ul>
+    <ul>
+        <li><strong>(b) Present Continuous:</strong> Object-এর Subjective form + am being/is being/are being + V3 + by +
+            Subject-এর Objective form.</li>
+        <li><em>Active:</em> They are eating mangoes. $\rightarrow$ <em>Passive:</em> Mangoes are being eaten by them.
+        </li>
+    </ul>
+    <ul>
+        <li><strong>(c) Present Perfect:</strong> Object-এর Subjective form + have been/has been + V3 + by + Subject-এর
+            Objective form.</li>
+        <li><em>Active:</em> He has done the work. $\rightarrow$ <em>Passive:</em> The work has been done by him.</li>
+    </ul>
+    <ul>
+        <li><strong>(d) Past Indefinite:</strong> Object-এর Subjective form + was/were + V3 + by + Subject-এর Objective
+            form.</li>
+        <li><em>Active:</em> He killed a bird. $\rightarrow$ <em>Passive:</em> A bird was killed by him.</li>
+    </ul>
+    <ul>
+        <li><strong>(e) Past Continuous:</strong> Object-এর Subjective form + was being/were being + V3 + by +
+            Subject-এর Objective form.</li>
+        <li><em>Active:</em> He was reading a book. $\rightarrow$ <em>Passive:</em> A book was being read by him.</li>
+    </ul>
+    <ul>
+        <li><strong>(f) Past Perfect:</strong> Object-এর Subjective form + had been + V3 + by + Subject-এর Objective
+            form.</li>
+        <li><em>Active:</em> I had written the letter. $\rightarrow$ <em>Passive:</em> The letter had been written by
+            me.</li>
+    </ul>
+    <ul>
+        <li><strong>(g) Future Indefinite:</strong> Object-এর Subjective form + shall be/will be + V3 + by + Subject-এর
+            Objective form.</li>
+        <li><em>Active:</em> I shall do the work. $\rightarrow$ <em>Passive:</em> The work will be done by me.</li>
+    </ul>
+    <ul>
+        <li><strong>(h) Future Continuous:</strong> Object-এর Subjective form + shall be being/will be being + V3 + by +
+            Subject-এর Objective form.</li>
+        <li><em>Active:</em> The teacher will be teaching us. $\rightarrow$ <em>Passive:</em> We shall be being taught
+            by the teacher.</li>
+    </ul>
+    <ul>
+        <li><strong>(i) Future Perfect:</strong> Object-এর Subjective form + shall have been/will have been + V3 + by +
+            Subject-এর Objective form.</li>
+        <li><em>Active:</em> He will have read the book. $\rightarrow$ <em>Passive:</em> The book will have been read by
+            him.</li>
+    </ul>
+    <h4 id="-rule-4-modal-auxiliary-may-might-can-could-must-ought-to-going-to-"><strong>Rule 4: Modal Auxiliary (May,
+            might, can, could, must, ought to, going to ইত্যাদি) যুক্ত বাক্য</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> Object-এর Subject form + modal + <strong>be</strong> + V3 + by + subject-এর object
+            form.</li>
+        <li><em>Active:</em> You must do the work. $\rightarrow$ <em>Passive:</em> The work must be done by you.</li>
+        <li><em>Active:</em> They are going to open a bank. $\rightarrow$ <em>Passive:</em> A bank is going to be opened
+            by them.</li>
+    </ul>
+    <h4 id="-rule-5-imperative-sentence-"><strong>Rule 5: Imperative Sentence-এর ভয়েস চেঞ্জ (৫টি সাব-রুল)</strong></h4>
+    <ul>
+        <li><strong>(a) শুধু মূল verb দিয়ে শুরু হলে:</strong> Let + object-টি Subject হয় + be + V3.</li>
+        <li><em>Active:</em> Do the work. $\rightarrow$ <em>Passive:</em> Let the work be done.</li>
+    </ul>
+    <ul>
+        <li><strong>(b) Do not দিয়ে শুরু হলে:</strong> Let not + object-টি Subject হয় + be + V3.</li>
+        <li><em>Active:</em> Do not shut the door. $\rightarrow$ <em>Passive:</em> Let not the door be shut.</li>
+    </ul>
+    <ul>
+        <li><strong>(c) Let + ব্যক্তিবাচক object (me, us, you, them, him, her) থাকলে:</strong> Let + direct object-টি
+            Subject হয় + be + V3 + by + ব্যক্তিবাচক object.</li>
+        <li><em>Active:</em> Let me do the work. $\rightarrow$ <em>Passive:</em> Let the work be done by me.</li>
+    </ul>
+    <ul>
+        <li><strong>(d) Never যুক্ত বাক্যে:</strong> Let never + object-টি Subject হয় + be + V3. (অথবা, Let not... ever
+            দিয়েও করা যায়)</li>
+        <li><em>Active:</em> Never tell a lie. $\rightarrow$ <em>Passive:</em> Let never a lie be told.</li>
+    </ul>
+    <ul>
+        <li><strong>(e) মূল verb + ব্যক্তিবাচক object থাকলে:</strong> Let + direct object + be + V3 +
+            <strong>for</strong> + ব্যক্তিবাচক object.
+        </li>
+        <li><em>Active:</em> Buy me a shirt. $\rightarrow$ <em>Passive:</em> Let a shirt be bought for me.</li>
+    </ul>
+    <h4 id="-rule-6-interrogative-sentence-"><strong>Rule 6: Interrogative Sentence-এর ভয়েস চেঞ্জ (৩টি সাব-রুল)</strong>
+    </h4>
+    <ul>
+        <li><strong>(a) সাধারণ Interrogative (সহজ পদ্ধতি - মনে মনে Assertive করে পরিবর্তন করা):</strong> বাক্যটির
+            Auxiliary verb-টি শুরুতে বসিয়ে বাকি অংশ সাধারণ নিয়মে করতে হয়।</li>
+        <li><em>Active:</em> Have you eaten rice? $\rightarrow$ <em>Passive:</em> Has rice been eaten by you?</li>
+        <li><em>Active:</em> Did you play football? $\rightarrow$ <em>Passive:</em> Was football played by you?</li>
+    </ul>
+    <ul>
+        <li><strong>(b) Who যুক্ত বাক্য:</strong> Who-এর পরিবর্তে শুরুতে <strong>By whom</strong> + Tense ও Person
+            অনুযায়ী Auxiliary verb + Object-টি Subject হয় + (নিয়ম অনুযায়ী be/being/been) + V3?</li>
+        <li><em>Active:</em> Who is calling me? $\rightarrow$ <em>Passive:</em> By whom am I being called?</li>
+    </ul>
+    <ul>
+        <li><strong>(c) Whom যুক্ত বাক্য:</strong> Whom-এর পরিবর্তে শুরুতে <strong>Who</strong> + Tense অনুযায়ী
+            Auxiliary verb + V3 + by + Subject-এর objective form?</li>
+        <li><em>Active:</em> Whom did you see on the road? $\rightarrow$ <em>Passive:</em> Who was seen by you on the
+            road?</li>
+    </ul>
+    <ul>
+        <li><strong>(d) What যুক্ত বাক্য:</strong> What শুরুতে অপরিবর্তিত থাকে + Auxiliary Verb + V3 + by + object form.
+        </li>
+        <li><em>Active:</em> What do you want? $\rightarrow$ <em>Passive:</em> What is wanted by you?</li>
+    </ul>
+    <h4 id="-rule-7-subject-verb-object-present-participle-"><strong>Rule 7: Subject + Verb + Object + Present
+            Participle যুক্ত বাক্য</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> Active-এর object-টি subject হয় + Tense অনুযায়ী Auxiliary verb + V3 + Present
+            Participle যুক্ত অংশটি বসে + by + Subject-এর objective form.</li>
+        <li><em>Active:</em> I saw him reading a book. $\rightarrow$ <em>Passive:</em> He was seen reading a book by me.
+        </li>
+    </ul>
+    <h4 id="-rule-8-double-object-"><strong>Rule 8: Double Object (দুটি অবজেক্ট) যুক্ত বাক্য</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> দুটি object-এর যেকোনো একটিকে (ব্যক্তিবাচক Indirect object-কে করাই শ্রেয়) Subject করতে
+            হয় + Auxiliary verb + V3 + বাকি অবজেক্টটি (<strong>Retained object</strong> হিসেবে বসে থাকে) + by +
+            Subject-এর objective form.</li>
+        <li><em>Active:</em> I gave him a book.</li>
+        <li><em>Passive (১):</em> He was given a book by me.</li>
+        <li><em>Passive (২):</em> A book was given to him by me.</li>
+    </ul>
+    <h4 id="-rule-9-complex-compound-sentence-"><strong>Rule 9: Complex এবং Compound Sentence-এর নিয়ম</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> সাধারণত উভয় Clause-এরই voice পরিবর্তন করতে হয়। তবে অনেক সময় Introductory
+            &quot;It&quot; ব্যবহার করা যায়।</li>
+        <li><em>Active:</em> I know that he did the work.</li>
+        <li><em>Passive:</em> It is known to me that the work was done by him. (অথবা: <em>That the work was done by him
+                is known to me.</em>)</li>
+        <li><em>Note (সতর্কতা):</em> Active voice &quot;people say&quot; দিয়ে শুরু হলে &quot;It is said&quot; দিয়ে
+            প্যাসিভ করাই শ্রেয়। যেমন: <em>People say that the lion is the king of beast.</em> $\rightarrow$ <em>It is
+                said that the lion is the king of beast.</em></li>
+    </ul>
+    <h4 id="-rule-10-intransitive-verb-preposition-group-verb-prepositional-verb-"><strong>Rule 10: Intransitive Verb +
+            Preposition (Group Verb / Prepositional Verb)</strong></h4>
+    <ul>
+        <li><strong>(a) নিয়ম:</strong> সাধারণত Intransitive verb-এর passive হয় না, তবে verb-এর সাথে preposition যুক্ত
+            হয়ে যদি তা Transitive verb-এর মতো কাজ করে, তবে passive করার সময় preposition-টি V3-এর সাথেই বসে থাকে।</li>
+        <li><em>Active:</em> The truck ran over the boy. $\rightarrow$ <em>Passive:</em> The boy was run over by the
+            truck.</li>
+    </ul>
+    <ul>
+        <li><strong>(b) Intransitive Verb + Cognate Object (সমার্থক অবজেক্ট):</strong> সমার্থক অবজেক্টটি Subject হিসেবে
+            আসে + Auxiliary verb + V3 + by + object.</li>
+        <li><em>Active:</em> He ran a race. $\rightarrow$ <em>Passive:</em> A race was run by him.</li>
+    </ul>
+    <h4 id="-rule-11-reflexive-object-myself-himself-yourself-"><strong>Rule 11: Reflexive Object (myself, himself,
+            yourself ইত্যাদি) যুক্ত বাক্য</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> এই বাক্যে Subject অপরিবর্তিত থাকে + Tense অনুযায়ী Auxiliary verb + V3 + by +
+            reflexive object-টি বসে।</li>
+        <li><em>Active:</em> He killed himself. $\rightarrow$ <em>Passive:</em> He was killed by himself.</li>
+    </ul>
+    <h4 id="-rule-12-factitive-object-complementary-object-"><strong>Rule 12: Factitive Object / Complementary Object
+            যুক্ত বাক্য</strong></h4>
+    <ul>
+        <li><em>সংজ্ঞা:</em> Select, elect, nominate, make, call ইত্যাদি verb-এর অর্থ পূর্ণ করার জন্য যে অতিরিক্ত
+            অবজেক্ট আনা হয় তাকে Factitive object বলে (যেমন: captain)।</li>
+        <li><strong>নিয়ম:</strong> আসল Object-টি (me, us, him ইত্যাদি) Subject হিসেবে আসে (Factitive object-টি কখনো
+            subject হয় না) + Auxiliary verb + V3 + Factitive object + by + object form.</li>
+        <li><em>Active:</em> We made him captain. $\rightarrow$ <em>Passive:</em> He was made captain by us.</li>
+    </ul>
+    <h4 id="-rule-13-quasi-passive-"><strong>Rule 13: Quasi-passive (অর্ধ-কর্মবাচ্য) যুক্ত বাক্য (২টি নিয়ম)</strong>
+    </h4>
+    <ul>
+        <li><strong>প্রথম নিয়ম:</strong> Subject + Tense অনুযায়ী Auxiliary verb + Adjective + when + it/they + Tense
+            অনুযায়ী Auxiliary verb + V3.</li>
+        <li><em>Active:</em> Honey tastes sweet. $\rightarrow$ <em>Passive:</em> Honey is sweet when it is tasted.</li>
+    </ul>
+    <ul>
+        <li><strong>দ্বিতীয় নিয়ম (বিকল্প):</strong> Subject + Tense অনুযায়ী Auxiliary verb + V3 + Adjective.</li>
+        <li><em>Active:</em> Honey tastes sweet. $\rightarrow$ <em>Passive:</em> Honey is tasted sweet.</li>
+        <li><em>অন্য উদাহরণ:</em> Rice sells cheap. $\rightarrow$ <em>Passive:</em> Rice is sold cheap.</li>
+    </ul>
+    <h4 id="-rule-14-infinitive-to-verb-"><strong>Rule 14: Infinitive (to + verb) যুক্ত বাক্য</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> Adjective-এর পর Infinitive থাকলে তা সাধারণত Active voice-এই থাকে যদিও অর্থ প্রকাশ পায়
+            Passive-এর মতো।</li>
+        <li><em>উদাহরণ:</em> Mangoes are good to eat. (এখানে &#39;to be eaten&#39; হবে না)।</li>
+        <li><em>ব্যতিক্রম (অন্য ক্ষেত্রে passive হতে পারে):</em> The teacher ordered the student to be punished.</li>
+    </ul>
+    <h4 id="-rule-15-infinitive-"><strong>Rule 15: অন্যান্য Infinitive এর কম্বিনেশন (৩টি সাব-রুল)</strong></h4>
+    <ul>
+        <li><strong>(a) Subject + liking/loving/wanting + object + infinitive:</strong> Subject + verb + object +
+            <strong>to be</strong> + V3.
+        </li>
+        <li><em>Active:</em> He wants someone to take photographs. $\rightarrow$ <em>Passive:</em> He wants photographs
+            to be taken.</li>
+    </ul>
+    <ul>
+        <li><strong>(b) Advise/order/recommend/urge + Indirect object + Infinitive + Direct object:</strong> Indirect
+            object-টি Subject হয় + auxiliary verb + V3 + Infinitive থেকে শেষ পর্যন্ত। (অথবা &#39;that&#39; clause দিয়ে
+            করা যায়)।</li>
+        <li><em>Active:</em> The Manager urged the supervisor to reduce the rates. $\rightarrow$ <em>Passive:</em> The
+            supervisor was urged to reduce the rates.</li>
+    </ul>
+    <ul>
+        <li><strong>(c) agree / determine / decide + infinitive + object:</strong> Subject + verb +
+            <strong>that</strong> + infinitive-এর পরের Object + <strong>should be</strong> + V3.
+        </li>
+        <li><em>Active:</em> He decided to sell the house. $\rightarrow$ <em>Passive:</em> He decided that the house
+            should be sold.</li>
+    </ul>
+    <h4 id="-rule-16-gerund-advise-propose-recommend-suggest-gerund-object-"><strong>Rule 16: Gerund কম্বিনেশন
+            (advise/propose/recommend/suggest + gerund + object)</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> Subject + Verb + <strong>that</strong> + gerund-এর পরের object + <strong>should
+                be</strong> + V3 (gerund-টি V3 তে রূপান্তরিত হয়)।</li>
+        <li><em>Active:</em> He suggested giving up smoking. $\rightarrow$ <em>Passive:</em> He suggested that smoking
+            should be given up.</li>
+    </ul>
+    <h4 id="-rule-17-bare-infinitive-make-see-feel-let-know-watch-verb-active-to-"><strong>Rule 17: Bare Infinitive
+            (Make, see, feel, let, know, watch ইত্যাদি verb যার পর Active-এ &#39;to&#39; উহ্য থাকে)</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> Passive করার সময় এদের পরে <strong>&#39;to&#39;</strong> বসাতে হয়। তবে
+            <strong>let</strong>-এর ক্ষেত্রে active/passive উভয় অবস্থাতেই &#39;to&#39; বসে না।
+        </li>
+        <li><em>Active:</em> He made me do the work. $\rightarrow$ <em>Passive:</em> I was made <strong>to</strong> do
+            the work by him.</li>
+        <li><em>Active:</em> They let us go. $\rightarrow$ <em>Passive:</em> We were let go by them.</li>
+    </ul>
+    <h4 id="-rule-18-double-passive-"><strong>Rule 18: Double Passive পরিহার করার নিয়ম</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> একই বাক্যে দুইবার প্যাসিভ করা ব্যাকরণগতভাবে ভুল বা অর্থ পরিবর্তন করে ফেলে, তাই এটি
+            পরিহার করা উচিত।</li>
+        <li><em>ভুল (Incorrect):</em> The criminal was ordered by the police to be shot. (Double passive)</li>
+        <li><em>সঠিক (Correct):</em> It was ordered by the police that the criminal should be shot.</li>
+    </ul>
+    <h4 id="-rule-19-by-preposition-"><strong>Rule 19: &#39;by&#39; ছাড়া অন্যান্য Preposition-এর ব্যবহার</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> কিছু কিছু Verb-এর ক্ষেত্রে অবজেক্টের পূর্বে <strong>by</strong> না বসে <strong>to,
+                at, on, with, in</strong> ইত্যাদি বসে।</li>
+        <li><strong>With:</strong> <em>Active:</em> He annoyed me. $\rightarrow$ <em>Passive:</em> I was annoyed
+            <strong>with</strong> him.
+        </li>
+        <li><strong>At:</strong> <em>Active:</em> His behaviour surprised me. $\rightarrow$ <em>Passive:</em> I was
+            surprised <strong>at</strong> his behaviour.</li>
+        <li><strong>In:</strong> <em>Active:</em> The parcel contains important materials. $\rightarrow$
+            <em>Passive:</em> Important materials are contained <strong>in</strong> the parcel.
+        </li>
+        <li><strong>To:</strong> <em>Active:</em> I know the boy. $\rightarrow$ <em>Passive:</em> The boy is known
+            <strong>to</strong> me.
+        </li>
+    </ul>
+    <h4 id="-rule-20-one-should-"><strong>Rule 20: One + should যুক্ত বাক্য</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> Object-টি Subject হয় + <strong>should be</strong> + V3. (এখানে &#39;by one&#39; লেখার
+            প্রয়োজন নেই)।</li>
+        <li><em>Active:</em> One should take care of one&#39;s health. $\rightarrow$ <em>Passive:</em> Health should be
+            taken care of.</li>
+    </ul>
+    <h4 id="-rule-21-state-verb-verb-"><strong>Rule 21: State Verb (অবস্থা নির্দেশক Verb)</strong></h4>
+    <ul>
+        <li><strong>নিয়ম:</strong> Transitive verb হওয়া সত্ত্বেও কিছু verb দ্বারা কোনো কর্মসম্পাদন না বুঝিয়ে শুধু
+            &#39;অবস্থা&#39; (State) বোঝায় (যেমন: have, fit, suit, lack, resemble)। এদের <strong>Passive Voice হয়
+                না</strong>।</li>
+        <li><em>উদাহরণ:</em> I have a cow. / He resembles his father. (এদের প্যাসিভ রূপান্তর সম্ভব নয়)।</li>
+    </ul>
+</body>
+
+</html>

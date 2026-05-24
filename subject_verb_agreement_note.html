@@ -1,234 +1,320 @@
-<html><head><style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-font-family: "Noto Sans Bengali", sans-serif;
-}
+<!DOCTYPE html>
+<html>
 
-body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    width: 75%;
-    margin: auto;
-    text-align: justify;
-    background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
-    color: #e0e7ff;
-    line-height: 1.75;
-    min-height: 100vh;
-    padding: 30px 15px;
-}
+<head>
+    <title>Subject-Verb Agreement - English Grammar Notes ~ Rahul Acharya Rajon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
 
-.container {
-    max-width: 1150px;
-    margin: 0 auto;
-    background: rgba(15, 15, 35, 0.55);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(120, 100, 255, 0.25);
-    border-radius: 24px;
-    padding: 45px 40px;
-    box-shadow: 
-        0 30px 60px -15px rgba(0, 0, 0, 0.6),
-        inset 0 2px 0 rgba(255,255,255,0.08);
-}
+        :root {
+            --bg: #0f172a;
+            --card: #1e2937;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --accent: #22d3ee;
+            --accent2: #67e8f9;
+            --border: #334155;
+        }
 
-h1 {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 30px;
-    background: linear-gradient(90deg, #a5b4fc, #c4b5fd, #e0bbff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-    letter-spacing: -1px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-h2 {
-    font-size: 1.85rem;
-    margin: 45px 0 18px 0;
-    color: #c4b5fd;
-    position: relative;
-    padding-left: 15px;
-}
+        body {
+            font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-h2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 28px;
-    background: linear-gradient(#8b5cf6, #c026d3);
-    border-radius: 4px;
-}
+        .container {
+            background-color: var(--card);
+            border-radius: 16px;
+            padding: 40px 50px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border: 1px solid var(--border);
+        }
 
-h3 {
-    font-size: 1.45rem;
-    color: #ddd6fe;
-    margin: 28px 0 12px 0;
-}
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #67e8f9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+        }
 
-.rule {
-    background: rgba(25, 25, 50, 0.65);
-    border: 1px solid rgba(147, 112, 255, 0.25);
-    border-radius: 18px;
-    padding: 22px;
-    margin: 20px 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--accent2);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
 
-.rule:hover {
-    transform: translateY(-8px) scale(1.02);
-    border-color: #a78bff;
-    box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.4);
-}
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #bae6fd;
+        }
 
-/* Examples */
-.example {
-    background: linear-gradient(135deg, rgba(59, 7, 100, 0.5), rgba(88, 28, 135, 0.4));
-    border-left: 6px solid #a855f7;
-    padding: 18px 22px;
-    margin: 18px 0;
-    border-radius: 12px;
-    font-family: 'Consolas', 'Courier New', monospace;
-    color: #f3e8ff;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-}
+        h4 {
+            font-size: 1.2rem;
+            color: #bae6fd;
+            margin-top: 25px;
+        }
 
-/* Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 25px 0;
-    background: rgba(20, 20, 45, 0.7);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
+        p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+        }
 
-th {
-    background: rgba(139, 92, 246, 0.25);
-    color: #e0bbff;
-    padding: 16px;
-    text-align: left;
-}
+        ul,
+        ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
 
-td {
-    padding: 16px;
-    border-bottom: 1px solid rgba(139, 92, 246, 0.15);
-}
+        li {
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
 
-tr:hover {
-    background: rgba(139, 92, 246, 0.1);
-}
+        .rule {
+            background: rgba(103, 232, 249, 0.08);
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #1e1b4b;
-}
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(#8b5cf6, #c026d3);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #a78bff;
-}
+        .example {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 18px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #334155;
+            font-family: 'Inter', monospace;
+        }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .container {
-        padding: 30px 20px;
-        margin: 10px;
-        border-radius: 20px;
-    }
-    h1 { font-size: 2.4rem; }
-    h2 { font-size: 1.65rem; }
-}</style></head><body><h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
-<h2 id="subject-verb-agreement-summary">Subject-Verb Agreement Summary</h2>
-<p><strong>1. Number ও Person অনুযায়ী Verb:</strong> Subject যদি Singular হয় তবে Verb Singular হবে, আর Subject Plural হলে Verb Plural হবে। (Prepositional phrase সাবজেক্টের ওপর প্রভাব ফেলে না)।</p>
-<ul>
-<li><em>Example:</em> The colour of his eyes <strong>is</strong> blue. (Eyes থাকলেও মূল সাবজেক্ট &#39;colour&#39;)</li>
-</ul>
-<p><strong>২. &#39;And&#39; দ্বারা যুক্ত সাবজেক্ট:</strong> একাধিক Singular Noun &#39;and&#39; দিয়ে যুক্ত হলে Verb সাধারণত Plural হয়।</p>
-<ul>
-<li><em>Example:</em> Jamal and Kamal <strong>have</strong> gone to their native village.</li>
-<li><strong>ব্যতিক্রম ১:</strong> &#39;And&#39; যুক্ত সাবজেক্ট যদি একই ব্যক্তি বা বস্তুকে বোঝায় তবে Verb Singular হয়। (The Headmaster and Secretary <strong>is</strong> present).</li>
-<li><strong>ব্যতিক্রম ২:</strong> যদি বস্তুগুলো একটি মাত্র ভাব প্রকাশ করে (যেমন: Bread and butter, Slow and steady), তবে Verb Singular হয়। (Slow and steady <strong>wins</strong> the race).</li>
-<li><strong>ব্যতিক্রম ৩:</strong> &#39;Each&#39;, &#39;Every&#39; বা &#39;No&#39; থাকলে Verb Singular হবে। (Each boy and each girl <strong>has</strong> a pen).</li>
-<li><strong>ব্যতিক্রম ৪:</strong> &#39;And&#39; এর পর &#39;no&#39; বা &#39;not&#39; থাকলে প্রথম সাবজেক্ট অনুযায়ী Verb বসে। (Rahman and not his sons <strong>has</strong> helped me).</li>
-</ul>
-<p><strong>৩. &#39;With&#39;, &#39;As well as&#39; যুক্ত সাবজেক্ট:</strong> সাবজেক্ট যদি &#39;as well as&#39;, &#39;along with&#39;, &#39;together with&#39;, &#39;accompanied by&#39; ইত্যাদি দ্বারা যুক্ত হয়, তবে প্রথম সাবজেক্ট অনুযায়ী Verb বসে।</p>
-<ul>
-<li><em>Example:</em> Lily as well as her sisters <strong>has</strong> done well.</li>
-</ul>
-<p><strong>৪. Either-or, Neither-nor:</strong></p>
-<ul>
-<li>(i) দুটি Singular সাবজেক্ট যুক্ত থাকলে Verb Singular হয়। (Neither he nor his brother <strong>is</strong> guilty).</li>
-<li>(ii) ভিন্ন Number এর সাবজেক্ট থাকলে Plural সাবজেক্টটি শেষে বসে এবং Verb Plural হয়। (Neither the chairman nor the members <strong>are</strong> present).</li>
-<li>(iii) ভিন্ন Person এর সাবজেক্ট থাকলে শেষ সাবজেক্ট অনুযায়ী Verb বসে। (Neither he nor his friends <strong>have</strong> attended).</li>
-</ul>
-<p><strong>৫. বিভিন্ন Person-এর ক্রম:</strong> সাধারণ ক্ষেত্রে ক্রম হয় <strong>231</strong> (2nd, 3rd, 1st person)। দোষ স্বীকারের ক্ষেত্রে ক্রম হয় <strong>123</strong>।</p>
-<ul>
-<li><em>Example:</em> You, Habib and I <strong>are</strong> present. (সাধারণ)</li>
-<li><em>Example:</em> I, you and Habib <strong>are</strong> guilty. (দোষ স্বীকার)</li>
-</ul>
-<p><strong>৬. Pronoun এর ব্যবহার:</strong> একাধিক Noun/Pronoun এর সাথে 1st person থাকলে pronounটি &#39;our&#39; হয়। আর 1st person না থেকে 2nd person থাকলে pronounটি &#39;your&#39; হয়।</p>
-<ul>
-<li><em>Example:</em> My father and I did <strong>our</strong> best.</li>
-</ul>
-<p><strong>৭. Collective Noun:</strong> Collective Noun সাধারণত Singular হয়। কিন্তু &#39;Noun of Multitude&#39; (যখন আলাদা আলাদা সদস্যদের বোঝায়) হলে Verb Plural হয়।</p>
-<ul>
-<li><em>Example:</em> The jury <strong>was</strong> unanimous. (Singular)</li>
-<li><em>Example:</em> The jury <strong>were</strong> unanimous in their opinion. (Plural - আলাদা মতামত বোঝালে)</li>
-</ul>
-<p><strong>৮. দূরত্ব, ওজন ও অর্থ:</strong> একই দৈর্ঘ্য, পরিমাণ বা স্থান বোঝালে Subject দেখতে Plural হলেও Verb Singular হয়।</p>
-<ul>
-<li><em>Example:</em> Forty miles <strong>is</strong> a long way.</li>
-</ul>
-<p><strong>৯. দেখতে Singular কিন্তু মূলত Plural:</strong> কিছু Noun (aristocracy, cattle, poultry, people, gentry) দেখতে Singular হলেও এদের পরে Plural Verb বসে।</p>
-<ul>
-<li><em>Example:</em> Cattle <strong>are</strong> grazing in the field.</li>
-</ul>
-<p><strong>১০. দেখতে Plural কিন্তু মূলত Singular:</strong> কিছু Noun (news, physics, mathematics, politics) দেখতে Plural হলেও এরা Singular হিসেবে গণ্য হয়।</p>
-<ul>
-<li><em>Example:</em> The news <strong>is</strong> false.</li>
-</ul>
-<p><strong>১১. সবসময় Plural Noun:</strong> কিছু শব্দ (spectacles, scissors, pants, glasses) সবসময় Plural হয়। তবে এদের আগে &#39;a pair of&#39; থাকলে Verb Singular হয়।</p>
-<ul>
-<li><em>Example:</em> The scissors <strong>are</strong> blunt. </li>
-<li><em>Example:</em> A pair of shoes <strong>is</strong> on the table.</li>
-</ul>
-<p><strong>১২. বই বা দেশের নাম:</strong> বইয়ের নাম বা দেশের নাম দেখতে Plural হলেও Verb Singular হয়।</p>
-<ul>
-<li><em>Example:</em> The United States of America <strong>is</strong> a rich country.</li>
-</ul>
-<p><strong>১৩. Adjective যখন সাবজেক্ট:</strong> Adjective-এর আগে &#39;The&#39; বসলে তা Plural Common Noun হয়ে যায় এবং Verb Plural হয়।</p>
-<ul>
-<li><em>Example:</em> The pious <strong>are</strong> happy.</li>
-</ul>
-<p><strong>১৪. Infinitive, Gerund, Clause:</strong> যখন কোনো Infinitive (To walk), Gerund (Walking) বা Clause বাক্যের সাবজেক্ট হয়, তখন Verb Singular হয়।</p>
-<ul>
-<li><em>Example:</em> To walk <strong>is</strong> a good exercise.</li>
-</ul>
-<p><strong>১৫. Subject ও Complement:</strong> ভিন্ন Number-এর হলেও Verb সবসময় সাবজেক্ট অনুযায়ী বসে।</p>
-<ul>
-<li><em>Example:</em> The Muslims <strong>are</strong> a brave nation.</li>
-</ul>
-<p><strong>১৬. Relative Pronoun:</strong> &#39;Who&#39;, &#39;Which&#39;, &#39;That&#39; ইত্যাদির পরের Verb তার ঠিক আগের শব্দ (Antecedent) অনুযায়ী বসে।</p>
-<ul>
-<li><em>Example:</em> It is I who <strong>am</strong> responsible for this.</li>
-</ul>
-<p><strong>১৭. Introductory &#39;There&#39;:</strong> &#39;There&#39; দিয়ে বাক্য শুরু হলে তার পরের Noun অনুযায়ী Verb বসে।</p>
-<ul>
-<li><em>Example:</em> There <strong>is</strong> a big tree. </li>
-<li><em>Exmaple:</em> There <strong>are</strong> many schools.</li>
-</ul>
-<p><strong>১৮. &#39;One of the&#39; এর ব্যবহার:</strong> &#39;One of the&#39; এর পরে Noun Plural হলেও Verb সবসময় Singular হয়।</p>
-<ul>
-<li><em>Example:</em> One of the boys <strong>is</strong> absent.</li>
-</ul>
-</body></html>
+        .example strong {
+            color: #67e8f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #1e2937;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(103, 232, 249, 0.1);
+        }
+
+        .highlight {
+            background: rgba(103, 232, 249, 0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #67e8f9;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        code {
+            background: #1e2937;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #67e8f9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Beautiful scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="english-grammar-notes-rahul-acharya-rajon">English Grammar Notes ~ Rahul Acharya Rajon</h1>
+    <h2 id="subject-verb-agreement-summary">Subject-Verb Agreement Summary</h2>
+    <p><strong>1. Number ও Person অনুযায়ী Verb:</strong> Subject যদি Singular হয় তবে Verb Singular হবে, আর Subject
+        Plural হলে Verb Plural হবে। (Prepositional phrase সাবজেক্টের ওপর প্রভাব ফেলে না)।</p>
+    <ul>
+        <li><em>Example:</em> The colour of his eyes <strong>is</strong> blue. (Eyes থাকলেও মূল সাবজেক্ট
+            &#39;colour&#39;)</li>
+    </ul>
+    <p><strong>২. &#39;And&#39; দ্বারা যুক্ত সাবজেক্ট:</strong> একাধিক Singular Noun &#39;and&#39; দিয়ে যুক্ত হলে Verb
+        সাধারণত Plural হয়।</p>
+    <ul>
+        <li><em>Example:</em> Jamal and Kamal <strong>have</strong> gone to their native village.</li>
+        <li><strong>ব্যতিক্রম ১:</strong> &#39;And&#39; যুক্ত সাবজেক্ট যদি একই ব্যক্তি বা বস্তুকে বোঝায় তবে Verb
+            Singular হয়। (The Headmaster and Secretary <strong>is</strong> present).</li>
+        <li><strong>ব্যতিক্রম ২:</strong> যদি বস্তুগুলো একটি মাত্র ভাব প্রকাশ করে (যেমন: Bread and butter, Slow and
+            steady), তবে Verb Singular হয়। (Slow and steady <strong>wins</strong> the race).</li>
+        <li><strong>ব্যতিক্রম ৩:</strong> &#39;Each&#39;, &#39;Every&#39; বা &#39;No&#39; থাকলে Verb Singular হবে। (Each
+            boy and each girl <strong>has</strong> a pen).</li>
+        <li><strong>ব্যতিক্রম ৪:</strong> &#39;And&#39; এর পর &#39;no&#39; বা &#39;not&#39; থাকলে প্রথম সাবজেক্ট অনুযায়ী
+            Verb বসে। (Rahman and not his sons <strong>has</strong> helped me).</li>
+    </ul>
+    <p><strong>৩. &#39;With&#39;, &#39;As well as&#39; যুক্ত সাবজেক্ট:</strong> সাবজেক্ট যদি &#39;as well as&#39;,
+        &#39;along with&#39;, &#39;together with&#39;, &#39;accompanied by&#39; ইত্যাদি দ্বারা যুক্ত হয়, তবে প্রথম
+        সাবজেক্ট অনুযায়ী Verb বসে।</p>
+    <ul>
+        <li><em>Example:</em> Lily as well as her sisters <strong>has</strong> done well.</li>
+    </ul>
+    <p><strong>৪. Either-or, Neither-nor:</strong></p>
+    <ul>
+        <li>(i) দুটি Singular সাবজেক্ট যুক্ত থাকলে Verb Singular হয়। (Neither he nor his brother <strong>is</strong>
+            guilty).</li>
+        <li>(ii) ভিন্ন Number এর সাবজেক্ট থাকলে Plural সাবজেক্টটি শেষে বসে এবং Verb Plural হয়। (Neither the chairman nor
+            the members <strong>are</strong> present).</li>
+        <li>(iii) ভিন্ন Person এর সাবজেক্ট থাকলে শেষ সাবজেক্ট অনুযায়ী Verb বসে। (Neither he nor his friends
+            <strong>have</strong> attended).
+        </li>
+    </ul>
+    <p><strong>৫. বিভিন্ন Person-এর ক্রম:</strong> সাধারণ ক্ষেত্রে ক্রম হয় <strong>231</strong> (2nd, 3rd, 1st person)।
+        দোষ স্বীকারের ক্ষেত্রে ক্রম হয় <strong>123</strong>।</p>
+    <ul>
+        <li><em>Example:</em> You, Habib and I <strong>are</strong> present. (সাধারণ)</li>
+        <li><em>Example:</em> I, you and Habib <strong>are</strong> guilty. (দোষ স্বীকার)</li>
+    </ul>
+    <p><strong>৬. Pronoun এর ব্যবহার:</strong> একাধিক Noun/Pronoun এর সাথে 1st person থাকলে pronounটি &#39;our&#39; হয়।
+        আর 1st person না থেকে 2nd person থাকলে pronounটি &#39;your&#39; হয়।</p>
+    <ul>
+        <li><em>Example:</em> My father and I did <strong>our</strong> best.</li>
+    </ul>
+    <p><strong>৭. Collective Noun:</strong> Collective Noun সাধারণত Singular হয়। কিন্তু &#39;Noun of Multitude&#39; (যখন
+        আলাদা আলাদা সদস্যদের বোঝায়) হলে Verb Plural হয়।</p>
+    <ul>
+        <li><em>Example:</em> The jury <strong>was</strong> unanimous. (Singular)</li>
+        <li><em>Example:</em> The jury <strong>were</strong> unanimous in their opinion. (Plural - আলাদা মতামত বোঝালে)
+        </li>
+    </ul>
+    <p><strong>৮. দূরত্ব, ওজন ও অর্থ:</strong> একই দৈর্ঘ্য, পরিমাণ বা স্থান বোঝালে Subject দেখতে Plural হলেও Verb
+        Singular হয়।</p>
+    <ul>
+        <li><em>Example:</em> Forty miles <strong>is</strong> a long way.</li>
+    </ul>
+    <p><strong>৯. দেখতে Singular কিন্তু মূলত Plural:</strong> কিছু Noun (aristocracy, cattle, poultry, people, gentry)
+        দেখতে Singular হলেও এদের পরে Plural Verb বসে।</p>
+    <ul>
+        <li><em>Example:</em> Cattle <strong>are</strong> grazing in the field.</li>
+    </ul>
+    <p><strong>১০. দেখতে Plural কিন্তু মূলত Singular:</strong> কিছু Noun (news, physics, mathematics, politics) দেখতে
+        Plural হলেও এরা Singular হিসেবে গণ্য হয়।</p>
+    <ul>
+        <li><em>Example:</em> The news <strong>is</strong> false.</li>
+    </ul>
+    <p><strong>১১. সবসময় Plural Noun:</strong> কিছু শব্দ (spectacles, scissors, pants, glasses) সবসময় Plural হয়। তবে
+        এদের আগে &#39;a pair of&#39; থাকলে Verb Singular হয়।</p>
+    <ul>
+        <li><em>Example:</em> The scissors <strong>are</strong> blunt. </li>
+        <li><em>Example:</em> A pair of shoes <strong>is</strong> on the table.</li>
+    </ul>
+    <p><strong>১২. বই বা দেশের নাম:</strong> বইয়ের নাম বা দেশের নাম দেখতে Plural হলেও Verb Singular হয়।</p>
+    <ul>
+        <li><em>Example:</em> The United States of America <strong>is</strong> a rich country.</li>
+    </ul>
+    <p><strong>১৩. Adjective যখন সাবজেক্ট:</strong> Adjective-এর আগে &#39;The&#39; বসলে তা Plural Common Noun হয়ে যায়
+        এবং Verb Plural হয়।</p>
+    <ul>
+        <li><em>Example:</em> The pious <strong>are</strong> happy.</li>
+    </ul>
+    <p><strong>১৪. Infinitive, Gerund, Clause:</strong> যখন কোনো Infinitive (To walk), Gerund (Walking) বা Clause
+        বাক্যের সাবজেক্ট হয়, তখন Verb Singular হয়।</p>
+    <ul>
+        <li><em>Example:</em> To walk <strong>is</strong> a good exercise.</li>
+    </ul>
+    <p><strong>১৫. Subject ও Complement:</strong> ভিন্ন Number-এর হলেও Verb সবসময় সাবজেক্ট অনুযায়ী বসে।</p>
+    <ul>
+        <li><em>Example:</em> The Muslims <strong>are</strong> a brave nation.</li>
+    </ul>
+    <p><strong>১৬. Relative Pronoun:</strong> &#39;Who&#39;, &#39;Which&#39;, &#39;That&#39; ইত্যাদির পরের Verb তার ঠিক
+        আগের শব্দ (Antecedent) অনুযায়ী বসে।</p>
+    <ul>
+        <li><em>Example:</em> It is I who <strong>am</strong> responsible for this.</li>
+    </ul>
+    <p><strong>১৭. Introductory &#39;There&#39;:</strong> &#39;There&#39; দিয়ে বাক্য শুরু হলে তার পরের Noun অনুযায়ী Verb
+        বসে।</p>
+    <ul>
+        <li><em>Example:</em> There <strong>is</strong> a big tree. </li>
+        <li><em>Exmaple:</em> There <strong>are</strong> many schools.</li>
+    </ul>
+    <p><strong>১৮. &#39;One of the&#39; এর ব্যবহার:</strong> &#39;One of the&#39; এর পরে Noun Plural হলেও Verb সবসময়
+        Singular হয়।</p>
+    <ul>
+        <li><em>Example:</em> One of the boys <strong>is</strong> absent.</li>
+    </ul>
+</body>
+
+</html>
