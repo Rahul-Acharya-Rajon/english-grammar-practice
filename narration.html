@@ -160,7 +160,7 @@
             margin-top: 8px;
             color: var(--text-main);
             line-height: 1.8;
-            white-space: pre-wrap;
+            /* white-space: pre-wrap; */
         }
 
         .correct-line {
@@ -186,7 +186,7 @@
             font-style: italic;
             font-size: 0.9em;
             display: block;
-            margin: 4px 0 10px 20px;
+            margin: 4px 0 10px 5px;
         }
 
         .theme-toggle {
@@ -327,7 +327,8 @@
                 <div>
                     <label>1. Paste Questions:</label>
                     <textarea id="q-input"
-                        placeholder="Questions (direct speech passages)&#10;e.g.&#10;1. A hawker said, “Will you buy any paper?...”&#10;2. My friend said to me, ..."></textarea>
+                        placeholder="Questions (direct speech passages)&#10;e.g.&#10;1. A hawker said, " Will you buy
+                        any paper?..."&#10;2. My friend said to me, ..."></textarea>
                 </div>
                 <div>
                     <label>2. Paste Answers:</label>
@@ -546,7 +547,7 @@
         function loadDemo() {
 
             const demoQuestions = `1. Change the form of narrative style by using indirect speeches:
-"A hawker said, “Will you buy any paper? I have all types of Newspapers and Magazines. Please take one from me.” “I buy books but now I need a weekly. Don’t you have any Weekly Magazine?” said Sushmita.
+A hawker said, "Will you buy any paper? I have all types of Newspapers and Magazines. Please take one from me." "I buy books but now I need a weekly. Don't you have any Weekly Magazine?" said Sushmita.
 
 2. Change the form of narrative style by using indirect speeches:
 My friend said to me, "Why are you sitting alone here? I have been looking for you. Let us go for a walk in the open field." "Leave me alone," said I. "Don't disturb me please."
@@ -576,7 +577,7 @@ Rahim said to Hamid, "How are you? I went to your hostel yesterday, but did not 
 The stranger said to the boy. "Will you tell me the way to the nearest hotel?" "Yes, I will. Do you want a residential one in which you can spend the night?" the boy said, "I do not want to stay here, but I only want a meal," the stranger replied. The boy said, "Follow me."
 
 11. Change the form of narrative style byusing indirect speeches:
-Once I asked a little girl, "What is your mother's name?" She replied cleverly, "I know my mother's name but I won't tell you that. "Why?" "Because I don't know you." I said, "What a clever girl you are! May you prosper in life."
+Once I asked a little girl, "What is your mother's name?" She replied cleverly, "I know my mother's name but I won't tell you that. "Why?" "Because I don't know you." She said, "What a clever girl you are! May you prosper in life."
 
 12. Change the form of narrative style byusing indirect speeches:
 The teacher said to the boy, "Do you think that honesty is the best policy?" The boy said, "Yes, sir, I think so." "Then, learn to be honest from your boyhood," said the teacher. "Thank you, sir," said the boy. "May Allah grant you a long life," said the teacher to the boy.
@@ -615,7 +616,7 @@ The boy said, "I've to go for supper now. I can come again tomorrow evening." I 
 "I will pay for it," he said. "I broke it. I brought the axe down careless." "But no one hits accurately every time," I told him. "The fault was in the wood of the handle. I will see the man from whom I bought it." "Thanks," he said.
 
 24. Change the form of narrative style by using indirect speeches:
-"What kind of stories did Aesop tell?" asked Anwar. “Fables,” replied Mrs Amin. "Do you know what fables are?" "No," replied Anwar. "Well," said Mrs Amin. "Fables are stories with a moral. And Aesop entertained people by telling these stories." said Mrs Amin.
+"What kind of stories did Aesop tell?" asked Anwar. "Fables," replied Mrs Amin. "Do you know what fables are?" "No," replied Anwar. "Well," said Mrs Amin. "Fables are stories with a moral. And Aesop entertained people by telling these stories." said Mrs Amin.
 
 25. Change the form of narrative style by using indirect speeches:
 "Oh, my Lord, do not kill the child," said the woman. "Let her have it." The king said, "Now everything is clear to me". Pointing to the woman, he said to the servant, "Give her the child. She is the mother of the child."
@@ -657,10 +658,10 @@ A man, lost in a forest, saw another man and rushed to him and said, "Oh! How ha
 "I can chop some wood today," said Jerry. "But I have a boy coming from the orphanage." "I am the boy." "You? But you are small." Size does not matter, chopping wood," said Jerry. "Some of the big boys don't chop good. I've been chopping wood for a long time." said Jerry to the writer.
 
 38. Change the form of narrative style by using indirect speeches:
-“I have won a lottery and got 10 lakh taka,” said Samira. “Congratulations!” I said. “What do you intend to do with the large amount of money?” “I want to serve my poor village people. So. I have made up my mind to establish a hospital in our rural area.” Samira replied. “Thank you.” I said. “I shall also help you in this respect.”
+"I have won a lottery and got 10 lakh taka," said Samira. "Congratulations!" I said. "What do you intend to do with the large amount of money?" "I want to serve my poor village people. So. I have made up my mind to establish a hospital in our rural area." Samira replied. "Thank you." I said. "I shall also help you in this respect."
 
 39. Change the form of narrative style by using indirect speeches:
-“What’s a puppet show?” Mita said to her father. Father said. “Let’s go inside and you can see yourself.” Inside the tent Mita said, “How strange! A doll is dancing and talking. Father said, “A man behind the screen is moving the doll. Do you understand who is talking?”
+"What's a puppet show?" Mita said to her father. Father said. "Let's go inside and you can see yourself." Inside the tent Mita said, "How strange! A doll is dancing and talking. Father said, "A man behind the screen is moving the doll. Do you understand who is talking?"
 
 40. Change the form of narrative style by using indirect speeches:
 "What's your dream? Do you have any dream?" Said Zayed. "Yes, I have a dream. My dream is a full plate of rice." Said Robi. "Come with me. I am going to materialize your dream." "How kind you are!" Said Robi.
@@ -719,10 +720,9 @@ Jerry said, "I can chop some wood today." "But I have a boy coming from the orph
 
             const demoAnswers = `1. A hawker asked Sushmita if she would
 buy any paper and said that he had all types
-of newspapers and magazines. He (h)
-requested her to take one from him. Then
+of newspapers and magazines. He requested her to take one from him. Then
 Sushmita said that she bought books but
-then she needed a weekly. She (S) asked the
+then she needed a weekly. She asked the
 hawker if he did not have any weekly
 magazine.
 2. My friend asked me why I was sitting
@@ -741,16 +741,16 @@ him (K) to be attentive and listen to his
 lecture.
 4. Rahim' asked Hamid how he was. He (R)
 said that he (R) had gone to his (H) hostel
-the previous day/the day before, but had not
+the previous day, but had not
 found him (H). He (R) also asked him (H)
 where he (H) had gone. Hamid replied that
 he (H) had gone to the station. He (H) added
 that he had to receive his maternal uncle
 there.
-5. Jerry told the writer/the authoress that
+5. Jerry told the writer that
 she looked a little bit like his mother
 especially in the dark by the fire. Not
-believing the writer/the authoress told Jerry
+believing the writer told Jerry
 that he had been only four when he had
 gone there. Being surprised she asked him
 if he had remembered how she had looked
@@ -785,26 +785,26 @@ city was very beautiful.
 monkey to stop and also said that he (m)
 was eating all their bread. The monkey
 replied that he was doing his best but he had
-told them that it was difficult, The rats
+told them that it was difficult. The rats
 requested him (m) to give them that little
 piece. The monkey replied that that was his
 piece and asked if he had not laboured a lot
 for them. The rats exclaimed with despair
 that they were very foolish believing him.
-10. The stranger asked/enquired of the boy
-if/whether he would tell him the way to the
+10. The stranger asked boy
+if he would tell him the way to the
 nearest hotel. The boy replied that he would
 but asked him if he wanted a residential one
 in which he could spend the night. The
 stranger replied that he did not want to stay
 there, but he only wanted a meal. The boy
-told/requested him to follow him (b).
+requested him to follow him (b).
 11. Once I asked a little girl to tell me what
 her mother's name was. She replied cleverly
 that she knew her mother's name but she
 would not tell me that. I asked her why she
 would not tell me. She replied that because
-she didn't know me. I exclaimed with
+she did not know me. I exclaimed with
 wonder that she was a very clever girl. I
 wished that she might prosper in life.
 12. The teacher asked the boy if he thought
@@ -815,7 +815,7 @@ advised the boy to learn to be honest from
 his boyhood. The boy respectfully thanked
 his teacher. The teacher prayed that Allah
 might grant him (boy) a long life.
-13. I asked the boy if/whether he would go
+13. I asked the boy if he would go
 to my house the next day. I told him that we
 could discuss terms and conditions then. He
 replied that he would be very happy to meet
@@ -1250,13 +1250,70 @@ the town of San Carlos.
 
         function clean(str) {
             return str.toLowerCase()
-                .replace(/[.,!?;:()“”‘’]/g, "")
+                .replace(/[.,!?;:()""‘'’-]/g, "")
                 .replace(/\s+/g, " ")
                 .trim();
         }
 
         function splitBySentence(text) {
             return text.split(/(?<=[.!?])\s+(?=[A-Z])/).map(s => s.trim()).filter(s => s.length > 0);
+        }
+
+        function levenshtein(a, b) {
+            const matrix = [];
+
+            for (let i = 0; i <= b.length; i++) {
+                matrix[i] = [i];
+            }
+
+            for (let j = 0; j <= a.length; j++) {
+                matrix[0][j] = j;
+            }
+
+            for (let i = 1; i <= b.length; i++) {
+                for (let j = 1; j <= a.length; j++) {
+                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+
+            return matrix[b.length][a.length];
+        }
+
+        function similarity(a, b) {
+            a = clean(a);
+            b = clean(b);
+
+            if (!a || !b) return 0;
+
+            const distance = levenshtein(a, b);
+            const maxLen = Math.max(a.length, b.length);
+
+            return 1 - distance / maxLen;
+        }
+
+        function findMissingWords(user, model) {
+            const userWords = clean(user).split(" ");
+            const modelWords = clean(model).split(" ");
+
+            let missing = [];
+
+            modelWords.forEach(word => {
+                const matched = userWords.some(uWord => similarity(uWord, word) >= 0.8);
+
+                if (!matched && word.length > 2) {
+                    missing.push(word);
+                }
+            });
+
+            return [...new Set(missing)];
         }
 
         function initApp() {
@@ -1326,12 +1383,24 @@ the town of San Carlos.
                 let u = userLines[j] || "";
                 let m = modelLines[j] || "";
 
-                if (m && u && clean(u) === clean(m)) {
+                if (m && u && similarity(u, m) >= 0.85) {
                     report += `<span class="correct-line">✓ ${u}</span>`;
                     correctCount++;
                 } else if (m) {
+                    // report += `<span class="wrong-line">✗ ${u || "[Empty line]"}</span>`;
+                    // report += `<span class="actual-hint">→ Model: ${m}</span>`;
+
+                    const missingWords = findMissingWords(u, m);
+
                     report += `<span class="wrong-line">✗ ${u || "[Empty line]"}</span>`;
-                    report += `<span class="actual-hint">→ Model: ${m}</span>`;
+                    report += `<span class="actual-hint">✅: ${m}</span>`;
+
+                    if (missingWords.length > 0) {
+                        report += `<span class="actual-hint"> ❌ Missing / Incorrect keywords: 
+    <b style="color:#dc2626">${missingWords.join(", ")}</b>
+</span>`;
+                    }
+
                 }
             }
 
@@ -1385,12 +1454,24 @@ the town of San Carlos.
                     let u = userLines[j] || "";
                     let m = modelLines[j] || "";
 
-                    if (m && u && clean(u) === clean(m)) {
+                    if (m && u && similarity(u, m) >= 0.1) {
                         report += `<span class="correct-line">✓ ${u}</span>`;
                         correctCount++;
                     } else if (m) {
+                        // report += `<span class="wrong-line">✗ ${u || "[Empty line]"}</span>`;
+                        // report += `<span class="actual-hint">→ Model: ${m}</span>`;
+
+                        const missingWords = findMissingWords(u, m);
+
                         report += `<span class="wrong-line">✗ ${u || "[Empty line]"}</span>`;
-                        report += `<span class="actual-hint">→ Model: ${m}</span>`;
+                        report += `<span class="actual-hint">✅: ${m}</span>`;
+
+                        if (missingWords.length > 0) {
+                            report += `<span class="actual-hint">❌ Missing / Incorrect keywords: 
+    <b style="color:#dc2626">${missingWords.join(", ")}</b>
+</span>`;
+                        }
+
                     }
                 }
 
