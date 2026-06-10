@@ -308,6 +308,9 @@ water by his mother.)"></textarea>
                 <button class="btn" style="background:#9333ea" onclick="window.print()">Export PDF</button>
                 <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
                     Word</button>
+                <button class="btn" style="background:#10b981; margin:8px;" onclick="showAnswerKey()">
+                    📋 View Full Answer Key
+                </button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
                 <div id="pagination" style="margin-top: 10px;">
                     <button id="prev-btn" class="btn" style="background:#3b82f6" onclick="prevPage()">Previous</button>
@@ -1995,6 +1998,70 @@ Or, The visitors want to enjoy natural beauties and so they go there.
             const maxLen = Math.max(a.length, b.length);
 
             return 1 - distance / maxLen;
+        }
+
+        // ==================== FULL ANSWER KEY FEATURE ====================
+        function showAnswerKey() {
+            if (quizData.length === 0) {
+                alert("প্রথমে প্রশ্ন লোড করুন!");
+                return;
+            }
+
+            const container = document.getElementById('quiz-container');
+            const originalContent = container.innerHTML;
+
+            let keyHTML = `
+        <h2 style="text-align:center; color:var(--p); margin-bottom:25px;">
+            📋 Full Answer Key - All Changing Sentences Exercises
+        </h2>
+    `;
+
+            quizData.forEach((set, setIdx) => {
+                let content = `<div class="intro-text">${set.intro}</div>`;
+
+                set.sentences.forEach(s => {
+                    const letter = s.letter;
+                    const ansData = set.answers[letter];
+                    const ansText = ansData ? ansData.original : "×";
+
+                    const replacement = `
+                <b>(${letter})</b> 
+                <strong style="color:var(--s); background:#ecfdf5; padding:2px 12px; border-radius:6px; border:1px solid #10b981;">
+                    ${ansText}
+                </strong>
+            `;
+
+                    content += `
+                <div class="sentence-row">
+                    <span class="q-text"><b>(${letter})</b> ${s.text}</span>
+                    ${replacement}
+                </div>
+            `;
+                });
+
+                keyHTML += `
+            <div class="quiz-card" style="margin-bottom:25px;">
+                <h3>Practice Set ${setIdx + 1}</h3>
+                ${content}
+            </div>
+        `;
+            });
+
+            container.innerHTML = keyHTML;
+
+            // Back Button
+            const backBtn = document.createElement('button');
+            backBtn.className = 'btn';
+            backBtn.style.background = '#64748b';
+            backBtn.style.margin = '25px auto';
+            backBtn.style.display = 'block';
+            backBtn.textContent = '← Back to Practice Sheet';
+            backBtn.onclick = () => {
+                container.innerHTML = originalContent;
+            };
+
+            container.appendChild(backBtn);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>

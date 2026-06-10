@@ -411,6 +411,9 @@
                 <button class="btn btn-submit" onclick="runEvaluation()">Submit</button>
                 <button id="export-btn" class="btn btn-export" onclick="window.print()">Export PDF</button>
                 <button id="export-word-btn" class="btn btn-word" onclick="exportToWord()">Export to Word</button>
+                <button class="btn" style="background:#10b981; margin:8px;" onclick="showAnswerKey()">
+                    📋 View Full Answer Key
+                </button>
                 <button class="btn btn-reset" onclick="location.reload()">Reset</button>
             </div>
         </div>
@@ -1196,6 +1199,64 @@ the: (h) a; (i) the; (j) ×;
 
             document.getElementById('export-btn').style.display = "inline-block";
             document.getElementById('export-word-btn').style.display = "inline-block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==================== FULL ANSWER KEY FEATURE ====================
+        function showAnswerKey() {
+            if (examData.length === 0) {
+                alert("প্রথমে প্রশ্ন লোড করুন!");
+                return;
+            }
+
+            const container = document.getElementById('quiz-container');
+            const originalContent = container.innerHTML;
+
+            let keyHTML = `
+        <h2 style="text-align:center; color:var(--p); margin-bottom:25px;">
+            📋 Full Answer Key - All Questions
+        </h2>
+    `;
+
+            examData.forEach((item, qIdx) => {
+                let content = item.html;
+
+                Object.keys(item.answers).forEach(letter => {
+                    const ans = item.answers[letter] || "×";
+                    const replacement = `
+                <b>(${letter})</b> 
+                <strong style="color:var(--s); background:#ecfdf5; padding:3px 10px; border-radius:6px; border:1px solid #10b981;">
+                    ${ans}
+                </strong>
+            `;
+                    content = content.replace(
+                        new RegExp(`<b>\\(${letter}\\)</b>\\s*<input[^>]*>`, 'g'),
+                        replacement
+                    );
+                });
+
+                keyHTML += `
+            <div class="quiz-card">
+                <h3 style="color:var(--p);">Question Set ${qIdx + 1}</h3>
+                <div class="content-body">${content}</div>
+            </div>
+        `;
+            });
+
+            container.innerHTML = keyHTML;
+
+            // Back Button
+            const backBtn = document.createElement('button');
+            backBtn.className = 'btn';
+            backBtn.style.background = '#64748b';
+            backBtn.style.margin = '25px auto';
+            backBtn.style.display = 'block';
+            backBtn.textContent = '← Back to Practice Sheet';
+            backBtn.onclick = () => {
+                container.innerHTML = originalContent;
+            };
+
+            container.appendChild(backBtn);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>

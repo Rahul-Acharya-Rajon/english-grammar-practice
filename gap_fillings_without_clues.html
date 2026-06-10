@@ -303,6 +303,9 @@
                 <button class="btn" style="background:#9333ea" onclick="printSheet()">Export PDF</button>
                 <button id="export-word-btn" class="btn" style="background:#2b6cb0;" onclick="exportToWord()">Export to
                     Word</button>
+                <button class="btn" style="background:#10b981; margin:8px;" onclick="showAnswerKey()">
+                    📋 View Full Answer Key
+                </button>
                 <button class="btn" style="background:#64748b" onclick="location.reload()">Reset</button>
             </div>
         </div>
@@ -861,6 +864,70 @@ Everybody (a) — to live a happy and peaceful life. But what are the (b) — th
 
         function printSheet() {
             window.print();
+        }
+
+        // ==================== FULL ANSWER KEY FEATURE ====================
+        function showAnswerKey() {
+            if (quizData.length === 0) {
+                alert("প্রথমে প্রশ্ন লোড করুন!");
+                return;
+            }
+
+            const container = document.getElementById('quiz-container');
+            const originalContent = container.innerHTML;
+
+            let keyHTML = `
+        <h2 style="text-align:center; color:var(--p); margin-bottom:25px;">
+            📋 Full Answer Key - All Gap Fillings Without Clues Exercises
+        </h2>
+    `;
+
+            quizData.forEach((item, qIdx) => {
+                let content = item.html;
+
+                // Replace inputs with correct answers
+                Object.keys(item.answers).forEach(letter => {
+                    const ans = item.answers[letter] || "×";
+                    const replacement = `
+                <span class="letter-label">(${letter})</span> 
+                <strong style="color:var(--s); background:#ecfdf5; padding:0px 12px; border-radius:6px; border:1px solid #10b981;">
+                    ${ans}
+                </strong>
+            `;
+
+                    content = content.replace(
+                        new RegExp(`<span class="letter-label">\\(${letter}\\)</span>\\s*<input[^>]*>`, 'g'),
+                        replacement
+                    );
+                    content = content.replace(
+                        new RegExp(`<input[^>]*data-letter=["']${letter}["'][^>]*>`, 'g'),
+                        replacement
+                    );
+                });
+
+                keyHTML += `
+            <div class="quiz-card" style="margin-bottom:25px;">
+                <h3>Set ${qIdx + 1}</h3>
+                <div style="font-size: 16px;">${content}</div>
+            </div>
+        `;
+            });
+
+            container.innerHTML = keyHTML;
+
+            // Back Button
+            const backBtn = document.createElement('button');
+            backBtn.className = 'btn';
+            backBtn.style.background = '#64748b';
+            backBtn.style.margin = '25px auto';
+            backBtn.style.display = 'block';
+            backBtn.textContent = '← Back to Practice Sheet';
+            backBtn.onclick = () => {
+                container.innerHTML = originalContent;
+            };
+
+            container.appendChild(backBtn);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
