@@ -2026,8 +2026,8 @@ Or, The visitors want to enjoy natural beauties and so they go there.
 
                     const replacement = `
                 <b>(${letter})</b> 
-                <strong style="color:var(--s); background:#ecfdf5; padding:2px 12px; border-radius:6px; border:1px solid #10b981;">
-                    ${ansText}
+                <strong style="color:var(--s); background:#ecfdf5; padding:0px 12px; border-radius:6px; border:1px solid #10b981;">
+                    ${ansText.replaceAll('Or,' ,'<br>')}
                 </strong>
             `;
 
