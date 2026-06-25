@@ -588,6 +588,9 @@
                 <!-- <button class="btn btn-nav" onclick="window.print()">🖨️ Print</button> -->
                 <button id="export-btn" class="btn btn-export" onclick="window.print()">Export PDF</button>
                 <button id="export-word-btn" class="btn btn-word" onclick="exportToWord()">Export to Word</button>
+                <button class="btn btn-word" style="background:#10b981; margin:8px;" onclick="showAnswerKey()">
+                    📋 View Full Answer Key
+                </button>
                 <button class="btn btn-reset" onclick="location.reload()">Reset</button>
             </div>
         </div>
@@ -1398,6 +1401,98 @@ h) The lame excuse of the dishonest grocer made the fruit seller very angry. But
         function toggleTheme() {
             const html = document.documentElement;
             html.getAttribute("data-theme") === "dark" ? html.removeAttribute("data-theme") : html.setAttribute("data-theme", "dark");
+        }
+
+        // ==================== FULL ANSWER KEY WITH COMPLETE SENTENCES ====================
+        function showAnswerKey() {
+            if (examData.length === 0) {
+                alert("প্রথমে প্রশ্ন লোড করুন!");
+                return;
+            }
+
+            const container = document.getElementById('quiz-container');
+            const originalContent = container.innerHTML;
+
+            let keyHTML = `
+        <h2 style="text-align:center; color:var(--p); margin-bottom:25px;">
+            📋 Full Answer Key - Complete Paragraph
+        </h2>
+    `;
+
+            examData.forEach((item, qIdx) => {
+                // প্রশ্ন থেকে প্রত্যেক সেন্টেন্স আলাদা করা
+                const sentences = extractSentences(item.question);
+                const correctOrder = item.answerKey; // যেমন: ["(d)", "(h)", "(a)", ...]
+
+                let reconstructed = '';
+                let sentenceList = '';
+
+                correctOrder.forEach((label, idx) => {
+                    // লেবেল অনুসারে সঠিক সেন্টেন্স খুঁজে বের করা
+                    const matchedSentence = sentences.find(s => {
+                        const labelMatch = s.match(/^\(([a-zivx]+)\)/i);
+                        return labelMatch && labelMatch[1].toLowerCase() === label.replace(/[()]/g, '').toLowerCase();
+                    });
+
+                    if (matchedSentence) {
+                        const cleanSentence = matchedSentence.replace(/^\([a-z]\)\s*/i, '').trim();
+                        reconstructed += cleanSentence + ' ';
+                        sentenceList += `<div style="margin:8px 0; padding:8px; background:#f1f5f9; border-radius:6px;">
+                            <strong>${label}</strong> ${cleanSentence}
+                        </div>`;
+                    }
+                });
+
+                keyHTML += `
+            <div class="quiz-card" style="margin-bottom:30px;">
+                <h3 style="color:var(--p);">Set ${qIdx + 1}</h3>
+                
+                <div style="background:#f8fafc; padding:18px; border-radius:10px; margin-bottom:20px; white-space:pre-wrap;">
+                    <strong>Original Jumbled Sentences:</strong>
+                    ${item.question}
+                </div>
+                
+                <div style="padding:20px; background:#ecfdf5; border:2px solid #10b981; border-radius:12px;">
+                    <strong style="color:var(--s); font-size:18px;">✅ Correct Coherent Paragraph:</strong>
+                    <div style="line-height:1.9; font-size:15.5px; color:#1e293b;">
+                        ${reconstructed.trim()}
+                    </div>
+                </div>
+
+                <div style="margin-top:20px;">
+                    <strong style="color:var(--p);">Sentence Breakdown:</strong>
+                    ${sentenceList}
+                </div>
+            </div>
+        `;
+            });
+
+            container.innerHTML = keyHTML;
+
+            // Back Button
+            const backBtn = document.createElement('button');
+            backBtn.className = 'btn btn-nav';
+            backBtn.style.margin = '30px auto';
+            backBtn.style.display = 'block';
+            backBtn.textContent = '← Back to Practice Sheet';
+            backBtn.onclick = () => {
+                container.innerHTML = originalContent;
+            };
+
+            container.appendChild(backBtn);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==================== HELPER: Extract individual sentences from question ====================
+        function extractSentences(questionText) {
+            const lines = questionText.split(/\((?=[a-zivx]+\))/i);
+            return lines.filter(s => s.trim().length > 0).map(s => {
+                const match = s.match(/^([a-zivx]+)\)(.*)/i);
+                if (match) {
+                    return `(${match[1]}) ${match[2].trim()}`;
+                }
+                return s.trim();
+            });
         }
     </script>
 </body>
