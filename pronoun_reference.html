@@ -583,7 +583,6 @@ Honesty is the best policy. It is honesty which brings happiness in life. Withou
 
 09.
 There lived a man in a village which had a great attraction to English. He went to a teacher in order to learn English well though he was dull-headed. He tried his best to teach him but the man learnt only three English words-yes, no and very good. Though the man did not know the meaning of it, he used them frequently in his conversation. He did not understand that a little learning is a dangerous thing and very soon he would be a victim of it.
-[Combined Board -Ka Set-2018]
 
 10.
 Travelling is a part of education. These means going from place to place. One can enhance knowledge by going from place to place. Thus gives one the opportunity to see the unseen and know the unknown. Some people are averse to travelling. This limits his vision. However, by travelling different parts of the world, my knowledge may be enriched. 
@@ -1177,7 +1176,7 @@ One must possess honesty and
 perseverance if one wants to be successful
 in life. Without honesty and perseverance,
 one cannot expect trust and respect from
-others. Without perseverance, you cannot
+others. Without perseverance, one cannot
 maintain one’s success for a long time,
 because success needs continuous effort.
 Honesty and perseverance go hand in hand,
@@ -1806,29 +1805,38 @@ civilization.
                 return;
             }
 
+            const fb = document.getElementById(`fb-${globalIdx}`);
             const userLines = splitBySentence(userText);
             const correctLines = splitBySentence(item.corrected);
-            const fb = document.getElementById(`fb-${globalIdx}`);
 
-            let reportHTML = "<h4>Correction Report:</h4><div class='diff-view'>";
+            let reportHTML = "<h4>Word-by-Word Comparison:</h4><div class='diff-view' style='line-height:1.9;'>";
+
             const maxLines = Math.max(userLines.length, correctLines.length);
 
-            for (let idx = 0; idx < maxLines; idx++) {
-                let uL = userLines[idx] || "";
-                let cL = correctLines[idx] || "";
-                if (cL && uL && clean(uL) === clean(cL)) {
-                    reportHTML += `<span class="correct-line">✓ ${uL}</span>`;
-                } else if (cL) {
-                    reportHTML += `<span class="wrong-line">✗ ${uL || "[Missing Line]"}</span>`;
-                    reportHTML += `<span class="actual-hint">➜ Correct: ${cL}</span>`;
+            for (let i = 0; i < maxLines; i++) {
+                const userLine = userLines[i] || "";
+                const correctLine = correctLines[i] || "";
+
+                if (!userLine && correctLine) {
+                    reportHTML += `<span class="correct-line">✓ (Added) ${correctLine}</span>`;
+                }
+                else if (!correctLine && userLine) {
+                    reportHTML += `<span class="wrong-line">✗ (Extra) ${userLine}</span>`;
+                }
+                else if (clean(userLine) === clean(correctLine)) {
+                    reportHTML += `<span class="correct-line">✓ ${userLine}</span>`;
+                }
+                else {
+                    const wordDiff = getWordDiff(userLine, correctLine);
+                    reportHTML += `<span class="wrong-line">✗ ${userLine}</span>`;
+                    reportHTML += `<span class="actual-hint" style="margin-left:10px; display:block;">➜ ${wordDiff}</span>`;
                 }
             }
 
             reportHTML += "</div>";
-            fb.style.display = "block";
-            fb.innerHTML = reportHTML;
 
-            // ফিডব্যাক এরিয়াতে স্ক্রল করার জন্য
+            fb.innerHTML = reportHTML;
+            fb.style.display = "block";
             fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
@@ -1975,26 +1983,84 @@ civilization.
 
         // ==================== WORD LEVEL DIFFERENCE HELPER ====================
         function getWordDiff(orig, corr) {
-            const origWords = orig.split(/\s+/);
-            const corrWords = corr.split(/\s+/);
+
+            if (!orig || !corr) {
+                return `<span style="color:var(--s);font-weight:bold;">${corr || ""}</span>`;
+            }
+
+            const a = orig.split(/\s+/);
+            const b = corr.split(/\s+/);
+
+            const dp = [];
+
+            for (let i = 0; i <= a.length; i++) {
+                dp[i] = [];
+                for (let j = 0; j <= b.length; j++) {
+                    dp[i][j] = 0;
+                }
+            }
+
+            for (let i = a.length - 1; i >= 0; i--) {
+                for (let j = b.length - 1; j >= 0; j--) {
+
+                    if (a[i].toLowerCase() === b[j].toLowerCase()) {
+                        dp[i][j] = dp[i + 1][j + 1] + 1;
+                    } else {
+                        dp[i][j] = Math.max(
+                            dp[i + 1][j],
+                            dp[i][j + 1]
+                        );
+                    }
+
+                }
+            }
+
+            let i = 0;
+            let j = 0;
             let result = [];
 
-            const maxLen = Math.max(origWords.length, corrWords.length);
+            while (i < a.length && j < b.length) {
 
-            for (let i = 0; i < maxLen; i++) {
-                const o = origWords[i] || "";
-                const c = corrWords[i] || "";
+                if (a[i].toLowerCase() === b[j].toLowerCase()) {
 
-                if (o.toLowerCase() === c.toLowerCase()) {
-                    result.push(c);
-                } else if (!o) {
-                    result.push(`<span style="background:#86efac; padding:2px 4px; border-radius:3px;">${c}</span>`); // added
-                } else if (!c) {
-                    result.push(`<span style="background:#fda4af; padding:2px 4px; border-radius:3px; text-decoration:line-through;">${o}</span>`); // removed
+                    result.push(b[j]);
+                    i++;
+                    j++;
+
+                } else if (dp[i + 1][j] >= dp[i][j + 1]) {
+
+                    result.push(
+                        `<span style="background:#fda4af;padding:2px 5px;border-radius:3px;text-decoration:line-through;color:#991b1b;">${a[i]}</span>`
+                    );
+
+                    i++;
+
                 } else {
-                    result.push(`<span style="background:#fda4af; padding:2px 4px; border-radius:3px; text-decoration:line-through;">${o}</span> ` +
-                        `<span style="background:#86efac; padding:2px 4px; border-radius:3px;">${c}</span>`);
+
+                    result.push(
+                        `<span style="background:#86efac;padding:2px 5px;border-radius:3px;font-weight:bold;color:#166534;">${b[j]}</span>`
+                    );
+
+                    j++;
                 }
+            }
+
+            while (i < a.length) {
+
+                result.push(
+                    `<span style="background:#fda4af;padding:2px 5px;border-radius:3px;text-decoration:line-through;color:#991b1b;">${a[i]}</span>`
+                );
+
+                i++;
+            }
+
+            while (j < b.length) {
+
+                result.push(
+                    `<span style="background:#86efac;padding:2px 5px;border-radius:3px;font-weight:bold;color:#166534;">${b[j]}</span>`
+                );
+
+                j++;
             }
 
             return result.join(" ");
