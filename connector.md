@@ -120,3 +120,23 @@
 
 * **Connectors:** That (যে)।
 * **Example:** He said **that** he would go to Chattogram tomorrow.
+
+## English Grammar: Connectors Cheat Sheet
+| ক্রমিক নং | ব্যবহারের ক্ষেত্র (Usage) | কানেক্টরস সমূহ (Connectors) | মূল অর্থ / কাজ |
+| --- | --- | --- | --- |
+| **১** | **ঘটনার ক্রম** (Sequencing) | First/firstly, Second/secondly, At first, At the beginning, In the middle of, Next, After that, Then, Finally, Lastly, In conclusion | একটার পর একটা ঘটনার ধারাবাহিকতা বোঝাতে। |
+| **২** | **অতিরিক্ত তথ্য প্রদান** (Adding Information) | And, Both...and, As well as, Not only...but also, In addition, Besides, Moreover, Furthermore, Too | চলতি তথ্যের সাথে নতুন তথ্য যোগ করতে। |
+| **৩** | **উদাহরণ প্রদান** (Giving Examples) | For example, For instance, Such as, Namely, In other words | পূর্বে বলা কোনো কথার পক্ষে উদাহরণ দিতে। |
+| **৪** | **বৈসাদৃশ্য বা বিপরীত অবস্থা** (Contrast & Opposition) | Instead, On the contrary, On the other hand, But, Yet, Still, While, Whereas, Although, Though, Even though, Despite, In spite of, However, Any how | দুটি বিষয়ের মধ্যে পার্থক্য বা বাধা বোঝাতে। |
+| **৫** | **সাদৃশ্যমূলক তুলনা** (Comparison) | Than, As...as, So...as, In the same way, By far | দুটি জিনিসের মধ্যে মিল বা তুলনা করতে। |
+| **৬** | **কারণ প্রকাশ করা** (Expressing Reason) | Since, Because, As, For, Why | কোনো ঘটনার পেছনের কারণ নির্দেশ করতে। |
+| **৭** | **ফলাফল প্রকাশ করা** (Expressing Result) | So, Therefore, Hence, As a result, As a consequence, Consequently, Eventually, Thus, Naturally | কোনো কাজের ফলস্বরূপ কী ঘটলো তা বোঝাতে। |
+| **৮** | **উদ্দেশ্য ও ফলাফল** (Purpose & Result) | Lest, So as to, So that, In order that, So...that, As much as, As many as | কোনো কাজের উদ্দেশ্য বা তীব্রতার ফলাফল দেখাতে। |
+| **৯** | **শর্ত আরোপ করা** (Condition) | If, Or, Otherwise, Unless, Until/Till, Provided (that), Providing that, In case, As long as, Supposing that, Once, Had, Were, Should, When | যদি এমন হয় তবে তেমন হবে—এমন শর্তে। |
+| **১০** | **সময় ও স্থান নির্দেশ** (Time & Place) | At that time, Where, There, As/When/While, Before, After, Since, As soon as, Sometimes, At present, Presently, Now, Then, Recently, No sooner had...than, Hardly had...when, Scarcely had...when, Afterwards | কাজ কখন বা কোথায় ঘটেছে তা নির্দিষ্ট করতে। |
+| **১১** | **উপসংহার বা সারসংক্ষেপ** (Conclusion / Summary) | In brief, In short, To sum up, To summarise, On the whole, Above all, In all, In total | পুরো আলোচনার ইতি টানতে বা সারকথা বলতে। |
+| **১২** | **কাজের ধরন বা মাধ্যম** (Manner / Means) | As if, As though, How, However, As, As...so, Like, Such...as/that | কোনো কাজ কীভাবে বা কী উপায়ে করা হয়। |
+| **১৩** | **একই সময়ে সংঘটিত ঘটনা** (Simultaneous Actions) | At the same time, At that time, Meanwhile | দুটি কাজ একই সাথে ঘটছে বোঝাতে। |
+| **১৪** | **জোড়ায় ব্যবহৃত লিংকার** (Correlative Connectors) | Whether...or, Rather...than, Though...yet | বাক্যে জোড়া হিসেবে বসে বিকল্প বা বৈপরীত্য বোঝাতে। |
+| **১৫** | **Relative Pronoun** | Who, Which, That, Whom, Whose, What, Whoever, Whatever, Whichever | ব্যক্তি, বস্তু বা স্থানকে নির্দিষ্ট করে Clause যুক্ত করতে। |
+| **১৬** | **Relative Conjunction** | That | 'যে' বা 'এই কারণে যে' অর্থে যুক্ত করতে। |
